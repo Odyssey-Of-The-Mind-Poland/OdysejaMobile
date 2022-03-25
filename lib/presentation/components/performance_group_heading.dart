@@ -12,7 +12,6 @@ class PerformanceGroupHeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 'Juniorzy' instead of 'Problem 0' etc.
     late String heading;
     switch (categoryEntity.category) {
       case ScheduleCategory.stage:

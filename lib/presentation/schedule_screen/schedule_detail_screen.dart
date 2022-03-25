@@ -29,6 +29,7 @@ class ScheduleDetailScreen extends StatelessWidget {
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text(categoryEntity.title),
+                    centerTitle: true,
                     bottom: TabBar(tabs: state.days.map((e) => Text(e)).toList()),
                   ),
                   body: TabBarView(
