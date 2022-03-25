@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:odyssey_mobile/app/asset_paths.dart';
+import 'package:odyssey_mobile/presentation/components/image_tile.dart';
+import 'package:odyssey_mobile/app/strings.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+        appBar: AppBar(title: const Text(AppStrings.homeScreenTitle)),
+        body: CustomScrollView(
+          cacheExtent: 200,
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                height: size.width,
+                child: const ImageTile(AssetPaths.eventLogo),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                height: size.width,
+                child: const ImageTile(AssetPaths.sponsor1),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.all(16),
+                height: 120,
+                child: Row(children: const [
+                  Expanded(child: ImageTile(AssetPaths.sponsor5)),
+                  SizedBox(width: 16),
+                  Expanded(child: ImageTile(AssetPaths.sponsor4)),
+                ]),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+              sliver: SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => ImageTile(_imageGrid[index]!),
+                  addAutomaticKeepAlives: false,
+                  childCount: 9,
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+const Map<int, String> _imageGrid = {
+  0: AssetPaths.sponsor2,
+  1: AssetPaths.sponsor3,
+  2: AssetPaths.sponsor8,
+  3: AssetPaths.sponsor6,
+  4: AssetPaths.sponsor11,
+  5: AssetPaths.sponsor7,
+  6: AssetPaths.sponsor10,
+  7: AssetPaths.sponsor9,
+  8: AssetPaths.sponsor12,
+};

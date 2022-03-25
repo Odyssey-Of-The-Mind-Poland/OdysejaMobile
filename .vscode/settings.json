@@ -1,0 +1,17 @@
+{
+    // "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    "search.exclude": {
+        "**/build": true,
+        "**/.dart_tool": true,
+        "**/ios/.symlinks": true,
+        "**/ios/Pods": true,
+        "**/windows": true
+        // "**/.fvm": true
+    },
+    "files.watcherExclude": {
+        "**/.dart_tool": true,
+        // "**/.fvm": true
+    },
+    // "dart.sdkPath": ".fvm/flutter_sdk",
+    "dart.lineLength": 100,
+}
