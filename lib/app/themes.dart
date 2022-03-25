@@ -28,6 +28,13 @@ final lightTheme = ThemeData(
       borderSide: BorderSide(width: 4, color: AppColors.primaryOrange),
     ),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+    primary: AppColors.primaryOrange,
+    textStyle: AppTextStyles.button,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.defaultBrRadius)),
+    minimumSize: const Size(0, 40),
+  )),
 );
 
 abstract class AppTextStyles {

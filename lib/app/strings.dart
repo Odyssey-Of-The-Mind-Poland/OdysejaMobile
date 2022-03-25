@@ -66,4 +66,14 @@ abstract class AppStrings {
   static const String secondDay = 'Niedziela';
   static const String partOne = '(cz. 1)';
   static const String partTwo = '(cz. 2)';
+
+  static const String close = 'ZAMKNIJ';
+  static const String removeFromFavsLabel = 'USUŃ Z ULUBIONYCH';
+
+  static const String performance = 'Występ';
+  static const String spontan = 'Spontan';
+
+  static const String performanceToolTip =
+      'Drużyna powinna się\nzgłosić na 20-25 minut\nprzed występem!';
+  static const String spontanToolTip = 'Drużyna powinna się\nzgłosić na 15-20 minut\nprzed czasem!';
 }
