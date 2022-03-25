@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart' as entity;
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_group.dart';
 import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:odyssey_mobile/presentation/core/loader.dart';
@@ -49,10 +50,17 @@ class ScheduleDetailScreen extends StatelessWidget {
                     title: Text(categoryEntity.title),
                     centerTitle: true,
                   ),
-                  body: ScheduleDetailsLiest(
-                    categoryEntity: categoryEntity,
-                    groups: state.performanceGroups,
-                    secretWidth: secretWidth,
+                  body: Column(
+                    children: [
+                      Heading(state.days.first),
+                      Expanded(
+                        child: ScheduleDetailsLiest(
+                          categoryEntity: categoryEntity,
+                          groups: state.performanceGroups,
+                          secretWidth: secretWidth,
+                        ),
+                      ),
+                    ],
                   ));
             }
           } else if (state is CityDataError) {

@@ -27,7 +27,7 @@ class BasicBox extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: Text(
             label,
-            maxLines: 2,
+            maxLines: 4,
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.subtitleWhite,
           ),
