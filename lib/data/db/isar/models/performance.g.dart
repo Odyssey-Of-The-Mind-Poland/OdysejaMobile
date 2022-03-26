@@ -17,7 +17,7 @@ extension GetPerformanceModelDbCollection on Isar {
 final PerformanceModelDbSchema = CollectionSchema(
   name: 'PerformanceModelDb',
   schema:
-      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city_team","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false},{"name":"team","type":"Hash","caseSensitive":true}]},{"name":"team","unique":false,"properties":[{"name":"team","type":"Hash","caseSensitive":true}]}],"links":[]}',
+      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city_team","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false},{"name":"team","type":"Hash","caseSensitive":true}]},{"name":"isFavourite","unique":false,"properties":[{"name":"isFavourite","type":"Value","caseSensitive":false}]},{"name":"team","unique":false,"properties":[{"name":"team","type":"Hash","caseSensitive":true}]}],"links":[]}',
   nativeAdapter: const _PerformanceModelDbNativeAdapter(),
   webAdapter: const _PerformanceModelDbWebAdapter(),
   idName: 'id',
@@ -36,11 +36,14 @@ final PerformanceModelDbSchema = CollectionSchema(
     'team': 11
   },
   listProperties: {},
-  indexIds: {'city_team': 0, 'team': 1},
+  indexIds: {'city_team': 0, 'isFavourite': 1, 'team': 2},
   indexTypes: {
     'city_team': [
       NativeIndexType.long,
       NativeIndexType.stringHash,
+    ],
+    'isFavourite': [
+      NativeIndexType.bool,
     ],
     'team': [
       NativeIndexType.stringHash,
@@ -306,6 +309,11 @@ extension PerformanceModelDbQueryWhereSort
     return addWhereClauseInternal(const WhereClause(indexName: 'city_team'));
   }
 
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere>
+      anyIsFavourite() {
+    return addWhereClauseInternal(const WhereClause(indexName: 'isFavourite'));
+  }
+
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere> anyTeam() {
     return addWhereClauseInternal(const WhereClause(indexName: 'team'));
   }
@@ -496,6 +504,42 @@ extension PerformanceModelDbQueryWhere
       )).addWhereClauseInternal(WhereClause(
         indexName: 'city_team',
         upper: [city, team],
+        includeUpper: false,
+      ));
+    }
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
+      isFavouriteEqualTo(bool isFavourite) {
+    return addWhereClauseInternal(WhereClause(
+      indexName: 'isFavourite',
+      lower: [isFavourite],
+      includeLower: true,
+      upper: [isFavourite],
+      includeUpper: true,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
+      isFavouriteNotEqualTo(bool isFavourite) {
+    if (whereSortInternal == Sort.asc) {
+      return addWhereClauseInternal(WhereClause(
+        indexName: 'isFavourite',
+        upper: [isFavourite],
+        includeUpper: false,
+      )).addWhereClauseInternal(WhereClause(
+        indexName: 'isFavourite',
+        lower: [isFavourite],
+        includeLower: false,
+      ));
+    } else {
+      return addWhereClauseInternal(WhereClause(
+        indexName: 'isFavourite',
+        lower: [isFavourite],
+        includeLower: false,
+      )).addWhereClauseInternal(WhereClause(
+        indexName: 'isFavourite',
+        upper: [isFavourite],
         includeUpper: false,
       ));
     }

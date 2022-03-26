@@ -28,6 +28,7 @@ abstract class DataAdapters {
     required List<PerformanceModelApi> performanceModels,
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
+    required List<int> previousFavIds,
   }) {
     List<CityDataModelDb> citiesDb = [];
     for (final city in cityModels) {
@@ -40,6 +41,7 @@ abstract class DataAdapters {
           performances: performanceModels,
           problems: problemModels,
           stages: stageModels,
+          previousFavIds: previousFavIds,
         ))
         // Sneaky mistake during refactoring led to adding stages to a getter...
         // ..stages.addAll(convertStages(stageModels));
@@ -76,11 +78,11 @@ abstract class DataAdapters {
     required List<PerformanceModelApi> performances,
     required List<ProblemModelApi> problems,
     required List<StageModelApi> stages,
+    required List<int> previousFavIds,
     List<int> parts = const [0, 1, 2],
   }) {
     final List<PerformanceGroupModelDb> performanceGroups = [];
     final Set<String> days = performances.map((e) => e.performanceDay).toSet();
-
     // I cry when I look at it.
     for (final stage in stages) {
       for (final problem in problems) {
@@ -99,7 +101,8 @@ abstract class DataAdapters {
                   ..stage = stage.number
                   ..age = division.number
                   ..part = part
-                  ..performancesIsarLinks.addAll(convertPerformances(filteredPerformances))
+                  ..performancesIsarLinks
+                      .addAll(convertPerformances(filteredPerformances, previousFavIds))
                   ..day = day);
               }
             }
@@ -111,22 +114,23 @@ abstract class DataAdapters {
   }
 
   static Iterable<PerformanceModelDb> convertPerformances(
-          Iterable<PerformanceModelApi> apiModels) =>
-      apiModels.map((e) => PerformanceModelDb()
-        ..performanceId = e.id
-        // TODO change into real value!
-        ..city = 0
-        ..age = e.age
-        ..part = e.part
-        ..performance = e.performance
-        ..performanceDay = e.performanceDay
-        ..problem = e.problem
-        ..spontan = e.spontan
-        ..spontanDay = e.spontanDay
-        ..stage = e.stage
-        ..team = e.team
-        // TODO keep favourites from previous iterations
-        ..isFavourite = false);
+          Iterable<PerformanceModelApi> apiModels, List<int> previousFavIds) =>
+      apiModels.map(
+        (e) => PerformanceModelDb()
+          ..performanceId = e.id
+          // TODO change into real value!
+          ..city = 0
+          ..age = e.age
+          ..part = e.part
+          ..performance = e.performance
+          ..performanceDay = e.performanceDay
+          ..problem = e.problem
+          ..spontan = e.spontan
+          ..spontanDay = e.spontanDay
+          ..stage = e.stage
+          ..team = e.team
+          ..isFavourite = previousFavIds.contains(e.id),
+      );
 
   static List<StageModelDb> convertStages(List<StageModelApi> apiModels) => apiModels
       .map((e) => StageModelDb()

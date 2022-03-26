@@ -31,10 +31,11 @@ class DbService {
         await isar.problemModelDbs.putAll(problems, replaceOnConflict: true);
       });
 
-  Future<List<ProblemModelDb>> readProblems() => _isar.problemModelDbs.where().anyNumber().findAll();
+  Future<List<ProblemModelDb>> readProblems() =>
+      _isar.problemModelDbs.where().anyNumber().findAll();
 
-  Future<void> createCityData(List<CityDataModelDb> cityData) => _isar
-      .writeTxn((isar) async => await isar.cityDataModelDbs.putAll(cityData, replaceOnConflict: true, saveLinks: true));
+  Future<void> createCityData(List<CityDataModelDb> cityData) => _isar.writeTxn((isar) async =>
+      await isar.cityDataModelDbs.putAll(cityData, replaceOnConflict: true, saveLinks: true));
 
   Future<CityDataModelDb?> readCityData(int cityId) async {
     final entry = await _isar.cityDataModelDbs.where().cityIdEqualTo(cityId).findFirst();
@@ -56,8 +57,11 @@ class DbService {
     return entry..initAndSort();
   }
 
-  Future<void> updateFav(PerformanceModelDb performance) =>
-      _isar.writeTxn((isar) async => await isar.performanceModelDbs.put(performance, replaceOnConflict: true));
+  Future<List<int>> readFavIds() =>
+      _isar.performanceModelDbs.where().isFavouriteEqualTo(true).performanceIdProperty().findAll();
+
+  Future<void> updateFav(PerformanceModelDb performance) => _isar.writeTxn(
+      (isar) async => await isar.performanceModelDbs.put(performance, replaceOnConflict: true));
 
   // TODO add some form of health check for the database
   Future<void> checkIntegrity() => throw UnimplementedError();

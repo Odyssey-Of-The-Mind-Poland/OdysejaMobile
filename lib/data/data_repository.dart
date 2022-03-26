@@ -32,46 +32,53 @@ class DataRepositoryImpl implements DataRepository {
   final DbService _dbService;
 
   @override
-  Future<Either<Failure, Unit>> updateData() async {
+  Future<Either<Failure, Unit>> updateData(
+      {bool forceUpdate = false, keepFavsOnUpdate = true}) async {
     try {
       final versionHttpResult = await _apiService.getVersion();
-      // final externalVersion = versionHttpResult.data['version'] as int;
-      // final savedVersion = _sharedPrefs.getInt('version') ?? -1;
+      final externalVersion = versionHttpResult.data['version'] as int;
+      final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
-      // if (externalVersion > savedVersion) {
-      final futures = await Future.wait([
-        // _apiService.getCities(),
-        _apiService.getInfo(),
-        _apiService.getInfoCategories(),
-        _apiService.getProblems(),
-        _apiService.getSchedule(),
-        _apiService.getStages(),
-      ], eagerError: true);
+      if (forceUpdate || externalVersion > savedVersion) {
+        final futures = await Future.wait([
+          // _apiService.getCities(),
+          _apiService.getInfo(),
+          _apiService.getInfoCategories(),
+          _apiService.getProblems(),
+          _apiService.getSchedule(),
+          _apiService.getStages(),
+        ], eagerError: true);
 
-      /// TODO update for future editions with multiple cities
-      final cities = [CityModelApi(id: 0, name: 'Finał Ogólnopolski')];
-      // futures[0] as List<CityModel>;
-      final infos = futures[0] as List<InfoModelApi>;
-      final infoCategories = futures[1] as List<InfoCategoryModelApi>;
-      final problems = futures[2] as List<ProblemModelApi>;
-      final performances = futures[3] as List<PerformanceModelApi>;
-      final stages = futures[4] as List<StageModelApi>;
+        /// TODO update for future editions with multiple cities
+        final cities = [CityModelApi(id: 0, name: 'Finał Ogólnopolski')];
+        // futures[0] as List<CityModel>;
+        final infos = futures[0] as List<InfoModelApi>;
+        final infoCategories = futures[1] as List<InfoCategoryModelApi>;
+        final problems = futures[2] as List<ProblemModelApi>;
+        final performances = futures[3] as List<PerformanceModelApi>;
+        final stages = futures[4] as List<StageModelApi>;
 
-      await _dbService.clearData();
+        List<int> previousFavIds = [];
+        if (savedVersion != -1 && keepFavsOnUpdate) {
+          previousFavIds = await _dbService.readFavIds();
+        }
 
-      await _dbService.createProblems(DataAdapters.convertProblems(problems));
-      await _dbService.createCityData(DataAdapters.convertCityData(
-        cityModels: cities,
-        infoModels: infos,
-        infoCategories: infoCategories,
-        performanceModels: performances,
-        stageModels: stages,
-        problemModels: problems,
-      ));
+        await _dbService.clearData();
 
-      /// On full success, save version.
-      //   _sharedPrefs.setInt('version', externalVersion);
-      // }
+        await _dbService.createProblems(DataAdapters.convertProblems(problems));
+        await _dbService.createCityData(DataAdapters.convertCityData(
+          cityModels: cities,
+          infoModels: infos,
+          infoCategories: infoCategories,
+          performanceModels: performances,
+          stageModels: stages,
+          problemModels: problems,
+          previousFavIds: previousFavIds,
+        ));
+
+        // On full success, save version.
+        _sharedPrefs.setInt('version', externalVersion);
+      }
 
       return right(unit);
     } on DioError catch (e) {

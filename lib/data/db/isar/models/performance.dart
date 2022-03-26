@@ -14,7 +14,6 @@ class PerformanceModelDb extends Performance {
   @Index()
   @override
   late String team;
-  // @Index(composite: [CompositeIndex('problem'), CompositeIndex('age')])
   @override
   late int stage;
   @override
@@ -32,6 +31,7 @@ class PerformanceModelDb extends Performance {
   @override
   late int part;
   @override
+  @Index()
   late bool isFavourite;
 
   @Backlink(to: 'performancesIsarLinks')
