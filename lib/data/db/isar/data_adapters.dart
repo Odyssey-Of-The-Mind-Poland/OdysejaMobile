@@ -83,6 +83,7 @@ abstract class DataAdapters {
   }) {
     final List<PerformanceGroupModelDb> performanceGroups = [];
     final Set<String> days = performances.map((e) => e.performanceDay).toSet();
+    int groupId = 0;
     // I cry when I look at it.
     for (final stage in stages) {
       for (final problem in problems) {
@@ -97,6 +98,7 @@ abstract class DataAdapters {
                   e.performanceDay == day);
               if (filteredPerformances.isNotEmpty) {
                 performanceGroups.add(PerformanceGroupModelDb()
+                  ..groupId = groupId
                   ..problem = problem.id
                   ..stage = stage.number
                   ..age = division.number
@@ -104,6 +106,7 @@ abstract class DataAdapters {
                   ..performancesIsarLinks
                       .addAll(convertPerformances(filteredPerformances, previousFavIds))
                   ..day = day);
+                ++groupId;
               }
             }
           }

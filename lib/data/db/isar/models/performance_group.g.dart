@@ -17,11 +17,18 @@ extension GetPerformanceGroupModelDbCollection on Isar {
 final PerformanceGroupModelDbSchema = CollectionSchema(
   name: 'PerformanceGroupModelDb',
   schema:
-      '{"name":"PerformanceGroupModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"day","type":"String"},{"name":"part","type":"Long"},{"name":"problem","type":"Long"},{"name":"stage","type":"Long"}],"indexes":[{"name":"stage_problem_age","unique":false,"properties":[{"name":"stage","type":"Value","caseSensitive":false},{"name":"problem","type":"Value","caseSensitive":false},{"name":"age","type":"Value","caseSensitive":false}]}],"links":[{"name":"performancesIsarLinks","target":"PerformanceModelDb"}]}',
+      '{"name":"PerformanceGroupModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"day","type":"String"},{"name":"groupId","type":"Long"},{"name":"part","type":"Long"},{"name":"problem","type":"Long"},{"name":"stage","type":"Long"}],"indexes":[{"name":"stage_problem_age","unique":false,"properties":[{"name":"stage","type":"Value","caseSensitive":false},{"name":"problem","type":"Value","caseSensitive":false},{"name":"age","type":"Value","caseSensitive":false}]}],"links":[{"name":"performancesIsarLinks","target":"PerformanceModelDb"}]}',
   nativeAdapter: const _PerformanceGroupModelDbNativeAdapter(),
   webAdapter: const _PerformanceGroupModelDbWebAdapter(),
   idName: 'id',
-  propertyIds: {'age': 0, 'day': 1, 'part': 2, 'problem': 3, 'stage': 4},
+  propertyIds: {
+    'age': 0,
+    'day': 1,
+    'groupId': 2,
+    'part': 3,
+    'problem': 4,
+    'stage': 5
+  },
   listProperties: {},
   indexIds: {'stage_problem_age': 0},
   indexTypes: {
@@ -56,6 +63,7 @@ class _PerformanceGroupModelDbWebAdapter
     final jsObj = IsarNative.newJsObject();
     IsarNative.jsObjectSet(jsObj, 'age', object.age);
     IsarNative.jsObjectSet(jsObj, 'day', object.day);
+    IsarNative.jsObjectSet(jsObj, 'groupId', object.groupId);
     IsarNative.jsObjectSet(jsObj, 'id', object.id);
     IsarNative.jsObjectSet(jsObj, 'part', object.part);
     IsarNative.jsObjectSet(jsObj, 'problem', object.problem);
@@ -70,6 +78,8 @@ class _PerformanceGroupModelDbWebAdapter
     object.age =
         IsarNative.jsObjectGet(jsObj, 'age') ?? double.negativeInfinity;
     object.day = IsarNative.jsObjectGet(jsObj, 'day') ?? '';
+    object.groupId =
+        IsarNative.jsObjectGet(jsObj, 'groupId') ?? double.negativeInfinity;
     object.id = IsarNative.jsObjectGet(jsObj, 'id');
     object.part =
         IsarNative.jsObjectGet(jsObj, 'part') ?? double.negativeInfinity;
@@ -89,6 +99,9 @@ class _PerformanceGroupModelDbWebAdapter
             as P;
       case 'day':
         return (IsarNative.jsObjectGet(jsObj, 'day') ?? '') as P;
+      case 'groupId':
+        return (IsarNative.jsObjectGet(jsObj, 'groupId') ??
+            double.negativeInfinity) as P;
       case 'id':
         return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
       case 'part':
@@ -135,12 +148,14 @@ class _PerformanceGroupModelDbNativeAdapter
     final value1 = object.day;
     final _day = IsarBinaryWriter.utf8Encoder.convert(value1);
     dynamicSize += (_day.length) as int;
-    final value2 = object.part;
-    final _part = value2;
-    final value3 = object.problem;
-    final _problem = value3;
-    final value4 = object.stage;
-    final _stage = value4;
+    final value2 = object.groupId;
+    final _groupId = value2;
+    final value3 = object.part;
+    final _part = value3;
+    final value4 = object.problem;
+    final _problem = value4;
+    final value5 = object.stage;
+    final _stage = value5;
     final size = staticSize + dynamicSize;
 
     rawObj.buffer = alloc(size);
@@ -149,9 +164,10 @@ class _PerformanceGroupModelDbNativeAdapter
     final writer = IsarBinaryWriter(buffer, staticSize);
     writer.writeLong(offsets[0], _age);
     writer.writeBytes(offsets[1], _day);
-    writer.writeLong(offsets[2], _part);
-    writer.writeLong(offsets[3], _problem);
-    writer.writeLong(offsets[4], _stage);
+    writer.writeLong(offsets[2], _groupId);
+    writer.writeLong(offsets[3], _part);
+    writer.writeLong(offsets[4], _problem);
+    writer.writeLong(offsets[5], _stage);
   }
 
   @override
@@ -163,10 +179,11 @@ class _PerformanceGroupModelDbNativeAdapter
     final object = PerformanceGroupModelDb();
     object.age = reader.readLong(offsets[0]);
     object.day = reader.readString(offsets[1]);
+    object.groupId = reader.readLong(offsets[2]);
     object.id = id;
-    object.part = reader.readLong(offsets[2]);
-    object.problem = reader.readLong(offsets[3]);
-    object.stage = reader.readLong(offsets[4]);
+    object.part = reader.readLong(offsets[3]);
+    object.problem = reader.readLong(offsets[4]);
+    object.stage = reader.readLong(offsets[5]);
     attachLinks(collection.isar, id, object);
     return object;
   }
@@ -186,6 +203,8 @@ class _PerformanceGroupModelDbNativeAdapter
       case 3:
         return (reader.readLong(offset)) as P;
       case 4:
+        return (reader.readLong(offset)) as P;
+      case 5:
         return (reader.readLong(offset)) as P;
       default:
         throw 'Illegal propertyIndex';
@@ -699,6 +718,57 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> groupIdEqualTo(int value) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'groupId',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> groupIdGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'groupId',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> groupIdLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'groupId',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> groupIdBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'groupId',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+    ));
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> idIsNull() {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.isNull,
@@ -948,6 +1018,16 @@ extension PerformanceGroupModelDbQueryWhereSortBy
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      sortByGroupId() {
+    return addSortByInternal('groupId', Sort.asc);
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      sortByGroupIdDesc() {
+    return addSortByInternal('groupId', Sort.desc);
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortById() {
     return addSortByInternal('id', Sort.asc);
   }
@@ -1011,6 +1091,16 @@ extension PerformanceGroupModelDbQueryWhereSortThenBy on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByGroupId() {
+    return addSortByInternal('groupId', Sort.asc);
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByGroupIdDesc() {
+    return addSortByInternal('groupId', Sort.desc);
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenById() {
     return addSortByInternal('id', Sort.asc);
   }
@@ -1064,6 +1154,11 @@ extension PerformanceGroupModelDbQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
+      distinctByGroupId() {
+    return addDistinctByInternal('groupId');
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctById() {
     return addDistinctByInternal('id');
   }
@@ -1093,6 +1188,11 @@ extension PerformanceGroupModelDbQueryProperty on QueryBuilder<
   QueryBuilder<PerformanceGroupModelDb, String, QQueryOperations>
       dayProperty() {
     return addPropertyNameInternal('day');
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations>
+      groupIdProperty() {
+    return addPropertyNameInternal('groupId');
   }
 
   QueryBuilder<PerformanceGroupModelDb, int?, QQueryOperations> idProperty() {

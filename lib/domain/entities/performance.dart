@@ -10,4 +10,5 @@ abstract class Performance {
   String get spontanDay;
   int get part;
   abstract bool isFavourite;
+  int get groupId;
 }

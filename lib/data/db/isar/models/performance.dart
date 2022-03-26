@@ -36,4 +36,7 @@ class PerformanceModelDb extends Performance {
 
   @Backlink(to: 'performancesIsarLinks')
   final group = IsarLink<PerformanceGroupModelDb>();
+
+  @override
+  int get groupId => group.value?.groupId ?? -1;
 }
