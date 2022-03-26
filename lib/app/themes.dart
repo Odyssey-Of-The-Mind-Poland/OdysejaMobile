@@ -139,6 +139,7 @@ abstract class AppValues {
   static const defaultBoxDimension = 120.0;
   static const swipeTreshold = 0.3;
   static const defaultAnimationDuration = Duration(milliseconds: 330);
+  static const longerAnimationDuration = Duration(milliseconds: 500);
 }
 
 const Map<int, SplashGradientPair> _splashGradientMap = {

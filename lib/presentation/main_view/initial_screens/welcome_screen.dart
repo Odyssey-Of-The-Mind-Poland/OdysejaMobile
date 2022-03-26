@@ -16,7 +16,6 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int _index = 0;
-  final _transitionDuration = const Duration(milliseconds: 330);
   late final List<Widget> pages;
 
   @override
@@ -30,34 +29,49 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
+      padding: height > 700
+          ? const EdgeInsets.symmetric(horizontal: 40, vertical: 80)
+          : const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AnimatedSwitcher(duration: _transitionDuration, child: pages[_index]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      pages.length, (index) => PositionIndicatorItem(_index == index)),
-                ),
-              ],
+          Container(
+              height: 400,
+              alignment: Alignment.center,
+              child: AnimatedSwitcher(
+                  switchInCurve: Curves.easeInQuart,
+                  switchOutCurve: Curves.easeOutQuart,
+                  duration: AppValues.longerAnimationDuration,
+                  child: pages[_index])),
+          Padding(
+            padding: height > 700
+                ? const EdgeInsets.symmetric(vertical: 60)
+                : const EdgeInsets.symmetric(vertical: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+                  List.generate(pages.length, (index) => PositionIndicatorItem(_index == index)),
             ),
           ),
-          const SizedBox(height: 80),
           ElevatedButton(
-            //   onPressed: !_isLast ? () => setState(() => ++_index) : () => setState(() => --_index),
+            // Debug override
+            // onPressed: !_isLast ? () => setState(() => ++_index) : () => setState(() => --_index),
             onPressed: !_isLast
                 ? () => setState(() => ++_index)
                 : () => context.read<OnboardingBloc>().add(const FinishedOnboarding()),
             child: AnimatedSwitcher(
-                duration: AppValues.defaultAnimationDuration,
-                child: Text(_isLast ? AppStrings.beginButtonLabel : AppStrings.nextButtonLabel)),
+              switchInCurve: Curves.easeInQuart,
+              switchOutCurve: Curves.easeOutQuart,
+              duration: AppValues.longerAnimationDuration,
+              child: Text(
+                _isLast ? AppStrings.beginButtonLabel : AppStrings.nextButtonLabel,
+                key: Key('$_isLast'),
+              ),
+            ),
           ),
         ],
       ),
