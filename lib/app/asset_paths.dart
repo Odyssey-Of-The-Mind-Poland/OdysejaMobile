@@ -1,5 +1,6 @@
 abstract class AssetPaths {
   static const eventLogo = 'assets/graphics/event_logo.png';
+  static const ootmLogo = 'assets/graphics/ootm_logo.png';
   static const sponsor1 = 'assets/graphics/logo_1.png';
   static const sponsor2 = 'assets/graphics/logo_2.png';
   static const sponsor3 = 'assets/graphics/logo_3.png';

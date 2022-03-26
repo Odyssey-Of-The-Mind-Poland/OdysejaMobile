@@ -22,7 +22,7 @@ abstract class AppStrings {
   static const String welcomeScreenPage1Title = 'Cześć!';
   static const String welcomeScreenPage1Content =
       'Witaj na Finale Odyseji Umysłu! Przed Tobą wielkie wyzwanie - aby je uprzyjemnić, oddajemy w Twoje łapki aplikację, która Ci pomoże.';
-  static const String welcomeScreenPage1ButtonLabel = 'DALEJ';
+  static const String nextButtonLabel = 'DALEJ';
 
   static const String welcomeScreenPage2Title = 'Funkcje:';
   static const String welcomeScreenPage2Heading1 = 'Informacje o konkursie';
@@ -34,7 +34,7 @@ abstract class AppStrings {
   static const String welcomeScreenPage2Heading3 = 'Ulubione występy';
   static const String welcomeScreenPage2Content3 =
       'Wszystkie występy, które chcesz obejrzeć, w jednym miejscu!';
-  static const String welcomeScreenPage2ButtonLabel = 'ZACZYNAJMY!';
+  static const String beginButtonLabel = 'ZACZYNAJMY!';
 
   static const String scheduleScreenStageHeading = 'Scena';
   static const String scheduleScreenProblemHeading = 'Problem długoterminowy';

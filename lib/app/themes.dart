@@ -38,8 +38,15 @@ final lightTheme = ThemeData(
 );
 
 abstract class AppTextStyles {
+  static const h0 = TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.25,
+      color: AppColors.primaryOrange);
   static const h1 = TextStyle(fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: 0.25);
   static const h2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w700, letterSpacing: 0.0);
+  static const h3special =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.w700, letterSpacing: 0.15);
   static const h3 = TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15);
   static const h3White = TextStyle(
       fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15, color: AppColors.pureWhite);
@@ -74,7 +81,11 @@ abstract class AppColors {
   static const shadowGrey = Color(0x15222222);
   static const scrimGrey = Color(0xA4222222);
 
+  static const darkGreen = Color(0xFF2D9C5A);
+  static const lightestGreen = Color(0xFFE4FCEC);
+
   static const darkestBlue = Color(0xFF164577);
+  static const darkBlue = Color(0xFF3373B7);
   static const mediumBlue = Color(0xFF2381E5);
   static const lightBlue = Color(0xFF80BDFE);
   static const lightestBlue = Color(0xFFDDEDFF);
@@ -121,6 +132,7 @@ abstract class AppColors {
 }
 
 abstract class AppValues {
+  static const biggerBrRadius = 12.0;
   static const defaultBrRadius = 10.0;
   static const smallBrRadius = 5.0;
   static const ultraBrRadius = 32.0;

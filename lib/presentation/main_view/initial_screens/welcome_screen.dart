@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/components/position_indicator_item.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/onboarding_bloc.dart';
 import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/presentation/main_view/initial_screens/welcome_first_page_content.dart';
+import 'package:odyssey_mobile/presentation/main_view/initial_screens/welcome_second_page_content.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -14,37 +17,14 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int _index = 0;
   final _transitionDuration = const Duration(milliseconds: 330);
-  late final List<WelcomeScreenPage> pages;
+  late final List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
     pages = [
-      WelcomeScreenPage(
-        content: Column(
-          children: [
-            Text(AppStrings.welcomeScreenPage1Title),
-            Container(),
-          ],
-        ),
-        button: ElevatedButton(
-            onPressed: () => setState(() => ++_index),
-            child: const Text(AppStrings.welcomeScreenPage1ButtonLabel)),
-      ),
-      WelcomeScreenPage(
-        content: Column(
-          key: const Key('2'),
-          children: [
-            Text(AppStrings.welcomeScreenPage2Title),
-            Container(),
-          ],
-        ),
-        button: ElevatedButton(
-            key: const Key('2'),
-            // onPressed: () => setState(() => --_index),
-            onPressed: () => context.read<OnboardingBloc>().add(const FinishedOnboarding()),
-            child: const Text(AppStrings.welcomeScreenPage2ButtonLabel)),
-      ),
+      const WelcomeFirstPageContent(),
+      const WelcomeSecondPageContent(),
     ];
   }
 
@@ -52,30 +32,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.all(40.0),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AnimatedSwitcher(duration: _transitionDuration, child: pages[_index].content),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:
-                List.generate(pages.length, (index) => PositionIndicatorItem(_index == index)),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AnimatedSwitcher(duration: _transitionDuration, child: pages[_index]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      pages.length, (index) => PositionIndicatorItem(_index == index)),
+                ),
+              ],
+            ),
           ),
-          AnimatedSwitcher(duration: _transitionDuration, child: pages[_index].button),
+          const SizedBox(height: 80),
+          ElevatedButton(
+            //   onPressed: !_isLast ? () => setState(() => ++_index) : () => setState(() => --_index),
+            onPressed: !_isLast
+                ? () => setState(() => ++_index)
+                : () => context.read<OnboardingBloc>().add(const FinishedOnboarding()),
+            child: AnimatedSwitcher(
+                duration: AppValues.defaultAnimationDuration,
+                child: Text(_isLast ? AppStrings.beginButtonLabel : AppStrings.nextButtonLabel)),
+          ),
         ],
       ),
     ));
   }
-}
 
-class WelcomeScreenPage {
-  WelcomeScreenPage({
-    required this.content,
-    required this.button,
-  });
-
-  final Widget content;
-  final Widget button;
+  bool get _isLast => _index == pages.length - 1;
 }

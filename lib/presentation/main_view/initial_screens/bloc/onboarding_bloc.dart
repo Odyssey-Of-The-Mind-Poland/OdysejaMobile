@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
@@ -22,7 +20,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   }
 
   void _onboardingFinishedHandler(FinishedOnboarding event, Emitter<OnboardingState> emit) {
-    // TODO change to false
     _repository.updateLoadingConfig = LoadingConfig(showOnboarding: false);
     emit(const OnboardingFinished());
   }
