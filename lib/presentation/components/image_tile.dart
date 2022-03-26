@@ -6,20 +6,15 @@ class ImageTile extends StatelessWidget {
   final String path;
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      path,
-      fit: BoxFit.cover,
-      frameBuilder: (BuildContext context, Widget child, int? frame, bool wasSynchronouslyLoaded) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-          child: child,
-        );
-      },
-      errorBuilder: (context, error, stacktrace) => Container(
-          decoration: BoxDecoration(
-        color: AppColors.darkestGrey,
-        borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-      )),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset(
+          path,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

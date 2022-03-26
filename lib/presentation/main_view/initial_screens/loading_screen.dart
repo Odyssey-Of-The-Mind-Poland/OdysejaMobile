@@ -19,7 +19,7 @@ class LoadingScreen extends StatelessWidget {
         child: BlocBuilder<UpdateBloc, UpdateState>(
           builder: (context, state) {
             if (state is UpdateFailed) {
-              return Center(child: Text('Nie udało się zaktualizować aplikacji'));
+              return Center(child: Text(state.failure.errorMessage));
             }
             return const Center(child: CircularProgressIndicator());
           },
