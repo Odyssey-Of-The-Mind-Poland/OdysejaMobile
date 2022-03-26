@@ -3,7 +3,7 @@ import 'package:odyssey_mobile/app/ootm_icons.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
-import 'package:odyssey_mobile/presentation/schedule_screen/performance_category_list.dart';
+import 'package:odyssey_mobile/presentation/components/performance_category_list.dart';
 import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 import 'package:odyssey_mobile/app/themes.dart';

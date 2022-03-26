@@ -6,8 +6,8 @@ import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/show_more_button.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart' as pfg_entity;
 
-class PerformanceGroup extends StatefulWidget {
-  const PerformanceGroup({
+class PerformanceGroupWidget extends StatefulWidget {
+  const PerformanceGroupWidget({
     required this.performanceGroup,
     required this.categoryEntity,
     required this.secretWidth,
@@ -19,10 +19,11 @@ class PerformanceGroup extends StatefulWidget {
   final double secretWidth;
 
   @override
-  State<PerformanceGroup> createState() => _PerformanceGroupState();
+  State<PerformanceGroupWidget> createState() => _PerformanceGroupWidgetState();
 }
 
-class _PerformanceGroupState extends State<PerformanceGroup> with AutomaticKeepAliveClientMixin {
+class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
+    with AutomaticKeepAliveClientMixin {
   final _listKey = GlobalKey<AnimatedListState>();
 
   List<Performance> get performances => widget.performanceGroup.performances;
