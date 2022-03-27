@@ -72,7 +72,7 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
                       : const Icon(OotmIcons.favEmpty),
                   label: isFavourite
                       ? const Text(AppStrings.removeFromFavsLabel)
-                      : const Text(AppStrings.close),
+                      : const Text(AppStrings.addToFavsLabel),
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
@@ -99,7 +99,7 @@ class _PerformanceDialogStaticInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         children: [
-          Text([_stage, _age, _problem].join(' • ')),
+          Text(_cohort.join(' • '), style: AppTextStyles.bodyText1),
           Padding(
             padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
             child: Row(
@@ -125,6 +125,7 @@ class _PerformanceDialogStaticInfo extends StatelessWidget {
     );
   }
 
+  List<String> get _cohort => pf.age == 0 ? [_stage, AppStrings.juniors] : [_stage, _age, _problem];
   String get _problem => '${AppStrings.problem} ${pf.problem}';
   String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pf.age]}';
   String get _stage => '${AppStrings.stage} ${pf.stage}';

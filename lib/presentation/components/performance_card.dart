@@ -60,57 +60,59 @@ class _PerformanceCardState extends State<PerformanceCard> {
               .add(Update(widget.performance..isFavourite = !isFavourite));
         }
       },
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-        onTap: () => showModalDialog(
-            context: context,
-            widget: PerformanceDialog(
-              widget.performance,
-              bloc: context.read<UpdateFavouritesBloc>(),
-            )),
-        child: SizedBox(
-          height: height,
-          child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
-            listenWhen: (_, c) =>
-                c is UpdateFavouritesSuccess &&
-                c.performance.performanceId == widget.performance.performanceId,
-            listener: (context, state) {
-              if (state is UpdateFavouritesError) {
-                showSnackBar(context: context, text: state.failure.errorMessage);
-              } else if (state is UpdateFavouritesSuccess) {
-                setState(() {
-                  isFavourite = state.performance.isFavourite;
-                });
-              }
-            },
-            child: AnimatedSwitcher(
-              duration: AppValues.defaultAnimationDuration,
-              child: Row(
-                key: Key(isFavourite.toString()),
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        widget.performance.performance,
-                        textAlign: TextAlign.center,
-                        style: isFavourite
-                            ? AppTextStyles.h2.copyWith(color: AppColors.primaryOrange)
-                            : AppTextStyles.h2,
-                      )),
-                  Expanded(
-                      child: Text(
-                    widget.performance.team,
-                    style: AppTextStyles.bodyText1,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-                  SizedBox(
-                      width: 32,
-                      child: Icon(
-                        OotmIcons.forward,
-                        color: isFavourite ? AppColors.primaryOrange : null,
-                      ))
-                ],
+      child: Material(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
+          onTap: () => showModalDialog(
+              context: context,
+              widget: PerformanceDialog(
+                widget.performance,
+                bloc: context.read<UpdateFavouritesBloc>(),
+              )),
+          child: SizedBox(
+            height: height,
+            child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
+              listenWhen: (_, c) =>
+                  c is UpdateFavouritesSuccess &&
+                  c.performance.performanceId == widget.performance.performanceId,
+              listener: (context, state) {
+                if (state is UpdateFavouritesError) {
+                  showSnackBar(context: context, text: state.failure.errorMessage);
+                } else if (state is UpdateFavouritesSuccess) {
+                  setState(() {
+                    isFavourite = state.performance.isFavourite;
+                  });
+                }
+              },
+              child: AnimatedSwitcher(
+                duration: AppValues.defaultAnimationDuration,
+                child: Row(
+                  key: Key(isFavourite.toString()),
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          widget.performance.performance,
+                          textAlign: TextAlign.center,
+                          style: isFavourite
+                              ? AppTextStyles.h2.copyWith(color: AppColors.primaryOrange)
+                              : AppTextStyles.h2,
+                        )),
+                    Expanded(
+                        child: Text(
+                      widget.performance.team,
+                      style: AppTextStyles.bodyText1,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    )),
+                    SizedBox(
+                        width: 32,
+                        child: Icon(
+                          OotmIcons.forward,
+                          color: isFavourite ? AppColors.primaryOrange : null,
+                        ))
+                  ],
+                ),
               ),
             ),
           ),

@@ -69,6 +69,7 @@ abstract class AppStrings {
 
   static const String close = 'ZAMKNIJ';
   static const String removeFromFavsLabel = 'USUŃ Z ULUBIONYCH';
+  static const String addToFavsLabel = 'DODAJ DO ULUBIONYCH';
 
   static const String performance = 'Występ';
   static const String spontan = 'Spontan';
