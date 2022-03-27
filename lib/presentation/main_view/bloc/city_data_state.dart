@@ -1,10 +1,7 @@
 part of 'city_data_bloc.dart';
 
-abstract class CityDataState extends Equatable {
+abstract class CityDataState {
   const CityDataState();
-
-  @override
-  List<Object> get props => [];
 }
 
 class CityDataSuccess extends CityDataState {

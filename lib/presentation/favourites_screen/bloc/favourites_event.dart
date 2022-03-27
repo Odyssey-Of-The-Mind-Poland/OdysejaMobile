@@ -6,3 +6,19 @@ abstract class FavouritesEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class _ExternalRefresh extends FavouritesEvent {
+  const _ExternalRefresh(this.state);
+  final CityDataState state;
+
+  @override
+  List<Object> get props => [state];
+}
+
+class _ExternalFavUpdate extends FavouritesEvent {
+  const _ExternalFavUpdate(this.performance);
+  final Performance performance;
+
+  @override
+  List<Object> get props => [performance];
+}

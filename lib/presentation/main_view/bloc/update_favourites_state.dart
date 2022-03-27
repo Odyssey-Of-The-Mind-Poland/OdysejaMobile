@@ -1,10 +1,7 @@
 part of 'update_favourites_bloc.dart';
 
-abstract class UpdateFavouritesState extends Equatable {
+abstract class UpdateFavouritesState {
   const UpdateFavouritesState();
-
-  @override
-  List<Object> get props => [];
 }
 
 class UpdateFavouritesInitial extends UpdateFavouritesState {
@@ -14,9 +11,6 @@ class UpdateFavouritesInitial extends UpdateFavouritesState {
 class UpdateFavouritesSuccess extends UpdateFavouritesState {
   const UpdateFavouritesSuccess(this.performance);
   final Performance performance;
-
-  @override
-  List<Object> get props => [performance.performanceId, performance.isFavourite];
 }
 
 class UpdateFavouritesError extends UpdateFavouritesState {

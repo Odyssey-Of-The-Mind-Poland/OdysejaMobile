@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
@@ -20,7 +19,6 @@ class UpdateFavouritesBloc extends Bloc<UpdateFavouritesEvent, UpdateFavouritesS
 
   /// Updates with given [isFavourite] value.
   Future<void> _updateFavHandler(Update event, Emitter<UpdateFavouritesState> emit) async {
-    emit(const UpdateFavouritesInitial());
     final result = await _repository.updateFavourite(event.performance);
     result.fold(
       (l) => emit(UpdateFavouritesError(l)),
