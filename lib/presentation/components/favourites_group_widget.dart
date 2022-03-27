@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
+// import 'package:odyssey_mobile/presentation/components/show_more_button.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 
 class FavouritesGroupWidget extends StatefulWidget {
@@ -26,23 +27,9 @@ class FavouritesGroupWidget extends StatefulWidget {
 class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
     with AutomaticKeepAliveClientMixin {
   final _listKey = GlobalKey<AnimatedListState>();
-
   List<Performance> get performances => widget.performanceGroup.performances;
-  List<int> get performanceIds =>
-      widget.performanceGroup.performances.map((e) => e.performanceId).toList();
-
-  late List<Performance> currentPerformances;
-  late int _initialCount;
-  late int _listLength;
 
   bool expanded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _listLength = performances.length;
-    _initialCount = itemCounter(_listLength);
-  }
 
   int itemCounter(int _count) => _count < 3 ? _count : 3;
 
@@ -63,7 +50,7 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
     }
   }
 
-  void _removeItem(Performance pf, i) => _listKey.currentState?.removeItem(
+  void _removeItem(Performance pf, int i) => _listKey.currentState?.removeItem(
       i,
       (context, animation) => SizeTransition(
             sizeFactor: animation,
@@ -101,7 +88,7 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
           PerformanceGroupHeading(widget.performanceGroup, categoryEntity: widget.categoryEntity),
           AnimatedList(
             key: _listKey,
-            initialItemCount: _listLength,
+            initialItemCount: itemCounter(performances.length),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (c, i, animation) => SizeTransition(
@@ -113,11 +100,11 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
               ),
             ),
           ),
-          // if (_listLength > 3)
+          // if (performances.length > 3)
           //   Center(
           //     child: ShowMoreButton(
           //       expanded: _onExpanding,
-          //       initialExpanded: false,
+          //       initialExpanded: expanded,
           //     ),
           //   )
         ],
@@ -128,13 +115,13 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
   // void _onExpanding(bool value) async {
   //   if (value) {
   //     expanded = true;
-  //     for (int i = _initialCount; i < _listLength; ++i) {
+  //     for (int i = 3; i < performances.length; ++i) {
   //       _listKey.currentState?.insertItem(i);
   //     }
   //   } else {
   //     expanded = false;
-  //     for (int i = _listLength - 1; i >= _initialCount; --i) {
-  //       _removeItem(i);
+  //     for (int i = performances.length - 1; i >= 3; --i) {
+  //       _removeItem(performances[i], i);
   //     }
   //   }
   // }

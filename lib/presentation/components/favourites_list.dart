@@ -19,7 +19,6 @@ class _FavouritesListState extends State<FavouritesList> with AutomaticKeepAlive
   Widget build(BuildContext context) {
     super.build(context);
     return BlocBuilder<FavouritesBloc, CityDataState>(
-      // Build on addition and not on substraction
       buildWhen: (p, c) =>
           (p is FavouritesSuccess && c is FavouritesSuccess) &&
               (p.performanceGroups.length != c.performanceGroups.length) ||
