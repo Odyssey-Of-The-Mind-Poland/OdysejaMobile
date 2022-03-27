@@ -17,7 +17,7 @@ extension GetPerformanceModelDbCollection on Isar {
 final PerformanceModelDbSchema = CollectionSchema(
   name: 'PerformanceModelDb',
   schema:
-      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"groupId","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city_team","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false},{"name":"team","type":"Hash","caseSensitive":true}]},{"name":"isFavourite","unique":false,"properties":[{"name":"isFavourite","type":"Value","caseSensitive":false}]},{"name":"team","unique":false,"properties":[{"name":"team","type":"Hash","caseSensitive":true}]}],"links":[]}',
+      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"groupId","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false}]},{"name":"isFavourite","unique":false,"properties":[{"name":"isFavourite","type":"Value","caseSensitive":false}]}],"links":[]}',
   nativeAdapter: const _PerformanceModelDbNativeAdapter(),
   webAdapter: const _PerformanceModelDbWebAdapter(),
   idName: 'id',
@@ -37,17 +37,13 @@ final PerformanceModelDbSchema = CollectionSchema(
     'team': 12
   },
   listProperties: {},
-  indexIds: {'city_team': 0, 'isFavourite': 1, 'team': 2},
+  indexIds: {'city': 0, 'isFavourite': 1},
   indexTypes: {
-    'city_team': [
+    'city': [
       NativeIndexType.long,
-      NativeIndexType.stringHash,
     ],
     'isFavourite': [
       NativeIndexType.bool,
-    ],
-    'team': [
-      NativeIndexType.stringHash,
     ]
   },
   linkIds: {},
@@ -314,18 +310,13 @@ extension PerformanceModelDbQueryWhereSort
     return addWhereClauseInternal(const WhereClause(indexName: null));
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere>
-      anyCityTeam() {
-    return addWhereClauseInternal(const WhereClause(indexName: 'city_team'));
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere> anyCity() {
+    return addWhereClauseInternal(const WhereClause(indexName: 'city'));
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere>
       anyIsFavourite() {
     return addWhereClauseInternal(const WhereClause(indexName: 'isFavourite'));
-  }
-
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere> anyTeam() {
-    return addWhereClauseInternal(const WhereClause(indexName: 'team'));
   }
 }
 
@@ -410,7 +401,7 @@ extension PerformanceModelDbQueryWhere
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
       cityEqualTo(int city) {
     return addWhereClauseInternal(WhereClause(
-      indexName: 'city_team',
+      indexName: 'city',
       lower: [city],
       includeLower: true,
       upper: [city],
@@ -422,21 +413,21 @@ extension PerformanceModelDbQueryWhere
       cityNotEqualTo(int city) {
     if (whereSortInternal == Sort.asc) {
       return addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
+        indexName: 'city',
         upper: [city],
         includeUpper: false,
       )).addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
+        indexName: 'city',
         lower: [city],
         includeLower: false,
       ));
     } else {
       return addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
+        indexName: 'city',
         lower: [city],
         includeLower: false,
       )).addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
+        indexName: 'city',
         upper: [city],
         includeUpper: false,
       ));
@@ -449,7 +440,7 @@ extension PerformanceModelDbQueryWhere
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
-      indexName: 'city_team',
+      indexName: 'city',
       lower: [city],
       includeLower: include,
     ));
@@ -461,7 +452,7 @@ extension PerformanceModelDbQueryWhere
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
-      indexName: 'city_team',
+      indexName: 'city',
       upper: [city],
       includeUpper: include,
     ));
@@ -475,48 +466,12 @@ extension PerformanceModelDbQueryWhere
     bool includeUpper = true,
   }) {
     return addWhereClauseInternal(WhereClause(
-      indexName: 'city_team',
+      indexName: 'city',
       lower: [lowerCity],
       includeLower: includeLower,
       upper: [upperCity],
       includeUpper: includeUpper,
     ));
-  }
-
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityTeamEqualTo(int city, String team) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'city_team',
-      lower: [city, team],
-      includeLower: true,
-      upper: [city, team],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityTeamNotEqualTo(int city, String team) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
-        upper: [city, team],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
-        lower: [city, team],
-        includeLower: false,
-      ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
-        lower: [city, team],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'city_team',
-        upper: [city, team],
-        includeUpper: false,
-      ));
-    }
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
@@ -550,42 +505,6 @@ extension PerformanceModelDbQueryWhere
       )).addWhereClauseInternal(WhereClause(
         indexName: 'isFavourite',
         upper: [isFavourite],
-        includeUpper: false,
-      ));
-    }
-  }
-
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      teamEqualTo(String team) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'team',
-      lower: [team],
-      includeLower: true,
-      upper: [team],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      teamNotEqualTo(String team) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'team',
-        upper: [team],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'team',
-        lower: [team],
-        includeLower: false,
-      ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'team',
-        lower: [team],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'team',
-        upper: [team],
         includeUpper: false,
       ));
     }

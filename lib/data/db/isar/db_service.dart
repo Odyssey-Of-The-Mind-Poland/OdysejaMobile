@@ -23,7 +23,7 @@ class DbService {
         inspector: true, // if you want to enable the inspector for debug builds
       );
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 

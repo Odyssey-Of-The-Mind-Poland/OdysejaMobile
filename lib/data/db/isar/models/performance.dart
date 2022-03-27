@@ -9,9 +9,8 @@ class PerformanceModelDb extends Performance {
   int? id;
   @override
   late int performanceId;
-  @Index(composite: [CompositeIndex('team')])
-  late int city;
   @Index()
+  late int city;
   @override
   late String team;
   @override
