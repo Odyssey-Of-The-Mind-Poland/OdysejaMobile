@@ -6,24 +6,29 @@ import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 
 class PerformanceGroupHeading extends StatelessWidget {
-  const PerformanceGroupHeading(this.categoryEntity, this.pfGroup, {Key? key}) : super(key: key);
-  final ScheduleCategoryEntity categoryEntity;
+  const PerformanceGroupHeading(this.pfGroup, {this.categoryEntity, Key? key}) : super(key: key);
+  final ScheduleCategoryEntity? categoryEntity;
   final PerformanceGroup pfGroup;
 
   @override
   Widget build(BuildContext context) {
     late String heading;
-    switch (categoryEntity.category) {
-      case ScheduleCategory.stage:
-        // In this case we can check for Juniors either by age or problem/
-        heading = pfGroup.age != 0 ? '$_problem — $_age' : AppStrings.juniors;
-        break;
-      case ScheduleCategory.problem:
-        heading = '$_stage — ${pfGroup.problem != 0 ? _age : AppStrings.juniors}';
-        break;
-      case ScheduleCategory.age:
-        heading = '$_stage — ${pfGroup.age != 0 ? _problem : AppStrings.juniors}';
-        break;
+    if (categoryEntity != null) {
+      switch (categoryEntity!.category) {
+        case ScheduleCategory.stage:
+          // In this case we can check for Juniors either by age or problem/
+          heading = pfGroup.age != 0 ? '$_problem — $_age' : AppStrings.juniors;
+          break;
+        case ScheduleCategory.problem:
+          heading = '$_stage — ${pfGroup.problem != 0 ? _age : AppStrings.juniors}';
+          break;
+        case ScheduleCategory.age:
+          heading = '$_stage — ${pfGroup.age != 0 ? _problem : AppStrings.juniors}';
+          break;
+      }
+    } else {
+      heading =
+          pfGroup.age != 0 ? '$_stage — $_problem — $_age' : '$_stage — ${AppStrings.juniors}';
     }
     if (pfGroup.part != 0) {
       return Row(

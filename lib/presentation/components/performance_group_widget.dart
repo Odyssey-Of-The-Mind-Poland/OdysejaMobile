@@ -9,13 +9,13 @@ import 'package:odyssey_mobile/domain/entities/performance_group.dart' as pfg_en
 class PerformanceGroupWidget extends StatefulWidget {
   const PerformanceGroupWidget({
     required this.performanceGroup,
-    required this.categoryEntity,
     required this.secretWidth,
+    this.categoryEntity,
     Key? key,
   }) : super(key: key);
 
   final pfg_entity.PerformanceGroup performanceGroup;
-  final ScheduleCategoryEntity categoryEntity;
+  final ScheduleCategoryEntity? categoryEntity;
   final double secretWidth;
 
   @override
@@ -45,7 +45,7 @@ class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PerformanceGroupHeading(widget.categoryEntity, widget.performanceGroup),
+        PerformanceGroupHeading(widget.performanceGroup, categoryEntity: widget.categoryEntity),
         AnimatedList(
           key: _listKey,
           initialItemCount: _initialCount,

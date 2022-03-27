@@ -21,6 +21,7 @@ class ScheduleDetailScreen extends StatelessWidget {
             return ScheduleLayout(
               days: state.days,
               performanceGroups: state.performanceGroups,
+              title: categoryEntity.title,
               categoryEntity: categoryEntity,
             );
           } else if (state is CityDataError) {

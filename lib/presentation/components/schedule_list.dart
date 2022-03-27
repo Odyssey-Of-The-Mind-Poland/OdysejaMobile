@@ -9,7 +9,7 @@ class ScheduleList extends StatefulWidget {
       : super(key: key);
 
   final List<PerformanceGroup> groups;
-  final ScheduleCategoryEntity categoryEntity;
+  final ScheduleCategoryEntity? categoryEntity;
   final double secretWidth;
 
   @override
