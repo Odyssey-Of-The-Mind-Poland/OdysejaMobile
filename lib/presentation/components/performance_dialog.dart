@@ -52,6 +52,7 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
             color: AppColors.pureWhite,
           ),
           child: Material(
+            color: Colors.transparent,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -144,7 +145,7 @@ class _DayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
         // fake Inkwell

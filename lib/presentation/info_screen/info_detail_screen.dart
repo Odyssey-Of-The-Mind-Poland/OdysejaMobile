@@ -14,7 +14,7 @@ class InfoDetailScreen extends StatelessWidget {
         title: Text(info.infoName),
         centerTitle: true,
       ),
-      body: Markdown(data: info.infoText),
+      body: Markdown(data: info.infoText, selectable: true),
     );
   }
 }
