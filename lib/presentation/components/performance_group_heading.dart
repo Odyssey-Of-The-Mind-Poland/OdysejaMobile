@@ -31,20 +31,23 @@ class PerformanceGroupHeading extends StatelessWidget {
           pfGroup.age != 0 ? '$_stage — $_problem — $_age' : '$_stage — ${AppStrings.juniors}';
     }
     if (pfGroup.part != 0) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Heading(heading),
-          const SizedBox(width: 8.0),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
-            child: Text(
-              pfGroup.part == 1 ? AppStrings.partOne : AppStrings.partTwo,
-              style: AppTextStyles.h3.copyWith(color: AppColors.mediumGrey),
-            ),
-          )
-        ],
+      return FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Heading(heading),
+            const SizedBox(width: 8.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+              child: Text(
+                pfGroup.part == 1 ? AppStrings.partOne : AppStrings.partTwo,
+                style: AppTextStyles.h3.copyWith(color: AppColors.mediumGrey),
+              ),
+            )
+          ],
+        ),
       );
     }
     return Heading(heading);
