@@ -8,6 +8,7 @@ final lightTheme = ThemeData(
     elevation: 0,
     toolbarHeight: 64,
     titleTextStyle: TextStyle(
+      fontFamily: 'Ubuntu',
       fontSize: 24,
       fontWeight: FontWeight.w700,
       letterSpacing: 0.25,
@@ -83,10 +84,9 @@ abstract class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.4,
-    color: AppColors.mdHeadlineBlue,
   );
   static const pBoldMd =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.5, height: 1.5);
+      TextStyle(fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5, height: 1.5);
 }
 
 abstract class AppColors {
@@ -174,6 +174,7 @@ abstract class AppColors {
 }
 
 abstract class AppValues {
+  static const bigBrRadius = 16.0;
   static const biggerBrRadius = 12.0;
   static const defaultBrRadius = 10.0;
   static const smallBrRadius = 5.0;

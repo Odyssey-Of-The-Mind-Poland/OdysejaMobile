@@ -11,23 +11,33 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: AppColors.omerBlue,
+        backgroundColor: AppColors.shadowGrey,
         appBar: AppBar(title: const Text(AppStrings.homeScreenTitle), centerTitle: true),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [
             SliverToBoxAdapter(
-              child: Container(
-                margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
-                height: size.width,
-                child: const ImageTile(AssetPaths.eventLogo, color: AppColors.omerBlue),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                height: size.width,
-                child: const ImageTile(AssetPaths.sponsor1),
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16),
+                    height: size.width,
+                    child: const ImageTile(AssetPaths.eventLogo, color: AppColors.omerBlue),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: Text(
+                      'Nasi Partnerzy',
+                      style: AppTextStyles.h2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                    height: size.width,
+                    child: const ImageTile(AssetPaths.sponsor1),
+                  ),
+                ],
               ),
             ),
             SliverToBoxAdapter(
