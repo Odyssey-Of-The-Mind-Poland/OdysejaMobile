@@ -45,8 +45,8 @@ class _PerformanceCardState extends State<PerformanceCard> {
       swipeThreshold: AppValues.swipeTreshold,
       backgroundBuilder: (context, direction, progress) {
         if (direction == SwipeDirection.endToStart) {
-          return SpontaneousWidget(widget.performance.spontan,
-              secretWidth: widget.secretWidth, height: height);
+          return SpontaneousWidget(
+              performance: widget.performance, secretWidth: widget.secretWidth, height: height);
         } else if (direction == SwipeDirection.startToEnd) {
           return FavWidget(isFavourite,
               height: height, controller: progress, secretWidth: widget.secretWidth);
