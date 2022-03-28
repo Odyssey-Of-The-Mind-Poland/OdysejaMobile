@@ -70,6 +70,23 @@ abstract class AppTextStyles {
       TextStyle(fontSize: 16, fontWeight: FontWeight.w300, letterSpacing: 0.5, height: 1.5);
   static const button = TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 1.25);
   static const caption = TextStyle(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4);
+
+  // additional
+  static const h1Md = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.4,
+    color: AppColors.mdHeadlineBlue,
+    height: 1.3,
+  );
+  static const h2Md = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.4,
+    color: AppColors.mdHeadlineBlue,
+  );
+  static const pBoldMd =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.5, height: 1.5);
 }
 
 abstract class AppColors {

@@ -26,7 +26,6 @@ class FavouritesScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is FavouritesSuccess) {
             return ScheduleLayout(
-              centerTitle: false,
               days: state.days,
               performanceGroups: state.performanceGroups,
               title: AppStrings.favScreenTitle,
