@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/asset_paths.dart';
+import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/components/image_tile.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 
@@ -10,7 +11,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(title: const Text(AppStrings.homeScreenTitle)),
+        backgroundColor: AppColors.omerBlue,
+        appBar: AppBar(title: const Text(AppStrings.homeScreenTitle), centerTitle: true),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [
@@ -18,7 +20,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
                 height: size.width,
-                child: const ImageTile(AssetPaths.eventLogo),
+                child: const ImageTile(AssetPaths.eventLogo, color: AppColors.omerBlue),
               ),
             ),
             SliverToBoxAdapter(

@@ -16,15 +16,17 @@ class WelcomeFirstPageContent extends StatelessWidget {
           AppStrings.welcomeScreenPage1Title,
           style: AppTextStyles.h0,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 32.0),
-          child: Text(AppStrings.welcomeScreenPage1Content,
-              style: AppTextStyles.h3special, textAlign: TextAlign.center),
-        ),
+        // const Padding(
+        //   padding: EdgeInsets.symmetric(vertical: 32.0),
+        //   child: Text(AppStrings.welcomeScreenPage1Content,
+        //       style: AppTextStyles.h3special, textAlign: TextAlign.center),
+        // ),
+        const Spacer(flex: 2),
         ConstrainedBox(
           constraints: BoxConstraints.tightForFinite(height: height > 700 ? 140 : 120),
-          child: const ImageTile(AssetPaths.ootmLogo),
+          child: const ImageTile(AssetPaths.ootmLogo, color: AppColors.lightestGrey),
         ),
+        const Spacer(flex: 1),
       ],
     );
   }

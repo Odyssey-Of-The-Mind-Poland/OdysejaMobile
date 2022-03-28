@@ -61,6 +61,7 @@ class _PerformanceCardState extends State<PerformanceCard> {
         }
       },
       child: Material(
+        color: AppColors.pureWhite,
         child: InkWell(
           borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
           onTap: () => showModalDialog(

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 final lightTheme = ThemeData(
-  fontFamily: 'Roboto',
+  fontFamily: 'Ubuntu',
   primaryColor: AppColors.primaryOrange,
   scaffoldBackgroundColor: AppColors.lightestGrey,
   appBarTheme: const AppBarTheme(
     elevation: 0,
     toolbarHeight: 64,
     titleTextStyle: TextStyle(
-      fontSize: 32,
+      fontSize: 24,
       fontWeight: FontWeight.w700,
       letterSpacing: 0.25,
       color: AppColors.darkestGrey,
@@ -90,36 +90,55 @@ abstract class AppColors {
   static const lightBlue = Color(0xFF80BDFE);
   static const lightestBlue = Color(0xFFDDEDFF);
 
+  // aditional colors after review
+  static const omerBlue = Color(0xFF110329);
+  static const mdHeadlineBlue = Color(0xFF3C4AA5);
+
+  static const gradientBlue = LinearGradient(
+      colors: [Color(0xFF2073AD), Color(0xFF00B1EB)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
+  static const gradientYellow = LinearGradient(
+    colors: [Color(0xFFFEBA00), Color(0xFFFEE100)],
+    end: Alignment.topRight,
+    begin: Alignment.bottomLeft,
+  );
+
+  static const gradientRed = LinearGradient(
+      colors: [Color(0xFFa61111), Color(0xFFE31E24)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientLightBlue = LinearGradient(
-    colors: [Color(0xFF3373B7), Color(0xFF80BDFE), Color(0xFFDDEDFF)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFF3373B7), Color(0xFF80BDFE), Color(0xFFDDEDFF)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientMediumBlue = LinearGradient(
-    colors: [Color(0xFF2A458D), Color(0xFF2F4C9C), Color(0xFF4365C6)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFF2A458D), Color(0xFF2F4C9C), Color(0xFF4365C6)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientDarkBlue = LinearGradient(
-    colors: [Color(0xFF17274E), Color(0xFF253E7D), Color(0xFF2F4E9D)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFF17274E), Color(0xFF253E7D), Color(0xFF2F4E9D)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientOrange = LinearGradient(
-    colors: [Color(0xFFEC7F00), Color(0xFFFF951A), Color(0xFFFFDDB5)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFFEC7F00), Color(0xFFFF951A), Color(0xFFFFDDB5)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientGreen = LinearGradient(
-    colors: [Color(0xFF4AB98D), Color(0xFF2CDA93), Color(0xFF53F3B2)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFF4AB98D), Color(0xFF2CDA93), Color(0xFF53F3B2)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
+
   static const gradientPurple = LinearGradient(
-    colors: [Color(0xFF360B77), Color(0xFF5A1BC7), Color(0xFF7225FB)],
-    end: Alignment.topRight,
-    begin: Alignment.bottomLeft,
-  );
+      colors: [Color(0xFF360B77), Color(0xFF5A1BC7), Color(0xFF7225FB)],
+      end: Alignment.topRight,
+      begin: Alignment.bottomLeft);
 
   /// Use for dynamic content that can exceed [splashGradientPair.length].
   static SplashGradientPair safeSGPair(int value) =>
@@ -146,9 +165,9 @@ const Map<int, SplashGradientPair> _splashGradientMap = {
   0: SplashGradientPair(gradient: AppColors.gradientLightBlue, splashColor: AppColors.lightOrange),
   1: SplashGradientPair(gradient: AppColors.gradientMediumBlue, splashColor: AppColors.lightOrange),
   2: SplashGradientPair(gradient: AppColors.gradientDarkBlue, splashColor: AppColors.lightOrange),
-  3: SplashGradientPair(gradient: AppColors.gradientGreen, splashColor: AppColors.lightOrange),
-  4: SplashGradientPair(gradient: AppColors.gradientOrange, splashColor: AppColors.lightOrange),
-  5: SplashGradientPair(gradient: AppColors.gradientPurple, splashColor: AppColors.lightOrange),
+  3: SplashGradientPair(gradient: AppColors.gradientBlue, splashColor: AppColors.lightOrange),
+  4: SplashGradientPair(gradient: AppColors.gradientYellow, splashColor: AppColors.lightOrange),
+  5: SplashGradientPair(gradient: AppColors.gradientRed, splashColor: AppColors.lightOrange),
 };
 
 class SplashGradientPair {

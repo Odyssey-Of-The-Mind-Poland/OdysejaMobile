@@ -14,26 +14,26 @@ abstract class AppStrings {
   static const String thirdDivision = 'Liceum / technikum';
   static const String forthDivision = 'Uczelnie wyższe';
 
-  static const String homeScreenTitle = 'Początek';
+  static const String homeScreenTitle = 'Witaj!';
   static const String infoScreenTitle = 'Informacje';
   static const String scheduleScreenTitle = 'Harmonogram';
   static const String favScreenTitle = 'Ulubione';
 
   static const String welcomeScreenPage1Title = 'Cześć!';
   static const String welcomeScreenPage1Content =
-      'Witaj na Finale Odyseji Umysłu! Przed Tobą wielkie wyzwanie - aby je uprzyjemnić, oddajemy w Twoje łapki aplikację, która Ci pomoże.';
+      'Witaj na Finale Odysei Umysłu! Przed Tobą wielkie wyzwanie - aby je uprzyjemnić, oddajemy w Twoje łapki aplikację, która Ci pomoże.';
   static const String nextButtonLabel = 'DALEJ';
 
   static const String welcomeScreenPage2Title = 'Funkcje:';
   static const String welcomeScreenPage2Heading1 = 'Informacje o konkursie';
   static const String welcomeScreenPage2Content1 =
-      'Wygodny dostęp do najważniejszych informacji w zasięgu Twojej łapki!';
+      'Wygodny dostęp do najważniejszych informacji w\u00A0zasięgu Twojej łapki!';
   static const String welcomeScreenPage2Heading2 = 'Harmonogram';
   static const String welcomeScreenPage2Content2 =
-      'Szybko sprawdź godziny występów i spontanów swojej drużyny i nie tylko!';
+      'Szybko sprawdź godziny występów i\u00A0problemów spontanicznych swojej drużyny i\u00A0nie tylko!';
   static const String welcomeScreenPage2Heading3 = 'Ulubione występy';
   static const String welcomeScreenPage2Content3 =
-      'Wszystkie występy, które chcesz obejrzeć, w jednym miejscu!';
+      'Wszystkie występy, które chcesz obejrzeć, w\u00A0jednym miejscu!';
   static const String beginButtonLabel = 'ZACZYNAJMY!';
 
   static const String scheduleScreenStageHeading = 'Scena';
@@ -78,3 +78,5 @@ abstract class AppStrings {
       'Drużyna powinna się\nzgłosić na 20-25 minut\nprzed występem!';
   static const String spontanToolTip = 'Drużyna powinna się\nzgłosić na 15-20 minut\nprzed czasem!';
 }
+// \u200B
+// \u00A0

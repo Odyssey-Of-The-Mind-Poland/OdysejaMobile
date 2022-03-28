@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 
 class ImageTile extends StatelessWidget {
-  const ImageTile(this.path, {Key? key}) : super(key: key);
+  const ImageTile(this.path, {this.color = AppColors.pureWhite, Key? key}) : super(key: key);
   final String path;
+  final Color color;
+
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image.asset(
-          path,
-          fit: BoxFit.cover,
-        ),
-      ),
+    return Container(
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
+          image: DecorationImage(image: AssetImage(path))),
     );
   }
 }
