@@ -19,7 +19,7 @@ class InfoGrid extends StatelessWidget {
       children: infoGroup.info
           .map((e) => BasicBox(
               onTap: () => AutoRouter.of(context).navigate(InfoDetailScreen(info: e)),
-              label: e.infoName,
+              label: e.getConnectedInfoName(),
               centerLabel: true,
               splashGradientPair: AppColors.safeSGPair(infoGroup.number)))
           .toList(),
