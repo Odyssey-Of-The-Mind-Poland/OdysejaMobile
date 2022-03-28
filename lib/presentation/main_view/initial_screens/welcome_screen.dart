@@ -34,13 +34,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         body: Padding(
       padding: height > 700
           ? const EdgeInsets.symmetric(horizontal: 40, vertical: 80)
-          : const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+          : const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-              height: 400,
+              height: 460,
               alignment: Alignment.center,
               child: AnimatedSwitcher(
                   switchInCurve: Curves.easeInQuart,

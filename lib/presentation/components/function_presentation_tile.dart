@@ -37,10 +37,7 @@ class FunctionPresentationTile extends StatelessWidget {
             children: [
               Text(title, style: AppTextStyles.subtitle1.copyWith(fontSize: 18)),
               const SizedBox(height: 8.0),
-              Text(
-                subtitle,
-                style: AppTextStyles.bodyText2,
-              )
+              Text(subtitle, style: AppTextStyles.bodyText2)
             ],
           ),
         ),
