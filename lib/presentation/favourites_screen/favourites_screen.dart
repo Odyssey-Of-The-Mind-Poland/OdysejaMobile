@@ -55,7 +55,8 @@ class FavouritesEmpty extends StatelessWidget {
           Text(AppStrings.click, style: AppTextStyles.bodyText2),
           SizedBox(height: 4),
           Text(AppStrings.addToFavsLabel, style: AppTextStyles.button),
-          Text(AppStrings.emptyFavouritesCaption, style: AppTextStyles.bodyText2),
+          Text(AppStrings.emptyFavouritesCaption,
+              style: AppTextStyles.bodyText2, textAlign: TextAlign.center),
         ],
       ),
     );
