@@ -55,6 +55,7 @@ dependencies:
   flutter_markdown: ^0.6.9
   # flutter_slidable: ^1.2.0
   swipeable_tile: ^1.0.0+6
+  url_launcher: ^6.0.20
   # sliver_tools: ^0.2.5
   
 

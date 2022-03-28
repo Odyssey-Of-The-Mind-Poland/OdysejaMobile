@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/domain/entities/info.dart';
 // import 'package:odyssey_mobile/presentation/info_screen/markdown_examples.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoDetailScreen extends StatelessWidget {
   const InfoDetailScreen({required this.info, Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class InfoDetailScreen extends StatelessWidget {
         // data: md,
         selectable: false,
         softLineBreak: true,
-        onTapLink: (label, link, tooltip) => print([label, link, tooltip]),
+        onTapLink: _launchURL,
         styleSheet: MarkdownStyleSheet(
             tableColumnWidth: const IntrinsicColumnWidth(),
             tableBody: AppTextStyles.bodyText2,
@@ -37,9 +38,16 @@ class InfoDetailScreen extends StatelessWidget {
             // blockSpacing: 16,
             blockquoteAlign: WrapAlignment.center,
             blockquoteDecoration: const BoxDecoration(),
-            listBullet: TextStyle(fontSize: 16) // większe
+            listBullet: const TextStyle(fontSize: 16) // większe
             ),
       ),
     );
+  }
+
+  // TODO move to a better place, refactor, etc
+  void _launchURL(String label, String? link, String? tooltip) async {
+    final _url = tooltip != null ? link ?? '' : 'tel:$link';
+
+    if (!await launch(_url)) throw 'Could not launch $_url';
   }
 }

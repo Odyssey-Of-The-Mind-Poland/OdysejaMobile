@@ -11,6 +11,7 @@
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:screenOrientation="portrait"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
             <!-- Specifies an Android theme to apply to this Activity as soon as
@@ -32,4 +33,16 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+        <queries>
+            <!-- If your app opens https URLs -->
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="https" />
+            </intent>
+            <!-- If your app makes calls -->
+            <intent>
+                <action android:name="android.intent.action.DIAL" />
+                <data android:scheme="tel" />
+            </intent>
+        </queries>
 </manifest>
