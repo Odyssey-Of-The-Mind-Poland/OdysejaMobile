@@ -6,6 +6,7 @@ import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/favourites_list.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/schedule_list.dart';
+import 'package:odyssey_mobile/presentation/core/empty_data.dart';
 
 class ScheduleLayout extends StatelessWidget {
   const ScheduleLayout({
@@ -17,6 +18,7 @@ class ScheduleLayout extends StatelessWidget {
     this.categoryEntity,
     this.actions = const [],
     this.inFavourites = false,
+    this.emptyWidget = const EmptyData(),
   }) : super(key: key);
 
   final bool centerTitle;
@@ -26,6 +28,7 @@ class ScheduleLayout extends StatelessWidget {
   final List<PerformanceGroup> performanceGroups;
   final ScheduleCategoryEntity? categoryEntity;
   final bool inFavourites;
+  final Widget emptyWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +85,7 @@ class ScheduleLayout extends StatelessWidget {
           centerTitle: centerTitle,
           actions: actions,
         ),
+        body: emptyWidget,
       );
     }
   }

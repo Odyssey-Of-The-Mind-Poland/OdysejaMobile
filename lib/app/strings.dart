@@ -77,6 +77,9 @@ abstract class AppStrings {
   static const String performanceToolTip =
       'Drużyna powinna się\nzgłosić na 20-25 minut\nprzed występem!';
   static const String spontanToolTip = 'Drużyna powinna się\nzgłosić na 15-20 minut\nprzed czasem!';
+
+  static const String click = 'Kliknij';
+  static const String emptyFavouritesCaption = 'Wybrane przedstawienie, aby go nie przegapić';
 }
 // \u200B
 // \u00A0

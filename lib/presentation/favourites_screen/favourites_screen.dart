@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/components/schedule_layout.dart';
 import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:odyssey_mobile/presentation/core/loader.dart';
@@ -30,12 +31,32 @@ class FavouritesScreen extends StatelessWidget {
               performanceGroups: state.performanceGroups,
               title: AppStrings.favScreenTitle,
               inFavourites: true,
+              emptyWidget: const FavouritesEmpty(),
             );
           } else if (state is CityDataError) {
             return ErrorBody(state.failure);
           }
           return const Loader();
         },
+      ),
+    );
+  }
+}
+
+class FavouritesEmpty extends StatelessWidget {
+  const FavouritesEmpty({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text(AppStrings.click, style: AppTextStyles.bodyText2),
+          SizedBox(height: 4),
+          Text(AppStrings.addToFavsLabel, style: AppTextStyles.button),
+          Text(AppStrings.emptyFavouritesCaption, style: AppTextStyles.bodyText2),
+        ],
       ),
     );
   }
