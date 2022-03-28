@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:isar/isar.dart';
 import 'package:odyssey_mobile/data/db/isar/models/city_data.dart';
 import 'package:odyssey_mobile/data/db/isar/models/info.dart';
@@ -23,7 +25,7 @@ class DbService {
         inspector: true, // if you want to enable the inspector for debug builds
       );
     } catch (e) {
-      // print(e);
+      log('Isar initialization error: $e');
     }
   }
 
@@ -68,7 +70,9 @@ class DbService {
 
   void dispose() => _isar.close();
 
-  Future<void> clearData() async => _isar.writeTxn((isar) => isar.clear());
+  Future<void> clearData() {
+    return _isar.writeTxn((isar) => isar.clear());
+  }
 }
 
 final List<CollectionSchema<dynamic>> _schemas = [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/domain/entities/info.dart';
+
 // import 'package:odyssey_mobile/presentation/info_screen/markdown_examples.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,6 +24,10 @@ class InfoDetailScreen extends StatelessWidget {
         softLineBreak: true,
         onTapLink: _launchURL,
         styleSheet: MarkdownStyleSheet(
+            textAlign: getAlignByInfo(),
+            h1Align: getAlignByInfo(),
+            h2Align: getAlignByInfo(),
+            h3Align: getAlignByInfo(),
             tableColumnWidth: const IntrinsicColumnWidth(),
             tableBody: AppTextStyles.bodyText2,
             tableHeadAlign: TextAlign.center,
@@ -39,10 +44,14 @@ class InfoDetailScreen extends StatelessWidget {
             blockquoteAlign: WrapAlignment.center,
             blockquoteDecoration: const BoxDecoration(),
             listBullet: const TextStyle(fontSize: 16) // większe
-            ),
+        ),
       ),
     );
   }
+
+  // Przepraszam
+  WrapAlignment getAlignByInfo() =>
+      info.infoName.contains('Dzięki') ? WrapAlignment.center : WrapAlignment.start;
 
   // TODO move to a better place, refactor, etc
   void _launchURL(String label, String? link, String? tooltip) async {
