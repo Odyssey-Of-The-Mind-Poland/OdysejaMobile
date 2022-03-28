@@ -46,10 +46,15 @@ abstract class AppTextStyles {
   static const h1 = TextStyle(fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: 0.25);
   static const h2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w700, letterSpacing: 0.0);
   static const h3special =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.w700, letterSpacing: 0.15);
-  static const h3 = TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15);
+      TextStyle(fontSize: 20, fontWeight: FontWeight.w700, letterSpacing: 0.15, height: 1.5);
+  static const h3 =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15, height: 1.5);
   static const h3White = TextStyle(
-      fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15, color: AppColors.pureWhite);
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.15,
+      color: AppColors.pureWhite,
+      height: 1.5);
   static const h4 = TextStyle(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.1);
   static const h4orange = TextStyle(
       fontSize: 14,
@@ -61,7 +66,8 @@ abstract class AppTextStyles {
   static const subtitle1 = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1);
   static const bodyText1 =
       TextStyle(fontSize: 14, fontWeight: FontWeight.w300, letterSpacing: 0.25);
-  static const bodyText2 = TextStyle(fontSize: 16, fontWeight: FontWeight.w300, letterSpacing: 0.5);
+  static const bodyText2 =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.w300, letterSpacing: 0.5, height: 1.5);
   static const button = TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 1.25);
   static const caption = TextStyle(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4);
 }
