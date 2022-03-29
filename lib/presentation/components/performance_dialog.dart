@@ -7,6 +7,7 @@ import 'package:odyssey_mobile/app/strings.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
+import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 
 class PerformanceDialog extends StatefulWidget {
@@ -100,7 +101,7 @@ class _PerformanceDialogStaticInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         children: [
-          Text(_cohort.join(' • '), style: AppTextStyles.bodyText1),
+          Text(CohortHelper(pf).string, style: AppTextStyles.bodyText1),
           Padding(
             padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
             child: Row(
@@ -125,11 +126,6 @@ class _PerformanceDialogStaticInfo extends StatelessWidget {
       ),
     );
   }
-
-  List<String> get _cohort => pf.age == 0 ? [_stage, AppStrings.juniors] : [_stage, _age, _problem];
-  String get _problem => '${AppStrings.problem} ${pf.problem}';
-  String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pf.age]}';
-  String get _stage => '${AppStrings.stage} ${pf.stage}';
 }
 
 class _DayWidget extends StatelessWidget {

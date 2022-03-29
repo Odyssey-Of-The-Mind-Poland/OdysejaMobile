@@ -17,7 +17,7 @@ extension GetPerformanceModelDbCollection on Isar {
 final PerformanceModelDbSchema = CollectionSchema(
   name: 'PerformanceModelDb',
   schema:
-      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"groupId","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false}]},{"name":"isFavourite","unique":false,"properties":[{"name":"isFavourite","type":"Value","caseSensitive":false}]}],"links":[]}',
+      '{"name":"PerformanceModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"city","type":"Long"},{"name":"groupId","type":"Long"},{"name":"isFavourite","type":"Bool"},{"name":"part","type":"Long"},{"name":"performance","type":"String"},{"name":"performanceDay","type":"String"},{"name":"performanceId","type":"Long"},{"name":"problem","type":"Long"},{"name":"searchableTeam","type":"String"},{"name":"spontan","type":"String"},{"name":"spontanDay","type":"String"},{"name":"stage","type":"Long"},{"name":"team","type":"String"}],"indexes":[{"name":"city","unique":false,"properties":[{"name":"city","type":"Value","caseSensitive":false}]},{"name":"isFavourite","unique":false,"properties":[{"name":"isFavourite","type":"Value","caseSensitive":false}]}],"links":[]}',
   nativeAdapter: const _PerformanceModelDbNativeAdapter(),
   webAdapter: const _PerformanceModelDbWebAdapter(),
   idName: 'id',
@@ -31,10 +31,11 @@ final PerformanceModelDbSchema = CollectionSchema(
     'performanceDay': 6,
     'performanceId': 7,
     'problem': 8,
-    'spontan': 9,
-    'spontanDay': 10,
-    'stage': 11,
-    'team': 12
+    'searchableTeam': 9,
+    'spontan': 10,
+    'spontanDay': 11,
+    'stage': 12,
+    'team': 13
   },
   listProperties: {},
   indexIds: {'city': 0, 'isFavourite': 1},
@@ -79,6 +80,7 @@ class _PerformanceModelDbWebAdapter
     IsarNative.jsObjectSet(jsObj, 'performanceDay', object.performanceDay);
     IsarNative.jsObjectSet(jsObj, 'performanceId', object.performanceId);
     IsarNative.jsObjectSet(jsObj, 'problem', object.problem);
+    IsarNative.jsObjectSet(jsObj, 'searchableTeam', object.searchableTeam);
     IsarNative.jsObjectSet(jsObj, 'spontan', object.spontan);
     IsarNative.jsObjectSet(jsObj, 'spontanDay', object.spontanDay);
     IsarNative.jsObjectSet(jsObj, 'stage', object.stage);
@@ -143,6 +145,8 @@ class _PerformanceModelDbWebAdapter
       case 'problem':
         return (IsarNative.jsObjectGet(jsObj, 'problem') ??
             double.negativeInfinity) as P;
+      case 'searchableTeam':
+        return (IsarNative.jsObjectGet(jsObj, 'searchableTeam') ?? '') as P;
       case 'spontan':
         return (IsarNative.jsObjectGet(jsObj, 'spontan') ?? '') as P;
       case 'spontanDay':
@@ -202,16 +206,19 @@ class _PerformanceModelDbNativeAdapter
     final _performanceId = value7;
     final value8 = object.problem;
     final _problem = value8;
-    final value9 = object.spontan;
-    final _spontan = IsarBinaryWriter.utf8Encoder.convert(value9);
+    final value9 = object.searchableTeam;
+    final _searchableTeam = IsarBinaryWriter.utf8Encoder.convert(value9);
+    dynamicSize += (_searchableTeam.length) as int;
+    final value10 = object.spontan;
+    final _spontan = IsarBinaryWriter.utf8Encoder.convert(value10);
     dynamicSize += (_spontan.length) as int;
-    final value10 = object.spontanDay;
-    final _spontanDay = IsarBinaryWriter.utf8Encoder.convert(value10);
+    final value11 = object.spontanDay;
+    final _spontanDay = IsarBinaryWriter.utf8Encoder.convert(value11);
     dynamicSize += (_spontanDay.length) as int;
-    final value11 = object.stage;
-    final _stage = value11;
-    final value12 = object.team;
-    final _team = IsarBinaryWriter.utf8Encoder.convert(value12);
+    final value12 = object.stage;
+    final _stage = value12;
+    final value13 = object.team;
+    final _team = IsarBinaryWriter.utf8Encoder.convert(value13);
     dynamicSize += (_team.length) as int;
     final size = staticSize + dynamicSize;
 
@@ -228,10 +235,11 @@ class _PerformanceModelDbNativeAdapter
     writer.writeBytes(offsets[6], _performanceDay);
     writer.writeLong(offsets[7], _performanceId);
     writer.writeLong(offsets[8], _problem);
-    writer.writeBytes(offsets[9], _spontan);
-    writer.writeBytes(offsets[10], _spontanDay);
-    writer.writeLong(offsets[11], _stage);
-    writer.writeBytes(offsets[12], _team);
+    writer.writeBytes(offsets[9], _searchableTeam);
+    writer.writeBytes(offsets[10], _spontan);
+    writer.writeBytes(offsets[11], _spontanDay);
+    writer.writeLong(offsets[12], _stage);
+    writer.writeBytes(offsets[13], _team);
   }
 
   @override
@@ -247,10 +255,10 @@ class _PerformanceModelDbNativeAdapter
     object.performanceDay = reader.readString(offsets[6]);
     object.performanceId = reader.readLong(offsets[7]);
     object.problem = reader.readLong(offsets[8]);
-    object.spontan = reader.readString(offsets[9]);
-    object.spontanDay = reader.readString(offsets[10]);
-    object.stage = reader.readLong(offsets[11]);
-    object.team = reader.readString(offsets[12]);
+    object.spontan = reader.readString(offsets[10]);
+    object.spontanDay = reader.readString(offsets[11]);
+    object.stage = reader.readLong(offsets[12]);
+    object.team = reader.readString(offsets[13]);
     attachLinks(collection.isar, id, object);
     return object;
   }
@@ -284,8 +292,10 @@ class _PerformanceModelDbNativeAdapter
       case 10:
         return (reader.readString(offset)) as P;
       case 11:
-        return (reader.readLong(offset)) as P;
+        return (reader.readString(offset)) as P;
       case 12:
+        return (reader.readLong(offset)) as P;
+      case 13:
         return (reader.readString(offset)) as P;
       default:
         throw 'Illegal propertyIndex';
@@ -1103,6 +1113,113 @@ extension PerformanceModelDbQueryFilter
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamGreaterThan(
+    String value, {
+    bool caseSensitive = true,
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamLessThan(
+    String value, {
+    bool caseSensitive = true,
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamBetween(
+    String lower,
+    String upper, {
+    bool caseSensitive = true,
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'searchableTeam',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.startsWith,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.endsWith,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamContains(String value, {bool caseSensitive = true}) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.contains,
+      property: 'searchableTeam',
+      value: value,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
+      searchableTeamMatches(String pattern, {bool caseSensitive = true}) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.matches,
+      property: 'searchableTeam',
+      value: pattern,
+      caseSensitive: caseSensitive,
+    ));
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
       spontanEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1590,6 +1707,16 @@ extension PerformanceModelDbQueryWhereSortBy
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
+      sortBySearchableTeam() {
+    return addSortByInternal('searchableTeam', Sort.asc);
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
+      sortBySearchableTeamDesc() {
+    return addSortByInternal('searchableTeam', Sort.desc);
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
       sortBySpontan() {
     return addSortByInternal('spontan', Sort.asc);
   }
@@ -1733,6 +1860,16 @@ extension PerformanceModelDbQueryWhereSortThenBy
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
+      thenBySearchableTeam() {
+    return addSortByInternal('searchableTeam', Sort.asc);
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
+      thenBySearchableTeamDesc() {
+    return addSortByInternal('searchableTeam', Sort.desc);
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
       thenBySpontan() {
     return addSortByInternal('spontan', Sort.asc);
   }
@@ -1827,6 +1964,12 @@ extension PerformanceModelDbQueryWhereDistinct
   }
 
   QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
+      distinctBySearchableTeam({bool caseSensitive = true}) {
+    return addDistinctByInternal('searchableTeam',
+        caseSensitive: caseSensitive);
+  }
+
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
       distinctBySpontan({bool caseSensitive = true}) {
     return addDistinctByInternal('spontan', caseSensitive: caseSensitive);
   }
@@ -1891,6 +2034,11 @@ extension PerformanceModelDbQueryProperty
 
   QueryBuilder<PerformanceModelDb, int, QQueryOperations> problemProperty() {
     return addPropertyNameInternal('problem');
+  }
+
+  QueryBuilder<PerformanceModelDb, String, QQueryOperations>
+      searchableTeamProperty() {
+    return addPropertyNameInternal('searchableTeam');
   }
 
   QueryBuilder<PerformanceModelDb, String, QQueryOperations> spontanProperty() {

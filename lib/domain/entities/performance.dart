@@ -11,4 +11,5 @@ abstract class Performance {
   int get part;
   abstract bool isFavourite;
   int get groupId;
+  String get searchableTeam => team.toLowerCase();
 }

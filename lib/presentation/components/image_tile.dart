@@ -12,7 +12,7 @@ class ImageTile extends StatelessWidget {
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(AppValues.bigBrRadius),
-          image: DecorationImage(image: AssetImage(path), fit: BoxFit.cover)),
+          image: DecorationImage(image: AssetImage(path), fit: BoxFit.scaleDown)),
     );
   }
 }
