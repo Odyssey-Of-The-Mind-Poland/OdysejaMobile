@@ -88,6 +88,8 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/graphics/app_logo.png"
+  adaptive_icon_background: "#ffab33"
+  adaptive_icon_foreground: "assets/graphics/adaptive_icon_foreground.png"
   # image_path_android: "assets/graphics/app_logo_rounded.png"
 
 
