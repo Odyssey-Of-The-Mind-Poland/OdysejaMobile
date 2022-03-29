@@ -45,6 +45,8 @@ abstract class AppTextStyles {
       letterSpacing: 0.25,
       color: AppColors.primaryOrange);
   static const h1 = TextStyle(fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: 0.25);
+  static const h1grey = TextStyle(
+      fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: 0.25, color: AppColors.darkGrey);
   static const h2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w700, letterSpacing: 0.0);
   static const h3special =
       TextStyle(fontSize: 20, fontWeight: FontWeight.w700, letterSpacing: 0.15, height: 1.5);
@@ -56,7 +58,8 @@ abstract class AppTextStyles {
       letterSpacing: 0.15,
       color: AppColors.pureWhite,
       height: 1.5);
-  static const h4 = TextStyle(fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.1);
+  static const h4 = TextStyle(
+      fontSize: 14, fontWeight: FontWeight.w700, letterSpacing: 0.1, color: AppColors.darkestGrey);
   static const h4orange = TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w700,
@@ -71,6 +74,12 @@ abstract class AppTextStyles {
       TextStyle(fontSize: 16, fontWeight: FontWeight.w300, letterSpacing: 0.5, height: 1.5);
   static const button = TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 1.25);
   static const caption = TextStyle(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4);
+  static const hint = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w300,
+      letterSpacing: 0.15,
+      height: 1.5,
+      color: AppColors.mediumGrey);
 
   // additional
   static const h1Md = TextStyle(
@@ -91,6 +100,7 @@ abstract class AppTextStyles {
 
 abstract class AppColors {
   static const halfOrange = Color(0x88FF951A);
+  static const quaterOrange = Color(0x44FF951A);
   static const primaryOrange = Color(0xFFFF951A);
   static const lightOrange = Color(0xFFFFAE51);
   static const lightestOrange = Color(0xFFFFDDB5);
@@ -189,9 +199,9 @@ const Map<int, SplashGradientPair> _splashGradientMap = {
   0: SplashGradientPair(gradient: AppColors.gradientLightBlue, splashColor: AppColors.lightOrange),
   1: SplashGradientPair(gradient: AppColors.gradientMediumBlue, splashColor: AppColors.lightOrange),
   2: SplashGradientPair(gradient: AppColors.gradientDarkBlue, splashColor: AppColors.lightOrange),
-  3: SplashGradientPair(gradient: AppColors.gradientBlue, splashColor: AppColors.lightOrange),
-  4: SplashGradientPair(gradient: AppColors.gradientYellow, splashColor: AppColors.lightOrange),
-  5: SplashGradientPair(gradient: AppColors.gradientRed, splashColor: AppColors.lightOrange),
+  3: SplashGradientPair(gradient: AppColors.gradientGreen, splashColor: AppColors.lightOrange),
+  4: SplashGradientPair(gradient: AppColors.gradientOrange, splashColor: AppColors.lightOrange),
+  5: SplashGradientPair(gradient: AppColors.gradientPurple, splashColor: AppColors.lightOrange),
 };
 
 class SplashGradientPair {

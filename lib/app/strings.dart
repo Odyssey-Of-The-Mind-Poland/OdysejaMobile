@@ -80,6 +80,9 @@ abstract class AppStrings {
 
   static const String click = 'Kliknij';
   static const String emptyFavouritesCaption = 'Wybrane przedstawienie,\naby go nie przegapić';
+
+  static const String searchFieldHint = 'Wyszukaj drużynę';
+  static const String emptyResultsFailure = 'Brak wyników';
 }
 // \u200B
 // \u00A0

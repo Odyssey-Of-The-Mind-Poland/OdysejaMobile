@@ -12,6 +12,7 @@ import 'package:odyssey_mobile/presentation/main_view/main_view.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_screen.dart';
+import 'package:odyssey_mobile/presentation/schedule_screen/schedule_search_result_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_search_screen.dart';
 
 export 'router.gr.dart';
@@ -33,7 +34,12 @@ export 'router.gr.dart';
       AutoRoute(page: ScheduleRouter, children: [
         AutoRoute(page: ScheduleScreen, initial: true),
         AutoRoute(page: ScheduleDetailScreen),
-        AutoRoute(page: ScheduleSearchScreen),
+        CustomRoute(
+            page: ScheduleSearchScreen,
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            durationInMilliseconds: 330,
+            maintainState: true),
+        AutoRoute(page: ScheduleSearchResultScreen, maintainState: false),
       ]),
       AutoRoute(page: FavouritesScreen),
     ]),

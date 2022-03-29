@@ -56,6 +56,8 @@ dependencies:
   # flutter_slidable: ^1.2.0
   swipeable_tile: ^1.0.0+6
   url_launcher: ^6.0.20
+  rxdart: ^0.27.3
+  scrollable_positioned_list: ^0.2.3
   # sliver_tools: ^0.2.5
   
 

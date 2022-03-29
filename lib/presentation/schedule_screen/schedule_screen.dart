@@ -1,8 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/ootm_icons.dart';
+import 'package:odyssey_mobile/app/router.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
-import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 import 'package:odyssey_mobile/presentation/components/performance_category_list.dart';
 import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/app/strings.dart';
@@ -18,7 +19,8 @@ class ScheduleScreen extends StatelessWidget {
         title: const Text(AppStrings.scheduleScreenTitle),
         actions: [
           IconButton(
-            onPressed: () => showSnackBar(context: context, text: AppStrings.soonImplemented),
+            padding: const EdgeInsets.all(18),
+            onPressed: () => context.router.push(const ScheduleSearchScreen()),
             icon: const Icon(OotmIcons.search),
           )
         ],
