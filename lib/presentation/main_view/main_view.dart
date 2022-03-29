@@ -9,6 +9,7 @@ import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/app/router.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
+import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class _MainViewState extends State<MainView> {
         BlocProvider(
             create: (context) => getIt<CityDataBloc>()..add(const FetchCityData()), lazy: false),
         BlocProvider(create: (context) => getIt<UpdateFavouritesBloc>()),
+        BlocProvider(
+            create: (context) => getIt<ScheduleSearchBloc>(param1: context.read<CityDataBloc>())),
       ],
       child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
         listener: (context, state) {
