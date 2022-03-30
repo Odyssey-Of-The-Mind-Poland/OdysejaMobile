@@ -44,7 +44,7 @@ class InfoDetailScreen extends StatelessWidget {
           h3Padding: const EdgeInsets.only(bottom: 8, top: 8),
           blockquoteAlign: WrapAlignment.center,
           blockquoteDecoration: const BoxDecoration(),
-          listBullet: const TextStyle(fontSize: 20), //bigger  większe
+          listBullet: const TextStyle(fontSize: 17), //bigger  większe
         ),
       ),
     );
