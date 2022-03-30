@@ -5,6 +5,8 @@ import 'package:odyssey_mobile/presentation/components/basic_box.dart';
 import 'package:odyssey_mobile/app/router.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 
+import '../helpers/string_helpers.dart';
+
 class InfoGrid extends StatelessWidget {
   const InfoGrid(this.infoGroup, {Key? key}) : super(key: key);
   final InfoCategory infoGroup;
@@ -19,7 +21,7 @@ class InfoGrid extends StatelessWidget {
       children: infoGroup.info
           .map((e) => BasicBox(
               onTap: () => AutoRouter.of(context).navigate(InfoDetailScreen(info: e)),
-              label: e.getConnectedInfoName(),
+              label: StringHelper.removeOrphans(e.infoName),
               centerLabel: true,
               splashGradientPair: AppColors.safeSGPair(infoGroup.number)))
           .toList(),

@@ -36,6 +36,7 @@ class OotmIcons {
   static const IconData forward = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData help = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData heart = IconData(0xe25c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData info = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData lock = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData nofilters = IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);

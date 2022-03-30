@@ -59,7 +59,7 @@ class _MainViewState extends State<MainView> {
                 currentIndex: tabsRouter.activeIndex,
                 onTap: tabsRouter.setActiveIndex,
                 items: [
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.home)),
+                  DotNavigationBarItem(icon: const Icon(Icons.favorite_outline)),
                   DotNavigationBarItem(icon: const Icon(OotmIcons.info)),
                   DotNavigationBarItem(icon: const Icon(OotmIcons.schedule)),
                   DotNavigationBarItem(icon: const Icon(OotmIcons.favEmpty)),
