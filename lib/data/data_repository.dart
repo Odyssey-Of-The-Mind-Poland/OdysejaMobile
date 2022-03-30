@@ -9,11 +9,8 @@ import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
-
-import 'package:odyssey_mobile/data/db/isar/data_adapters.dart';
-import 'package:odyssey_mobile/data/db/isar/db_service.dart';
+import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
-
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
@@ -65,8 +62,8 @@ class DataRepositoryImpl implements DataRepository {
 
         await _dbService.clearData();
 
-        await _dbService.createProblems(DataAdapters.convertProblems(problems));
-        await _dbService.createCityData(DataAdapters.convertCityData(
+        await _dbService.createProblems(problems);
+        await _dbService.createCityData(
           cityModels: cities,
           infoModels: infos,
           infoCategories: infoCategories,
@@ -74,7 +71,7 @@ class DataRepositoryImpl implements DataRepository {
           stageModels: stages,
           problemModels: problems,
           previousFavIds: previousFavIds,
-        ));
+        );
 
         // On full success, save version.
         _sharedPrefs.setInt('version', externalVersion);

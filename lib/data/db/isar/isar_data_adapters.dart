@@ -13,7 +13,7 @@ import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 
-abstract class DataAdapters {
+abstract class IsarDataAdapters {
   static List<ProblemModelDb> convertProblems(List<ProblemModelApi> apiModels) => apiModels
       .map((e) => ProblemModelDb()
         ..name = e.name

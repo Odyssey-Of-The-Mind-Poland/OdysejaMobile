@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart' as _i9;
 import 'app/app_config.dart' as _i4;
 import 'data/api/api_service.dart' as _i3;
 import 'data/data_repository.dart' as _i11;
-import 'data/db/isar/db_service.dart' as _i5;
+import 'data/db/db_service.dart' as _i5;
 import 'domain/data_repository.dart' as _i10;
 import 'injectable.dart' as _i15;
 import 'presentation/main_view/bloc/city_data_bloc.dart' as _i8;
