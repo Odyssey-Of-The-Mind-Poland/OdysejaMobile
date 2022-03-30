@@ -30,6 +30,11 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
+        },
+        {
+            "src": "icons/app_logo_rounded.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
         }
     ]
 }
