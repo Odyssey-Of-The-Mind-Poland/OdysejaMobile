@@ -22,18 +22,27 @@ class ScheduleSearchResultScreen extends StatefulWidget {
 
 class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen> {
   final ItemScrollController itemScrollController = ItemScrollController();
-
+  int? length;
   int? index;
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => Future.delayed(
-        const Duration(milliseconds: 100),
-        () => itemScrollController.scrollTo(
-            index: index ?? 0,
-            duration: const Duration(seconds: 1),
-            curve: Curves.easeInOutCubic,
-            alignment: 0.5)));
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      final safeIndex = index ?? 0;
+      final safeLength = length ?? 10;
+      final height = MediaQuery.of(context).size.height - 300;
+      // 72 pixels per tile, doubled
+      final int assessedNumItems = (height / 72).ceil();
+      if (safeIndex > (height / 144).floor() && safeLength >= assessedNumItems) {
+        Future.delayed(
+            const Duration(milliseconds: 100),
+            () => itemScrollController.scrollTo(
+                index: index ?? 0,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOutCubic,
+                alignment: 0.5));
+      }
+    });
   }
 
   @override
@@ -60,6 +69,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
             final group = cityData.performanceGroups[groupIndex];
             index = group.performances
                 .indexWhere((e) => e.performanceId == widget.performance.performanceId);
+            length = group.performances.length;
             return Column(
               children: [
                 Heading(widget.performance.performanceDay),
@@ -68,7 +78,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
                   child: ScrollablePositionedList.builder(
                     itemScrollController: itemScrollController,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: group.performances.length,
+                    itemCount: length!,
                     itemBuilder: (context, i) => i == index
                         ? HighlightedPerformanceCard(
                             performance: group.performances[i],
