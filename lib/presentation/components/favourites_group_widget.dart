@@ -88,7 +88,7 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
           PerformanceGroupHeading(widget.performanceGroup, categoryEntity: widget.categoryEntity),
           AnimatedList(
             key: _listKey,
-            initialItemCount: itemCounter(performances.length),
+            initialItemCount: performances.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (c, i, animation) => SizeTransition(
