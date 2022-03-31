@@ -32,25 +32,24 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<OnboardingBloc>(
-            create: (context) => getIt<OnboardingBloc>()..add(const CheckForOnboarding())),
+        BlocProvider<OnboardingBloc>(create: (context) => getIt<OnboardingBloc>()),
       ],
       child: BlocListener<OnboardingBloc, OnboardingState>(
         listener: (context, state) async {
           router = _innerRouterKey.currentState?.controller;
-          if (state is OnboardingResult) {
-            if (state.showOnboarding) {
-              router?.replace(const WelcomeScreen());
-            } else {
-              router?.replace(const LoadingScreen());
-            }
-          } else if (state is OnboardingFinished) {
-            if (context.read<UpdateBloc>().state is UpdateFinished) {
-              router?.replaceAll([const MainView()]);
-            } else {
-              router?.replace(const LoadingScreen());
-            }
+          // if (state is OnboardingResult) {
+          //   if (state.showOnboarding) {
+          //     router?.replace(const WelcomeScreen());
+          //   } else {
+          //     router?.replace(const LoadingScreen());
+          //   }
+          // } else if (state is OnboardingFinished) {
+          if (context.read<UpdateBloc>().state is UpdateFinished) {
+            router?.replaceAll([const MainView()]);
+          } else {
+            router?.replace(const LoadingScreen());
           }
+          // }
         },
         child: AutoRouter(key: _innerRouterKey),
       ),
