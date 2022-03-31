@@ -15,8 +15,8 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final DataRepository _repository;
 
   void _onboardingHandler(CheckForOnboarding event, Emitter<OnboardingState> emit) {
-    final loadingConfig = _repository.loadingConfig;
-    emit(OnboardingResult(loadingConfig.showOnboarding));
+    // final loadingConfig = _repository.loadingConfig;
+    emit(const OnboardingResult(false));
   }
 
   void _onboardingFinishedHandler(FinishedOnboarding event, Emitter<OnboardingState> emit) {
