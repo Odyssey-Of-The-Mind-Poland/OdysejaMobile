@@ -22,6 +22,7 @@ class BoxWithBadge extends StatelessWidget {
       alignment: Alignment.topRight,
       children: [
         BasicBox(
+          centerLabel: true,
           label: label,
           onTap: onTap,
           splashGradientPair: splashGradientPair,
