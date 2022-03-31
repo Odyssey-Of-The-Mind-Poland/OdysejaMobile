@@ -19,7 +19,13 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   Future<void> _startUpdateHandler(StartUpdateProcess event, Emitter<UpdateState> emit) async {
     final result = await _repository.updateData(forceUpdate: false, keepFavsOnUpdate: true);
     result.fold(
-      (l) => emit(UpdateFailed(l)),
+      (l) {
+        if (l is Offline) {
+          emit(const UpdateFinished());
+        } else {
+          emit(UpdateFailed(l));
+        }
+      },
       (_) => emit(const UpdateFinished()),
     );
   }

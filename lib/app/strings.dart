@@ -7,6 +7,8 @@ abstract class AppStrings {
   static const String timeoutFailureMessage = 'Nie udało się nawiązać połączenia';
   static const String unknownFailureMessage = 'Wystapił nieznany błąd :(';
   static const String serverFailureMessage = 'Błąd serwera';
+  static const String updateFailedFailureMessage =
+      'Nie udało się połączyć z serwerem danych. Ale nie łam się, zapisaliśmy je już wcześniej :)';
   // Age group labels
   static const String juniors = 'Juniorzy';
   static const String firstDivision = '> V klasa';

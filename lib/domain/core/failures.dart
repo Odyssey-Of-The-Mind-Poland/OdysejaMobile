@@ -47,3 +47,10 @@ class UnknownFailure extends Failure {
   @override
   String get errorMessage => AppStrings.unknownFailureMessage;
 }
+
+class Offline extends Failure {
+  const Offline();
+
+  @override
+  String get errorMessage => AppStrings.updateFailedFailureMessage;
+}

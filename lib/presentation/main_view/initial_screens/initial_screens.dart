@@ -32,8 +32,6 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<UpdateBloc>(
-            lazy: false, create: (context) => getIt<UpdateBloc>()..add(const StartUpdateProcess())),
         BlocProvider<OnboardingBloc>(
             create: (context) => getIt<OnboardingBloc>()..add(const CheckForOnboarding())),
       ],

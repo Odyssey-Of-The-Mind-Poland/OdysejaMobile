@@ -6,9 +6,6 @@ class EmptyData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return Center(
-      child: Text('Brak danych :('),
-    );
+    return const Center(child: Text('Brak danych :('));
   }
 }
