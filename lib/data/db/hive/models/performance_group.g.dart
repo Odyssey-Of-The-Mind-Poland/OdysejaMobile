@@ -13,7 +13,19 @@ class PerformanceGroupHiveModelAdapter
 
   @override
   PerformanceGroupHiveModel read(BinaryReader reader) {
-    return PerformanceGroupHiveModel();
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return PerformanceGroupHiveModel(
+      groupId: fields[0] as int,
+      problem: fields[1] as int,
+      age: fields[2] as int,
+      stage: fields[3] as int,
+      part: fields[4] as int,
+      day: fields[5] as String,
+      performancesHiveList: (fields[6] as HiveList).castHiveList(),
+    );
   }
 
   @override
@@ -21,19 +33,19 @@ class PerformanceGroupHiveModelAdapter
     writer
       ..writeByte(7)
       ..writeByte(0)
-      ..write(obj.age)
-      ..writeByte(2)
-      ..write(obj.day)
-      ..writeByte(3)
       ..write(obj.groupId)
+      ..writeByte(1)
+      ..write(obj.problem)
+      ..writeByte(2)
+      ..write(obj.age)
+      ..writeByte(3)
+      ..write(obj.stage)
       ..writeByte(4)
       ..write(obj.part)
       ..writeByte(5)
-      ..write(obj.performances)
+      ..write(obj.day)
       ..writeByte(6)
-      ..write(obj.problem)
-      ..writeByte(7)
-      ..write(obj.stage);
+      ..write(obj.performancesHiveList);
   }
 
   @override

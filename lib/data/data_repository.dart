@@ -114,8 +114,7 @@ class DataRepositoryImpl implements DataRepository {
   @override
   Future<Either<Failure, Unit>> updateFavourite(Performance performance) async {
     try {
-      // TODO interface db models
-      await _dbService.updateFav(performance as PerformanceModelDb);
+      await _dbService.updateFav(performance);
       return right(unit);
     } catch (e) {
       return left(const DataBaseFailure());

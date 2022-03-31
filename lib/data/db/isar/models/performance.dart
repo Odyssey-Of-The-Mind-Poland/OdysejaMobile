@@ -38,4 +38,7 @@ class PerformanceModelDb extends Performance {
 
   @override
   int get groupId => group.value?.groupId ?? -1;
+
+  @override
+  Future<void> updatePerformance() => group.save();
 }

@@ -1,65 +1,72 @@
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 
 part 'performance.g.dart';
 
 @HiveType(typeId: 6)
-class PerformanceHiveModel extends Performance {
+class PerformanceHiveModel extends Performance with HiveObjectMixin {
   @HiveField(0)
   @override
-  // TODO: implement performanceId
-  int get performanceId => throw UnimplementedError();
+  final int performanceId;
+
   @HiveField(1)
   @override
-  // TODO: implement age
-  int get age => throw UnimplementedError();
-
-  @HiveField(2)
-  @override
-  // TODO: implement groupId
-  int get groupId => throw UnimplementedError();
-
-  @HiveField(3)
-  @override
-  // TODO: implement part
-  int get part => throw UnimplementedError();
-
-  @HiveField(4)
-  @override
-  // TODO: implement performance
-  String get performance => throw UnimplementedError();
-
-  @HiveField(5)
-  @override
-  // TODO: implement performanceDay
-  String get performanceDay => throw UnimplementedError();
-
-  @HiveField(6)
-  @override
-  // TODO: implement problem
-  int get problem => throw UnimplementedError();
-
-  @HiveField(7)
-  @override
-  // TODO: implement spontan
-  String get spontan => throw UnimplementedError();
-
-  @HiveField(8)
-  @override
-  // TODO: implement spontanDay
-  String get spontanDay => throw UnimplementedError();
-
-  @HiveField(9)
-  @override
-  // TODO: implement stage
-  int get stage => throw UnimplementedError();
+  final int age;
 
   @HiveField(10)
   @override
-  // TODO: implement team
-  String get team => throw UnimplementedError();
+  final String team;
+
+  @HiveField(3)
+  @override
+  final int part;
+
+  @HiveField(4)
+  @override
+  final String performance;
+
+  @HiveField(5)
+  @override
+  final String performanceDay;
+
+  @HiveField(6)
+  @override
+  final int problem;
+
+  @HiveField(7)
+  @override
+  final String spontan;
+
+  @HiveField(8)
+  @override
+  final String spontanDay;
+
+  @HiveField(9)
+  @override
+  final int stage;
+
+  @Deprecated('Not used, not working')
+  @override
+  int get groupId => -1;
 
   @HiveField(11)
   @override
-  late bool isFavourite;
+  bool isFavourite;
+  PerformanceHiveModel({
+    required this.performanceId,
+    required this.age,
+    required this.part,
+    required this.performance,
+    required this.performanceDay,
+    required this.problem,
+    required this.spontan,
+    required this.spontanDay,
+    required this.stage,
+    required this.team,
+    required this.isFavourite,
+  });
+
+  @override
+  Future<void> updatePerformance() => save();
 }

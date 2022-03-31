@@ -16,21 +16,31 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PerformanceHiveModel()..isFavourite = fields[11] as bool;
+    return PerformanceHiveModel(
+      performanceId: fields[0] as int,
+      age: fields[1] as int,
+      part: fields[3] as int,
+      performance: fields[4] as String,
+      performanceDay: fields[5] as String,
+      problem: fields[6] as int,
+      spontan: fields[7] as String,
+      spontanDay: fields[8] as String,
+      stage: fields[9] as int,
+      team: fields[10] as String,
+      isFavourite: fields[11] as bool,
+    );
   }
 
   @override
   void write(BinaryWriter writer, PerformanceHiveModel obj) {
     writer
-      ..writeByte(12)
       ..writeByte(11)
-      ..write(obj.isFavourite)
       ..writeByte(0)
       ..write(obj.performanceId)
       ..writeByte(1)
       ..write(obj.age)
-      ..writeByte(2)
-      ..write(obj.groupId)
+      ..writeByte(10)
+      ..write(obj.team)
       ..writeByte(3)
       ..write(obj.part)
       ..writeByte(4)
@@ -45,8 +55,8 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       ..write(obj.spontanDay)
       ..writeByte(9)
       ..write(obj.stage)
-      ..writeByte(10)
-      ..write(obj.team);
+      ..writeByte(11)
+      ..write(obj.isFavourite);
   }
 
   @override

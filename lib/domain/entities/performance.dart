@@ -12,4 +12,5 @@ abstract class Performance {
   abstract bool isFavourite;
   int get groupId;
   String get searchableTeam => team.toLowerCase();
+  Future<void> updatePerformance();
 }

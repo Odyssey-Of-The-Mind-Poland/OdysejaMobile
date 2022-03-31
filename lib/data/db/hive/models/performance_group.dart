@@ -1,4 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
+
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 
@@ -8,49 +10,63 @@ part 'performance_group.g.dart';
 class PerformanceGroupHiveModel extends PerformanceGroup {
   @HiveField(0)
   @override
-  // TODO: implement age
-  int get age => throw UnimplementedError();
+  final int groupId;
 
   @HiveField(1)
   @override
-  PerformanceGroup copyWith(
-      {int? age,
-      String? day,
-      int? part,
-      List<Performance>? performances,
-      int? problem,
-      int? stage}) {
-    // TODO: implement copyWith
-    throw UnimplementedError();
-  }
+  final int problem;
 
   @HiveField(2)
   @override
-  // TODO: implement day
-  String get day => throw UnimplementedError();
+  final int age;
 
   @HiveField(3)
   @override
-  // TODO: implement groupId
-  int get groupId => throw UnimplementedError();
+  final int stage;
 
   @HiveField(4)
   @override
-  // TODO: implement part
-  int get part => throw UnimplementedError();
+  final int part;
 
   @HiveField(5)
   @override
-  // TODO: implement performances
-  List<Performance> get performances => throw UnimplementedError();
+  final String day;
 
   @HiveField(6)
-  @override
-  // TODO: implement problem
-  int get problem => throw UnimplementedError();
+  late HiveList<PerformanceHiveModel> performancesHiveList;
 
-  @HiveField(7)
   @override
-  // TODO: implement stage
-  int get stage => throw UnimplementedError();
+  late List<Performance> performances;
+  PerformanceGroupHiveModel({
+    required this.groupId,
+    required this.problem,
+    required this.age,
+    required this.stage,
+    required this.part,
+    required this.day,
+    required this.performancesHiveList,
+  }) {
+    performances = performancesHiveList;
+  }
+
+  @override
+  PerformanceGroup copyWith({
+    int? groupId,
+    int? problem,
+    int? age,
+    int? stage,
+    int? part,
+    String? day,
+    List<Performance>? performances,
+  }) {
+    return PerformanceGroupHiveModel(
+      groupId: groupId ?? this.groupId,
+      problem: problem ?? this.problem,
+      age: age ?? this.age,
+      stage: stage ?? this.stage,
+      part: part ?? this.part,
+      day: day ?? this.day,
+      performancesHiveList: performancesHiveList,
+    )..performances = performances ?? this.performances;
+  }
 }

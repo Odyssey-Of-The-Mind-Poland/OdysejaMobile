@@ -8,6 +8,7 @@ import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
+import 'package:odyssey_mobile/data/db/hive/hive_data_adapter.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city_data.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
@@ -22,6 +23,7 @@ import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 class HiveDbService extends DbService {
   late final Box<CityDataHiveModel> _box;
   late final Box<ProblemHiveModel> _pandoraBox;
+  late final Box<PerformanceHiveModel> _performanceBox;
 
   @override
   Future<void> init() async {
@@ -36,9 +38,13 @@ class HiveDbService extends DbService {
       await Hive.initFlutter();
 
       _box = await Hive.openBox('finalsBox', compactionStrategy: (entries, deletedEntries) {
-        return deletedEntries > 50;
+        return deletedEntries > 2;
       });
       _pandoraBox = await Hive.openBox('pandoraBox', compactionStrategy: (entries, deletedEntries) {
+        return deletedEntries > 12;
+      });
+      _performanceBox =
+          await Hive.openBox('performanceBox', compactionStrategy: (entries, deletedEntries) {
         return deletedEntries > 50;
       });
     } catch (e) {
@@ -65,60 +71,40 @@ class HiveDbService extends DbService {
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
   }) async {
-    await _box.put(
-      0,
-      CityDataHiveModel(
-          cityId: 0,
-          cityName: 'Finał ogólnopolski',
-          infoGroups: [],
-          performanceGroups: [],
-          stages: []),
+    // save performances first, to allow them to work as HiveObjects
+    final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
+    _performanceBox.addAll(performances);
+
+    final data = HiveDataAdapter.convertCityData(
+      cityModels: cityModels,
+      infoModels: infoModels,
+      infoCategories: infoCategories,
+      performanceModels: _performanceBox.values.toList(),
+      stageModels: stageModels,
+      problemModels: problemModels,
+      previousFavIds: previousFavIds,
+      performanceBox: _performanceBox,
     );
-    // final data = DataAdapters.convertCityData(
-    //   cityModels: cityModels,
-    //   infoModels: infoModels,
-    //   infoCategories: infoCategories,
-    //   performanceModels: performanceModels,
-    //   stageModels: stageModels,
-    //   problemModels: problemModels,
-    //   previousFavIds: previousFavIds,
-    // );
-    // return _isar.writeTxn((isar) async =>
-    //     await isar.cityDataModelDbs.putAll(data, replaceOnConflict: true, saveLinks: true));
+    await _box.addAll(data);
+    // for (final group in data.first.performanceGroups) {
+    //   group.performances.forEach((e) async {e.updatePerformance()});
+    // }
   }
 
   @override
-  Future<CityDataHiveModel?> readCityData(int cityId) async {
-    return _box.get(0);
-    // final entry = await _isar.cityDataModelDbs.where().cityIdEqualTo(cityId).findFirst();
-    // if (entry == null) {
-    //   return entry;
-    // }
-    // await entry.stageIsarLinks.load();
-    // await entry.infoIsarLinks.load();
-    // for (final info in entry.infoIsarLinks) {
-    //   await info.infoList.load();
-    // }
-    // await entry.performanceGroupIsarLinks.load();
-    // for (final pfGroup in entry.performanceGroupIsarLinks) {
-    //   // For multiple small batches of items sync is quicker than async.
-    //   pfGroup
-    //     ..performancesIsarLinks.loadSync()
-    //     ..sortAndInit();
-    // }
-    // return entry..initAndSort();
-  }
+  Future<CityDataHiveModel?> readCityData(int cityId) async => _box.get(0);
 
   @override
-  Future<List<int>> readFavIds() async {
-    // return _isar.performanceModelDbs.where().isFavouriteEqualTo(true).performanceIdProperty().findAll();
-    return [];
-  }
+  Future<List<int>> readFavIds() async =>
+      _performanceBox.values.where((p) => p.isFavourite).map((e) => e.performanceId).toList();
 
   @override
   Future<void> updateFav(Performance performance) async {
-    // return _isar.writeTxn(
-    //   (isar) async => await isar.performanceModelDbs.put(performance, replaceOnConflict: true));
+    try {
+      await performance.updatePerformance();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   @override
@@ -128,5 +114,6 @@ class HiveDbService extends DbService {
   Future<void> clearData() async {
     await _box.clear();
     await _pandoraBox.clear();
+    await _performanceBox.clear();
   }
 }
