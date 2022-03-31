@@ -59,7 +59,8 @@ class HiveDbService extends DbService {
   }
 
   @override
-  Future<List<ScheduleCategoryEntity>> readProblems() async => _pandoraBox.values.toList();
+  Future<List<ScheduleCategoryEntity>> readProblems() async =>
+      _pandoraBox.values.toList()..sort((a, b) => a.number.compareTo(b.number));
 
   @override
   Future<void> createCityData({
