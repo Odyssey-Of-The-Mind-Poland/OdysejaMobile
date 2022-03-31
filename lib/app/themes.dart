@@ -50,8 +50,12 @@ abstract class AppTextStyles {
   static const h2 = TextStyle(fontSize: 24, fontWeight: FontWeight.w700, letterSpacing: 0.0);
   static const h3special =
       TextStyle(fontSize: 20, fontWeight: FontWeight.w700, letterSpacing: 0.15, height: 1.5);
-  static const h3 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w700, letterSpacing: 0.15, height: 1.5);
+  static const h3 = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.15,
+      height: 1.5,
+      fontFamily: 'Ubuntu');
   static const h3White = TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w700,
