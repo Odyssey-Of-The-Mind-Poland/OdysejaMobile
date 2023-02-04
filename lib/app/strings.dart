@@ -11,7 +11,7 @@ abstract class AppStrings {
       'Nie udało się połączyć z serwerem danych. Ale nie łam się, zapisaliśmy je już wcześniej :)';
   // Age group labels
   static const String juniors = 'Juniorzy';
-  static const String firstDivision = '> V klasa';
+  static const String firstDivision = 'I - V klasa';
   static const String secondDivision = 'VI – VIII klasa';
   static const String thirdDivision = 'Liceum / technikum';
   static const String forthDivision = 'Uczelnie wyższe';
