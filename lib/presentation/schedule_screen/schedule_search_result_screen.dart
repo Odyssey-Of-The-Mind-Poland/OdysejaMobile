@@ -27,7 +27,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final safeIndex = index ?? 0;
       final safeLength = length ?? 10;
       final height = MediaQuery.of(context).size.height - 300;

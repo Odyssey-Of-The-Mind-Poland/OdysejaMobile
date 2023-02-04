@@ -4,9 +4,9 @@ import 'package:odyssey_mobile/domain/entities/performance.dart';
 
 part 'performance.g.dart';
 
-@Collection()
+@collection
 class PerformanceModelDb extends Performance {
-  int? id;
+  Id? id;
   @override
   late int performanceId;
   @Index()

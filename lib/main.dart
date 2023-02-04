@@ -16,7 +16,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  await configureInjection(Environment.prod);
+  await configureDependencies(Environment.prod);
 
   if (kDebugMode) {
     Logger.root.level = Level.FINE; // defaults to Level.INFO

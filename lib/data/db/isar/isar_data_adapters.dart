@@ -62,7 +62,7 @@ abstract class IsarDataAdapters {
       infoGroups.add(InfoGroupModelDb()
         ..number = infoCategory.id
         ..name = infoCategory.name
-        ..infoList.addAll(infoDbModels));
+        ..infoList = infoDbModels.toList());
     }
     return infoGroups;
   }
