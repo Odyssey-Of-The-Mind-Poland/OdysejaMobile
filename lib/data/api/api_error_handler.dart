@@ -7,19 +7,21 @@ import 'package:odyssey_mobile/domain/core/failures.dart';
 /// so the method takes some liberties. Hopefully a subject to change.
 Failure dioErrorHandler(DioError e) {
   switch (e.type) {
-    case DioErrorType.response:
+    case DioErrorType.badResponse:
       switch (e.response?.statusCode) {
         case 500:
           return const ServerFailure();
         default:
           return unknownErrorHandler(e, null);
       }
-    case DioErrorType.connectTimeout:
+    case DioErrorType.connectionTimeout:
     case DioErrorType.sendTimeout:
     case DioErrorType.receiveTimeout:
       return const TimeoutFailure();
     case DioErrorType.cancel:
-    case DioErrorType.other:
+    case DioErrorType.badCertificate:
+    case DioErrorType.connectionError:
+    case DioErrorType.unknown:
       return const ConnectionFailure();
   }
 }

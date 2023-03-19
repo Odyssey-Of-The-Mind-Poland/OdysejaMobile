@@ -24,23 +24,23 @@ abstract class RegisterModule {
 
   @lazySingleton
   Dio get dioInstance {
-    Dio _dio = Dio(BaseOptions(
-      sendTimeout: 5000,
-      connectTimeout: 5000,
-      receiveTimeout: 7000,
+    Dio dio = Dio(BaseOptions(
+      sendTimeout: const Duration(seconds: 5),
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 7),
       headers: <String, String>{
         'accept': 'application/json',
       },
     ));
     if (kDebugMode) {
-      _dio.interceptors.add(PrettyDioLogger(
+      dio.interceptors.add(PrettyDioLogger(
         responseBody: false,
         requestBody: false,
         requestHeader: false,
         responseHeader: false,
       ));
     }
-    return _dio;
+    return dio;
   }
 
   @lazySingleton
