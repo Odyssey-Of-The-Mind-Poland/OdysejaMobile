@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/widgets.dart';
+import 'package:odyssey_mobile/domain/entities/info.dart';
+import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/favourites_screen/favourites_screen.dart';
 import 'package:odyssey_mobile/presentation/home_screen/home_screen.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_detail_screen.dart';
-import 'package:odyssey_mobile/presentation/info_screen/info_router.dart';
+import 'package:odyssey_mobile/presentation/info_screen/info_screens.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_screen.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/initial_screens.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/loading_screen.dart';
@@ -10,39 +14,43 @@ import 'package:odyssey_mobile/presentation/main_view/initial_screens/splash_scr
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/welcome_screen.dart';
 import 'package:odyssey_mobile/presentation/main_view/main_view.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_detail_screen.dart';
-import 'package:odyssey_mobile/presentation/schedule_screen/schedule_router.dart';
+import 'package:odyssey_mobile/presentation/schedule_screen/schedule_screens.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_search_result_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_search_screen.dart';
 
-export 'router.gr.dart';
+part 'router.gr.dart';
 
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: InitialScreen, initial: true, maintainState: false, children: [
-      AutoRoute(page: SplashScreen, initial: true),
-      AutoRoute(page: WelcomeScreen),
-      AutoRoute(page: LoadingScreen),
+@AutoRouterConfig(
+  replaceInRouteName: 'Page|Screen|View,Route',
+)
+class AppRouter extends _$AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+  @override
+  final List<AutoRoute> routes = [
+    AutoRoute(page: InitialRoute.page, path: '/', maintainState: false, children: [
+      AutoRoute(page: SplashRoute.page, path: ''),
+      AutoRoute(page: WelcomeRoute.page),
+      AutoRoute(page: LoadingRoute.page),
     ]),
-    AutoRoute(page: MainView, children: [
-      AutoRoute(page: HomeScreen, initial: true),
-      AutoRoute(page: InfoRouter, children: [
-        AutoRoute(page: InfoScreen, initial: true),
-        AutoRoute(page: InfoDetailScreen),
+    AutoRoute(page: MainRoute.page, children: [
+      AutoRoute(page: HomeRoute.page, path: ''),
+      AutoRoute(page: InfoRoutes.page, children: [
+        AutoRoute(page: InfoRoute.page, path: ''),
+        AutoRoute(page: InfoDetailRoute.page),
       ]),
-      AutoRoute(page: ScheduleRouter, children: [
-        AutoRoute(page: ScheduleScreen, initial: true),
-        AutoRoute(page: ScheduleDetailScreen),
+      AutoRoute(page: ScheduleRoutes.page, children: [
+        AutoRoute(page: ScheduleRoute.page, path: ''),
+        AutoRoute(page: ScheduleDetailRoute.page),
         CustomRoute(
-            page: ScheduleSearchScreen,
+            page: ScheduleSearchRoute.page,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             durationInMilliseconds: 330,
             maintainState: true),
-        AutoRoute(page: ScheduleSearchResultScreen, maintainState: false),
+        AutoRoute(page: ScheduleSearchResultRoute.page, maintainState: false),
       ]),
-      AutoRoute(page: FavouritesScreen),
+      AutoRoute(page: FavouritesRoute.page),
     ]),
-  ],
-)
-class $AppRouter {}
+  ];
+}

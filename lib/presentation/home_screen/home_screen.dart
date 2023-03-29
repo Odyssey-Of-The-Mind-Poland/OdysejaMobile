@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/asset_paths.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/components/image_tile.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 
+@RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

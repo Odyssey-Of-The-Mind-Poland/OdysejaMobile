@@ -9,6 +9,7 @@ import 'package:odyssey_mobile/presentation/components/search_field.dart';
 import 'package:odyssey_mobile/presentation/components/search_result_list_tile.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 
+@RoutePage()
 class ScheduleSearchScreen extends StatefulWidget {
   const ScheduleSearchScreen({Key? key}) : super(key: key);
 
@@ -58,7 +59,7 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                 itemBuilder: (context, i) => SearchResultListTile(
                       onTap: () {
                         FocusScope.of(context).unfocus();
-                        context.router.push(ScheduleSearchResultScreen(
+                        context.router.push(ScheduleSearchResultRoute(
                           performance: state.performances[i],
                         ));
                       },

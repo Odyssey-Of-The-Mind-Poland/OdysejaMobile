@@ -20,7 +20,7 @@ class InfoGrid extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       children: infoGroup.info
           .map((e) => BasicBox(
-              onTap: () => AutoRouter.of(context).navigate(InfoDetailScreen(info: e)),
+              onTap: () => AutoRouter.of(context).navigate(InfoDetailRoute(info: e)),
               label: StringHelper.removeOrphans(e.infoName),
               centerLabel: true,
               splashGradientPair: AppColors.safeSGPair(infoGroup.number)))

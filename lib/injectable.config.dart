@@ -4,28 +4,28 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:odyssey_mobile/app/app_config.dart' as _i4;
-import 'package:odyssey_mobile/data/api/api_service.dart' as _i3;
-import 'package:odyssey_mobile/data/data_repository.dart' as _i11;
-import 'package:odyssey_mobile/data/db/db_service.dart' as _i5;
-import 'package:odyssey_mobile/domain/data_repository.dart' as _i10;
-import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart'
-    as _i8;
-import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart'
-    as _i14;
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/onboarding_bloc.dart'
-    as _i12;
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart'
-    as _i13;
-import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart'
-    as _i7;
 import 'package:shared_preferences/shared_preferences.dart' as _i9;
 
+import 'app/app_config.dart' as _i4;
+import 'data/api/api_service.dart' as _i3;
+import 'data/data_repository.dart' as _i11;
+import 'data/db/db_service.dart' as _i5;
+import 'domain/data_repository.dart' as _i10;
 import 'injectable.dart' as _i15;
+import 'presentation/main_view/bloc/city_data_bloc.dart' as _i8;
+import 'presentation/main_view/bloc/update_favourites_bloc.dart' as _i14;
+import 'presentation/main_view/initial_screens/bloc/onboarding_bloc.dart'
+    as _i12;
+import 'presentation/main_view/initial_screens/bloc/update_bloc.dart' as _i13;
+import 'presentation/schedule_screen/bloc/schedule_search_bloc.dart' as _i7;
 
 const String _prod = 'prod';
 

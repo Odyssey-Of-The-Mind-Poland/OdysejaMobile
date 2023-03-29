@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +9,7 @@ import 'package:odyssey_mobile/presentation/core/loader.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_filter_bloc.dart';
 
+@RoutePage()
 class ScheduleDetailScreen extends StatelessWidget {
   const ScheduleDetailScreen({required this.categoryEntity, Key? key}) : super(key: key);
   final ScheduleCategoryEntity categoryEntity;

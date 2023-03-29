@@ -12,6 +12,7 @@ import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+@RoutePage()
 class ScheduleSearchResultScreen extends StatefulWidget {
   const ScheduleSearchResultScreen(this.performance, {Key? key}) : super(key: key);
   final Performance performance;

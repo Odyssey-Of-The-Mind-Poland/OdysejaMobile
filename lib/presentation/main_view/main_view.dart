@@ -11,6 +11,7 @@ import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 
+@RoutePage()
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
 
@@ -43,10 +44,10 @@ class _MainViewState extends State<MainView> {
         child: AutoTabsScaffold(
             key: _scaffoldKey,
             routes: const [
-              HomeScreen(),
-              InfoRouter(),
-              ScheduleRouter(),
-              FavouritesScreen(),
+              HomeRoute(),
+              InfoRoutes(),
+              ScheduleRoutes(),
+              FavouritesRoute(),
             ],
             homeIndex: 0,
             bottomNavigationBuilder: (_, tabsRouter) {
