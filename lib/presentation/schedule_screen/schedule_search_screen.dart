@@ -41,10 +41,10 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
               height: 44,
               width: 44,
               margin: const EdgeInsets.only(left: 16, right: 8.0),
-              child: const Icon(OotmIcons.search, color: AppColors.pureWhite),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
                   color: AppColors.primaryOrange),
+              child: const Icon(OotmIcons.search, color: AppColors.pureWhite),
             ),
           ],
         ),

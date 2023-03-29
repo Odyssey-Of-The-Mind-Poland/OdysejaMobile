@@ -50,7 +50,6 @@ class _MainViewState extends State<MainView> {
             ],
             homeIndex: 0,
             bottomNavigationBuilder: (_, tabsRouter) {
-              // TODO Write custom bottomBar
               return DotNavigationBar(
                 selectedItemColor: AppColors.primaryOrange,
                 unselectedItemColor: AppColors.darkestGrey,
@@ -58,11 +57,11 @@ class _MainViewState extends State<MainView> {
                 enablePaddingAnimation: false,
                 currentIndex: tabsRouter.activeIndex,
                 onTap: tabsRouter.setActiveIndex,
-                items: [
-                  DotNavigationBarItem(icon: const Icon(Icons.favorite_outline)),
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.info)),
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.schedule)),
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.favEmpty)),
+                items: const [
+                  DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
+                  DotNavigationBarItem(icon: Icon(OotmIcons.info)),
+                  DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),
+                  DotNavigationBarItem(icon: Icon(OotmIcons.favEmpty)),
                 ],
               );
             }),

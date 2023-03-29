@@ -79,9 +79,9 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   onPressed: context.router.pop,
-                  child: const Text(AppStrings.close),
                   style: ElevatedButton.styleFrom(
-                      primary: AppColors.lightGrey, onPrimary: AppColors.darkestGrey),
+                      backgroundColor: AppColors.lightGrey, foregroundColor: AppColors.darkestGrey),
+                  child: const Text(AppStrings.close),
                 )
               ],
             ),

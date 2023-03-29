@@ -45,12 +45,11 @@ class _SearchFieldState extends State<SearchField> {
   late int _previousLength;
 
   _notEmptyListener() {
-    final int _currentLength = controller.text.length;
-    if (_currentLength == 0 && _previousLength == 1 ||
-        _currentLength == 1 && _previousLength == 0) {
+    final int currentLength = controller.text.length;
+    if (currentLength == 0 && _previousLength == 1 || currentLength == 1 && _previousLength == 0) {
       setState(() {});
     }
-    _previousLength = _currentLength;
+    _previousLength = currentLength;
   }
 
   @override

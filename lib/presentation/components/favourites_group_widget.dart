@@ -31,8 +31,9 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
 
   bool expanded = false;
 
-  int itemCounter(int _count) => _count < 3 ? _count : 3;
+  int itemCounter(int count) => count < 3 ? count : 3;
 
+  // TODO: check!
   /// Widget work on an assumtion, that performance idexes (from API) can be safely used
   /// for sorting
   void addItem(Performance pf) {

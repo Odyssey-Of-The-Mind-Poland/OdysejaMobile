@@ -31,7 +31,7 @@ final lightTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-    primary: AppColors.primaryOrange,
+    backgroundColor: AppColors.primaryOrange,
     textStyle: AppTextStyles.button,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.defaultBrRadius)),
     minimumSize: const Size(0, 40),

@@ -10,7 +10,6 @@ import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
-import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';

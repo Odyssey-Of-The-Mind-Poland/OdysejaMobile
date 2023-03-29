@@ -13,7 +13,7 @@ analyzer:
   exclude: 
     - lib/injectable.config.dart
     - lib/generated_plugin_registrant.dart
-    - lib/genera
+    - lib/**/*.g.dart
     - scripts.dart
 
 
