@@ -30,6 +30,8 @@ class PerformanceModelDb extends Performance {
   @override
   late int part;
   @override
+  late String league;
+  @override
   @Index()
   late bool isFavourite;
 

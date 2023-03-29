@@ -9,6 +9,7 @@ abstract class Performance {
   String get performanceDay;
   String get spontanDay;
   int get part;
+  String get league;
   abstract bool isFavourite;
   int get groupId;
   String get searchableTeam => team.toLowerCase();

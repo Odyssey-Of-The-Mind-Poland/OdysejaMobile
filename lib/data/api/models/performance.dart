@@ -14,6 +14,7 @@ class PerformanceModelApi {
     required this.performance,
     required this.spontan,
     required this.part,
+    required this.league,
     required this.performanceDay,
     required this.spontanDay,
   });
@@ -27,6 +28,7 @@ class PerformanceModelApi {
   final String performance;
   final String spontan;
   final int part;
+  final String league;
   final String performanceDay;
   final String spontanDay;
 

@@ -21,6 +21,8 @@ class PerformanceGroupModelDb extends PerformanceGroup {
   @override
   late int part;
   @override
+  late String league;
+  @override
   late String day;
 
   final performancesIsarLinks = IsarLinks<PerformanceModelDb>();
@@ -42,6 +44,7 @@ class PerformanceGroupModelDb extends PerformanceGroup {
     int? problem,
     int? age,
     int? part,
+    String? league,
     String? day,
     List<Performance>? performances,
   }) =>
@@ -52,6 +55,7 @@ class PerformanceGroupModelDb extends PerformanceGroup {
         ..problem = problem ?? this.problem
         ..age = age ?? this.age
         ..part = part ?? this.part
+        ..league = league ?? this.league
         ..day = day ?? this.day
         ..performances = performances ?? this.performances;
 }

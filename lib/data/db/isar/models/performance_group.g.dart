@@ -33,18 +33,23 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
       name: r'groupId',
       type: IsarType.long,
     ),
-    r'part': PropertySchema(
+    r'league': PropertySchema(
       id: 3,
+      name: r'league',
+      type: IsarType.string,
+    ),
+    r'part': PropertySchema(
+      id: 4,
       name: r'part',
       type: IsarType.long,
     ),
     r'problem': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'problem',
       type: IsarType.long,
     ),
     r'stage': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'stage',
       type: IsarType.long,
     )
@@ -101,6 +106,7 @@ int _performanceGroupModelDbEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.day.length * 3;
+  bytesCount += 3 + object.league.length * 3;
   return bytesCount;
 }
 
@@ -113,9 +119,10 @@ void _performanceGroupModelDbSerialize(
   writer.writeLong(offsets[0], object.age);
   writer.writeString(offsets[1], object.day);
   writer.writeLong(offsets[2], object.groupId);
-  writer.writeLong(offsets[3], object.part);
-  writer.writeLong(offsets[4], object.problem);
-  writer.writeLong(offsets[5], object.stage);
+  writer.writeString(offsets[3], object.league);
+  writer.writeLong(offsets[4], object.part);
+  writer.writeLong(offsets[5], object.problem);
+  writer.writeLong(offsets[6], object.stage);
 }
 
 PerformanceGroupModelDb _performanceGroupModelDbDeserialize(
@@ -129,9 +136,10 @@ PerformanceGroupModelDb _performanceGroupModelDbDeserialize(
   object.day = reader.readString(offsets[1]);
   object.groupId = reader.readLong(offsets[2]);
   object.id = id;
-  object.part = reader.readLong(offsets[3]);
-  object.problem = reader.readLong(offsets[4]);
-  object.stage = reader.readLong(offsets[5]);
+  object.league = reader.readString(offsets[3]);
+  object.part = reader.readLong(offsets[4]);
+  object.problem = reader.readLong(offsets[5]);
+  object.stage = reader.readLong(offsets[6]);
   return object;
 }
 
@@ -149,10 +157,12 @@ P _performanceGroupModelDbDeserializeProp<P>(
     case 2:
       return (reader.readLong(offset)) as P;
     case 3:
-      return (reader.readLong(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 4:
       return (reader.readLong(offset)) as P;
     case 5:
+      return (reader.readLong(offset)) as P;
+    case 6:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -883,6 +893,144 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'league',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+          QAfterFilterCondition>
+      leagueContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+          QAfterFilterCondition>
+      leagueMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'league',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'league',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'league',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> partEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1167,6 +1315,20 @@ extension PerformanceGroupModelDbQuerySortBy
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      sortByLeague() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      sortByLeagueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.asc);
@@ -1268,6 +1430,20 @@ extension PerformanceGroupModelDbQuerySortThenBy on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByLeague() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByLeagueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.asc);
@@ -1334,6 +1510,13 @@ extension PerformanceGroupModelDbQueryWhereDistinct on QueryBuilder<
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
+      distinctByLeague({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'league', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'part');
@@ -1380,6 +1563,13 @@ extension PerformanceGroupModelDbQueryProperty on QueryBuilder<
       groupIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'groupId');
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, String, QQueryOperations>
+      leagueProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'league');
     });
   }
 

@@ -66,8 +66,9 @@ abstract class AppStrings {
 
   static const String firstDay = 'Sobota';
   static const String secondDay = 'Niedziela';
-  static const String partOne = '(cz. 1)';
-  static const String partTwo = '(cz. 2)';
+  static const String partOne = 'Część 1';
+  static const String partTwo = 'Część 2';
+  static const String league = 'Liga';
 
   static const String close = 'ZAMKNIJ';
   static const String removeFromFavsLabel = 'USUŃ Z ULUBIONYCH';

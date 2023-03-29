@@ -41,6 +41,8 @@ class CityDataModelDb extends CityData {
         if (cmp != 0) return cmp;
         cmp = a.age.compareTo(b.age);
         if (cmp != 0) return cmp;
+        cmp = a.league.compareTo(b.league);
+        if (cmp != 0) return cmp;
         cmp = a.stage.compareTo(b.stage);
         if (cmp != 0) return cmp;
         return a.part.compareTo(b.part);
