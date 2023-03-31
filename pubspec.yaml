@@ -110,59 +110,59 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    # - assets/graphics/event_logo.png
+    - assets/graphics/event_logo.png
     - assets/graphics/x2/event_logo.png
     - assets/graphics/x3/event_logo.png
     - assets/graphics/x4/event_logo.png
-    # - assets/graphics/ootm_logo.png
+    - assets/graphics/ootm_logo.png
     - assets/graphics/x2/ootm_logo.png
     - assets/graphics/x3/ootm_logo.png
     - assets/graphics/x4/ootm_logo.png
-    # - assets/graphics/logo_1.png
+    - assets/graphics/logo_1.png
     - assets/graphics/x2/logo_1.png
     - assets/graphics/x3/logo_1.png
     - assets/graphics/x4/logo_1.png
-    # - assets/graphics/logo_2.png
+    - assets/graphics/logo_2.png
     - assets/graphics/x2/logo_2.png
     - assets/graphics/x3/logo_2.png
     - assets/graphics/x4/logo_2.png
-    # - assets/graphics/logo_3.png
+    - assets/graphics/logo_3.png
     - assets/graphics/x2/logo_3.png
     - assets/graphics/x3/logo_3.png
     - assets/graphics/x4/logo_3.png
-    # - assets/graphics/logo_4.png
+    - assets/graphics/logo_4.png
     - assets/graphics/x2/logo_4.png
     - assets/graphics/x3/logo_4.png
     - assets/graphics/x4/logo_4.png
-    # - assets/graphics/logo_5.png
+    - assets/graphics/logo_5.png
     - assets/graphics/x2/logo_5.png
     - assets/graphics/x3/logo_5.png
     - assets/graphics/x4/logo_5.png
-    # - assets/graphics/logo_6.png
+    - assets/graphics/logo_6.png
     - assets/graphics/x2/logo_6.png
     - assets/graphics/x3/logo_6.png
     - assets/graphics/x4/logo_6.png
-    # - assets/graphics/logo_7.png
+    - assets/graphics/logo_7.png
     - assets/graphics/x2/logo_7.png
     - assets/graphics/x3/logo_7.png
     - assets/graphics/x4/logo_7.png
-    # - assets/graphics/logo_8.png
+    - assets/graphics/logo_8.png
     - assets/graphics/x2/logo_8.png
     - assets/graphics/x3/logo_8.png
     - assets/graphics/x4/logo_8.png
-    # - assets/graphics/logo_9.png
+    - assets/graphics/logo_9.png
     - assets/graphics/x2/logo_9.png
     - assets/graphics/x3/logo_9.png
     - assets/graphics/x4/logo_9.png
-    # - assets/graphics/logo_10.png
+    - assets/graphics/logo_10.png
     - assets/graphics/x2/logo_10.png
     - assets/graphics/x3/logo_10.png
     - assets/graphics/x4/logo_10.png
-    # - assets/graphics/logo_11.png
+    - assets/graphics/logo_11.png
     - assets/graphics/x2/logo_11.png
     - assets/graphics/x3/logo_11.png
     - assets/graphics/x4/logo_11.png
-    # - assets/graphics/logo_12.png
+    - assets/graphics/logo_12.png
     - assets/graphics/x2/logo_12.png
     - assets/graphics/x3/logo_12.png
     - assets/graphics/x4/logo_12.png
