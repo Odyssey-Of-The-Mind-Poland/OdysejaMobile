@@ -56,6 +56,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const InfoScreen(),
       );
     },
+    InfoRoutes.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const InfoScreens(),
+      );
+    },
     InfoDetailRoute.name: (routeData) {
       final args = routeData.argsAs<InfoDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -88,6 +94,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ScheduleRoutes.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ScheduleScreens(),
+      );
+    },
     ScheduleSearchResultRoute.name: (routeData) {
       final args = routeData.argsAs<ScheduleSearchResultRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -102,18 +114,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
-      );
-    },
-    InfoRoutes.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InfoScreens(),
-      );
-    },
-    ScheduleRoutes.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ScheduleScreens(),
       );
     },
   };
@@ -213,6 +213,20 @@ class InfoRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'InfoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [InfoScreens]
+class InfoRoutes extends PageRouteInfo<void> {
+  const InfoRoutes({List<PageRouteInfo>? children})
+      : super(
+          InfoRoutes.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'InfoRoutes';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -322,6 +336,20 @@ class ScheduleDetailRouteArgs {
 }
 
 /// generated route for
+/// [ScheduleScreens]
+class ScheduleRoutes extends PageRouteInfo<void> {
+  const ScheduleRoutes({List<PageRouteInfo>? children})
+      : super(
+          ScheduleRoutes.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ScheduleRoutes';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ScheduleSearchResultScreen]
 class ScheduleSearchResultRoute
     extends PageRouteInfo<ScheduleSearchResultRouteArgs> {
@@ -370,34 +398,6 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [InfoScreens]
-class InfoRoutes extends PageRouteInfo<void> {
-  const InfoRoutes({List<PageRouteInfo>? children})
-      : super(
-          InfoRoutes.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'InfoRoutes';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ScheduleScreens]
-class ScheduleRoutes extends PageRouteInfo<void> {
-  const ScheduleRoutes({List<PageRouteInfo>? children})
-      : super(
-          ScheduleRoutes.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ScheduleRoutes';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
