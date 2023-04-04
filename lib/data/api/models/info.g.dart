@@ -12,4 +12,5 @@ InfoModelApi _$InfoModelApiFromJson(Map<String, dynamic> json) => InfoModelApi(
       infoText: json['infoText'] as String,
       city: json['city'] as int,
       category: json['category'] as int,
+      sortNumber: json['sortNumber'] as int,
     );

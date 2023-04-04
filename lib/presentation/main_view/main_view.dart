@@ -58,7 +58,7 @@ class _MainViewState extends State<MainView> {
                 enablePaddingAnimation: false,
                 currentIndex: tabsRouter.activeIndex,
                 onTap: tabsRouter.setActiveIndex,
-                items: const [
+                items: [
                   DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.info)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),

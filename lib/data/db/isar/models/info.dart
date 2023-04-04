@@ -12,4 +12,6 @@ class InfoModelDb extends Info {
   @override
   late String infoText;
   late int city;
+  @override
+  late int sortNumber;
 }

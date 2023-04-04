@@ -32,6 +32,11 @@ const InfoModelDbSchema = Schema(
       id: 3,
       name: r'number',
       type: IsarType.long,
+    ),
+    r'sortNumber': PropertySchema(
+      id: 4,
+      name: r'sortNumber',
+      type: IsarType.long,
     )
   },
   estimateSize: _infoModelDbEstimateSize,
@@ -61,6 +66,7 @@ void _infoModelDbSerialize(
   writer.writeString(offsets[1], object.infoName);
   writer.writeString(offsets[2], object.infoText);
   writer.writeLong(offsets[3], object.number);
+  writer.writeLong(offsets[4], object.sortNumber);
 }
 
 InfoModelDb _infoModelDbDeserialize(
@@ -74,6 +80,7 @@ InfoModelDb _infoModelDbDeserialize(
   object.infoName = reader.readString(offsets[1]);
   object.infoText = reader.readString(offsets[2]);
   object.number = reader.readLong(offsets[3]);
+  object.sortNumber = reader.readLong(offsets[4]);
   return object;
 }
 
