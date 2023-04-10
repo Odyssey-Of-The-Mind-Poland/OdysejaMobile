@@ -15,7 +15,7 @@ extension GetInfoGroupModelDbCollection on Isar {
 
 const InfoGroupModelDbSchema = CollectionSchema(
   name: r'InfoGroupModelDb',
-  id: 2560460958706835118,
+  id: 0460958706835118,
   properties: {
     r'infoList': PropertySchema(
       id: 0,

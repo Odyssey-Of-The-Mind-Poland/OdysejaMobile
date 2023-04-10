@@ -15,7 +15,7 @@ extension GetStageModelDbCollection on Isar {
 
 const StageModelDbSchema = CollectionSchema(
   name: r'StageModelDb',
-  id: -2611459647250073101,
+  id: 1459647250073101,
   properties: {
     r'category': PropertySchema(
       id: 0,
@@ -51,7 +51,7 @@ const StageModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'number': IndexSchema(
-      id: 5012388430481709372,
+      id: 2388430481709372,
       name: r'number',
       unique: false,
       replace: false,

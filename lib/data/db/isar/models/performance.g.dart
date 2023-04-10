@@ -16,7 +16,7 @@ extension GetPerformanceModelDbCollection on Isar {
 
 const PerformanceModelDbSchema = CollectionSchema(
   name: r'PerformanceModelDb',
-  id: -8863298924368622558,
+  id: 3298924368622558,
   properties: {
     r'age': PropertySchema(
       id: 0,
@@ -101,7 +101,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'city': IndexSchema(
-      id: 2121973393509345332,
+      id: 1973393509345332,
       name: r'city',
       unique: false,
       replace: false,
@@ -114,7 +114,7 @@ const PerformanceModelDbSchema = CollectionSchema(
       ],
     ),
     r'isFavourite': IndexSchema(
-      id: -3295437635301440716,
+      id: 5437635301440716,
       name: r'isFavourite',
       unique: false,
       replace: false,
@@ -129,7 +129,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   },
   links: {
     r'group': LinkSchema(
-      id: 4235506625030253595,
+      id: 5506625030253595,
       name: r'group',
       target: r'PerformanceGroupModelDb',
       single: true,
