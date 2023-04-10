@@ -46,7 +46,7 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
   @override
   final int stage;
 
-  @HiveField(10)
+  @HiveField(12)
   @override
   final String league;
 

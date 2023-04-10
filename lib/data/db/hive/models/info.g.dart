@@ -27,13 +27,15 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
   @override
   void write(BinaryWriter writer, InfoHiveModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.number)
       ..writeByte(1)
       ..write(obj.infoName)
       ..writeByte(2)
-      ..write(obj.infoText);
+      ..write(obj.infoText)
+      ..writeByte(3)
+      ..write(obj.sortNumber);
   }
 
   @override
