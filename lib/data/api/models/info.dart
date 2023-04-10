@@ -10,6 +10,7 @@ class InfoModelApi {
     required this.infoText,
     required this.city,
     required this.category,
+    required this.sortNumber
   });
 
   final int id;
@@ -17,6 +18,7 @@ class InfoModelApi {
   final String infoText;
   final int city;
   final int category;
+  final int sortNumber;
 
   factory InfoModelApi.fromJson(Map<String, dynamic> json) => _$InfoModelApiFromJson(json);
 }

@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/app/router.dart';
 
+@RoutePage()
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({Key? key}) : super(key: key);
 
@@ -14,7 +15,7 @@ class LoadingScreen extends StatelessWidget {
       body: BlocListener<UpdateBloc, UpdateState>(
         listener: (context, state) {
           if (state is UpdateFinished) {
-            context.router.replaceAll([const MainView()]);
+            context.router.replaceAll([const MainRoute()]);
           }
         },
         child: BlocBuilder<UpdateBloc, UpdateState>(

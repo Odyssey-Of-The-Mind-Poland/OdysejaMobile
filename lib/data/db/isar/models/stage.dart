@@ -5,10 +5,13 @@ part 'stage.g.dart';
 
 @Collection()
 class StageModelDb extends StageEntity {
-  int? id;
+  Id? id;
   @override
   @Index()
   late int number;
   @override
   late String name;
+  @override
+  @enumerated
+  ScheduleCategory get category => ScheduleCategory.stage;
 }

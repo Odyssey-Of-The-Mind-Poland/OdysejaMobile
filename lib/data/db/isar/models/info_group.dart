@@ -5,14 +5,15 @@ import 'package:odyssey_mobile/domain/entities/info_category.dart';
 
 part 'info_group.g.dart';
 
-@Collection()
+@Collection(inheritance: false)
 class InfoGroupModelDb extends InfoCategory {
-  int? id;
+  Id? id;
   @override
   late int number;
   @override
   late String name;
-  final infoList = IsarLinks<InfoModelDb>();
+  late List<InfoModelDb> infoList;
   @override
+  @ignore
   List<Info> get info => infoList.toList()..sort((a, b) => a.number.compareTo(b.number));
 }

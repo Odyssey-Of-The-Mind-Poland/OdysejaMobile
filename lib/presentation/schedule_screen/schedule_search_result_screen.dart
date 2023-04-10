@@ -1,3 +1,7 @@
+import 'dart:math';
+import 'dart:developer' as dev;
+
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/ootm_icons.dart';
@@ -12,6 +16,7 @@ import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+@RoutePage()
 class ScheduleSearchResultScreen extends StatefulWidget {
   const ScheduleSearchResultScreen(this.performance, {Key? key}) : super(key: key);
   final Performance performance;
@@ -27,7 +32,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final safeIndex = index ?? 0;
       final safeLength = length ?? 10;
       final height = MediaQuery.of(context).size.height - 300;

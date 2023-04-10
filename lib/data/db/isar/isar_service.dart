@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
 import 'package:odyssey_mobile/data/api/models/city.dart';
 import 'package:odyssey_mobile/data/api/models/info.dart';
@@ -10,7 +11,6 @@ import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/isar/isar_data_adapters.dart';
 import 'package:odyssey_mobile/data/db/isar/models/city_data.dart';
-import 'package:odyssey_mobile/data/db/isar/models/info.dart';
 import 'package:odyssey_mobile/data/db/isar/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance_group.dart';
@@ -26,22 +26,22 @@ class IsarDbService implements DbService {
   @override
   Future<void> init() async {
     try {
-      final dir = await getApplicationSupportDirectory(); // path_provider package
+      // final dir = await getApplicationSupportDirectory(); // path_provider package
       _isar = await Isar.open(
-        schemas: _schemas,
-        directory: dir.path,
-        inspector: true, // if you want to enable the inspector for debug builds
+        _schemas,
+        directory: '/',
+        inspector: kDebugMode, // if you want to enable the inspector for debug builds
       );
     } catch (e) {
-      log('Isar initialization error: $e');
+      print('Isar initialization error: $e');
     }
   }
 
   @override
   Future<void> createProblems(List<ProblemModelApi> problems) {
     final data = IsarDataAdapters.convertProblems(problems);
-    return _isar.writeTxn((isar) async {
-      await isar.problemModelDbs.putAll(data, replaceOnConflict: true);
+    return _isar.writeTxn(() async {
+      await _isar.problemModelDbs.putAll(data);
     });
   }
 
@@ -58,7 +58,7 @@ class IsarDbService implements DbService {
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
-  }) {
+  }) async {
     final data = IsarDataAdapters.convertCityData(
       cityModels: cityModels,
       infoModels: infoModels,
@@ -68,8 +68,7 @@ class IsarDbService implements DbService {
       problemModels: problemModels,
       previousFavIds: previousFavIds,
     );
-    return _isar.writeTxn((isar) async =>
-        await isar.cityDataModelDbs.putAll(data, replaceOnConflict: true, saveLinks: true));
+    return _isar.writeTxnSync(() => _isar.cityDataModelDbs.putAllSync(data));
   }
 
   @override
@@ -78,12 +77,7 @@ class IsarDbService implements DbService {
     if (entry == null) {
       return entry;
     }
-    await entry.stageIsarLinks.load();
-    await entry.infoIsarLinks.load();
-    for (final info in entry.infoIsarLinks) {
-      await info.infoList.load();
-    }
-    await entry.performanceGroupIsarLinks.load();
+    // await entry.performanceGroupIsarLinks.load();
     for (final pfGroup in entry.performanceGroupIsarLinks) {
       // For multiple small batches of items sync is quicker than async.
       pfGroup
@@ -98,9 +92,8 @@ class IsarDbService implements DbService {
       _isar.performanceModelDbs.where().isFavouriteEqualTo(true).performanceIdProperty().findAll();
 
   @override
-  Future<void> updateFav(Performance performance) =>
-      _isar.writeTxn((isar) async => await isar.performanceModelDbs
-          .put(performance as PerformanceModelDb, replaceOnConflict: true));
+  Future<void> updateFav(Performance performance) async => _isar
+      .writeTxnSync(() => _isar.performanceModelDbs.putSync(performance as PerformanceModelDb));
 
   // TODO add some form of health check for the database
   Future<void> checkIntegrity() => throw UnimplementedError();
@@ -110,14 +103,13 @@ class IsarDbService implements DbService {
 
   @override
   Future<void> clearData() {
-    return _isar.writeTxn((isar) => isar.clear());
+    return _isar.writeTxn(() => _isar.clear());
   }
 }
 
 final List<CollectionSchema<dynamic>> _schemas = [
   CityDataModelDbSchema,
   InfoGroupModelDbSchema,
-  InfoModelDbSchema,
   PerformanceGroupModelDbSchema,
   PerformanceModelDbSchema,
   ProblemModelDbSchema,

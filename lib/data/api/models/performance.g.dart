@@ -17,6 +17,7 @@ PerformanceModelApi _$PerformanceModelApiFromJson(Map<String, dynamic> json) =>
       performance: json['performance'] as String,
       spontan: json['spontan'] as String,
       part: json['part'] as int,
+      league: json['league'] as String,
       performanceDay: json['performanceDay'] as String,
       spontanDay: json['spontanDay'] as String,
     );

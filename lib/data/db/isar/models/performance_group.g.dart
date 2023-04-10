@@ -6,506 +6,509 @@ part of 'performance_group.dart';
 // IsarCollectionGenerator
 // **************************************************************************
 
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
 
 extension GetPerformanceGroupModelDbCollection on Isar {
-  IsarCollection<PerformanceGroupModelDb> get performanceGroupModelDbs {
-    return getCollection('PerformanceGroupModelDb');
-  }
+  IsarCollection<PerformanceGroupModelDb> get performanceGroupModelDbs =>
+      this.collection();
 }
 
-final PerformanceGroupModelDbSchema = CollectionSchema(
-  name: 'PerformanceGroupModelDb',
-  schema:
-      '{"name":"PerformanceGroupModelDb","idName":"id","properties":[{"name":"age","type":"Long"},{"name":"day","type":"String"},{"name":"groupId","type":"Long"},{"name":"part","type":"Long"},{"name":"problem","type":"Long"},{"name":"stage","type":"Long"}],"indexes":[{"name":"stage_problem_age","unique":false,"properties":[{"name":"stage","type":"Value","caseSensitive":false},{"name":"problem","type":"Value","caseSensitive":false},{"name":"age","type":"Value","caseSensitive":false}]}],"links":[{"name":"performancesIsarLinks","target":"PerformanceModelDb"}]}',
-  nativeAdapter: const _PerformanceGroupModelDbNativeAdapter(),
-  webAdapter: const _PerformanceGroupModelDbWebAdapter(),
-  idName: 'id',
-  propertyIds: {
-    'age': 0,
-    'day': 1,
-    'groupId': 2,
-    'part': 3,
-    'problem': 4,
-    'stage': 5
+const PerformanceGroupModelDbSchema = CollectionSchema(
+  name: r'PerformanceGroupModelDb',
+  id: 5503603692017367,
+  properties: {
+    r'age': PropertySchema(
+      id: 0,
+      name: r'age',
+      type: IsarType.long,
+    ),
+    r'day': PropertySchema(
+      id: 1,
+      name: r'day',
+      type: IsarType.string,
+    ),
+    r'groupId': PropertySchema(
+      id: 2,
+      name: r'groupId',
+      type: IsarType.long,
+    ),
+    r'league': PropertySchema(
+      id: 3,
+      name: r'league',
+      type: IsarType.string,
+    ),
+    r'part': PropertySchema(
+      id: 4,
+      name: r'part',
+      type: IsarType.long,
+    ),
+    r'problem': PropertySchema(
+      id: 5,
+      name: r'problem',
+      type: IsarType.long,
+    ),
+    r'stage': PropertySchema(
+      id: 6,
+      name: r'stage',
+      type: IsarType.long,
+    )
   },
-  listProperties: {},
-  indexIds: {'stage_problem_age': 0},
-  indexTypes: {
-    'stage_problem_age': [
-      NativeIndexType.long,
-      NativeIndexType.long,
-      NativeIndexType.long,
-    ]
+  estimateSize: _performanceGroupModelDbEstimateSize,
+  serialize: _performanceGroupModelDbSerialize,
+  deserialize: _performanceGroupModelDbDeserialize,
+  deserializeProp: _performanceGroupModelDbDeserializeProp,
+  idName: r'id',
+  indexes: {
+    r'stage_problem_age': IndexSchema(
+      id: 636620667929960,
+      name: r'stage_problem_age',
+      unique: false,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'stage',
+          type: IndexType.value,
+          caseSensitive: false,
+        ),
+        IndexPropertySchema(
+          name: r'problem',
+          type: IndexType.value,
+          caseSensitive: false,
+        ),
+        IndexPropertySchema(
+          name: r'age',
+          type: IndexType.value,
+          caseSensitive: false,
+        )
+      ],
+    )
   },
-  linkIds: {'performancesIsarLinks': 0},
-  backlinkIds: {},
-  linkedCollections: ['PerformanceModelDb'],
-  getId: (obj) {
-    if (obj.id == Isar.autoIncrement) {
-      return null;
-    } else {
-      return obj.id;
-    }
+  links: {
+    r'performancesIsarLinks': LinkSchema(
+      id: 6486198716847802,
+      name: r'performancesIsarLinks',
+      target: r'PerformanceModelDb',
+      single: false,
+    )
   },
-  setId: (obj, id) => obj.id = id,
-  getLinks: (obj) => [obj.performancesIsarLinks],
-  version: 2,
+  embeddedSchemas: {},
+  getId: _performanceGroupModelDbGetId,
+  getLinks: _performanceGroupModelDbGetLinks,
+  attach: _performanceGroupModelDbAttach,
+  version: '3.0.5',
 );
 
-class _PerformanceGroupModelDbWebAdapter
-    extends IsarWebTypeAdapter<PerformanceGroupModelDb> {
-  const _PerformanceGroupModelDbWebAdapter();
+int _performanceGroupModelDbEstimateSize(
+  PerformanceGroupModelDb object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  bytesCount += 3 + object.day.length * 3;
+  bytesCount += 3 + object.league.length * 3;
+  return bytesCount;
+}
 
-  @override
-  Object serialize(IsarCollection<PerformanceGroupModelDb> collection,
-      PerformanceGroupModelDb object) {
-    final jsObj = IsarNative.newJsObject();
-    IsarNative.jsObjectSet(jsObj, 'age', object.age);
-    IsarNative.jsObjectSet(jsObj, 'day', object.day);
-    IsarNative.jsObjectSet(jsObj, 'groupId', object.groupId);
-    IsarNative.jsObjectSet(jsObj, 'id', object.id);
-    IsarNative.jsObjectSet(jsObj, 'part', object.part);
-    IsarNative.jsObjectSet(jsObj, 'problem', object.problem);
-    IsarNative.jsObjectSet(jsObj, 'stage', object.stage);
-    return jsObj;
-  }
+void _performanceGroupModelDbSerialize(
+  PerformanceGroupModelDb object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeLong(offsets[0], object.age);
+  writer.writeString(offsets[1], object.day);
+  writer.writeLong(offsets[2], object.groupId);
+  writer.writeString(offsets[3], object.league);
+  writer.writeLong(offsets[4], object.part);
+  writer.writeLong(offsets[5], object.problem);
+  writer.writeLong(offsets[6], object.stage);
+}
 
-  @override
-  PerformanceGroupModelDb deserialize(
-      IsarCollection<PerformanceGroupModelDb> collection, dynamic jsObj) {
-    final object = PerformanceGroupModelDb();
-    object.age =
-        IsarNative.jsObjectGet(jsObj, 'age') ?? double.negativeInfinity;
-    object.day = IsarNative.jsObjectGet(jsObj, 'day') ?? '';
-    object.groupId =
-        IsarNative.jsObjectGet(jsObj, 'groupId') ?? double.negativeInfinity;
-    object.id = IsarNative.jsObjectGet(jsObj, 'id');
-    object.part =
-        IsarNative.jsObjectGet(jsObj, 'part') ?? double.negativeInfinity;
-    object.problem =
-        IsarNative.jsObjectGet(jsObj, 'problem') ?? double.negativeInfinity;
-    object.stage =
-        IsarNative.jsObjectGet(jsObj, 'stage') ?? double.negativeInfinity;
-    attachLinks(collection.isar, IsarNative.jsObjectGet(jsObj, 'id'), object);
-    return object;
-  }
+PerformanceGroupModelDb _performanceGroupModelDbDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = PerformanceGroupModelDb();
+  object.age = reader.readLong(offsets[0]);
+  object.day = reader.readString(offsets[1]);
+  object.groupId = reader.readLong(offsets[2]);
+  object.id = id;
+  object.league = reader.readString(offsets[3]);
+  object.part = reader.readLong(offsets[4]);
+  object.problem = reader.readLong(offsets[5]);
+  object.stage = reader.readLong(offsets[6]);
+  return object;
+}
 
-  @override
-  P deserializeProperty<P>(Object jsObj, String propertyName) {
-    switch (propertyName) {
-      case 'age':
-        return (IsarNative.jsObjectGet(jsObj, 'age') ?? double.negativeInfinity)
-            as P;
-      case 'day':
-        return (IsarNative.jsObjectGet(jsObj, 'day') ?? '') as P;
-      case 'groupId':
-        return (IsarNative.jsObjectGet(jsObj, 'groupId') ??
-            double.negativeInfinity) as P;
-      case 'id':
-        return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
-      case 'part':
-        return (IsarNative.jsObjectGet(jsObj, 'part') ??
-            double.negativeInfinity) as P;
-      case 'problem':
-        return (IsarNative.jsObjectGet(jsObj, 'problem') ??
-            double.negativeInfinity) as P;
-      case 'stage':
-        return (IsarNative.jsObjectGet(jsObj, 'stage') ??
-            double.negativeInfinity) as P;
-      default:
-        throw 'Illegal propertyName';
-    }
-  }
-
-  @override
-  void attachLinks(Isar isar, int id, PerformanceGroupModelDb object) {
-    object.performancesIsarLinks.attach(
-      id,
-      isar.performanceGroupModelDbs,
-      isar.getCollection<PerformanceModelDb>('PerformanceModelDb'),
-      'performancesIsarLinks',
-      false,
-    );
+P _performanceGroupModelDbDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readLong(offset)) as P;
+    case 1:
+      return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readLong(offset)) as P;
+    case 3:
+      return (reader.readString(offset)) as P;
+    case 4:
+      return (reader.readLong(offset)) as P;
+    case 5:
+      return (reader.readLong(offset)) as P;
+    case 6:
+      return (reader.readLong(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-class _PerformanceGroupModelDbNativeAdapter
-    extends IsarNativeTypeAdapter<PerformanceGroupModelDb> {
-  const _PerformanceGroupModelDbNativeAdapter();
+Id _performanceGroupModelDbGetId(PerformanceGroupModelDb object) {
+  return object.id ?? Isar.autoIncrement;
+}
 
-  @override
-  void serialize(
-      IsarCollection<PerformanceGroupModelDb> collection,
-      IsarRawObject rawObj,
-      PerformanceGroupModelDb object,
-      int staticSize,
-      List<int> offsets,
-      AdapterAlloc alloc) {
-    var dynamicSize = 0;
-    final value0 = object.age;
-    final _age = value0;
-    final value1 = object.day;
-    final _day = IsarBinaryWriter.utf8Encoder.convert(value1);
-    dynamicSize += (_day.length) as int;
-    final value2 = object.groupId;
-    final _groupId = value2;
-    final value3 = object.part;
-    final _part = value3;
-    final value4 = object.problem;
-    final _problem = value4;
-    final value5 = object.stage;
-    final _stage = value5;
-    final size = staticSize + dynamicSize;
+List<IsarLinkBase<dynamic>> _performanceGroupModelDbGetLinks(
+    PerformanceGroupModelDb object) {
+  return [object.performancesIsarLinks];
+}
 
-    rawObj.buffer = alloc(size);
-    rawObj.buffer_length = size;
-    final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
-    final writer = IsarBinaryWriter(buffer, staticSize);
-    writer.writeLong(offsets[0], _age);
-    writer.writeBytes(offsets[1], _day);
-    writer.writeLong(offsets[2], _groupId);
-    writer.writeLong(offsets[3], _part);
-    writer.writeLong(offsets[4], _problem);
-    writer.writeLong(offsets[5], _stage);
-  }
-
-  @override
-  PerformanceGroupModelDb deserialize(
-      IsarCollection<PerformanceGroupModelDb> collection,
-      int id,
-      IsarBinaryReader reader,
-      List<int> offsets) {
-    final object = PerformanceGroupModelDb();
-    object.age = reader.readLong(offsets[0]);
-    object.day = reader.readString(offsets[1]);
-    object.groupId = reader.readLong(offsets[2]);
-    object.id = id;
-    object.part = reader.readLong(offsets[3]);
-    object.problem = reader.readLong(offsets[4]);
-    object.stage = reader.readLong(offsets[5]);
-    attachLinks(collection.isar, id, object);
-    return object;
-  }
-
-  @override
-  P deserializeProperty<P>(
-      int id, IsarBinaryReader reader, int propertyIndex, int offset) {
-    switch (propertyIndex) {
-      case -1:
-        return id as P;
-      case 0:
-        return (reader.readLong(offset)) as P;
-      case 1:
-        return (reader.readString(offset)) as P;
-      case 2:
-        return (reader.readLong(offset)) as P;
-      case 3:
-        return (reader.readLong(offset)) as P;
-      case 4:
-        return (reader.readLong(offset)) as P;
-      case 5:
-        return (reader.readLong(offset)) as P;
-      default:
-        throw 'Illegal propertyIndex';
-    }
-  }
-
-  @override
-  void attachLinks(Isar isar, int id, PerformanceGroupModelDb object) {
-    object.performancesIsarLinks.attach(
-      id,
-      isar.performanceGroupModelDbs,
-      isar.getCollection<PerformanceModelDb>('PerformanceModelDb'),
-      'performancesIsarLinks',
-      false,
-    );
-  }
+void _performanceGroupModelDbAttach(
+    IsarCollection<dynamic> col, Id id, PerformanceGroupModelDb object) {
+  object.id = id;
+  object.performancesIsarLinks.attach(col,
+      col.isar.collection<PerformanceModelDb>(), r'performancesIsarLinks', id);
 }
 
 extension PerformanceGroupModelDbQueryWhereSort
     on QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QWhere> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterWhere>
       anyId() {
-    return addWhereClauseInternal(const WhereClause(indexName: null));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(const IdWhereClause.any());
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterWhere>
       anyStageProblemAge() {
-    return addWhereClauseInternal(
-        const WhereClause(indexName: 'stage_problem_age'));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        const IndexWhereClause.any(indexName: r'stage_problem_age'),
+      );
+    });
   }
 }
 
 extension PerformanceGroupModelDbQueryWhere on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QWhereClause> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> idEqualTo(int? id) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
-      includeLower: true,
-      upper: [id],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> idNotEqualTo(int? id) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
+      QAfterWhereClause> idEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: id,
+        upper: id,
       ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      ));
-    }
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> idGreaterThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
-      includeLower: include,
-    ));
+      QAfterWhereClause> idNotEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            )
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            );
+      } else {
+        return query
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            )
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            );
+      }
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> idLessThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      upper: [id],
-      includeUpper: include,
-    ));
+      QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.greaterThan(lower: id, includeLower: include),
+      );
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.lessThan(upper: id, includeUpper: include),
+      );
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterWhereClause> idBetween(
-    int? lowerId,
-    int? upperId, {
+    Id lowerId,
+    Id upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [lowerId],
-      includeLower: includeLower,
-      upper: [upperId],
-      includeUpper: includeUpper,
-    ));
-  }
-
-  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageEqualTo(int stage) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage],
-      includeLower: true,
-      upper: [stage],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageNotEqualTo(int stage) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage],
-        includeLower: false,
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: lowerId,
+        includeLower: includeLower,
+        upper: upperId,
+        includeUpper: includeUpper,
       ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage],
-        includeUpper: false,
-      ));
-    }
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageGreaterThan(
+      QAfterWhereClause> stageEqualToAnyProblemAge(int stage) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'stage_problem_age',
+        value: [stage],
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterWhereClause> stageNotEqualToAnyProblemAge(int stage) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [],
+              upper: [stage],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [],
+              upper: [stage],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterWhereClause> stageGreaterThanAnyProblemAge(
     int stage, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage],
-      includeLower: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage],
+        includeLower: include,
+        upper: [],
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageLessThan(
+      QAfterWhereClause> stageLessThanAnyProblemAge(
     int stage, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      upper: [stage],
-      includeUpper: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [],
+        upper: [stage],
+        includeUpper: include,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageBetween(
+      QAfterWhereClause> stageBetweenAnyProblemAge(
     int lowerStage,
     int upperStage, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [lowerStage],
-      includeLower: includeLower,
-      upper: [upperStage],
-      includeUpper: includeUpper,
-    ));
-  }
-
-  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageProblemEqualTo(int stage, int problem) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, problem],
-      includeLower: true,
-      upper: [stage, problem],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageProblemNotEqualTo(int stage, int problem) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage, problem],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage, problem],
-        includeLower: false,
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [lowerStage],
+        includeLower: includeLower,
+        upper: [upperStage],
+        includeUpper: includeUpper,
       ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage, problem],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage, problem],
-        includeUpper: false,
-      ));
-    }
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageEqualToProblemGreaterThan(
+      QAfterWhereClause> stageProblemEqualToAnyAge(int stage, int problem) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'stage_problem_age',
+        value: [stage, problem],
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+          QAfterWhereClause>
+      stageEqualToProblemNotEqualToAnyAge(int stage, int problem) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage],
+              upper: [stage, problem],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem],
+              includeLower: false,
+              upper: [stage],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem],
+              includeLower: false,
+              upper: [stage],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage],
+              upper: [stage, problem],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterWhereClause> stageEqualToProblemGreaterThanAnyAge(
     int stage,
     int problem, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, problem],
-      includeLower: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage, problem],
+        includeLower: include,
+        upper: [stage],
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageEqualToProblemLessThan(
+      QAfterWhereClause> stageEqualToProblemLessThanAnyAge(
     int stage,
     int problem, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      upper: [stage, problem],
-      includeUpper: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage],
+        upper: [stage, problem],
+        includeUpper: include,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterWhereClause> stageEqualToProblemBetween(
+      QAfterWhereClause> stageEqualToProblemBetweenAnyAge(
     int stage,
     int lowerProblem,
     int upperProblem, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, lowerProblem],
-      includeLower: includeLower,
-      upper: [stage, upperProblem],
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage, lowerProblem],
+        includeLower: includeLower,
+        upper: [stage, upperProblem],
+        includeUpper: includeUpper,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
           QAfterWhereClause>
       stageProblemAgeEqualTo(int stage, int problem, int age) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, problem, age],
-      includeLower: true,
-      upper: [stage, problem, age],
-      includeUpper: true,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'stage_problem_age',
+        value: [stage, problem, age],
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
           QAfterWhereClause>
-      stageProblemAgeNotEqualTo(int stage, int problem, int age) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage, problem, age],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage, problem, age],
-        includeLower: false,
-      ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        lower: [stage, problem, age],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: 'stage_problem_age',
-        upper: [stage, problem, age],
-        includeUpper: false,
-      ));
-    }
+      stageProblemEqualToAgeNotEqualTo(int stage, int problem, int age) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem],
+              upper: [stage, problem, age],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem, age],
+              includeLower: false,
+              upper: [stage, problem],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem, age],
+              includeLower: false,
+              upper: [stage, problem],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'stage_problem_age',
+              lower: [stage, problem],
+              upper: [stage, problem, age],
+              includeUpper: false,
+            ));
+      }
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -515,11 +518,14 @@ extension PerformanceGroupModelDbQueryWhere on QueryBuilder<
     int age, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, problem, age],
-      includeLower: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage, problem, age],
+        includeLower: include,
+        upper: [stage, problem],
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -529,11 +535,14 @@ extension PerformanceGroupModelDbQueryWhere on QueryBuilder<
     int age, {
     bool include = false,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      upper: [stage, problem, age],
-      includeUpper: include,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage, problem],
+        upper: [stage, problem, age],
+        includeUpper: include,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -545,13 +554,15 @@ extension PerformanceGroupModelDbQueryWhere on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: 'stage_problem_age',
-      lower: [stage, problem, lowerAge],
-      includeLower: includeLower,
-      upper: [stage, problem, upperAge],
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'stage_problem_age',
+        lower: [stage, problem, lowerAge],
+        includeLower: includeLower,
+        upper: [stage, problem, upperAge],
+        includeUpper: includeUpper,
+      ));
+    });
   }
 }
 
@@ -559,11 +570,12 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QFilterCondition> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> ageEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'age',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'age',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -571,12 +583,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'age',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'age',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -584,12 +597,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'age',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'age',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -599,13 +613,15 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'age',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'age',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -613,60 +629,65 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> dayGreaterThan(
     String value, {
-    bool caseSensitive = true,
     bool include = false,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> dayLessThan(
     String value, {
-    bool caseSensitive = true,
     bool include = false,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> dayBetween(
     String lower,
     String upper, {
-    bool caseSensitive = true,
     bool includeLower = true,
     bool includeUpper = true,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'day',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'day',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -674,12 +695,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.startsWith,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -687,43 +709,67 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.endsWith,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
           QAfterFilterCondition>
       dayContains(String value, {bool caseSensitive = true}) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.contains,
-      property: 'day',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'day',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
           QAfterFilterCondition>
       dayMatches(String pattern, {bool caseSensitive = true}) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.matches,
-      property: 'day',
-      value: pattern,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'day',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> dayIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'day',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> dayIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'day',
+        value: '',
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> groupIdEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'groupId',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'groupId',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -731,12 +777,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'groupId',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'groupId',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -744,12 +791,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'groupId',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'groupId',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -759,82 +807,237 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'groupId',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'groupId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> idIsNull() {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.isNull,
-      property: 'id',
-      value: null,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
-      QAfterFilterCondition> idEqualTo(int? value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'id',
-      value: value,
-    ));
+      QAfterFilterCondition> idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> idEqualTo(Id? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> idGreaterThan(
-    int? value, {
+    Id? value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'id',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> idLessThan(
-    int? value, {
+    Id? value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'id',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> idBetween(
-    int? lower,
-    int? upper, {
+    Id? lower,
+    Id? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'id',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'league',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+          QAfterFilterCondition>
+      leagueContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'league',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+          QAfterFilterCondition>
+      leagueMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'league',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'league',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> leagueIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'league',
+        value: '',
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> partEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'part',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'part',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -842,12 +1045,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'part',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'part',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -855,12 +1059,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'part',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'part',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -870,22 +1075,25 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'part',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'part',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> problemEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'problem',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'problem',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -893,12 +1101,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'problem',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'problem',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -906,12 +1115,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'problem',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'problem',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -921,22 +1131,25 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'problem',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'problem',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
       QAfterFilterCondition> stageEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'stage',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'stage',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -944,12 +1157,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'stage',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'stage',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -957,12 +1171,13 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'stage',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'stage',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
@@ -972,172 +1187,302 @@ extension PerformanceGroupModelDbQueryFilter on QueryBuilder<
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'stage',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'stage',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 }
+
+extension PerformanceGroupModelDbQueryObject on QueryBuilder<
+    PerformanceGroupModelDb, PerformanceGroupModelDb, QFilterCondition> {}
 
 extension PerformanceGroupModelDbQueryLinks on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QFilterCondition> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
           QAfterFilterCondition>
       performancesIsarLinks(FilterQuery<PerformanceModelDb> q) {
-    return linkInternal(
-      isar.performanceModelDbs,
-      q,
-      'performancesIsarLinks',
-    );
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'performancesIsarLinks');
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'performancesIsarLinks', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'performancesIsarLinks', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'performancesIsarLinks', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'performancesIsarLinks', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'performancesIsarLinks', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb,
+      QAfterFilterCondition> performancesIsarLinksLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'performancesIsarLinks', lower, includeLower, upper, includeUpper);
+    });
   }
 }
 
-extension PerformanceGroupModelDbQueryWhereSortBy
+extension PerformanceGroupModelDbQuerySortBy
     on QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QSortBy> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByAge() {
-    return addSortByInternal('age', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'age', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByAgeDesc() {
-    return addSortByInternal('age', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'age', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByDay() {
-    return addSortByInternal('day', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'day', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByDayDesc() {
-    return addSortByInternal('day', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'day', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByGroupId() {
-    return addSortByInternal('groupId', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'groupId', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByGroupIdDesc() {
-    return addSortByInternal('groupId', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'groupId', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
-      sortById() {
-    return addSortByInternal('id', Sort.asc);
+      sortByLeague() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
-      sortByIdDesc() {
-    return addSortByInternal('id', Sort.desc);
+      sortByLeagueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByPart() {
-    return addSortByInternal('part', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'part', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByPartDesc() {
-    return addSortByInternal('part', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'part', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByProblem() {
-    return addSortByInternal('problem', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'problem', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByProblemDesc() {
-    return addSortByInternal('problem', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'problem', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByStage() {
-    return addSortByInternal('stage', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'stage', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       sortByStageDesc() {
-    return addSortByInternal('stage', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'stage', Sort.desc);
+    });
   }
 }
 
-extension PerformanceGroupModelDbQueryWhereSortThenBy on QueryBuilder<
+extension PerformanceGroupModelDbQuerySortThenBy on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QSortThenBy> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByAge() {
-    return addSortByInternal('age', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'age', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByAgeDesc() {
-    return addSortByInternal('age', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'age', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByDay() {
-    return addSortByInternal('day', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'day', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByDayDesc() {
-    return addSortByInternal('day', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'day', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByGroupId() {
-    return addSortByInternal('groupId', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'groupId', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByGroupIdDesc() {
-    return addSortByInternal('groupId', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'groupId', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenById() {
-    return addSortByInternal('id', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByIdDesc() {
-    return addSortByInternal('id', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.desc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByLeague() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.asc);
+    });
+  }
+
+  QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
+      thenByLeagueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'league', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByPart() {
-    return addSortByInternal('part', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'part', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByPartDesc() {
-    return addSortByInternal('part', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'part', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByProblem() {
-    return addSortByInternal('problem', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'problem', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByProblemDesc() {
-    return addSortByInternal('problem', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'problem', Sort.desc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByStage() {
-    return addSortByInternal('stage', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'stage', Sort.asc);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QAfterSortBy>
       thenByStageDesc() {
-    return addSortByInternal('stage', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'stage', Sort.desc);
+    });
   }
 }
 
@@ -1145,70 +1490,105 @@ extension PerformanceGroupModelDbQueryWhereDistinct on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct> {
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByAge() {
-    return addDistinctByInternal('age');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'age');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByDay({bool caseSensitive = true}) {
-    return addDistinctByInternal('day', caseSensitive: caseSensitive);
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'day', caseSensitive: caseSensitive);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByGroupId() {
-    return addDistinctByInternal('groupId');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'groupId');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
-      distinctById() {
-    return addDistinctByInternal('id');
+      distinctByLeague({bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'league', caseSensitive: caseSensitive);
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByPart() {
-    return addDistinctByInternal('part');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'part');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByProblem() {
-    return addDistinctByInternal('problem');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'problem');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, PerformanceGroupModelDb, QDistinct>
       distinctByStage() {
-    return addDistinctByInternal('stage');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'stage');
+    });
   }
 }
 
 extension PerformanceGroupModelDbQueryProperty on QueryBuilder<
     PerformanceGroupModelDb, PerformanceGroupModelDb, QQueryProperty> {
+  QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations> idProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'id');
+    });
+  }
+
   QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations> ageProperty() {
-    return addPropertyNameInternal('age');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'age');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, String, QQueryOperations>
       dayProperty() {
-    return addPropertyNameInternal('day');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'day');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations>
       groupIdProperty() {
-    return addPropertyNameInternal('groupId');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'groupId');
+    });
   }
 
-  QueryBuilder<PerformanceGroupModelDb, int?, QQueryOperations> idProperty() {
-    return addPropertyNameInternal('id');
+  QueryBuilder<PerformanceGroupModelDb, String, QQueryOperations>
+      leagueProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'league');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations> partProperty() {
-    return addPropertyNameInternal('part');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'part');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations>
       problemProperty() {
-    return addPropertyNameInternal('problem');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'problem');
+    });
   }
 
   QueryBuilder<PerformanceGroupModelDb, int, QQueryOperations> stageProperty() {
-    return addPropertyNameInternal('stage');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'stage');
+    });
   }
 }

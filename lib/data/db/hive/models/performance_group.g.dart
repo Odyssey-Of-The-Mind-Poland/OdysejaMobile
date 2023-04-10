@@ -23,6 +23,7 @@ class PerformanceGroupHiveModelAdapter
       age: fields[2] as int,
       stage: fields[3] as int,
       part: fields[4] as int,
+      league: fields[7] as String,
       day: fields[5] as String,
       performancesHiveList: (fields[6] as HiveList).castHiveList(),
     );
@@ -31,7 +32,7 @@ class PerformanceGroupHiveModelAdapter
   @override
   void write(BinaryWriter writer, PerformanceGroupHiveModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.groupId)
       ..writeByte(1)
@@ -45,7 +46,9 @@ class PerformanceGroupHiveModelAdapter
       ..writeByte(5)
       ..write(obj.day)
       ..writeByte(6)
-      ..write(obj.performancesHiveList);
+      ..write(obj.performancesHiveList)
+      ..writeByte(7)
+      ..write(obj.league);
   }
 
   @override

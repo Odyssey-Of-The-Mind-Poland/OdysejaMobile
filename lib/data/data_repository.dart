@@ -10,7 +10,6 @@ import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
-import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
@@ -30,13 +29,13 @@ class DataRepositoryImpl implements DataRepository {
 
   @override
   Future<Either<Failure, Unit>> updateData(
-      {bool forceUpdate = false, keepFavsOnUpdate = true}) async {
+      {bool forceUpdate = true, keepFavsOnUpdate = true}) async {
     try {
       final versionHttpResult = await _apiService.getVersion();
       final externalVersion = versionHttpResult.data['version'] as int;
       final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
-      if (forceUpdate || externalVersion > savedVersion) {
+      if (true) {
         final futures = await Future.wait([
           // _apiService.getCities(),
           _apiService.getInfo(),

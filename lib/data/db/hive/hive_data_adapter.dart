@@ -89,6 +89,7 @@ abstract class HiveDataAdapter {
                     age: division.number,
                     stage: stage.number,
                     part: part,
+                    league: throw UnimplementedError('Leagues not implemented for Hive'),
                     day: day,
                     performancesHiveList:
                         HiveList(performanceBox, objects: filteredPerformances.toList())));

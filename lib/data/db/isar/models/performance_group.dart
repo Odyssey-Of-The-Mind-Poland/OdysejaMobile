@@ -6,9 +6,9 @@ import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 
 part 'performance_group.g.dart';
 
-@Collection()
+@Collection(inheritance: false)
 class PerformanceGroupModelDb extends PerformanceGroup {
-  int? id;
+  Id? id;
   @override
   late int groupId;
   @Index(composite: [CompositeIndex('problem'), CompositeIndex('age')])
@@ -21,11 +21,14 @@ class PerformanceGroupModelDb extends PerformanceGroup {
   @override
   late int part;
   @override
+  late String league;
+  @override
   late String day;
 
   final performancesIsarLinks = IsarLinks<PerformanceModelDb>();
 
   @override
+  @ignore
   late List<Performance> performances;
 
   void sortAndInit() {
@@ -41,6 +44,7 @@ class PerformanceGroupModelDb extends PerformanceGroup {
     int? problem,
     int? age,
     int? part,
+    String? league,
     String? day,
     List<Performance>? performances,
   }) =>
@@ -51,6 +55,7 @@ class PerformanceGroupModelDb extends PerformanceGroup {
         ..problem = problem ?? this.problem
         ..age = age ?? this.age
         ..part = part ?? this.part
+        ..league = league ?? this.league
         ..day = day ?? this.day
         ..performances = performances ?? this.performances;
 }

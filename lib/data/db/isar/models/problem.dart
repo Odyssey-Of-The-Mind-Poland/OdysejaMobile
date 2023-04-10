@@ -5,10 +5,13 @@ part 'problem.g.dart';
 
 @Collection()
 class ProblemModelDb extends ProblemEntity {
-  int? id;
+  Id? id;
   @override
   late String name;
   @override
   @Index()
   late int number;
+  @override
+  @enumerated
+  ScheduleCategory get category => ScheduleCategory.problem;
 }

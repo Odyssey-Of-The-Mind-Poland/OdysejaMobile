@@ -34,7 +34,7 @@ class _PerformanceCardState extends State<PerformanceCard> {
   @override
   Widget build(BuildContext context) {
     const double height = 56;
-    return SwipeableTile.swipeToTiggerCard(
+    return SwipeableTile.swipeToTriggerCard(
       key: Key(widget.performance.performanceId.toString()),
       color: AppColors.pureWhite,
       horizontalPadding: 0,

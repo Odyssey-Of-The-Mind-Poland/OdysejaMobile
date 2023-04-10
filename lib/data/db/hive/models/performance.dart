@@ -69,4 +69,8 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
 
   @override
   Future<void> updatePerformance() => save();
+
+  @override
+  // TODO: implement league
+  String get league => throw UnimplementedError();
 }

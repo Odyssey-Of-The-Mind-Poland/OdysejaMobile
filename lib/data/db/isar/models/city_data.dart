@@ -9,9 +9,9 @@ import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 
 part 'city_data.g.dart';
 
-@Collection()
+@Collection(inheritance: false)
 class CityDataModelDb extends CityData {
-  int? id;
+  Id? id;
   @override
   late String cityName;
   @Index()
@@ -21,14 +21,17 @@ class CityDataModelDb extends CityData {
   final stageIsarLinks = IsarLinks<StageModelDb>();
   // Move to db service when soritng for Links is available.
   @override
+  @ignore
   late List<ScheduleCategoryEntity> stages;
 
   final performanceGroupIsarLinks = IsarLinks<PerformanceGroupModelDb>();
   @override
+  @ignore
   late List<PerformanceGroup> performanceGroups;
 
   final infoIsarLinks = IsarLinks<InfoGroupModelDb>();
   @override
+  @ignore
   late List<InfoCategory> infoGroups;
 
   void initAndSort() {
@@ -37,6 +40,8 @@ class CityDataModelDb extends CityData {
         int cmp = a.problem.compareTo(b.problem);
         if (cmp != 0) return cmp;
         cmp = a.age.compareTo(b.age);
+        if (cmp != 0) return cmp;
+        cmp = a.league.compareTo(b.league);
         if (cmp != 0) return cmp;
         cmp = a.stage.compareTo(b.stage);
         if (cmp != 0) return cmp;

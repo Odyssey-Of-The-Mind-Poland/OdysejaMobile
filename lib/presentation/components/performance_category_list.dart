@@ -8,7 +8,8 @@ import 'package:odyssey_mobile/app/themes.dart';
 import '../helpers/string_helpers.dart';
 
 class PerformanceCategoryList extends StatelessWidget {
-  const PerformanceCategoryList({required this.parameters, this.splashGradientPair, Key? key}) : super(key: key);
+  const PerformanceCategoryList({required this.parameters, this.splashGradientPair, Key? key})
+      : super(key: key);
   final List<ScheduleCategoryEntity> parameters;
   final SplashGradientPair? splashGradientPair;
   @override
@@ -17,7 +18,7 @@ class PerformanceCategoryList extends StatelessWidget {
         .map((e) => BoxWithBadge(
             badgeLabel: e.symbol,
             label: StringHelper.removeOrphans(e.name),
-            onTap: () => context.router.navigate(ScheduleDetailScreen(categoryEntity: e)),
+            onTap: () => context.router.navigate(ScheduleDetailRoute(categoryEntity: e)),
             splashGradientPair: splashGradientPair))
         .toList();
     return Container(

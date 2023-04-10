@@ -6,240 +6,215 @@ part of 'info_group.dart';
 // IsarCollectionGenerator
 // **************************************************************************
 
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast
+// coverage:ignore-file
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
 
 extension GetInfoGroupModelDbCollection on Isar {
-  IsarCollection<InfoGroupModelDb> get infoGroupModelDbs {
-    return getCollection('InfoGroupModelDb');
-  }
+  IsarCollection<InfoGroupModelDb> get infoGroupModelDbs => this.collection();
 }
 
-final InfoGroupModelDbSchema = CollectionSchema(
-  name: 'InfoGroupModelDb',
-  schema:
-      '{"name":"InfoGroupModelDb","idName":"id","properties":[{"name":"name","type":"String"},{"name":"number","type":"Long"}],"indexes":[],"links":[{"name":"infoList","target":"InfoModelDb"}]}',
-  nativeAdapter: const _InfoGroupModelDbNativeAdapter(),
-  webAdapter: const _InfoGroupModelDbWebAdapter(),
-  idName: 'id',
-  propertyIds: {'name': 0, 'number': 1},
-  listProperties: {},
-  indexIds: {},
-  indexTypes: {},
-  linkIds: {'infoList': 0},
-  backlinkIds: {},
-  linkedCollections: ['InfoModelDb'],
-  getId: (obj) {
-    if (obj.id == Isar.autoIncrement) {
-      return null;
-    } else {
-      return obj.id;
-    }
+const InfoGroupModelDbSchema = CollectionSchema(
+  name: r'InfoGroupModelDb',
+  id: 0460958706835118,
+  properties: {
+    r'infoList': PropertySchema(
+      id: 0,
+      name: r'infoList',
+      type: IsarType.objectList,
+      target: r'InfoModelDb',
+    ),
+    r'name': PropertySchema(
+      id: 1,
+      name: r'name',
+      type: IsarType.string,
+    ),
+    r'number': PropertySchema(
+      id: 2,
+      name: r'number',
+      type: IsarType.long,
+    )
   },
-  setId: (obj, id) => obj.id = id,
-  getLinks: (obj) => [obj.infoList],
-  version: 2,
+  estimateSize: _infoGroupModelDbEstimateSize,
+  serialize: _infoGroupModelDbSerialize,
+  deserialize: _infoGroupModelDbDeserialize,
+  deserializeProp: _infoGroupModelDbDeserializeProp,
+  idName: r'id',
+  indexes: {},
+  links: {},
+  embeddedSchemas: {r'InfoModelDb': InfoModelDbSchema},
+  getId: _infoGroupModelDbGetId,
+  getLinks: _infoGroupModelDbGetLinks,
+  attach: _infoGroupModelDbAttach,
+  version: '3.0.5',
 );
 
-class _InfoGroupModelDbWebAdapter extends IsarWebTypeAdapter<InfoGroupModelDb> {
-  const _InfoGroupModelDbWebAdapter();
-
-  @override
-  Object serialize(
-      IsarCollection<InfoGroupModelDb> collection, InfoGroupModelDb object) {
-    final jsObj = IsarNative.newJsObject();
-    IsarNative.jsObjectSet(jsObj, 'id', object.id);
-    IsarNative.jsObjectSet(jsObj, 'name', object.name);
-    IsarNative.jsObjectSet(jsObj, 'number', object.number);
-    return jsObj;
-  }
-
-  @override
-  InfoGroupModelDb deserialize(
-      IsarCollection<InfoGroupModelDb> collection, dynamic jsObj) {
-    final object = InfoGroupModelDb();
-    object.id = IsarNative.jsObjectGet(jsObj, 'id');
-    object.name = IsarNative.jsObjectGet(jsObj, 'name') ?? '';
-    object.number =
-        IsarNative.jsObjectGet(jsObj, 'number') ?? double.negativeInfinity;
-    attachLinks(collection.isar, IsarNative.jsObjectGet(jsObj, 'id'), object);
-    return object;
-  }
-
-  @override
-  P deserializeProperty<P>(Object jsObj, String propertyName) {
-    switch (propertyName) {
-      case 'id':
-        return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
-      case 'name':
-        return (IsarNative.jsObjectGet(jsObj, 'name') ?? '') as P;
-      case 'number':
-        return (IsarNative.jsObjectGet(jsObj, 'number') ??
-            double.negativeInfinity) as P;
-      default:
-        throw 'Illegal propertyName';
+int _infoGroupModelDbEstimateSize(
+  InfoGroupModelDb object,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  var bytesCount = offsets.last;
+  bytesCount += 3 + object.infoList.length * 3;
+  {
+    final offsets = allOffsets[InfoModelDb]!;
+    for (var i = 0; i < object.infoList.length; i++) {
+      final value = object.infoList[i];
+      bytesCount += InfoModelDbSchema.estimateSize(value, offsets, allOffsets);
     }
   }
+  bytesCount += 3 + object.name.length * 3;
+  return bytesCount;
+}
 
-  @override
-  void attachLinks(Isar isar, int id, InfoGroupModelDb object) {
-    object.infoList.attach(
-      id,
-      isar.infoGroupModelDbs,
-      isar.getCollection<InfoModelDb>('InfoModelDb'),
-      'infoList',
-      false,
-    );
+void _infoGroupModelDbSerialize(
+  InfoGroupModelDb object,
+  IsarWriter writer,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  writer.writeObjectList<InfoModelDb>(
+    offsets[0],
+    allOffsets,
+    InfoModelDbSchema.serialize,
+    object.infoList,
+  );
+  writer.writeString(offsets[1], object.name);
+  writer.writeLong(offsets[2], object.number);
+}
+
+InfoGroupModelDb _infoGroupModelDbDeserialize(
+  Id id,
+  IsarReader reader,
+  List<int> offsets,
+  Map<Type, List<int>> allOffsets,
+) {
+  final object = InfoGroupModelDb();
+  object.id = id;
+  object.infoList = reader.readObjectList<InfoModelDb>(
+        offsets[0],
+        InfoModelDbSchema.deserialize,
+        allOffsets,
+        InfoModelDb(),
+      ) ??
+      [];
+  object.name = reader.readString(offsets[1]);
+  object.number = reader.readLong(offsets[2]);
+  return object;
+}
+
+P _infoGroupModelDbDeserializeProp<P>(
+  IsarReader reader,
+  int propertyId,
+  int offset,
+  Map<Type, List<int>> allOffsets,
+) {
+  switch (propertyId) {
+    case 0:
+      return (reader.readObjectList<InfoModelDb>(
+            offset,
+            InfoModelDbSchema.deserialize,
+            allOffsets,
+            InfoModelDb(),
+          ) ??
+          []) as P;
+    case 1:
+      return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readLong(offset)) as P;
+    default:
+      throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-class _InfoGroupModelDbNativeAdapter
-    extends IsarNativeTypeAdapter<InfoGroupModelDb> {
-  const _InfoGroupModelDbNativeAdapter();
+Id _infoGroupModelDbGetId(InfoGroupModelDb object) {
+  return object.id ?? Isar.autoIncrement;
+}
 
-  @override
-  void serialize(
-      IsarCollection<InfoGroupModelDb> collection,
-      IsarRawObject rawObj,
-      InfoGroupModelDb object,
-      int staticSize,
-      List<int> offsets,
-      AdapterAlloc alloc) {
-    var dynamicSize = 0;
-    final value0 = object.name;
-    final _name = IsarBinaryWriter.utf8Encoder.convert(value0);
-    dynamicSize += (_name.length) as int;
-    final value1 = object.number;
-    final _number = value1;
-    final size = staticSize + dynamicSize;
+List<IsarLinkBase<dynamic>> _infoGroupModelDbGetLinks(InfoGroupModelDb object) {
+  return [];
+}
 
-    rawObj.buffer = alloc(size);
-    rawObj.buffer_length = size;
-    final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
-    final writer = IsarBinaryWriter(buffer, staticSize);
-    writer.writeBytes(offsets[0], _name);
-    writer.writeLong(offsets[1], _number);
-  }
-
-  @override
-  InfoGroupModelDb deserialize(IsarCollection<InfoGroupModelDb> collection,
-      int id, IsarBinaryReader reader, List<int> offsets) {
-    final object = InfoGroupModelDb();
-    object.id = id;
-    object.name = reader.readString(offsets[0]);
-    object.number = reader.readLong(offsets[1]);
-    attachLinks(collection.isar, id, object);
-    return object;
-  }
-
-  @override
-  P deserializeProperty<P>(
-      int id, IsarBinaryReader reader, int propertyIndex, int offset) {
-    switch (propertyIndex) {
-      case -1:
-        return id as P;
-      case 0:
-        return (reader.readString(offset)) as P;
-      case 1:
-        return (reader.readLong(offset)) as P;
-      default:
-        throw 'Illegal propertyIndex';
-    }
-  }
-
-  @override
-  void attachLinks(Isar isar, int id, InfoGroupModelDb object) {
-    object.infoList.attach(
-      id,
-      isar.infoGroupModelDbs,
-      isar.getCollection<InfoModelDb>('InfoModelDb'),
-      'infoList',
-      false,
-    );
-  }
+void _infoGroupModelDbAttach(
+    IsarCollection<dynamic> col, Id id, InfoGroupModelDb object) {
+  object.id = id;
 }
 
 extension InfoGroupModelDbQueryWhereSort
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QWhere> {
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhere> anyId() {
-    return addWhereClauseInternal(const WhereClause(indexName: null));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(const IdWhereClause.any());
+    });
   }
 }
 
 extension InfoGroupModelDbQueryWhere
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QWhereClause> {
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause> idEqualTo(
-      int? id) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
-      includeLower: true,
-      upper: [id],
-      includeUpper: true,
-    ));
-  }
-
-  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause>
-      idNotEqualTo(int? id) {
-    if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
+      Id id) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: id,
+        upper: id,
       ));
-    } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      ));
-    }
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause>
-      idGreaterThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
-      includeLower: include,
-    ));
+      idNotEqualTo(Id id) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            )
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            );
+      } else {
+        return query
+            .addWhereClause(
+              IdWhereClause.greaterThan(lower: id, includeLower: false),
+            )
+            .addWhereClause(
+              IdWhereClause.lessThan(upper: id, includeUpper: false),
+            );
+      }
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause>
-      idLessThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      upper: [id],
-      includeUpper: include,
-    ));
+      idGreaterThan(Id id, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.greaterThan(lower: id, includeLower: include),
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause>
+      idLessThan(Id id, {bool include = false}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(
+        IdWhereClause.lessThan(upper: id, includeUpper: include),
+      );
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterWhereClause> idBetween(
-    int? lowerId,
-    int? upperId, {
+    Id lowerId,
+    Id upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [lowerId],
-      includeLower: includeLower,
-      upper: [upperId],
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IdWhereClause.between(
+        lower: lowerId,
+        includeLower: includeLower,
+        upper: upperId,
+        includeUpper: includeUpper,
+      ));
+    });
   }
 }
 
@@ -247,62 +222,165 @@ extension InfoGroupModelDbQueryFilter
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QFilterCondition> {
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       idIsNull() {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.isNull,
-      property: 'id',
-      value: null,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'id',
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
-      idEqualTo(int? value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'id',
-      value: value,
-    ));
+      idIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'id',
+      ));
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      idEqualTo(Id? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       idGreaterThan(
-    int? value, {
+    Id? value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'id',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       idLessThan(
-    int? value, {
+    Id? value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'id',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'id',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       idBetween(
-    int? lower,
-    int? upper, {
+    Id? lower,
+    Id? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'id',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'id',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'infoList',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -310,60 +388,65 @@ extension InfoGroupModelDbQueryFilter
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       nameGreaterThan(
     String value, {
-    bool caseSensitive = true,
     bool include = false,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       nameLessThan(
     String value, {
-    bool caseSensitive = true,
     bool include = false,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       nameBetween(
     String lower,
     String upper, {
-    bool caseSensitive = true,
     bool includeLower = true,
     bool includeUpper = true,
+    bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'name',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -371,12 +454,13 @@ extension InfoGroupModelDbQueryFilter
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.startsWith,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -384,41 +468,65 @@ extension InfoGroupModelDbQueryFilter
     String value, {
     bool caseSensitive = true,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.endsWith,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       nameContains(String value, {bool caseSensitive = true}) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.contains,
-      property: 'name',
-      value: value,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       nameMatches(String pattern, {bool caseSensitive = true}) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.matches,
-      property: 'name',
-      value: pattern,
-      caseSensitive: caseSensitive,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
       numberEqualTo(int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'number',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'number',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -426,12 +534,13 @@ extension InfoGroupModelDbQueryFilter
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.gt,
-      include: include,
-      property: 'number',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'number',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -439,12 +548,13 @@ extension InfoGroupModelDbQueryFilter
     int value, {
     bool include = false,
   }) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.lt,
-      include: include,
-      property: 'number',
-      value: value,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'number',
+        value: value,
+      ));
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
@@ -454,118 +564,145 @@ extension InfoGroupModelDbQueryFilter
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addFilterConditionInternal(FilterCondition.between(
-      property: 'number',
-      lower: lower,
-      includeLower: includeLower,
-      upper: upper,
-      includeUpper: includeUpper,
-    ));
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'number',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+}
+
+extension InfoGroupModelDbQueryObject
+    on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QFilterCondition> {
+  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
+      infoListElement(FilterQuery<InfoModelDb> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'infoList');
+    });
   }
 }
 
 extension InfoGroupModelDbQueryLinks
-    on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QFilterCondition> {
-  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterFilterCondition>
-      infoList(FilterQuery<InfoModelDb> q) {
-    return linkInternal(
-      isar.infoModelDbs,
-      q,
-      'infoList',
-    );
-  }
-}
+    on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QFilterCondition> {}
 
-extension InfoGroupModelDbQueryWhereSortBy
+extension InfoGroupModelDbQuerySortBy
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QSortBy> {
-  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy> sortById() {
-    return addSortByInternal('id', Sort.asc);
-  }
-
-  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
-      sortByIdDesc() {
-    return addSortByInternal('id', Sort.desc);
-  }
-
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy> sortByName() {
-    return addSortByInternal('name', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'name', Sort.asc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       sortByNameDesc() {
-    return addSortByInternal('name', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'name', Sort.desc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       sortByNumber() {
-    return addSortByInternal('number', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'number', Sort.asc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       sortByNumberDesc() {
-    return addSortByInternal('number', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'number', Sort.desc);
+    });
   }
 }
 
-extension InfoGroupModelDbQueryWhereSortThenBy
+extension InfoGroupModelDbQuerySortThenBy
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QSortThenBy> {
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy> thenById() {
-    return addSortByInternal('id', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.asc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       thenByIdDesc() {
-    return addSortByInternal('id', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'id', Sort.desc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy> thenByName() {
-    return addSortByInternal('name', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'name', Sort.asc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       thenByNameDesc() {
-    return addSortByInternal('name', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'name', Sort.desc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       thenByNumber() {
-    return addSortByInternal('number', Sort.asc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'number', Sort.asc);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QAfterSortBy>
       thenByNumberDesc() {
-    return addSortByInternal('number', Sort.desc);
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'number', Sort.desc);
+    });
   }
 }
 
 extension InfoGroupModelDbQueryWhereDistinct
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QDistinct> {
-  QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QDistinct> distinctById() {
-    return addDistinctByInternal('id');
-  }
-
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
-    return addDistinctByInternal('name', caseSensitive: caseSensitive);
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QDistinct>
       distinctByNumber() {
-    return addDistinctByInternal('number');
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'number');
+    });
   }
 }
 
 extension InfoGroupModelDbQueryProperty
     on QueryBuilder<InfoGroupModelDb, InfoGroupModelDb, QQueryProperty> {
-  QueryBuilder<InfoGroupModelDb, int?, QQueryOperations> idProperty() {
-    return addPropertyNameInternal('id');
+  QueryBuilder<InfoGroupModelDb, int, QQueryOperations> idProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<InfoGroupModelDb, List<InfoModelDb>, QQueryOperations>
+      infoListProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'infoList');
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, String, QQueryOperations> nameProperty() {
-    return addPropertyNameInternal('name');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'name');
+    });
   }
 
   QueryBuilder<InfoGroupModelDb, int, QQueryOperations> numberProperty() {
-    return addPropertyNameInternal('number');
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'number');
+    });
   }
 }

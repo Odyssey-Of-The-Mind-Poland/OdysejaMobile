@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +18,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  await configureInjection(Environment.prod);
+  await configureDependencies(Environment.prod);
 
   if (kDebugMode) {
     Logger.root.level = Level.FINE; // defaults to Level.INFO
@@ -24,10 +26,12 @@ void main() async {
       // ignore: avoid_print
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
-    BlocOverrides.runZoned(() {
-      runApp(OdysseyMobile());
-    }, blocObserver: StateObserver());
-  } else {
-    runApp(OdysseyMobile());
+
+    Bloc.observer = StateObserver();
   }
+
+  runZonedGuarded(
+    () => runApp(OdysseyMobile()),
+    (error, stack) {},
+  );
 }

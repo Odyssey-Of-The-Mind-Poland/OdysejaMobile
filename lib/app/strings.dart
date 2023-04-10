@@ -11,7 +11,7 @@ abstract class AppStrings {
       'Nie udało się połączyć z serwerem danych. Ale nie łam się, zapisaliśmy je już wcześniej :)';
   // Age group labels
   static const String juniors = 'Juniorzy';
-  static const String firstDivision = '> V klasa';
+  static const String firstDivision = 'I - V klasa';
   static const String secondDivision = 'VI – VIII klasa';
   static const String thirdDivision = 'Liceum / technikum';
   static const String forthDivision = 'Uczelnie wyższe';
@@ -66,8 +66,9 @@ abstract class AppStrings {
 
   static const String firstDay = 'Sobota';
   static const String secondDay = 'Niedziela';
-  static const String partOne = '(cz. 1)';
-  static const String partTwo = '(cz. 2)';
+  static const String partOne = 'Część 1';
+  static const String partTwo = 'Część 2';
+  static const String league = 'Liga';
 
   static const String close = 'ZAMKNIJ';
   static const String removeFromFavsLabel = 'USUŃ Z ULUBIONYCH';

@@ -37,7 +37,7 @@ class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
     _initialCount = itemCounter(_listLength);
   }
 
-  int itemCounter(int _count) => _count < 3 ? _count : 3;
+  int itemCounter(int count) => count < 3 ? count : 3;
 
   @override
   Widget build(BuildContext context) {

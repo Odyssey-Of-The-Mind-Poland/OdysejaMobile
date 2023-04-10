@@ -4,4 +4,5 @@ abstract class Info {
   String get infoName;
 
   String get infoText;
+  int get sortNumber;
 }

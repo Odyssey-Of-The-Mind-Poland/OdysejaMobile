@@ -9,6 +9,7 @@ import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 
+@RoutePage()
 class ScheduleScreen extends StatelessWidget {
   const ScheduleScreen({Key? key}) : super(key: key);
 
@@ -20,7 +21,7 @@ class ScheduleScreen extends StatelessWidget {
         actions: [
           IconButton(
             padding: const EdgeInsets.all(18),
-            onPressed: () => context.router.push(const ScheduleSearchScreen()),
+            onPressed: () => context.router.push(const ScheduleSearchRoute()),
             icon: const Icon(OotmIcons.search),
           )
         ],

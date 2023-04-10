@@ -6,6 +6,7 @@ import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/onboa
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/app/router.dart';
 
+@RoutePage()
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
 
@@ -40,15 +41,15 @@ class _InitialScreenState extends State<InitialScreen> {
           router = _innerRouterKey.currentState?.controller;
           if (state is OnboardingResult) {
             if (state.showOnboarding) {
-              router?.replace(const WelcomeScreen());
+              router?.replace(const WelcomeRoute());
             } else {
-              router?.replace(const LoadingScreen());
+              router?.replace(const LoadingRoute());
             }
           } else if (state is OnboardingFinished) {
             if (context.read<UpdateBloc>().state is UpdateFinished) {
-              router?.replaceAll([const MainView()]);
+              router?.replaceAll([const MainRoute()]);
             } else {
-              router?.replace(const LoadingScreen());
+              router?.replace(const LoadingRoute());
             }
           }
         },

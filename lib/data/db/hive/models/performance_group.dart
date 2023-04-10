@@ -35,6 +35,10 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
   @HiveField(6)
   late HiveList<PerformanceHiveModel> performancesHiveList;
 
+  @HiveField(7)
+  @override
+  late String league;
+
   @override
   late List<Performance> performances;
   PerformanceGroupHiveModel({
@@ -43,6 +47,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
     required this.age,
     required this.stage,
     required this.part,
+    required this.league,
     required this.day,
     required this.performancesHiveList,
   }) {
@@ -56,6 +61,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
     int? age,
     int? stage,
     int? part,
+    String? league,
     String? day,
     List<Performance>? performances,
   }) {
@@ -65,6 +71,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
       age: age ?? this.age,
       stage: stage ?? this.stage,
       part: part ?? this.part,
+      league: league ?? this.league,
       day: day ?? this.day,
       performancesHiveList: performancesHiveList,
     )..performances = performances ?? this.performances;
