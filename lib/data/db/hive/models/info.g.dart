@@ -20,6 +20,7 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
       fields[0] as int,
       fields[1] as String,
       fields[2] as String,
+      fields[3] as int,
     );
   }
 

@@ -46,6 +46,10 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
   @override
   final int stage;
 
+  @HiveField(10)
+  @override
+  final String league;
+
   @Deprecated('Not used, not working')
   @override
   int get groupId => -1;
@@ -63,14 +67,11 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
     required this.spontan,
     required this.spontanDay,
     required this.stage,
+    required this.league,
     required this.team,
     required this.isFavourite,
   });
 
   @override
   Future<void> updatePerformance() => save();
-
-  @override
-  // TODO: implement league
-  String get league => throw UnimplementedError();
 }

@@ -27,7 +27,8 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       spontanDay: fields[8] as String,
       stage: fields[9] as int,
       team: fields[10] as String,
-      isFavourite: fields[11] as bool,
+      league: fields[11] as String,
+      isFavourite: fields[12] as bool,
     );
   }
 
