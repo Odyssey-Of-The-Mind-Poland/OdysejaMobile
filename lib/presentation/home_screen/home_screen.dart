@@ -34,11 +34,6 @@ class HomeScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                    height: size.width,
-                    child: const ImageTile(AssetPaths.sponsor1),
-                  ),
                 ],
               ),
             ),
@@ -47,9 +42,9 @@ class HomeScreen extends StatelessWidget {
                 margin: const EdgeInsets.all(16),
                 height: 120,
                 child: Row(children: const [
-                  Expanded(child: ImageTile(AssetPaths.sponsor5)),
+                  Expanded(child: ImageTile(AssetPaths.sponsor1)),
                   SizedBox(width: 16),
-                  Expanded(child: ImageTile(AssetPaths.sponsor4)),
+                  Expanded(child: ImageTile(AssetPaths.sponsor5)),
                 ]),
               ),
             ),
@@ -84,4 +79,7 @@ const Map<int, String> _imageGrid = {
   6: AssetPaths.sponsor10,
   7: AssetPaths.sponsor9,
   8: AssetPaths.sponsor12,
+  9: AssetPaths.sponsor13,
+  10: AssetPaths.sponsor14,
+  11: AssetPaths.sponsor15,
 };

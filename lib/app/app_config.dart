@@ -8,5 +8,5 @@ abstract class AppConfig {
 @Injectable(as: AppConfig)
 class ProductionConfig implements AppConfig {
   @override
-  String get baseUrl => 'http://grzybek.snet.ovh:8081';
+  String get baseUrl => 'https://grzybek.snet.ovh';
 }

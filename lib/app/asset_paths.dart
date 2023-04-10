@@ -13,4 +13,7 @@ abstract class AssetPaths {
   static const sponsor10 = 'assets/graphics/logo_10.png';
   static const sponsor11 = 'assets/graphics/logo_11.png';
   static const sponsor12 = 'assets/graphics/logo_12.png';
+  static const sponsor13 = 'assets/graphics/logo_13.png';
+  static const sponsor14 = 'assets/graphics/logo_14.png';
+  static const sponsor15 = 'assets/graphics/logo_15.png';
 }
