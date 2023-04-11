@@ -16,7 +16,7 @@ extension GetPerformanceGroupModelDbCollection on Isar {
 
 const PerformanceGroupModelDbSchema = CollectionSchema(
   name: r'PerformanceGroupModelDb',
-  id: 5503603692017367,
+  id: 2365503603692017367,
   properties: {
     r'age': PropertySchema(
       id: 0,
@@ -61,7 +61,7 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'stage_problem_age': IndexSchema(
-      id: 636620667929960,
+      id: 857636620667929960,
       name: r'stage_problem_age',
       unique: false,
       replace: false,
@@ -86,7 +86,7 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
   },
   links: {
     r'performancesIsarLinks': LinkSchema(
-      id: 6486198716847802,
+      id: 7856486198716847802,
       name: r'performancesIsarLinks',
       target: r'PerformanceModelDb',
       single: false,

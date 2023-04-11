@@ -11,7 +11,7 @@ part of 'info.dart';
 
 const InfoModelDbSchema = Schema(
   name: r'InfoModelDb',
-  id: 0734683231690946,
+  id: 4990734683231690946,
   properties: {
     r'city': PropertySchema(
       id: 0,
@@ -98,6 +98,8 @@ P _infoModelDbDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
+      return (reader.readLong(offset)) as P;
+    case 4:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -475,6 +477,62 @@ extension InfoModelDbQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'number',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
+      sortNumberEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'sortNumber',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
+      sortNumberGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'sortNumber',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
+      sortNumberLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'sortNumber',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
+      sortNumberBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'sortNumber',
         lower: lower,
         includeLower: includeLower,
         upper: upper,

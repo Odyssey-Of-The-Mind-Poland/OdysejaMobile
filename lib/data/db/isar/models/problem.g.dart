@@ -15,7 +15,7 @@ extension GetProblemModelDbCollection on Isar {
 
 const ProblemModelDbSchema = CollectionSchema(
   name: r'ProblemModelDb',
-  id: 7206525608770575,
+  id: -5217206525608770575,
   properties: {
     r'category': PropertySchema(
       id: 0,
@@ -51,7 +51,7 @@ const ProblemModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'number': IndexSchema(
-      id: 2388430481709372,
+      id: 5012388430481709372,
       name: r'number',
       unique: false,
       replace: false,
