@@ -69,9 +69,8 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
                 ElevatedButton.icon(
                   onPressed: () =>
                       widget.bloc.add(Update(widget.performance..isFavourite = !isFavourite)),
-                  icon: isFavourite
-                      ? const Icon(OotmIcons.favFilled)
-                      : const Icon(OotmIcons.favEmpty),
+                  icon:
+                      isFavourite ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
                   label: isFavourite
                       ? const Text(AppStrings.removeFromFavsLabel)
                       : const Text(AppStrings.addToFavsLabel),

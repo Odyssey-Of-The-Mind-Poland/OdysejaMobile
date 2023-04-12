@@ -85,8 +85,9 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
                 child: AnimatedSwitcher(
                   duration: AppValues.defaultAnimationDuration,
                   child: isFavourite
-                      ? const Icon(OotmIcons.favFilled, color: AppColors.pureWhite, key: Key('1'))
-                      : const Icon(OotmIcons.favEmpty, color: AppColors.pureWhite, key: Key('2')),
+                      ? const Icon(Icons.favorite, color: AppColors.pureWhite, key: Key('1'))
+                      : const Icon(Icons.favorite_outline,
+                          color: AppColors.pureWhite, key: Key('2')),
                 ),
               );
             }));
