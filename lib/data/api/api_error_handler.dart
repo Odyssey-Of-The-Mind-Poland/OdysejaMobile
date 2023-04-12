@@ -27,7 +27,6 @@ Failure dioErrorHandler(DioError e) {
 }
 
 Failure unknownErrorHandler(dynamic e, StackTrace? s) {
-  print('error: $e');
   log('Unknown error', error: e, stackTrace: s);
   return const UnknownFailure();
 }

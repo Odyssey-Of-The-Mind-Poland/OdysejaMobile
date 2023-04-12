@@ -17,7 +17,6 @@ import 'package:odyssey_mobile/data/db/isar/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
-import 'package:path_provider/path_provider.dart';
 
 /// Requires awaiting [init] method.
 class IsarDbService implements DbService {
@@ -26,12 +25,7 @@ class IsarDbService implements DbService {
   @override
   Future<void> init() async {
     try {
-      final dir = await getApplicationSupportDirectory(); // path_provider package
-      _isar = await Isar.open(
-        _schemas,
-        directory: dir.path,
-        inspector: kDebugMode, // if you want to enable the inspector for debug builds
-      );
+      _isar = await Isar.open(_schemas, inspector: kDebugMode);
     } catch (e) {
       log('Isar initialization error: $e');
     }

@@ -5,7 +5,6 @@ import 'package:odyssey_mobile/app/app_config.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
-// import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
 import 'package:odyssey_mobile/data/db/isar/isar_service.dart';
 import 'package:odyssey_mobile/injectable.config.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -50,16 +49,8 @@ abstract class RegisterModule {
   @preResolve
   @lazySingleton
   Future<DbService> get dbService async {
-    final dbService = HiveDbService();
+    final dbService = kIsWeb ? HiveDbService() : IsarDbService();
     await dbService.init();
     return dbService;
   }
-
-  // @preResolve
-  // @LazySingleton(env: [])
-  // Future<DbService> get dbService async {
-  //   final dbService = HiveDbService();
-  //   await dbService.init();
-  //   return dbService;
-  // }
 }

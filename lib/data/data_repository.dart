@@ -13,7 +13,6 @@ import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
-import 'package:odyssey_mobile/domain/entities/loading_config.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -125,14 +124,14 @@ class DataRepositoryImpl implements DataRepository {
     }
   }
 
-  @override
-  LoadingConfig get loadingConfig {
-    final showOnboarding = _sharedPrefs.getBool('showOnboarding') ?? true;
-    return LoadingConfig(showOnboarding: showOnboarding);
-  }
+  // @override
+  // LoadingConfig get loadingConfig {
+  //   final showOnboarding = _sharedPrefs.getBool('showOnboarding') ?? true;
+  //   return LoadingConfig(showOnboarding: showOnboarding);
+  // }
 
-  @override
-  set updateLoadingConfig(LoadingConfig lc) {
-    _sharedPrefs.setBool('showOnboarding', lc.showOnboarding);
-  }
+  // @override
+  // set updateLoadingConfig(LoadingConfig lc) {
+  //   _sharedPrefs.setBool('showOnboarding', lc.showOnboarding);
+  // }
 }
