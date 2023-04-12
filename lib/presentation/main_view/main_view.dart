@@ -53,31 +53,36 @@ class _MainViewState extends State<MainView> {
             },
           ),
         ],
-        child: AutoTabsScaffold(
-            key: _scaffoldKey,
-            routes: const [
-              HomeRoute(),
-              InfoRoutes(),
-              ScheduleRoutes(),
-              FavouritesRoute(),
-            ],
-            homeIndex: 0,
-            bottomNavigationBuilder: (_, tabsRouter) {
-              return DotNavigationBar(
-                selectedItemColor: AppColors.primaryOrange,
-                unselectedItemColor: AppColors.darkestGrey,
-                enableFloatingNavBar: false,
-                enablePaddingAnimation: false,
-                currentIndex: tabsRouter.activeIndex,
-                onTap: tabsRouter.setActiveIndex,
-                items: const [
-                  DotNavigationBarItem(icon: Icon(OotmIcons.home)),
-                  DotNavigationBarItem(icon: Icon(OotmIcons.info)),
-                  DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),
-                  DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
+        child: Center(
+          child: SizedBox(
+            width: 600,
+            child: AutoTabsScaffold(
+                key: _scaffoldKey,
+                routes: const [
+                  HomeRoute(),
+                  InfoRoutes(),
+                  ScheduleRoutes(),
+                  FavouritesRoute(),
                 ],
-              );
-            }),
+                homeIndex: 0,
+                bottomNavigationBuilder: (_, tabsRouter) {
+                  return DotNavigationBar(
+                    selectedItemColor: AppColors.primaryOrange,
+                    unselectedItemColor: AppColors.darkestGrey,
+                    enableFloatingNavBar: false,
+                    enablePaddingAnimation: false,
+                    currentIndex: tabsRouter.activeIndex,
+                    onTap: tabsRouter.setActiveIndex,
+                    items: const [
+                      DotNavigationBarItem(icon: Icon(OotmIcons.home)),
+                      DotNavigationBarItem(icon: Icon(OotmIcons.info)),
+                      DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),
+                      DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
+                    ],
+                  );
+                }),
+          ),
+        ),
       ),
     );
   }
