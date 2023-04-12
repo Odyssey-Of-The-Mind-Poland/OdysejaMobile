@@ -41,7 +41,7 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
       final uri = Uri.parse(url);
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (_) {
-      showSnackBar(context: context, text: 'Nie udało się otworzyć strony :(');
+      showSnackBar(context: context, text: 'Nie udało się otworzyć strony :(');
     }
   }
 }
