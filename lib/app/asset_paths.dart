@@ -3,7 +3,8 @@ abstract class AssetPaths {
   static const ootmLogo = 'assets/graphics/ootm_logo.png';
   static const sponsor1 = 'assets/graphics/logo_1.png';
   static const sponsor2 = 'assets/graphics/logo_2.png';
-  static const sponsor3 = 'assets/graphics/logo_3.png';
+  // static const sponsor3 = 'assets/graphics/logo_3.png';
+  static const sponsor3 = 'assets/graphics/arena_placeholder.png';
   static const sponsor4 = 'assets/graphics/logo_4.png';
   static const sponsor5 = 'assets/graphics/logo_5.png';
   static const sponsor6 = 'assets/graphics/logo_6.png';

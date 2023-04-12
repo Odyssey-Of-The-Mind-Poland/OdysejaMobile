@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => ImageTile(_imageGrid[index]!),
                   addAutomaticKeepAlives: false,
-                  childCount: 9,
+                  childCount: 12,
                 ),
               ),
             ),
