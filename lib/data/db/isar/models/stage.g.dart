@@ -15,7 +15,7 @@ extension GetStageModelDbCollection on Isar {
 
 const StageModelDbSchema = CollectionSchema(
   name: r'StageModelDb',
-  id: -2611459647250073101,
+  id: 1,
   properties: {
     r'category': PropertySchema(
       id: 0,
@@ -51,7 +51,7 @@ const StageModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'number': IndexSchema(
-      id: 5012388430481709372,
+      id: 0,
       name: r'number',
       unique: false,
       replace: false,
@@ -118,8 +118,7 @@ P _stageModelDbDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (_StageModelDbcategoryValueEnumMap[
-              reader.readByteOrNull(offset)] ??
+      return (_StageModelDbcategoryValueEnumMap[reader.readByteOrNull(offset)] ??
           ScheduleCategory.stage) as P;
     case 1:
       return (reader.readString(offset)) as P;
@@ -153,13 +152,11 @@ List<IsarLinkBase<dynamic>> _stageModelDbGetLinks(StageModelDb object) {
   return [];
 }
 
-void _stageModelDbAttach(
-    IsarCollection<dynamic> col, Id id, StageModelDb object) {
+void _stageModelDbAttach(IsarCollection<dynamic> col, Id id, StageModelDb object) {
   object.id = id;
 }
 
-extension StageModelDbQueryWhereSort
-    on QueryBuilder<StageModelDb, StageModelDb, QWhere> {
+extension StageModelDbQueryWhereSort on QueryBuilder<StageModelDb, StageModelDb, QWhere> {
   QueryBuilder<StageModelDb, StageModelDb, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -175,8 +172,7 @@ extension StageModelDbQueryWhereSort
   }
 }
 
-extension StageModelDbQueryWhere
-    on QueryBuilder<StageModelDb, StageModelDb, QWhereClause> {
+extension StageModelDbQueryWhere on QueryBuilder<StageModelDb, StageModelDb, QWhereClause> {
   QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -186,8 +182,7 @@ extension StageModelDbQueryWhere
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> idNotEqualTo(
-      Id id) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -209,8 +204,7 @@ extension StageModelDbQueryWhere
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> idGreaterThan(
-      Id id,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -244,8 +238,7 @@ extension StageModelDbQueryWhere
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> numberEqualTo(
-      int number) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> numberEqualTo(int number) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'number',
@@ -254,8 +247,7 @@ extension StageModelDbQueryWhere
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> numberNotEqualTo(
-      int number) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterWhereClause> numberNotEqualTo(int number) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -335,10 +327,9 @@ extension StageModelDbQueryWhere
   }
 }
 
-extension StageModelDbQueryFilter
-    on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryEqualTo(ScheduleCategory value) {
+extension StageModelDbQueryFilter on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> categoryEqualTo(
+      ScheduleCategory value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'category',
@@ -347,8 +338,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryGreaterThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> categoryGreaterThan(
     ScheduleCategory value, {
     bool include = false,
   }) {
@@ -361,8 +351,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryLessThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> categoryLessThan(
     ScheduleCategory value, {
     bool include = false,
   }) {
@@ -375,8 +364,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryBetween(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> categoryBetween(
     ScheduleCategory lower,
     ScheduleCategory upper, {
     bool includeLower = true,
@@ -401,8 +389,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      idIsNotNull() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> idIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'id',
@@ -410,8 +397,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> idEqualTo(
-      Id? value) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -476,8 +462,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      nameGreaterThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -526,8 +511,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      nameStartsWith(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -553,8 +537,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameContains(
-      String value,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameContains(String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -565,8 +548,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameMatches(
-      String pattern,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -577,8 +559,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      nameIsEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -587,8 +568,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      nameIsNotEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
@@ -597,8 +577,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> numberEqualTo(
-      int value) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> numberEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'number',
@@ -607,8 +586,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      numberGreaterThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> numberGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -621,8 +599,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      numberLessThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> numberLessThan(
     int value, {
     bool include = false,
   }) {
@@ -665,8 +642,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolGreaterThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -681,8 +657,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolLessThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -716,8 +691,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolStartsWith(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -730,8 +704,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolEndsWith(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -744,8 +717,8 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'symbol',
@@ -755,8 +728,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolMatches(
-      String pattern,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -767,8 +739,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolIsEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'symbol',
@@ -777,8 +748,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      symbolIsNotEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> symbolIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'symbol',
@@ -800,8 +770,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      titleGreaterThan(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -850,8 +819,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      titleStartsWith(
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -877,8 +845,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleContains(
-      String value,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleContains(String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -889,8 +856,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleMatches(
-      String pattern,
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -901,8 +867,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      titleIsEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'title',
@@ -911,8 +876,7 @@ extension StageModelDbQueryFilter
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      titleIsNotEmpty() {
+  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> titleIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'title',
@@ -922,14 +886,11 @@ extension StageModelDbQueryFilter
   }
 }
 
-extension StageModelDbQueryObject
-    on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {}
+extension StageModelDbQueryObject on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {}
 
-extension StageModelDbQueryLinks
-    on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {}
+extension StageModelDbQueryLinks on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {}
 
-extension StageModelDbQuerySortBy
-    on QueryBuilder<StageModelDb, StageModelDb, QSortBy> {
+extension StageModelDbQuerySortBy on QueryBuilder<StageModelDb, StageModelDb, QSortBy> {
   QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> sortByCategory() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'category', Sort.asc);
@@ -991,8 +952,7 @@ extension StageModelDbQuerySortBy
   }
 }
 
-extension StageModelDbQuerySortThenBy
-    on QueryBuilder<StageModelDb, StageModelDb, QSortThenBy> {
+extension StageModelDbQuerySortThenBy on QueryBuilder<StageModelDb, StageModelDb, QSortThenBy> {
   QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> thenByCategory() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'category', Sort.asc);
@@ -1066,16 +1026,14 @@ extension StageModelDbQuerySortThenBy
   }
 }
 
-extension StageModelDbQueryWhereDistinct
-    on QueryBuilder<StageModelDb, StageModelDb, QDistinct> {
+extension StageModelDbQueryWhereDistinct on QueryBuilder<StageModelDb, StageModelDb, QDistinct> {
   QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByCategory() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'category');
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByName(
-      {bool caseSensitive = true}) {
+  QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByName({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
     });
@@ -1094,24 +1052,21 @@ extension StageModelDbQueryWhereDistinct
     });
   }
 
-  QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByTitle(
-      {bool caseSensitive = true}) {
+  QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByTitle({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'title', caseSensitive: caseSensitive);
     });
   }
 }
 
-extension StageModelDbQueryProperty
-    on QueryBuilder<StageModelDb, StageModelDb, QQueryProperty> {
+extension StageModelDbQueryProperty on QueryBuilder<StageModelDb, StageModelDb, QQueryProperty> {
   QueryBuilder<StageModelDb, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<StageModelDb, ScheduleCategory, QQueryOperations>
-      categoryProperty() {
+  QueryBuilder<StageModelDb, ScheduleCategory, QQueryOperations> categoryProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'category');
     });

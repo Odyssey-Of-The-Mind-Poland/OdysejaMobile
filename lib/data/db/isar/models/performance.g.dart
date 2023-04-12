@@ -10,13 +10,12 @@ part of 'performance.dart';
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
 
 extension GetPerformanceModelDbCollection on Isar {
-  IsarCollection<PerformanceModelDb> get performanceModelDbs =>
-      this.collection();
+  IsarCollection<PerformanceModelDb> get performanceModelDbs => this.collection();
 }
 
 const PerformanceModelDbSchema = CollectionSchema(
   name: r'PerformanceModelDb',
-  id: -8863298924368622558,
+  id: 10,
   properties: {
     r'age': PropertySchema(
       id: 0,
@@ -101,7 +100,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'city': IndexSchema(
-      id: 2121973393509345332,
+      id: 9,
       name: r'city',
       unique: false,
       replace: false,
@@ -114,7 +113,7 @@ const PerformanceModelDbSchema = CollectionSchema(
       ],
     ),
     r'isFavourite': IndexSchema(
-      id: -3295437635301440716,
+      id: 8,
       name: r'isFavourite',
       unique: false,
       replace: false,
@@ -129,7 +128,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   },
   links: {
     r'group': LinkSchema(
-      id: 4235506625030253595,
+      id: 7,
       name: r'group',
       target: r'PerformanceGroupModelDb',
       single: true,
@@ -252,16 +251,13 @@ Id _performanceModelDbGetId(PerformanceModelDb object) {
   return object.id ?? Isar.autoIncrement;
 }
 
-List<IsarLinkBase<dynamic>> _performanceModelDbGetLinks(
-    PerformanceModelDb object) {
+List<IsarLinkBase<dynamic>> _performanceModelDbGetLinks(PerformanceModelDb object) {
   return [object.group];
 }
 
-void _performanceModelDbAttach(
-    IsarCollection<dynamic> col, Id id, PerformanceModelDb object) {
+void _performanceModelDbAttach(IsarCollection<dynamic> col, Id id, PerformanceModelDb object) {
   object.id = id;
-  object.group.attach(
-      col, col.isar.collection<PerformanceGroupModelDb>(), r'group', id);
+  object.group.attach(col, col.isar.collection<PerformanceGroupModelDb>(), r'group', id);
 }
 
 extension PerformanceModelDbQueryWhereSort
@@ -280,8 +276,7 @@ extension PerformanceModelDbQueryWhereSort
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere>
-      anyIsFavourite() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhere> anyIsFavourite() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         const IndexWhereClause.any(indexName: r'isFavourite'),
@@ -292,8 +287,7 @@ extension PerformanceModelDbQueryWhereSort
 
 extension PerformanceModelDbQueryWhere
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QWhereClause> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      idEqualTo(Id id) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -302,8 +296,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      idNotEqualTo(Id id) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -325,8 +318,8 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -334,8 +327,8 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      idLessThan(Id id, {bool include = false}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> idLessThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.lessThan(upper: id, includeUpper: include),
@@ -343,8 +336,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      idBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -360,8 +352,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityEqualTo(int city) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> cityEqualTo(int city) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'city',
@@ -370,8 +361,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityNotEqualTo(int city) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> cityNotEqualTo(int city) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -405,8 +395,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> cityGreaterThan(
     int city, {
     bool include = false,
   }) {
@@ -420,8 +409,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> cityLessThan(
     int city, {
     bool include = false,
   }) {
@@ -435,8 +423,7 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      cityBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> cityBetween(
     int lowerCity,
     int upperCity, {
     bool includeLower = true,
@@ -453,8 +440,8 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      isFavouriteEqualTo(bool isFavourite) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> isFavouriteEqualTo(
+      bool isFavourite) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'isFavourite',
@@ -463,8 +450,8 @@ extension PerformanceModelDbQueryWhere
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause>
-      isFavouriteNotEqualTo(bool isFavourite) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterWhereClause> isFavouriteNotEqualTo(
+      bool isFavourite) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -501,8 +488,8 @@ extension PerformanceModelDbQueryWhere
 
 extension PerformanceModelDbQueryFilter
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QFilterCondition> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      ageEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> ageEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'age',
@@ -511,8 +498,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      ageGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> ageGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -525,8 +511,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      ageLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> ageLessThan(
     int value, {
     bool include = false,
   }) {
@@ -539,8 +524,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      ageBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> ageBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -557,8 +541,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      cityEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> cityEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'city',
@@ -567,8 +551,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      cityGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> cityGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -581,8 +564,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      cityLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> cityLessThan(
     int value, {
     bool include = false,
   }) {
@@ -595,8 +577,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      cityBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> cityBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -613,8 +594,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      groupIdEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> groupIdEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'groupId',
@@ -623,8 +604,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      groupIdGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> groupIdGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -637,8 +617,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      groupIdLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> groupIdLessThan(
     int value, {
     bool include = false,
   }) {
@@ -651,8 +630,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      groupIdBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> groupIdBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -669,8 +647,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idIsNull() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'id',
@@ -678,8 +655,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idIsNotNull() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'id',
@@ -687,8 +663,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idEqualTo(Id? value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -697,8 +672,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idGreaterThan(
     Id? value, {
     bool include = false,
   }) {
@@ -711,8 +685,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idLessThan(
     Id? value, {
     bool include = false,
   }) {
@@ -725,8 +698,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      idBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> idBetween(
     Id? lower,
     Id? upper, {
     bool includeLower = true,
@@ -743,8 +715,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      isFavouriteEqualTo(bool value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> isFavouriteEqualTo(
+      bool value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'isFavourite',
@@ -753,8 +725,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -767,8 +738,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -783,8 +753,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -799,8 +768,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -819,8 +787,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueStartsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -833,8 +800,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueEndsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -847,8 +813,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'league',
@@ -858,8 +825,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'league',
@@ -869,8 +837,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueIsEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'league',
@@ -879,8 +846,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      leagueIsNotEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> leagueIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'league',
@@ -889,8 +855,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      partEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> partEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'part',
@@ -899,8 +865,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      partGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> partGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -913,8 +878,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      partLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> partLessThan(
     int value, {
     bool include = false,
   }) {
@@ -927,8 +891,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      partBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> partBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -945,8 +908,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -975,8 +937,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -991,8 +952,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1011,8 +971,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceStartsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1025,8 +984,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceEndsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1039,8 +997,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'performance',
@@ -1050,8 +1009,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'performance',
@@ -1061,8 +1021,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceIsEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'performance',
@@ -1081,8 +1040,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceDayEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceDayEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1127,8 +1085,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceDayBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceDayBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1186,8 +1143,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceDayMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceDayMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'performanceDay',
@@ -1217,8 +1175,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceIdEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceIdEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'performanceId',
@@ -1241,8 +1199,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceIdLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceIdLessThan(
     int value, {
     bool include = false,
   }) {
@@ -1255,8 +1212,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      performanceIdBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> performanceIdBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1273,8 +1229,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      problemEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> problemEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'problem',
@@ -1283,8 +1239,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      problemGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> problemGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -1297,8 +1252,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      problemLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> problemLessThan(
     int value, {
     bool include = false,
   }) {
@@ -1311,8 +1265,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      problemBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> problemBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1329,8 +1282,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      searchableTeamEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> searchableTeamEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1375,8 +1327,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      searchableTeamBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> searchableTeamBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1434,8 +1385,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      searchableTeamMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> searchableTeamMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'searchableTeam',
@@ -1465,8 +1417,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1479,8 +1430,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1495,8 +1445,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1511,8 +1460,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1531,8 +1479,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanStartsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1545,8 +1492,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanEndsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1559,8 +1505,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'spontan',
@@ -1570,8 +1517,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'spontan',
@@ -1581,8 +1529,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanIsEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'spontan',
@@ -1591,8 +1538,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanIsNotEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'spontan',
@@ -1601,8 +1547,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1615,8 +1560,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1631,8 +1575,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1647,8 +1590,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1667,8 +1609,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayStartsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1681,8 +1622,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayEndsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1695,8 +1635,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'spontanDay',
@@ -1706,8 +1647,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'spontanDay',
@@ -1717,8 +1659,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      spontanDayIsEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> spontanDayIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'spontanDay',
@@ -1737,8 +1678,8 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      stageEqualTo(int value) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> stageEqualTo(
+      int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'stage',
@@ -1747,8 +1688,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      stageGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> stageGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -1761,8 +1701,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      stageLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> stageLessThan(
     int value, {
     bool include = false,
   }) {
@@ -1775,8 +1714,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      stageBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> stageBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -1793,8 +1731,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamEqualTo(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1807,8 +1744,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamGreaterThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1823,8 +1759,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamLessThan(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1839,8 +1774,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamBetween(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1859,8 +1793,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamStartsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1873,8 +1806,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamEndsWith(
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1887,8 +1819,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'team',
@@ -1898,8 +1831,9 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'team',
@@ -1909,8 +1843,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamIsEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'team',
@@ -1919,8 +1852,7 @@ extension PerformanceModelDbQueryFilter
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      teamIsNotEmpty() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> teamIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'team',
@@ -1935,15 +1867,14 @@ extension PerformanceModelDbQueryObject
 
 extension PerformanceModelDbQueryLinks
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QFilterCondition> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      group(FilterQuery<PerformanceGroupModelDb> q) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> group(
+      FilterQuery<PerformanceGroupModelDb> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'group');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition>
-      groupIsNull() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterFilterCondition> groupIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'group', 0, true, 0, true);
     });
@@ -1952,211 +1883,181 @@ extension PerformanceModelDbQueryLinks
 
 extension PerformanceModelDbQuerySortBy
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QSortBy> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByAge() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByAge() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'age', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByAgeDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByAgeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'age', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByCity() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByCity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByCityDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByCityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByGroupId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByGroupId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupId', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByGroupIdDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByGroupIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupId', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByIsFavourite() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByIsFavourite() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isFavourite', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByIsFavouriteDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByIsFavouriteDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isFavourite', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByLeague() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByLeague() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'league', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByLeagueDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByLeagueDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'league', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPart() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPartDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPartDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformance() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformance() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performance', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformanceDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformanceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performance', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformanceDay() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformanceDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceDay', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformanceDayDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformanceDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceDay', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformanceId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformanceId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceId', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByPerformanceIdDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByPerformanceIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceId', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByProblem() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByProblem() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'problem', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByProblemDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByProblemDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'problem', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySearchableTeam() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySearchableTeam() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'searchableTeam', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySearchableTeamDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySearchableTeamDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'searchableTeam', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySpontan() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySpontan() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontan', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySpontanDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySpontanDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontan', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySpontanDay() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySpontanDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontanDay', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortBySpontanDayDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortBySpontanDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontanDay', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByStage() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByStage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'stage', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByStageDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByStageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'stage', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByTeam() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByTeam() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'team', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      sortByTeamDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> sortByTeamDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'team', Sort.desc);
     });
@@ -2165,225 +2066,193 @@ extension PerformanceModelDbQuerySortBy
 
 extension PerformanceModelDbQuerySortThenBy
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QSortThenBy> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByAge() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByAge() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'age', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByAgeDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByAgeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'age', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByCity() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByCity() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByCityDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByCityDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'city', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByGroupId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByGroupId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupId', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByGroupIdDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByGroupIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'groupId', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenById() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByIdDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByIsFavourite() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByIsFavourite() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isFavourite', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByIsFavouriteDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByIsFavouriteDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isFavourite', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByLeague() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByLeague() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'league', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByLeagueDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByLeagueDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'league', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPart() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPartDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPartDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'part', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformance() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformance() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performance', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformanceDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformanceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performance', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformanceDay() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformanceDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceDay', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformanceDayDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformanceDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceDay', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformanceId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformanceId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceId', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByPerformanceIdDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByPerformanceIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'performanceId', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByProblem() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByProblem() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'problem', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByProblemDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByProblemDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'problem', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySearchableTeam() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySearchableTeam() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'searchableTeam', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySearchableTeamDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySearchableTeamDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'searchableTeam', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySpontan() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySpontan() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontan', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySpontanDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySpontanDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontan', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySpontanDay() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySpontanDay() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontanDay', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenBySpontanDayDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenBySpontanDayDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'spontanDay', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByStage() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByStage() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'stage', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByStageDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByStageDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'stage', Sort.desc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByTeam() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByTeam() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'team', Sort.asc);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy>
-      thenByTeamDesc() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QAfterSortBy> thenByTeamDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'team', Sort.desc);
     });
@@ -2392,108 +2261,98 @@ extension PerformanceModelDbQuerySortThenBy
 
 extension PerformanceModelDbQueryWhereDistinct
     on QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> {
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByAge() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByAge() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'age');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByCity() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByCity() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'city');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByGroupId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByGroupId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'groupId');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByIsFavourite() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByIsFavourite() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isFavourite');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByLeague({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByLeague(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'league', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByPart() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByPart() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'part');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByPerformance({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByPerformance(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'performance', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByPerformanceDay({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByPerformanceDay(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'performanceDay',
-          caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'performanceDay', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByPerformanceId() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByPerformanceId() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'performanceId');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByProblem() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByProblem() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'problem');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctBySearchableTeam({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctBySearchableTeam(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'searchableTeam',
-          caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'searchableTeam', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctBySpontan({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctBySpontan(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'spontan', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctBySpontanDay({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctBySpontanDay(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'spontanDay', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByStage() {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByStage() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'stage');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct>
-      distinctByTeam({bool caseSensitive = true}) {
+  QueryBuilder<PerformanceModelDb, PerformanceModelDb, QDistinct> distinctByTeam(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'team', caseSensitive: caseSensitive);
     });
@@ -2526,8 +2385,7 @@ extension PerformanceModelDbQueryProperty
     });
   }
 
-  QueryBuilder<PerformanceModelDb, bool, QQueryOperations>
-      isFavouriteProperty() {
+  QueryBuilder<PerformanceModelDb, bool, QQueryOperations> isFavouriteProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isFavourite');
     });
@@ -2545,22 +2403,19 @@ extension PerformanceModelDbQueryProperty
     });
   }
 
-  QueryBuilder<PerformanceModelDb, String, QQueryOperations>
-      performanceProperty() {
+  QueryBuilder<PerformanceModelDb, String, QQueryOperations> performanceProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'performance');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, String, QQueryOperations>
-      performanceDayProperty() {
+  QueryBuilder<PerformanceModelDb, String, QQueryOperations> performanceDayProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'performanceDay');
     });
   }
 
-  QueryBuilder<PerformanceModelDb, int, QQueryOperations>
-      performanceIdProperty() {
+  QueryBuilder<PerformanceModelDb, int, QQueryOperations> performanceIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'performanceId');
     });
@@ -2572,8 +2427,7 @@ extension PerformanceModelDbQueryProperty
     });
   }
 
-  QueryBuilder<PerformanceModelDb, String, QQueryOperations>
-      searchableTeamProperty() {
+  QueryBuilder<PerformanceModelDb, String, QQueryOperations> searchableTeamProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'searchableTeam');
     });
@@ -2585,8 +2439,7 @@ extension PerformanceModelDbQueryProperty
     });
   }
 
-  QueryBuilder<PerformanceModelDb, String, QQueryOperations>
-      spontanDayProperty() {
+  QueryBuilder<PerformanceModelDb, String, QQueryOperations> spontanDayProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'spontanDay');
     });

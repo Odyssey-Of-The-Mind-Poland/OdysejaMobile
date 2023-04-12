@@ -15,7 +15,7 @@ extension GetProblemModelDbCollection on Isar {
 
 const ProblemModelDbSchema = CollectionSchema(
   name: r'ProblemModelDb',
-  id: -5217206525608770575,
+  id: 3,
   properties: {
     r'category': PropertySchema(
       id: 0,
@@ -51,7 +51,7 @@ const ProblemModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'number': IndexSchema(
-      id: 5012388430481709372,
+      id: 2,
       name: r'number',
       unique: false,
       replace: false,
@@ -118,8 +118,7 @@ P _problemModelDbDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (_ProblemModelDbcategoryValueEnumMap[
-              reader.readByteOrNull(offset)] ??
+      return (_ProblemModelDbcategoryValueEnumMap[reader.readByteOrNull(offset)] ??
           ScheduleCategory.stage) as P;
     case 1:
       return (reader.readString(offset)) as P;
@@ -153,13 +152,11 @@ List<IsarLinkBase<dynamic>> _problemModelDbGetLinks(ProblemModelDb object) {
   return [];
 }
 
-void _problemModelDbAttach(
-    IsarCollection<dynamic> col, Id id, ProblemModelDb object) {
+void _problemModelDbAttach(IsarCollection<dynamic> col, Id id, ProblemModelDb object) {
   object.id = id;
 }
 
-extension ProblemModelDbQueryWhereSort
-    on QueryBuilder<ProblemModelDb, ProblemModelDb, QWhere> {
+extension ProblemModelDbQueryWhereSort on QueryBuilder<ProblemModelDb, ProblemModelDb, QWhere> {
   QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -175,10 +172,8 @@ extension ProblemModelDbQueryWhereSort
   }
 }
 
-extension ProblemModelDbQueryWhere
-    on QueryBuilder<ProblemModelDb, ProblemModelDb, QWhereClause> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idEqualTo(
-      Id id) {
+extension ProblemModelDbQueryWhere on QueryBuilder<ProblemModelDb, ProblemModelDb, QWhereClause> {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -187,8 +182,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idNotEqualTo(
-      Id id) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -210,8 +204,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idGreaterThan(
-      Id id,
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -220,8 +213,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idLessThan(
-      Id id,
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -246,8 +238,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> numberEqualTo(
-      int number) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> numberEqualTo(int number) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'number',
@@ -256,8 +247,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause>
-      numberNotEqualTo(int number) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> numberNotEqualTo(int number) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -291,8 +281,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause>
-      numberGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> numberGreaterThan(
     int number, {
     bool include = false,
   }) {
@@ -306,8 +295,7 @@ extension ProblemModelDbQueryWhere
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause>
-      numberLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterWhereClause> numberLessThan(
     int number, {
     bool include = false,
   }) {
@@ -341,8 +329,8 @@ extension ProblemModelDbQueryWhere
 
 extension ProblemModelDbQueryFilter
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QFilterCondition> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryEqualTo(ScheduleCategory value) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> categoryEqualTo(
+      ScheduleCategory value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'category',
@@ -351,8 +339,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> categoryGreaterThan(
     ScheduleCategory value, {
     bool include = false,
   }) {
@@ -365,8 +352,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> categoryLessThan(
     ScheduleCategory value, {
     bool include = false,
   }) {
@@ -379,8 +365,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryBetween(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> categoryBetween(
     ScheduleCategory lower,
     ScheduleCategory upper, {
     bool includeLower = true,
@@ -397,8 +382,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      idIsNull() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'id',
@@ -406,8 +390,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      idIsNotNull() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'id',
@@ -415,8 +398,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idEqualTo(
-      Id? value) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -425,8 +407,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      idGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idGreaterThan(
     Id? value, {
     bool include = false,
   }) {
@@ -439,8 +420,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      idLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> idLessThan(
     Id? value, {
     bool include = false,
   }) {
@@ -470,8 +450,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameEqualTo(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -484,8 +463,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -500,8 +478,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -516,8 +493,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameBetween(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -536,8 +512,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameStartsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -550,8 +525,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameEndsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -564,8 +538,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'name',
@@ -575,8 +549,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameMatches(String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'name',
@@ -586,8 +560,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameIsEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -596,8 +569,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      nameIsNotEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
@@ -606,8 +578,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      numberEqualTo(int value) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> numberEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'number',
@@ -616,8 +587,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      numberGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> numberGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -630,8 +600,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      numberLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> numberLessThan(
     int value, {
     bool include = false,
   }) {
@@ -644,8 +613,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      numberBetween(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> numberBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -662,8 +630,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolEqualTo(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -676,8 +643,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -692,8 +658,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -708,8 +673,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolBetween(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -728,8 +692,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolStartsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -742,8 +705,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolEndsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -756,8 +718,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'symbol',
@@ -767,8 +729,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolMatches(String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'symbol',
@@ -778,8 +740,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolIsEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'symbol',
@@ -788,8 +749,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      symbolIsNotEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> symbolIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'symbol',
@@ -798,8 +758,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleEqualTo(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -812,8 +771,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleGreaterThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -828,8 +786,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleLessThan(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -844,8 +801,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleBetween(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -864,8 +820,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleStartsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -878,8 +833,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleEndsWith(
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -892,8 +846,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'title',
@@ -903,8 +857,8 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleMatches(String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'title',
@@ -914,8 +868,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleIsEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'title',
@@ -924,8 +877,7 @@ extension ProblemModelDbQueryFilter
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      titleIsNotEmpty() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition> titleIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'title',
@@ -941,16 +893,14 @@ extension ProblemModelDbQueryObject
 extension ProblemModelDbQueryLinks
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QFilterCondition> {}
 
-extension ProblemModelDbQuerySortBy
-    on QueryBuilder<ProblemModelDb, ProblemModelDb, QSortBy> {
+extension ProblemModelDbQuerySortBy on QueryBuilder<ProblemModelDb, ProblemModelDb, QSortBy> {
   QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortByCategory() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'category', Sort.asc);
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      sortByCategoryDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortByCategoryDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'category', Sort.desc);
     });
@@ -974,8 +924,7 @@ extension ProblemModelDbQuerySortBy
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      sortByNumberDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortByNumberDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'number', Sort.desc);
     });
@@ -987,8 +936,7 @@ extension ProblemModelDbQuerySortBy
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      sortBySymbolDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortBySymbolDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'symbol', Sort.desc);
     });
@@ -1015,8 +963,7 @@ extension ProblemModelDbQuerySortThenBy
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      thenByCategoryDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> thenByCategoryDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'category', Sort.desc);
     });
@@ -1052,8 +999,7 @@ extension ProblemModelDbQuerySortThenBy
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      thenByNumberDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> thenByNumberDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'number', Sort.desc);
     });
@@ -1065,8 +1011,7 @@ extension ProblemModelDbQuerySortThenBy
     });
   }
 
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      thenBySymbolDesc() {
+  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> thenBySymbolDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'symbol', Sort.desc);
     });
@@ -1129,8 +1074,7 @@ extension ProblemModelDbQueryProperty
     });
   }
 
-  QueryBuilder<ProblemModelDb, ScheduleCategory, QQueryOperations>
-      categoryProperty() {
+  QueryBuilder<ProblemModelDb, ScheduleCategory, QQueryOperations> categoryProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'category');
     });

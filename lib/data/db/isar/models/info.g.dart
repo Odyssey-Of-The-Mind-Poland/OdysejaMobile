@@ -11,7 +11,7 @@ part of 'info.dart';
 
 const InfoModelDbSchema = Schema(
   name: r'InfoModelDb',
-  id: 4990734683231690946,
+  id: 11,
   properties: {
     r'city': PropertySchema(
       id: 0,
@@ -106,10 +106,8 @@ P _infoModelDbDeserializeProp<P>(
   }
 }
 
-extension InfoModelDbQueryFilter
-    on QueryBuilder<InfoModelDb, InfoModelDb, QFilterCondition> {
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> cityEqualTo(
-      int value) {
+extension InfoModelDbQueryFilter on QueryBuilder<InfoModelDb, InfoModelDb, QFilterCondition> {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> cityEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'city',
@@ -174,8 +172,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameGreaterThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -190,8 +187,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameLessThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -225,8 +221,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameStartsWith(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -239,8 +234,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameEndsWith(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -253,8 +247,8 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'infoName',
@@ -264,8 +258,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameMatches(
-      String pattern,
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -276,8 +269,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameIsEmpty() {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'infoName',
@@ -286,8 +278,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoNameIsNotEmpty() {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'infoName',
@@ -309,8 +300,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextGreaterThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -325,8 +315,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextLessThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -360,8 +349,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextStartsWith(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -374,8 +362,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextEndsWith(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -388,8 +375,8 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextContains(String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'infoText',
@@ -399,8 +386,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextMatches(
-      String pattern,
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -411,8 +397,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextIsEmpty() {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'infoText',
@@ -421,8 +406,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      infoTextIsNotEmpty() {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> infoTextIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'infoText',
@@ -431,8 +415,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> numberEqualTo(
-      int value) {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> numberEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'number',
@@ -441,8 +424,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      numberGreaterThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> numberGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -485,8 +467,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      sortNumberEqualTo(int value) {
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> sortNumberEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'sortNumber',
@@ -495,8 +476,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      sortNumberGreaterThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> sortNumberGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -509,8 +489,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      sortNumberLessThan(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> sortNumberLessThan(
     int value, {
     bool include = false,
   }) {
@@ -523,8 +502,7 @@ extension InfoModelDbQueryFilter
     });
   }
 
-  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition>
-      sortNumberBetween(
+  QueryBuilder<InfoModelDb, InfoModelDb, QAfterFilterCondition> sortNumberBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -542,5 +520,4 @@ extension InfoModelDbQueryFilter
   }
 }
 
-extension InfoModelDbQueryObject
-    on QueryBuilder<InfoModelDb, InfoModelDb, QFilterCondition> {}
+extension InfoModelDbQueryObject on QueryBuilder<InfoModelDb, InfoModelDb, QFilterCondition> {}

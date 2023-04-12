@@ -15,7 +15,7 @@ extension GetCityDataModelDbCollection on Isar {
 
 const CityDataModelDbSchema = CollectionSchema(
   name: r'CityDataModelDb',
-  id: -719440796596843741,
+  id: 20,
   properties: {
     r'cityId': PropertySchema(
       id: 0,
@@ -35,7 +35,7 @@ const CityDataModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'cityId': IndexSchema(
-      id: 7617551301138149930,
+      id: 21,
       name: r'cityId',
       unique: false,
       replace: false,
@@ -50,19 +50,19 @@ const CityDataModelDbSchema = CollectionSchema(
   },
   links: {
     r'stageIsarLinks': LinkSchema(
-      id: -2872438133364429224,
+      id: 15,
       name: r'stageIsarLinks',
       target: r'StageModelDb',
       single: false,
     ),
     r'performanceGroupIsarLinks': LinkSchema(
-      id: -8470396827598225880,
+      id: 14,
       name: r'performanceGroupIsarLinks',
       target: r'PerformanceGroupModelDb',
       single: false,
     ),
     r'infoIsarLinks': LinkSchema(
-      id: 3408283943511362216,
+      id: 13,
       name: r'infoIsarLinks',
       target: r'InfoGroupModelDb',
       single: false,
@@ -129,29 +129,18 @@ Id _cityDataModelDbGetId(CityDataModelDb object) {
 }
 
 List<IsarLinkBase<dynamic>> _cityDataModelDbGetLinks(CityDataModelDb object) {
-  return [
-    object.stageIsarLinks,
-    object.performanceGroupIsarLinks,
-    object.infoIsarLinks
-  ];
+  return [object.stageIsarLinks, object.performanceGroupIsarLinks, object.infoIsarLinks];
 }
 
-void _cityDataModelDbAttach(
-    IsarCollection<dynamic> col, Id id, CityDataModelDb object) {
+void _cityDataModelDbAttach(IsarCollection<dynamic> col, Id id, CityDataModelDb object) {
   object.id = id;
-  object.stageIsarLinks
-      .attach(col, col.isar.collection<StageModelDb>(), r'stageIsarLinks', id);
+  object.stageIsarLinks.attach(col, col.isar.collection<StageModelDb>(), r'stageIsarLinks', id);
   object.performanceGroupIsarLinks.attach(
-      col,
-      col.isar.collection<PerformanceGroupModelDb>(),
-      r'performanceGroupIsarLinks',
-      id);
-  object.infoIsarLinks.attach(
-      col, col.isar.collection<InfoGroupModelDb>(), r'infoIsarLinks', id);
+      col, col.isar.collection<PerformanceGroupModelDb>(), r'performanceGroupIsarLinks', id);
+  object.infoIsarLinks.attach(col, col.isar.collection<InfoGroupModelDb>(), r'infoIsarLinks', id);
 }
 
-extension CityDataModelDbQueryWhereSort
-    on QueryBuilder<CityDataModelDb, CityDataModelDb, QWhere> {
+extension CityDataModelDbQueryWhereSort on QueryBuilder<CityDataModelDb, CityDataModelDb, QWhere> {
   QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -169,8 +158,7 @@ extension CityDataModelDbQueryWhereSort
 
 extension CityDataModelDbQueryWhere
     on QueryBuilder<CityDataModelDb, CityDataModelDb, QWhereClause> {
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idEqualTo(
-      Id id) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -179,8 +167,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      idNotEqualTo(Id id) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -202,8 +189,8 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      idGreaterThan(Id id, {bool include = false}) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idGreaterThan(Id id,
+      {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
         IdWhereClause.greaterThan(lower: id, includeLower: include),
@@ -211,8 +198,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idLessThan(
-      Id id,
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -237,8 +223,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      cityIdEqualTo(int cityId) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> cityIdEqualTo(int cityId) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'cityId',
@@ -247,8 +232,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      cityIdNotEqualTo(int cityId) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> cityIdNotEqualTo(int cityId) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -282,8 +266,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      cityIdGreaterThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> cityIdGreaterThan(
     int cityId, {
     bool include = false,
   }) {
@@ -297,8 +280,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      cityIdLessThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> cityIdLessThan(
     int cityId, {
     bool include = false,
   }) {
@@ -312,8 +294,7 @@ extension CityDataModelDbQueryWhere
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause>
-      cityIdBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterWhereClause> cityIdBetween(
     int lowerCityId,
     int upperCityId, {
     bool includeLower = true,
@@ -333,8 +314,7 @@ extension CityDataModelDbQueryWhere
 
 extension CityDataModelDbQueryFilter
     on QueryBuilder<CityDataModelDb, CityDataModelDb, QFilterCondition> {
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityIdEqualTo(int value) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityIdEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'cityId',
@@ -343,8 +323,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityIdGreaterThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityIdGreaterThan(
     int value, {
     bool include = false,
   }) {
@@ -357,8 +336,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityIdLessThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityIdLessThan(
     int value, {
     bool include = false,
   }) {
@@ -371,8 +349,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityIdBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityIdBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -389,8 +366,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameEqualTo(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -403,8 +379,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameGreaterThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -419,8 +394,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameLessThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -435,8 +409,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -455,8 +428,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameStartsWith(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -469,8 +441,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameEndsWith(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -483,8 +454,9 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'cityName',
@@ -494,8 +466,9 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameMatches(String pattern, {bool caseSensitive = true}) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
         property: r'cityName',
@@ -505,8 +478,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameIsEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'cityName',
@@ -515,8 +487,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      cityNameIsNotEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> cityNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'cityName',
@@ -525,8 +496,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idIsNull() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
         property: r'id',
@@ -534,8 +504,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idIsNotNull() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
         property: r'id',
@@ -543,8 +512,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idEqualTo(Id? value) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idEqualTo(Id? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -553,8 +521,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idGreaterThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idGreaterThan(
     Id? value, {
     bool include = false,
   }) {
@@ -567,8 +534,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idLessThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idLessThan(
     Id? value, {
     bool include = false,
   }) {
@@ -581,8 +547,7 @@ extension CityDataModelDbQueryFilter
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      idBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> idBetween(
     Id? lower,
     Id? upper, {
     bool includeLower = true,
@@ -605,29 +570,27 @@ extension CityDataModelDbQueryObject
 
 extension CityDataModelDbQueryLinks
     on QueryBuilder<CityDataModelDb, CityDataModelDb, QFilterCondition> {
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      stageIsarLinks(FilterQuery<StageModelDb> q) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> stageIsarLinks(
+      FilterQuery<StageModelDb> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'stageIsarLinks');
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      stageIsarLinksLengthEqualTo(int length) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> stageIsarLinksLengthEqualTo(
+      int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'stageIsarLinks', length, true, length, true);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      stageIsarLinksIsEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> stageIsarLinksIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'stageIsarLinks', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      stageIsarLinksIsNotEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> stageIsarLinksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'stageIsarLinks', 0, false, 999999, true);
     });
@@ -653,21 +616,19 @@ extension CityDataModelDbQueryLinks
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      stageIsarLinksLengthBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> stageIsarLinksLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'stageIsarLinks', lower, includeLower, upper, includeUpper);
+      return query.linkLength(r'stageIsarLinks', lower, includeLower, upper, includeUpper);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      performanceGroupIsarLinks(FilterQuery<PerformanceGroupModelDb> q) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> performanceGroupIsarLinks(
+      FilterQuery<PerformanceGroupModelDb> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'performanceGroupIsarLinks');
     });
@@ -676,8 +637,7 @@ extension CityDataModelDbQueryLinks
   QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
       performanceGroupIsarLinksLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'performanceGroupIsarLinks', length, true, length, true);
+      return query.linkLength(r'performanceGroupIsarLinks', length, true, length, true);
     });
   }
 
@@ -691,8 +651,7 @@ extension CityDataModelDbQueryLinks
   QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
       performanceGroupIsarLinksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'performanceGroupIsarLinks', 0, false, 999999, true);
+      return query.linkLength(r'performanceGroupIsarLinks', 0, false, 999999, true);
     });
   }
 
@@ -702,8 +661,7 @@ extension CityDataModelDbQueryLinks
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'performanceGroupIsarLinks', 0, true, length, include);
+      return query.linkLength(r'performanceGroupIsarLinks', 0, true, length, include);
     });
   }
 
@@ -713,8 +671,7 @@ extension CityDataModelDbQueryLinks
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'performanceGroupIsarLinks', length, include, 999999, true);
+      return query.linkLength(r'performanceGroupIsarLinks', length, include, 999999, true);
     });
   }
 
@@ -726,41 +683,38 @@ extension CityDataModelDbQueryLinks
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'performanceGroupIsarLinks', lower, includeLower,
-          upper, includeUpper);
+      return query.linkLength(
+          r'performanceGroupIsarLinks', lower, includeLower, upper, includeUpper);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinks(FilterQuery<InfoGroupModelDb> q) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinks(
+      FilterQuery<InfoGroupModelDb> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'infoIsarLinks');
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinksLengthEqualTo(int length) {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinksLengthEqualTo(
+      int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'infoIsarLinks', length, true, length, true);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinksIsEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinksIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'infoIsarLinks', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinksIsNotEmpty() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinksIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'infoIsarLinks', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinksLengthLessThan(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinksLengthLessThan(
     int length, {
     bool include = false,
   }) {
@@ -779,44 +733,38 @@ extension CityDataModelDbQueryLinks
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
-      infoIsarLinksLengthBetween(
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition> infoIsarLinksLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'infoIsarLinks', lower, includeLower, upper, includeUpper);
+      return query.linkLength(r'infoIsarLinks', lower, includeLower, upper, includeUpper);
     });
   }
 }
 
-extension CityDataModelDbQuerySortBy
-    on QueryBuilder<CityDataModelDb, CityDataModelDb, QSortBy> {
+extension CityDataModelDbQuerySortBy on QueryBuilder<CityDataModelDb, CityDataModelDb, QSortBy> {
   QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> sortByCityId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityId', Sort.asc);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      sortByCityIdDesc() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> sortByCityIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityId', Sort.desc);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      sortByCityName() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> sortByCityName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityName', Sort.asc);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      sortByCityNameDesc() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> sortByCityNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityName', Sort.desc);
     });
@@ -831,22 +779,19 @@ extension CityDataModelDbQuerySortThenBy
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      thenByCityIdDesc() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> thenByCityIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityId', Sort.desc);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      thenByCityName() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> thenByCityName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityName', Sort.asc);
     });
   }
 
-  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy>
-      thenByCityNameDesc() {
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterSortBy> thenByCityNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'cityName', Sort.desc);
     });
