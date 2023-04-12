@@ -24,7 +24,12 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
     // TODO move to a separate bloc
     final result2 = await _repository.getProblems();
 
-    result.fold((l) => emit(CityDataError(l)),
-        (r) => result2.fold((l) => emit(CityDataError(l)), (r2) => emit(CityDataSuccess(r, r2))));
+    result.fold(
+      (l) => emit(CityDataError(l)),
+      (r) => result2.fold(
+        (l) => emit(CityDataError(l)),
+        (r2) => emit(CityDataSuccess(r, r2)),
+      ),
+    );
   }
 }

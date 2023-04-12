@@ -19,12 +19,10 @@ import 'data/api/api_service.dart' as _i3;
 import 'data/data_repository.dart' as _i11;
 import 'data/db/db_service.dart' as _i5;
 import 'domain/data_repository.dart' as _i10;
-import 'injectable.dart' as _i15;
+import 'injectable.dart' as _i14;
 import 'presentation/main_view/bloc/city_data_bloc.dart' as _i8;
-import 'presentation/main_view/bloc/update_favourites_bloc.dart' as _i14;
-import 'presentation/main_view/initial_screens/bloc/onboarding_bloc.dart'
-    as _i12;
-import 'presentation/main_view/initial_screens/bloc/update_bloc.dart' as _i13;
+import 'presentation/main_view/bloc/update_favourites_bloc.dart' as _i13;
+import 'presentation/main_view/initial_screens/bloc/update_bloc.dart' as _i12;
 import 'presentation/schedule_screen/bloc/schedule_search_bloc.dart' as _i7;
 
 const String _prod = 'prod';
@@ -70,14 +68,12 @@ Future<_i1.GetIt> init(
     ),
     registerFor: {_prod},
   );
-  gh.factory<_i12.OnboardingBloc>(
-      () => _i12.OnboardingBloc(gh<_i10.DataRepository>()));
-  gh.factory<_i13.UpdateBloc>(() => _i13.UpdateBloc(gh<_i10.DataRepository>()));
-  gh.factory<_i14.UpdateFavouritesBloc>(
-      () => _i14.UpdateFavouritesBloc(gh<_i10.DataRepository>()));
+  gh.factory<_i12.UpdateBloc>(() => _i12.UpdateBloc(gh<_i10.DataRepository>()));
+  gh.factory<_i13.UpdateFavouritesBloc>(
+      () => _i13.UpdateFavouritesBloc(gh<_i10.DataRepository>()));
   gh.factory<_i8.CityDataBloc>(
       () => _i8.CityDataBloc(gh<_i10.DataRepository>()));
   return getIt;
 }
 
-class _$RegisterModule extends _i15.RegisterModule {}
+class _$RegisterModule extends _i14.RegisterModule {}

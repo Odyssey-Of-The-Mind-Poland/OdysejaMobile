@@ -8,10 +8,8 @@ import 'package:odyssey_mobile/presentation/home_screen/home_screen.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_screens.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_screen.dart';
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/initial_screens.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/loading_screen.dart';
 import 'package:odyssey_mobile/presentation/main_view/initial_screens/splash_screen.dart';
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/welcome_screen.dart';
 import 'package:odyssey_mobile/presentation/main_view/main_view.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_screens.dart';
@@ -29,11 +27,7 @@ class AppRouter extends _$AppRouter {
   RouteType get defaultRouteType => const RouteType.adaptive();
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: InitialRoute.page, path: '/', maintainState: false, children: [
-      AutoRoute(page: SplashRoute.page, path: ''),
-      AutoRoute(page: WelcomeRoute.page),
-      AutoRoute(page: LoadingRoute.page),
-    ]),
+    AutoRoute(page: LoadingRoute.page, path: '/'),
     AutoRoute(page: MainRoute.page, children: [
       AutoRoute(page: HomeRoute.page, path: ''),
       AutoRoute(page: InfoRoutes.page, children: [

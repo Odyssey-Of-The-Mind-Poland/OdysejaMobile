@@ -10,7 +10,8 @@
 part of 'router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -18,18 +19,6 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const LoadingScreen(),
-      );
-    },
-    InitialRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InitialScreen(),
-      );
-    },
-    WelcomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const WelcomeScreen(),
       );
     },
     SplashRoute.name: (routeData) {
@@ -129,34 +118,6 @@ class LoadingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoadingRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [InitialScreen]
-class InitialRoute extends PageRouteInfo<void> {
-  const InitialRoute({List<PageRouteInfo>? children})
-      : super(
-          InitialRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'InitialRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [WelcomeScreen]
-class WelcomeRoute extends PageRouteInfo<void> {
-  const WelcomeRoute({List<PageRouteInfo>? children})
-      : super(
-          WelcomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'WelcomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

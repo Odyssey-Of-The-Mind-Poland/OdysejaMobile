@@ -29,13 +29,13 @@ class DataRepositoryImpl implements DataRepository {
 
   @override
   Future<Either<Failure, Unit>> updateData(
-      {bool forceUpdate = true, keepFavsOnUpdate = true}) async {
+      {bool forceUpdate = false, keepFavsOnUpdate = true}) async {
     try {
       final versionHttpResult = await _apiService.getVersion();
       final externalVersion = versionHttpResult.data['version'] as int;
       final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
-      if (true) {
+      if (forceUpdate || externalVersion > savedVersion) {
         final futures = await Future.wait([
           // _apiService.getCities(),
           _apiService.getInfo(),

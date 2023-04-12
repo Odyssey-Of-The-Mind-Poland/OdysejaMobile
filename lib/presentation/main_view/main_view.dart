@@ -9,6 +9,7 @@ import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/app/router.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
+import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 
 @RoutePage()
@@ -32,15 +33,26 @@ class _MainViewState extends State<MainView> {
         BlocProvider(
             create: (context) => getIt<ScheduleSearchBloc>(param1: context.read<CityDataBloc>())),
       ],
-      child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
-        listener: (context, state) {
-          if (state is UpdateFavouritesError) {
-            showSnackBar(
-              context: _scaffoldKey.currentContext ?? context,
-              text: state.failure.errorMessage,
-            );
-          }
-        },
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
+            listener: (context, state) {
+              if (state is UpdateFavouritesError) {
+                showSnackBar(
+                  context: _scaffoldKey.currentContext ?? context,
+                  text: state.failure.errorMessage,
+                );
+              }
+            },
+          ),
+          BlocListener<UpdateBloc, UpdateState>(
+            listener: (context, state) {
+              if (state is UpdateFinished) {
+                context.read<CityDataBloc>().add(const FetchCityData());
+              }
+            },
+          ),
+        ],
         child: AutoTabsScaffold(
             key: _scaffoldKey,
             routes: const [
@@ -58,11 +70,11 @@ class _MainViewState extends State<MainView> {
                 enablePaddingAnimation: false,
                 currentIndex: tabsRouter.activeIndex,
                 onTap: tabsRouter.setActiveIndex,
-                items: [
-                  DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
+                items: const [
+                  DotNavigationBarItem(icon: Icon(OotmIcons.home)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.info)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),
-                  DotNavigationBarItem(icon: Icon(OotmIcons.favEmpty)),
+                  DotNavigationBarItem(icon: Icon(Icons.favorite_outline)),
                 ],
               );
             }),

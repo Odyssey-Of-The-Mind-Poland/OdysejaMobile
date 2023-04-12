@@ -16,6 +16,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   final DataRepository _repository;
 
   Future<void> _startUpdateHandler(StartUpdateProcess event, Emitter<UpdateState> emit) async {
+    emit(const UpdateLoading());
     final result =
         await _repository.updateData(forceUpdate: event.forceUpdate, keepFavsOnUpdate: true);
     result.fold(

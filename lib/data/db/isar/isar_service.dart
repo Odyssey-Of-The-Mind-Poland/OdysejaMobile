@@ -26,14 +26,14 @@ class IsarDbService implements DbService {
   @override
   Future<void> init() async {
     try {
-      // final dir = await getApplicationSupportDirectory(); // path_provider package
+      final dir = await getApplicationSupportDirectory(); // path_provider package
       _isar = await Isar.open(
         _schemas,
-        directory: '/',
+        directory: dir.path,
         inspector: kDebugMode, // if you want to enable the inspector for debug builds
       );
     } catch (e) {
-      print('Isar initialization error: $e');
+      log('Isar initialization error: $e');
     }
   }
 
