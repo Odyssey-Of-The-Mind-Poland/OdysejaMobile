@@ -21,7 +21,7 @@ class _ScheduleListState extends State<ScheduleList> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       itemCount: widget.groups.length,
       itemBuilder: (_, i) => PerformanceGroupWidget(
         performanceGroup: widget.groups[i],
