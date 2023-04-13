@@ -33,7 +33,6 @@ class _PerformanceCardState extends State<PerformanceCard> {
 
   @override
   Widget build(BuildContext context) {
-    const double height = 56;
     return SwipeableTile.swipeToTriggerCard(
       key: Key(widget.performance.performanceId.toString()),
       color: AppColors.pureWhite,
@@ -46,10 +45,9 @@ class _PerformanceCardState extends State<PerformanceCard> {
       backgroundBuilder: (context, direction, progress) {
         if (direction == SwipeDirection.endToStart) {
           return SpontaneousWidget(
-              performance: widget.performance, secretWidth: widget.secretWidth, height: height);
+              performance: widget.performance, secretWidth: widget.secretWidth);
         } else if (direction == SwipeDirection.startToEnd) {
-          return FavWidget(isFavourite,
-              height: height, controller: progress, secretWidth: widget.secretWidth);
+          return FavWidget(isFavourite, controller: progress, secretWidth: widget.secretWidth);
         }
         return const SizedBox();
       },
@@ -70,8 +68,8 @@ class _PerformanceCardState extends State<PerformanceCard> {
                 widget.performance,
                 bloc: context.read<UpdateFavouritesBloc>(),
               )),
-          child: SizedBox(
-            height: height,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
               listenWhen: (_, c) =>
                   c is UpdateFavouritesSuccess &&
