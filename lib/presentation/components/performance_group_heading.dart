@@ -40,6 +40,6 @@ class PerformanceGroupHeading extends StatelessWidget {
   String get _problem => '${AppStrings.problem} ${pfGroup.problem}';
   String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pfGroup.age]}';
   String get _stage => '${AppStrings.stage} ${pfGroup.stage}';
-  String get _part => pfGroup.part == 1 ? AppStrings.partOne : AppStrings.partTwo;
+  String get _part => '${AppStrings.part} ${pfGroup.part}';
   String get _league => '${AppStrings.league} ${pfGroup.league}';
 }

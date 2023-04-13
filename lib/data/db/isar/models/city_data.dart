@@ -43,9 +43,9 @@ class CityDataModelDb extends CityData {
         if (cmp != 0) return cmp;
         cmp = a.league.compareTo(b.league);
         if (cmp != 0) return cmp;
-        cmp = a.stage.compareTo(b.stage);
+        cmp = a.part.compareTo(b.part);
         if (cmp != 0) return cmp;
-        return a.part.compareTo(b.part);
+        return a.stage.compareTo(b.stage);
       });
     infoGroups = infoIsarLinks.toList()..sort((a, b) => a.number.compareTo(b.number));
     stages = stageIsarLinks.toList()..sort((a, b) => a.number.compareTo(b.number));
