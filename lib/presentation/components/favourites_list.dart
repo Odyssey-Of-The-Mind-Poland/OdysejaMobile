@@ -32,7 +32,7 @@ class _FavouritesListState extends State<FavouritesList> with AutomaticKeepAlive
             groups = state.performanceGroups;
           }
           return ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             itemCount: groups.length,
             itemBuilder: (_, i) => FavouritesGroupWidget(
                 key: Key(groups[i].groupId.toString()),

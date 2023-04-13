@@ -16,6 +16,7 @@ class SpontaneousWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
+        margin: const EdgeInsets.all(1),
         alignment: Alignment.center,
         // -1 to hide the widget below upper layer.
         width: secretWidth,

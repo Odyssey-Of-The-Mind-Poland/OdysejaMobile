@@ -86,7 +86,11 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PerformanceGroupHeading(widget.performanceGroup, categoryEntity: widget.categoryEntity),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: PerformanceGroupHeading(widget.performanceGroup,
+                categoryEntity: widget.categoryEntity),
+          ),
           AnimatedList(
             key: _listKey,
             initialItemCount: performances.length,

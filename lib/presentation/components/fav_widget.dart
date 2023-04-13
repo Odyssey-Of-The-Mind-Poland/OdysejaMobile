@@ -70,6 +70,7 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
             animation: animation,
             builder: (context, child) {
               return Container(
+                margin: const EdgeInsets.all(1),
                 alignment: Alignment.center,
                 width: widget.secretWidth,
                 decoration: BoxDecoration(

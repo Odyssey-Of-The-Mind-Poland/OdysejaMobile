@@ -45,7 +45,13 @@ class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PerformanceGroupHeading(widget.performanceGroup, categoryEntity: widget.categoryEntity),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: PerformanceGroupHeading(
+            widget.performanceGroup,
+            categoryEntity: widget.categoryEntity,
+          ),
+        ),
         AnimatedList(
           key: _listKey,
           initialItemCount: _initialCount,
