@@ -18,7 +18,10 @@ class InfoScreen extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               title: const Text(AppStrings.infoScreenTitle),
-              bottom: TabBar(tabs: data.infoGroups.map((e) => Text(e.name)).toList()),
+              bottom: TabBar(
+                  tabs: data.infoGroups
+                      .map((e) => Text(e.name, textAlign: TextAlign.center))
+                      .toList()),
             ),
             body: TabBarView(children: data.infoGroups.map((e) => InfoGrid(e)).toList()),
           ),

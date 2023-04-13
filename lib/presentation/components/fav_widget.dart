@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/ootm_icons.dart';
+// import 'package:odyssey_mobile/app/ootm_icons.dart';
 import 'package:odyssey_mobile/app/themes.dart';
 
 class FavWidget extends StatefulWidget {
@@ -7,14 +7,12 @@ class FavWidget extends StatefulWidget {
     this.isFavourite, {
     required this.controller,
     required this.secretWidth,
-    required this.height,
     Key? key,
   }) : super(key: key);
 
   final bool isFavourite;
   final AnimationController controller;
   final double secretWidth;
-  final double height;
 
   @override
   State<FavWidget> createState() => _FavWidgetState();
@@ -54,8 +52,6 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
       isDone = true;
       isFavourite = !isFavourite;
       controller.forward();
-      // setState(() {
-      // });
     }
   }
 
@@ -75,8 +71,6 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
             builder: (context, child) {
               return Container(
                 alignment: Alignment.center,
-                // -1 to hide the widget below upper layer.
-                height: widget.height - 1,
                 width: widget.secretWidth,
                 decoration: BoxDecoration(
                   color: animation.value,
@@ -93,8 +87,3 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
             }));
   }
 }
-// isDone
-//                       ? isFavourite
-//                           ? AppColors.primaryOrange
-//                           : AppColors.darkestBlue
-//                       : 
