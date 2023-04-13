@@ -44,24 +44,18 @@ abstract class HiveDataAdapter {
   }
 
   static List<InfoGroupHiveModel> _convertInfoCategories(
-      List<InfoCategoryModelApi> infoCategoryModels,
-      List<InfoModelApi> infoModels) {
+      List<InfoCategoryModelApi> infoCategoryModels, List<InfoModelApi> infoModels) {
     final List<InfoGroupHiveModel> infoGroups = [];
     for (final infoCategory in infoCategoryModels) {
-      infoGroups.add(InfoGroupHiveModel(
-          infoCategory.id,
-          infoCategory.name,
-          _convertInfo(
-              infoModels.where((e) => e.category == infoCategory.id))));
+      infoGroups.add(InfoGroupHiveModel(infoCategory.id, infoCategory.name,
+          _convertInfo(infoModels.where((e) => e.category == infoCategory.id))));
     }
     return infoGroups;
   }
 
-  static List<InfoHiveModel> _convertInfo(Iterable<InfoModelApi> apiModels) =>
-      apiModels
-          .map((e) =>
-              InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber))
-          .toList();
+  static List<InfoHiveModel> _convertInfo(Iterable<InfoModelApi> apiModels) => apiModels
+      .map((e) => InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber))
+      .toList();
 
   static List<StageHiveModel> convertStages(List<StageModelApi> apiModels) =>
       apiModels.map((e) => StageHiveModel(e.name, e.number)).toList();
@@ -71,11 +65,11 @@ abstract class HiveDataAdapter {
     required List<ProblemModelApi> problems,
     required List<StageModelApi> stages,
     required List<int> previousFavIds,
-    List<int> parts = const [0, 1, 2],
     required Box<PerformanceHiveModel> performanceBox,
   }) {
     final List<PerformanceGroupHiveModel> performanceGroups = [];
     final Set<String> days = performances.map((e) => e.performanceDay).toSet();
+    final Set<int> parts = performances.map((e) => e.part).toSet();
     final Set<String> leagues = performances.map((e) => e.league).toSet();
     int groupId = 0;
     // I cry when I look at it.
@@ -86,7 +80,7 @@ abstract class HiveDataAdapter {
             for (final league in leagues) {
               for (final day in days) {
                 final filteredPerformances = performances.where((e) =>
-                e.problem == problem.id &&
+                    e.problem == problem.id &&
                     e.stage == stage.number &&
                     e.age == division.number &&
                     e.part == part &&
@@ -101,8 +95,8 @@ abstract class HiveDataAdapter {
                       part: part,
                       league: league,
                       day: day,
-                      performancesHiveList: HiveList(performanceBox,
-                          objects: filteredPerformances.toList())));
+                      performancesHiveList:
+                          HiveList(performanceBox, objects: filteredPerformances.toList())));
                   ++groupId;
                 }
               }

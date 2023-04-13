@@ -14,13 +14,11 @@ import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 
 abstract class IsarDataAdapters {
-  static List<ProblemModelDb> convertProblems(
-          List<ProblemModelApi> apiModels) =>
-      apiModels
-          .map((e) => ProblemModelDb()
-            ..name = e.name
-            ..number = e.id)
-          .toList(growable: false);
+  static List<ProblemModelDb> convertProblems(List<ProblemModelApi> apiModels) => apiModels
+      .map((e) => ProblemModelDb()
+        ..name = e.name
+        ..number = e.id)
+      .toList(growable: false);
 
 // TODO Take city into account
   static List<CityDataModelDb> convertCityData({
@@ -38,8 +36,7 @@ abstract class IsarDataAdapters {
         ..id = city.id
         ..cityId = city.id
         ..cityName = city.name
-        ..infoIsarLinks
-            .addAll(convertInfoCategories(infoCategories, infoModels))
+        ..infoIsarLinks.addAll(convertInfoCategories(infoCategories, infoModels))
         ..performanceGroupIsarLinks.addAll(convertPerformanceGroups(
           performances: performanceModels,
           problems: problemModels,
@@ -55,8 +52,7 @@ abstract class IsarDataAdapters {
   }
 
   static List<InfoGroupModelDb> convertInfoCategories(
-      List<InfoCategoryModelApi> infoCategoryModels,
-      List<InfoModelApi> infoModels) {
+      List<InfoCategoryModelApi> infoCategoryModels, List<InfoModelApi> infoModels) {
     final List<InfoGroupModelDb> infoGroups = [];
 
     for (final infoCategory in infoCategoryModels) {
@@ -84,10 +80,11 @@ abstract class IsarDataAdapters {
     required List<ProblemModelApi> problems,
     required List<StageModelApi> stages,
     required List<int> previousFavIds,
-    List<int> parts = const [0, 1, 2],
+    // List<int> parts = const [0, 1, 2],
   }) {
     final List<PerformanceGroupModelDb> performanceGroups = [];
     final Set<String> days = performances.map((e) => e.performanceDay).toSet();
+    final Set<int> parts = performances.map((e) => e.part).toSet();
     final Set<String> leagues = performances.map((e) => e.league).toSet();
     int groupId = 0;
     // I really cry when I look at it.
@@ -112,8 +109,8 @@ abstract class IsarDataAdapters {
                     ..age = division.number
                     ..part = part
                     ..league = league
-                    ..performancesIsarLinks.addAll(convertPerformances(
-                        filteredPerformances, previousFavIds))
+                    ..performancesIsarLinks
+                        .addAll(convertPerformances(filteredPerformances, previousFavIds))
                     ..day = day);
                   ++groupId;
                 }
@@ -146,10 +143,9 @@ abstract class IsarDataAdapters {
           ..isFavourite = previousFavIds.contains(e.id),
       );
 
-  static List<StageModelDb> convertStages(List<StageModelApi> apiModels) =>
-      apiModels
-          .map((e) => StageModelDb()
-            ..number = e.number
-            ..name = e.name)
-          .toList(growable: false);
+  static List<StageModelDb> convertStages(List<StageModelApi> apiModels) => apiModels
+      .map((e) => StageModelDb()
+        ..number = e.number
+        ..name = e.name)
+      .toList(growable: false);
 }
