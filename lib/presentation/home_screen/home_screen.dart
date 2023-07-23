@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/asset_paths.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/asset_paths.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/presentation/components/image_tile.dart';
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {

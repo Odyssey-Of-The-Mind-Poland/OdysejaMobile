@@ -1,5 +1,5 @@
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
 // Overcomplicated solution for a simple problem, in case one day we'll become
 // crazy and 'll internationalize the app.

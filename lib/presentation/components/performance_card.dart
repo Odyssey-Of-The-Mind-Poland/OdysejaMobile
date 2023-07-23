@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/app/ootm_icons.dart';
+import 'package:odyssey_mobile/consts/ootm_icons.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/components/fav_widget.dart';
 import 'package:odyssey_mobile/presentation/components/performance_dialog.dart';
@@ -8,7 +8,7 @@ import 'package:odyssey_mobile/presentation/components/shadows.dart';
 import 'package:odyssey_mobile/presentation/components/spontaneous_widget.dart';
 import 'package:odyssey_mobile/presentation/helpers/dialog_helper.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:swipeable_tile/swipeable_tile.dart';
 

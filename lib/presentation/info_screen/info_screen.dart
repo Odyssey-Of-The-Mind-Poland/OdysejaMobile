@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_grid.dart';
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
 @RoutePage()
 class InfoScreen extends StatelessWidget {

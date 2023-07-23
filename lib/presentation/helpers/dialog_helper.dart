@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 
 Future<T?> showModalDialog<T>({required BuildContext context, required Widget widget}) =>
     showDialog<T>(

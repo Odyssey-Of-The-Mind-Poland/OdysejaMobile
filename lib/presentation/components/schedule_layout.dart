@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/favourites_list.dart';

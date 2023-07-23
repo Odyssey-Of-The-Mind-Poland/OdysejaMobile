@@ -1,4 +1,4 @@
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 
 class CohortHelper {
@@ -15,7 +15,6 @@ class CohortHelper {
 }
 
 class StringHelper {
-
   static String removeOrphans(String original) {
     var indexes = findSingleChars(original);
     String result = original;
@@ -31,8 +30,7 @@ class StringHelper {
     for (int i = 1; i < input.length - 1; i++) {
       if (input[i - 1] == ' ' && input[i + 1] == ' ') {
         indexes.add(i);
-      }
-      else if (input[i - 1] == ' ' && input[i + 2] == ' ') {
+      } else if (input[i - 1] == ' ' && input[i + 2] == ' ') {
         indexes.add(i + 1);
       }
     }

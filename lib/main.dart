@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/app/app.dart';
+import 'package:odyssey_mobile/presentation/app.dart';
 import 'package:odyssey_mobile/injectable.dart';
 import 'package:logging/logging.dart';
 import 'package:odyssey_mobile/presentation/core/bloc/state_observer.dart';

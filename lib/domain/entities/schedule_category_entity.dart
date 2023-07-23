@@ -1,4 +1,4 @@
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
 abstract class ScheduleCategoryEntity {
   /// Used for labels on category tiles on [ScheduleScreen].

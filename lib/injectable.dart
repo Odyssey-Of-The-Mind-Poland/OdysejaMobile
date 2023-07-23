@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:odyssey_mobile/app/app_config.dart';
+import 'package:odyssey_mobile/consts/app_config.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/data_repository.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';

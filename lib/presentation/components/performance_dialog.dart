@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:odyssey_mobile/app/ootm_icons.dart';
-import 'package:odyssey_mobile/app/strings.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/ootm_icons.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
