@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/domain/failure.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
-import 'package:odyssey_mobile/presentation/core/error_body.dart';
-import 'package:odyssey_mobile/presentation/core/loader.dart';
+import 'package:odyssey_mobile/presentation/components/error_body.dart';
+import 'package:odyssey_mobile/presentation/components/loader.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 
 class CityDataBuilder extends StatelessWidget {

@@ -11,7 +11,7 @@ import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
-import 'package:odyssey_mobile/data/other/divisions.dart';
+import 'package:odyssey_mobile/domain/divisions.dart';
 
 abstract class IsarDataAdapters {
   static List<ProblemModelDb> convertProblems(List<ProblemModelApi> apiModels) => apiModels

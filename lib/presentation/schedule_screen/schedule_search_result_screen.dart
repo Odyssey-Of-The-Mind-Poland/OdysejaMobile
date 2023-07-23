@@ -4,12 +4,12 @@ import 'package:odyssey_mobile/consts/ootm_icons.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/data/failures.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
+import 'package:odyssey_mobile/presentation/components/error_body.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/highlighted_performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
-import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
-import 'package:odyssey_mobile/presentation/core/error_body.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 @RoutePage()

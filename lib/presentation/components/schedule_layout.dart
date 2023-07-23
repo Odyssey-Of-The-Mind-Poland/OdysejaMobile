@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/presentation/components/empty_data.dart';
 import 'package:odyssey_mobile/presentation/components/favourites_list.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/schedule_list.dart';
-import 'package:odyssey_mobile/presentation/core/empty_data.dart';
 
 class ScheduleLayout extends StatelessWidget {
   const ScheduleLayout({

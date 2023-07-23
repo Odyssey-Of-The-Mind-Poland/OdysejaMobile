@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/presentation/core/error_body.dart';
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart';
+import 'package:odyssey_mobile/presentation/components/error_body.dart';
+import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
 
 @RoutePage()

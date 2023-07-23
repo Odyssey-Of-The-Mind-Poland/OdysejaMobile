@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
-import 'package:odyssey_mobile/presentation/core/error_body.dart';
+import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
+import 'package:odyssey_mobile/presentation/components/error_body.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_grid.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 

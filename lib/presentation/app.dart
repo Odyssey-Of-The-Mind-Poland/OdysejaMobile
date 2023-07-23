@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/injectable.dart';
-import 'package:odyssey_mobile/presentation/main_view/initial_screens/bloc/update_bloc.dart';
+import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
 
 class OdysseyMobile extends StatelessWidget {

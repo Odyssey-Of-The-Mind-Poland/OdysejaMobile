@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/consts/ootm_icons.dart';
-import 'package:odyssey_mobile/data/other/divisions.dart';
+import 'package:odyssey_mobile/domain/divisions.dart';
+import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_category_list.dart';
-import 'package:odyssey_mobile/presentation/core/city_data_builder.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
