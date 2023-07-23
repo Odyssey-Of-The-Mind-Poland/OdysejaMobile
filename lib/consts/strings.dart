@@ -9,6 +9,7 @@ abstract class AppStrings {
   static const String serverFailureMessage = 'Błąd serwera';
   static const String updateFailedFailureMessage =
       'Nie udało się połączyć z serwerem danych. Ale nie łam się, zapisaliśmy je już wcześniej :)';
+  static const String urlLauncherFailureMessage = 'Nie udało się otworzyć linku';
   // Age group labels
   static const String juniors = 'Juniorzy';
   static const String firstDivision = 'I - V klasa';

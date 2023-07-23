@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:html/dom.dart' as html;
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html_table/flutter_html_table.dart';
+import 'package:odyssey_mobile/data/services/url_service.dart';
 import 'package:odyssey_mobile/domain/entities/info.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatefulWidget {
@@ -26,22 +27,21 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
         body: SingleChildScrollView(
           child: Html(
             data: widget.info.infoText,
-            onLinkTap: (url, attributes, element) => _launchURL(url, context),
+            onLinkTap: _onLinkTap,
             extensions: const [TableHtmlExtension()],
           ),
         ));
   }
 
-  // // TODO move to a better place, refactor, etc
-  void _launchURL(String? url, BuildContext context) async {
+  Future<void> _onLinkTap(
+      String? url, Map<String, String> attributes, html.Element? element) async {
     if (url == null) {
       return;
     }
-    try {
-      final uri = Uri.parse(url);
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {
-      showSnackBar(context: context, text: 'Nie udało się otworzyć strony :(');
-    }
+    final result = await UrlLauncher.openUrl(url);
+    result.fold(
+      () => null,
+      (failure) => showSnackBar(context: context, text: failure.errorMessage),
+    );
   }
 }
