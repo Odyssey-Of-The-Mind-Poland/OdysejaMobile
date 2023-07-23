@@ -21,10 +21,17 @@ import 'package:path_provider/path_provider.dart';
 
 /// Requires awaiting [init] method.
 class IsarDbService implements DbService {
+  IsarDbService._create();
+
   late final Isar _isar;
 
-  @override
-  Future<void> init() async {
+  static Future<IsarDbService> create() async {
+    final service = IsarDbService._create();
+    await service._init();
+    return service;
+  }
+
+  Future<void> _init() async {
     try {
       final dir = await getApplicationDocumentsDirectory();
       _isar = await Isar.open(

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:rxdart/transformers.dart';
@@ -9,9 +8,8 @@ import 'package:rxdart/transformers.dart';
 part 'schedule_search_event.dart';
 part 'schedule_search_state.dart';
 
-@injectable
 class ScheduleSearchBloc extends Bloc<SearchEvent, ScheduleSearchState> {
-  ScheduleSearchBloc(@factoryParam this._cityBloc) : super(const SearchInitial()) {
+  ScheduleSearchBloc(this._cityBloc) : super(const SearchInitial()) {
     on<_ExternalRefresh>(_externalRefreshHandler);
     on<SearchRequest>(
       _searchRequestHandler,

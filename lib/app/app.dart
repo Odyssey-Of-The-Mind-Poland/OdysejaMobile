@@ -13,7 +13,7 @@ class OdysseyMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<UpdateBloc>()..add(const StartUpdateProcess()),
+      create: (context) => UpdateBloc(sl())..add(const StartUpdateProcess()),
       child: MaterialApp.router(
         // localizationsDelegates: AppLocalizations.localizationsDelegates,
         // supportedLocales: AppLocalizations.supportedLocales,

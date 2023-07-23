@@ -19,14 +19,20 @@ import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 
-/// Requires awaiting [init] method.
 class HiveDbService extends DbService {
+  HiveDbService._create();
+
   late final Box<CityDataHiveModel> _box;
   late final Box<ProblemHiveModel> _pandoraBox;
   late final Box<PerformanceHiveModel> _performanceBox;
 
-  @override
-  Future<void> init() async {
+  static Future<HiveDbService> create() async {
+    final service = HiveDbService._create();
+    await service._init();
+    return service;
+  }
+
+  Future<void> _init() async {
     try {
       Hive.registerAdapter(CityDataHiveModelAdapter());
       Hive.registerAdapter(InfoGroupHiveModelAdapter());

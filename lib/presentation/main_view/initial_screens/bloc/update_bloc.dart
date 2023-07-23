@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 
 part 'update_event.dart';
 part 'update_state.dart';
 
-@injectable
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   UpdateBloc(this._repository) : super(const UpdateLoading()) {
     on<StartUpdateProcess>(_startUpdateHandler);

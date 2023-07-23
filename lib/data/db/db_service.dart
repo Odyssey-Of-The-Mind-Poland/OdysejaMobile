@@ -9,8 +9,6 @@ import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 
 abstract class DbService {
-  Future<void> init();
-
   Future<void> createProblems(List<ProblemModelApi> problems);
 
   Future<List<ScheduleCategoryEntity>> readProblems();

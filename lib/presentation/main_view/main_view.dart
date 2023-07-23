@@ -28,10 +28,9 @@ class _MainViewState extends State<MainView> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => getIt<CityDataBloc>()..add(const FetchCityData()), lazy: false),
-        BlocProvider(create: (context) => getIt<UpdateFavouritesBloc>()),
-        BlocProvider(
-            create: (context) => getIt<ScheduleSearchBloc>(param1: context.read<CityDataBloc>())),
+            create: (context) => CityDataBloc(sl())..add(const FetchCityData()), lazy: false),
+        BlocProvider(create: (context) => UpdateFavouritesBloc(sl())),
+        BlocProvider(create: (context) => ScheduleSearchBloc(context.read<CityDataBloc>())),
       ],
       child: MultiBlocListener(
         listeners: [

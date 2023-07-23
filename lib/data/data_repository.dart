@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/data/api/api_error_handler.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/api/models/city.dart';
@@ -17,10 +16,14 @@ import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@Environment('prod')
-@Injectable(as: DataRepository)
 class DataRepositoryImpl implements DataRepository {
-  DataRepositoryImpl(this._apiService, this._sharedPrefs, this._dbService);
+  DataRepositoryImpl({
+    required ApiService apiService,
+    required SharedPreferences sharedPrefs,
+    required DbService dbService,
+  })  : _apiService = apiService,
+        _sharedPrefs = sharedPrefs,
+        _dbService = dbService;
 
   final ApiService _apiService;
   final SharedPreferences _sharedPrefs;
@@ -123,15 +126,4 @@ class DataRepositoryImpl implements DataRepository {
       return left(const DataBaseFailure());
     }
   }
-
-  // @override
-  // LoadingConfig get loadingConfig {
-  //   final showOnboarding = _sharedPrefs.getBool('showOnboarding') ?? true;
-  //   return LoadingConfig(showOnboarding: showOnboarding);
-  // }
-
-  // @override
-  // set updateLoadingConfig(LoadingConfig lc) {
-  //   _sharedPrefs.setBool('showOnboarding', lc.showOnboarding);
-  // }
 }

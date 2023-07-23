@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
@@ -9,7 +8,6 @@ import 'package:odyssey_mobile/domain/entities/performance.dart';
 part 'update_favourites_event.dart';
 part 'update_favourites_state.dart';
 
-@injectable
 class UpdateFavouritesBloc extends Bloc<UpdateFavouritesEvent, UpdateFavouritesState> {
   UpdateFavouritesBloc(this._repository) : super(const UpdateFavouritesInitial()) {
     on<Update>(_updateFavHandler);

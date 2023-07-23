@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
@@ -11,8 +10,7 @@ part 'favourites_event.dart';
 part 'favourites_state.dart';
 
 class FavouritesBloc extends Bloc<FavouritesEvent, CityDataState> {
-  FavouritesBloc(@factoryParam this._cityBloc, @factoryParam this._favUpdateBloc)
-      : super(const CityDataLoading()) {
+  FavouritesBloc(this._cityBloc, this._favUpdateBloc) : super(const CityDataLoading()) {
     on<_ExternalRefresh>(_externalRefreshHandler);
     on<_ExternalFavUpdate>(_externalFavUpdateHandler);
 
