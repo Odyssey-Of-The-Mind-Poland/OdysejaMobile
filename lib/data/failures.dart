@@ -1,10 +1,5 @@
 import 'package:odyssey_mobile/consts/strings.dart';
-
-abstract class Failure {
-  const Failure();
-
-  String get errorMessage;
-}
+import 'package:odyssey_mobile/domain/failure.dart';
 
 class DataBaseFailure extends Failure {
   const DataBaseFailure();
@@ -53,4 +48,11 @@ class Offline extends Failure {
 
   @override
   String get errorMessage => AppStrings.updateFailedFailureMessage;
+}
+
+class UrlLauncherFailure extends Failure {
+  const UrlLauncherFailure();
+
+  @override
+  String get errorMessage => AppStrings.urlLauncherFailureMessage;
 }

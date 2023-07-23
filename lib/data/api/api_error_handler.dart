@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:odyssey_mobile/domain/core/failures.dart';
+import 'package:odyssey_mobile/data/failures.dart';
+import 'package:odyssey_mobile/domain/failure.dart';
 
 /// API doesn't offer robust documentation nor standarization,
 /// so the method takes some liberties. Hopefully a subject to change.

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:odyssey_mobile/domain/core/failures.dart';
+import 'package:odyssey_mobile/domain/failure.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';

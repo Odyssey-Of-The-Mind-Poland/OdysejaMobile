@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/domain/core/failures.dart';
+import 'package:odyssey_mobile/domain/failure.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 
