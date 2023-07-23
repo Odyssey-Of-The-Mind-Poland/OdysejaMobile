@@ -17,6 +17,7 @@ import 'package:odyssey_mobile/data/db/isar/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:path_provider/path_provider.dart';
 
 /// Requires awaiting [init] method.
 class IsarDbService implements DbService {
@@ -25,7 +26,19 @@ class IsarDbService implements DbService {
   @override
   Future<void> init() async {
     try {
-      _isar = await Isar.open(_schemas, inspector: kDebugMode);
+      final dir = await getApplicationDocumentsDirectory();
+      _isar = await Isar.open(
+        [
+          CityDataModelDbSchema,
+          InfoGroupModelDbSchema,
+          PerformanceGroupModelDbSchema,
+          PerformanceModelDbSchema,
+          ProblemModelDbSchema,
+          StageModelDbSchema,
+        ],
+        directory: dir.path,
+        inspector: kDebugMode,
+      );
     } catch (e) {
       log('Isar initialization error: $e');
     }
@@ -100,12 +113,3 @@ class IsarDbService implements DbService {
     return _isar.writeTxn(() => _isar.clear());
   }
 }
-
-final List<CollectionSchema<dynamic>> _schemas = [
-  CityDataModelDbSchema,
-  InfoGroupModelDbSchema,
-  PerformanceGroupModelDbSchema,
-  PerformanceModelDbSchema,
-  ProblemModelDbSchema,
-  StageModelDbSchema,
-];

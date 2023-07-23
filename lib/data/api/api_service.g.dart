@@ -36,7 +36,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) =>
             PerformanceModelApi.fromJson(i as Map<String, dynamic>))
@@ -62,7 +66,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) => StageModelApi.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -87,7 +95,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) => ProblemModelApi.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -112,7 +124,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) => InfoModelApi.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -137,7 +153,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) =>
             InfoCategoryModelApi.fromJson(i as Map<String, dynamic>))
@@ -163,7 +183,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     var value = _result.data!
         .map((dynamic i) => CityModelApi.fromJson(i as Map<String, dynamic>))
         .toList();
@@ -188,7 +212,11 @@ class _ApiService implements ApiService {
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = _result.data;
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -205,5 +233,22 @@ class _ApiService implements ApiService {
       }
     }
     return requestOptions;
+  }
+
+  String _combineBaseUrls(
+    String dioBaseUrl,
+    String? baseUrl,
+  ) {
+    if (baseUrl == null || baseUrl.trim().isEmpty) {
+      return dioBaseUrl;
+    }
+
+    final url = Uri.parse(baseUrl);
+
+    if (url.isAbsolute) {
+      return url.toString();
+    }
+
+    return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }

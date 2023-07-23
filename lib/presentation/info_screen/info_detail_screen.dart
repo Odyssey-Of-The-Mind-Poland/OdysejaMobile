@@ -26,8 +26,8 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
         body: SingleChildScrollView(
           child: Html(
             data: widget.info.infoText,
-            customRenders: {tableMatcher(): tableRender()},
-            onLinkTap: (url, _, __, ___) => _launchURL(url, context),
+            onLinkTap: (url, attributes, element) => _launchURL(url, context),
+            extensions: const [TableHtmlExtension()],
           ),
         ));
   }
