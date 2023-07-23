@@ -50,10 +50,10 @@ class FavouritesEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text(AppStrings.click, style: AppTextStyles.bodyText2),
           SizedBox(height: 4),
           Text(AppStrings.addToFavsLabel, style: AppTextStyles.button),

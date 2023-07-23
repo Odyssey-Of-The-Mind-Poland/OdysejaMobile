@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.all(16),
                 height: 120,
-                child: Row(children: const [
+                child: const Row(children: [
                   Expanded(child: ImageTile(AssetPaths.sponsor1)),
                   SizedBox(width: 16),
                   Expanded(child: ImageTile(AssetPaths.sponsor5)),

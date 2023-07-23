@@ -76,7 +76,7 @@ class DataRepositoryImpl implements DataRepository {
       }
 
       return right(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final bool isSaved = (_sharedPrefs.getInt('version') ?? -1) != -1;
 
       if (isSaved && !forceUpdate) {
