@@ -11,7 +11,4 @@ class StageModelDb extends StageEntity {
   late int number;
   @override
   late String name;
-  @override
-  @enumerated
-  ScheduleCategory get category => ScheduleCategory.stage;
 }

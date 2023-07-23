@@ -24,9 +24,6 @@ class JuniorDivision implements DivisionEntity {
   String get symbol => 'J';
 
   @override
-  ScheduleCategory get category => ScheduleCategory.age;
-
-  @override
   String get title => AppStrings.juniorGroup;
 }
 
@@ -41,9 +38,6 @@ class FirstDivision implements DivisionEntity {
 
   @override
   String get symbol => 'I';
-
-  @override
-  ScheduleCategory get category => ScheduleCategory.age;
 
   @override
   String get title => '${AppStrings.age} $symbol';
@@ -62,9 +56,6 @@ class SecondDivision implements DivisionEntity {
   String get symbol => 'II';
 
   @override
-  ScheduleCategory get category => ScheduleCategory.age;
-
-  @override
   String get title => '${AppStrings.age} $symbol';
 }
 
@@ -81,9 +72,6 @@ class ThirdDivision implements DivisionEntity {
   String get symbol => 'III';
 
   @override
-  ScheduleCategory get category => ScheduleCategory.age;
-
-  @override
   String get title => '${AppStrings.age} $symbol';
 }
 
@@ -98,9 +86,6 @@ class ForthDivision implements DivisionEntity {
 
   @override
   String get symbol => 'IV';
-
-  @override
-  ScheduleCategory get category => ScheduleCategory.age;
 
   @override
   String get title => '${AppStrings.age} $symbol';

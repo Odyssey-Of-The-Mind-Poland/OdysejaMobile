@@ -11,7 +11,4 @@ class ProblemModelDb extends ProblemEntity {
   @override
   @Index()
   late int number;
-  @override
-  @enumerated
-  ScheduleCategory get category => ScheduleCategory.problem;
 }

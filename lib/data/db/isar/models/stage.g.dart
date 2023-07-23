@@ -17,29 +17,23 @@ const StageModelDbSchema = CollectionSchema(
   name: r'StageModelDb',
   id: -2611459647250073101,
   properties: {
-    r'category': PropertySchema(
-      id: 0,
-      name: r'category',
-      type: IsarType.byte,
-      enumMap: _StageModelDbcategoryEnumValueMap,
-    ),
     r'name': PropertySchema(
-      id: 1,
+      id: 0,
       name: r'name',
       type: IsarType.string,
     ),
     r'number': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'number',
       type: IsarType.long,
     ),
     r'symbol': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'symbol',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'title',
       type: IsarType.string,
     )
@@ -90,11 +84,10 @@ void _stageModelDbSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeByte(offsets[0], object.category.index);
-  writer.writeString(offsets[1], object.name);
-  writer.writeLong(offsets[2], object.number);
-  writer.writeString(offsets[3], object.symbol);
-  writer.writeString(offsets[4], object.title);
+  writer.writeString(offsets[0], object.name);
+  writer.writeLong(offsets[1], object.number);
+  writer.writeString(offsets[2], object.symbol);
+  writer.writeString(offsets[3], object.title);
 }
 
 StageModelDb _stageModelDbDeserialize(
@@ -105,8 +98,8 @@ StageModelDb _stageModelDbDeserialize(
 ) {
   final object = StageModelDb();
   object.id = id;
-  object.name = reader.readString(offsets[1]);
-  object.number = reader.readLong(offsets[2]);
+  object.name = reader.readString(offsets[0]);
+  object.number = reader.readLong(offsets[1]);
   return object;
 }
 
@@ -118,32 +111,17 @@ P _stageModelDbDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (_StageModelDbcategoryValueEnumMap[
-              reader.readByteOrNull(offset)] ??
-          ScheduleCategory.stage) as P;
+      return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
-    case 2:
       return (reader.readLong(offset)) as P;
-    case 3:
+    case 2:
       return (reader.readString(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
-
-const _StageModelDbcategoryEnumValueMap = {
-  'stage': 0,
-  'problem': 1,
-  'age': 2,
-};
-const _StageModelDbcategoryValueEnumMap = {
-  0: ScheduleCategory.stage,
-  1: ScheduleCategory.problem,
-  2: ScheduleCategory.age,
-};
 
 Id _stageModelDbGetId(StageModelDb object) {
   return object.id ?? Isar.autoIncrement;
@@ -337,62 +315,6 @@ extension StageModelDbQueryWhere
 
 extension StageModelDbQueryFilter
     on QueryBuilder<StageModelDb, StageModelDb, QFilterCondition> {
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryEqualTo(ScheduleCategory value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryGreaterThan(
-    ScheduleCategory value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryLessThan(
-    ScheduleCategory value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition>
-      categoryBetween(
-    ScheduleCategory lower,
-    ScheduleCategory upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'category',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
   QueryBuilder<StageModelDb, StageModelDb, QAfterFilterCondition> idIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -930,18 +852,6 @@ extension StageModelDbQueryLinks
 
 extension StageModelDbQuerySortBy
     on QueryBuilder<StageModelDb, StageModelDb, QSortBy> {
-  QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> sortByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.asc);
-    });
-  }
-
-  QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> sortByCategoryDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.desc);
-    });
-  }
-
   QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -993,18 +903,6 @@ extension StageModelDbQuerySortBy
 
 extension StageModelDbQuerySortThenBy
     on QueryBuilder<StageModelDb, StageModelDb, QSortThenBy> {
-  QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> thenByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.asc);
-    });
-  }
-
-  QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> thenByCategoryDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.desc);
-    });
-  }
-
   QueryBuilder<StageModelDb, StageModelDb, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -1068,12 +966,6 @@ extension StageModelDbQuerySortThenBy
 
 extension StageModelDbQueryWhereDistinct
     on QueryBuilder<StageModelDb, StageModelDb, QDistinct> {
-  QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'category');
-    });
-  }
-
   QueryBuilder<StageModelDb, StageModelDb, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1107,13 +999,6 @@ extension StageModelDbQueryProperty
   QueryBuilder<StageModelDb, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
-    });
-  }
-
-  QueryBuilder<StageModelDb, ScheduleCategory, QQueryOperations>
-      categoryProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'category');
     });
   }
 

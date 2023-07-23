@@ -17,29 +17,23 @@ const ProblemModelDbSchema = CollectionSchema(
   name: r'ProblemModelDb',
   id: -5217206525608770575,
   properties: {
-    r'category': PropertySchema(
-      id: 0,
-      name: r'category',
-      type: IsarType.byte,
-      enumMap: _ProblemModelDbcategoryEnumValueMap,
-    ),
     r'name': PropertySchema(
-      id: 1,
+      id: 0,
       name: r'name',
       type: IsarType.string,
     ),
     r'number': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'number',
       type: IsarType.long,
     ),
     r'symbol': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'symbol',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'title',
       type: IsarType.string,
     )
@@ -90,11 +84,10 @@ void _problemModelDbSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeByte(offsets[0], object.category.index);
-  writer.writeString(offsets[1], object.name);
-  writer.writeLong(offsets[2], object.number);
-  writer.writeString(offsets[3], object.symbol);
-  writer.writeString(offsets[4], object.title);
+  writer.writeString(offsets[0], object.name);
+  writer.writeLong(offsets[1], object.number);
+  writer.writeString(offsets[2], object.symbol);
+  writer.writeString(offsets[3], object.title);
 }
 
 ProblemModelDb _problemModelDbDeserialize(
@@ -105,8 +98,8 @@ ProblemModelDb _problemModelDbDeserialize(
 ) {
   final object = ProblemModelDb();
   object.id = id;
-  object.name = reader.readString(offsets[1]);
-  object.number = reader.readLong(offsets[2]);
+  object.name = reader.readString(offsets[0]);
+  object.number = reader.readLong(offsets[1]);
   return object;
 }
 
@@ -118,32 +111,17 @@ P _problemModelDbDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (_ProblemModelDbcategoryValueEnumMap[
-              reader.readByteOrNull(offset)] ??
-          ScheduleCategory.stage) as P;
+      return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
-    case 2:
       return (reader.readLong(offset)) as P;
-    case 3:
+    case 2:
       return (reader.readString(offset)) as P;
-    case 4:
+    case 3:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
-
-const _ProblemModelDbcategoryEnumValueMap = {
-  'stage': 0,
-  'problem': 1,
-  'age': 2,
-};
-const _ProblemModelDbcategoryValueEnumMap = {
-  0: ScheduleCategory.stage,
-  1: ScheduleCategory.problem,
-  2: ScheduleCategory.age,
-};
 
 Id _problemModelDbGetId(ProblemModelDb object) {
   return object.id ?? Isar.autoIncrement;
@@ -341,62 +319,6 @@ extension ProblemModelDbQueryWhere
 
 extension ProblemModelDbQueryFilter
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QFilterCondition> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryEqualTo(ScheduleCategory value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryGreaterThan(
-    ScheduleCategory value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryLessThan(
-    ScheduleCategory value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'category',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
-      categoryBetween(
-    ScheduleCategory lower,
-    ScheduleCategory upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'category',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
   QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterFilterCondition>
       idIsNull() {
     return QueryBuilder.apply(this, (query) {
@@ -943,19 +865,6 @@ extension ProblemModelDbQueryLinks
 
 extension ProblemModelDbQuerySortBy
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QSortBy> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      sortByCategoryDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.desc);
-    });
-  }
-
   QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
@@ -1009,19 +918,6 @@ extension ProblemModelDbQuerySortBy
 
 extension ProblemModelDbQuerySortThenBy
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QSortThenBy> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> thenByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.asc);
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy>
-      thenByCategoryDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'category', Sort.desc);
-    });
-  }
-
   QueryBuilder<ProblemModelDb, ProblemModelDb, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -1087,12 +983,6 @@ extension ProblemModelDbQuerySortThenBy
 
 extension ProblemModelDbQueryWhereDistinct
     on QueryBuilder<ProblemModelDb, ProblemModelDb, QDistinct> {
-  QueryBuilder<ProblemModelDb, ProblemModelDb, QDistinct> distinctByCategory() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'category');
-    });
-  }
-
   QueryBuilder<ProblemModelDb, ProblemModelDb, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1126,13 +1016,6 @@ extension ProblemModelDbQueryProperty
   QueryBuilder<ProblemModelDb, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
-    });
-  }
-
-  QueryBuilder<ProblemModelDb, ScheduleCategory, QQueryOperations>
-      categoryProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'category');
     });
   }
 

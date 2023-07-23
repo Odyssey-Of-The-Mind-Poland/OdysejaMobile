@@ -19,7 +19,6 @@ import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// Requires awaiting [init] method.
 class IsarDbService implements DbService {
   IsarDbService._create();
 
