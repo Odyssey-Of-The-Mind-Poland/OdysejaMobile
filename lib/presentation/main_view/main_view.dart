@@ -70,7 +70,7 @@ class _MainViewState extends State<MainView> {
                 enablePaddingAnimation: false,
                 currentIndex: tabsRouter.activeIndex,
                 onTap: tabsRouter.setActiveIndex,
-                items: const [
+                items: [
                   DotNavigationBarItem(icon: Icon(OotmIcons.home)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.info)),
                   DotNavigationBarItem(icon: Icon(OotmIcons.schedule)),
