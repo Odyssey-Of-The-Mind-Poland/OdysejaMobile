@@ -19,7 +19,7 @@ version: 2.0.0+17
 
 environment:
   sdk: ">=3.3.0 <4.0.0" # dart SDK
-  flutter: ">=3.19.2 <4.0.0"
+  flutter: ">=3.19.3 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -106,7 +106,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: false
+  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
