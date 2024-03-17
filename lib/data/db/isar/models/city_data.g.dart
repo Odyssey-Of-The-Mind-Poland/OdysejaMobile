@@ -15,7 +15,7 @@ extension GetCityDataModelDbCollection on Isar {
 
 const CityDataModelDbSchema = CollectionSchema(
   name: r'CityDataModelDb',
-  id: -719440796596843741,
+  id: 40796596843741,
   properties: {
     r'cityId': PropertySchema(
       id: 0,
@@ -35,7 +35,7 @@ const CityDataModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'cityId': IndexSchema(
-      id: 7617551301138149930,
+      id: 551301138149930,
       name: r'cityId',
       unique: false,
       replace: false,
@@ -50,25 +50,25 @@ const CityDataModelDbSchema = CollectionSchema(
   },
   links: {
     r'stageIsarLinks': LinkSchema(
-      id: -2872438133364429224,
+      id: 438133364429224,
       name: r'stageIsarLinks',
       target: r'StageModelDb',
       single: false,
     ),
     r'performanceGroupIsarLinks': LinkSchema(
-      id: -8470396827598225880,
+      id: 396827598225880,
       name: r'performanceGroupIsarLinks',
       target: r'PerformanceGroupModelDb',
       single: false,
     ),
     r'infoIsarLinks': LinkSchema(
-      id: 3408283943511362216,
+      id: 283943511362216,
       name: r'infoIsarLinks',
       target: r'InfoGroupModelDb',
       single: false,
     ),
     r'sponsorIsarLinks': LinkSchema(
-      id: 2834043992176695344,
+      id: 043992176695344,
       name: r'sponsorIsarLinks',
       target: r'SponsorModelDb',
       single: false,

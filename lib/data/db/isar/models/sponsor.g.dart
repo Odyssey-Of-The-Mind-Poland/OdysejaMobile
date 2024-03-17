@@ -15,7 +15,7 @@ extension GetSponsorModelDbCollection on Isar {
 
 const SponsorModelDbSchema = CollectionSchema(
   name: r'SponsorModelDb',
-  id: 2895015012701879546,
+  id: 015012701879546,
   properties: {
     r'column': PropertySchema(
       id: 0,
