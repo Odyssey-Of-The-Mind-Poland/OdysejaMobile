@@ -35,7 +35,7 @@ class DataRepositoryImpl implements DataRepository {
       final externalVersion = versionHttpResult.data['version'] as int;
       final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
-      if (true || externalVersion > savedVersion) {
+      if (forceUpdate || externalVersion > savedVersion) {
         final futures = await Future.wait([
           // _apiService.getCities(),
           _apiService.getInfo(),

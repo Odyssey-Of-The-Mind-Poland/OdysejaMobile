@@ -69,12 +69,16 @@ class CityDataModelDb extends CityData {
     }
 
     sponsors = groupedByRow.entries.map((entry) {
-      final sortedByColumn = entry.value..sort((a, b) => a.column.compareTo(b.column));
-      return sortedByColumn.map((sponsorModelDb) => SponsorModelApi(
-        id: sponsorModelDb.id!,
-        row: sponsorModelDb.row,
-        column: sponsorModelDb.column,
-      )).toList();
-    }).toList();
+      final sortedByColumn = entry.value
+        ..sort((a, b) => a.column.compareTo(b.column));
+      return sortedByColumn
+          .map((sponsorModelDb) => SponsorModelApi(
+                id: sponsorModelDb.sponsorId!,
+                row: sponsorModelDb.row,
+                column: sponsorModelDb.column,
+              ))
+          .toList();
+    }).toList()
+      ..sort((a, b) => a[0].row.compareTo(b[0].row));
   }
 }
