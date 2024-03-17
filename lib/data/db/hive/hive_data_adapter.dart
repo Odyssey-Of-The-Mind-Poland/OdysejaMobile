@@ -13,6 +13,8 @@ import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 
+import '../../api/models/sponsor.dart';
+
 // Adapt for multiple cities
 abstract class HiveDataAdapter {
   static List<CityDataHiveModel> convertCityData({
@@ -24,6 +26,7 @@ abstract class HiveDataAdapter {
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
     required Box<PerformanceHiveModel> performanceBox,
+    required List<List<SponsorModelApi>> sponsors
   }) {
     final List<CityDataHiveModel> citiesDb = [];
     for (final city in cityModels) {
@@ -38,6 +41,7 @@ abstract class HiveDataAdapter {
             previousFavIds: previousFavIds,
             performanceBox: performanceBox),
         stages: convertStages(stageModels),
+        sponsors: sponsors
       ));
     }
     return citiesDb;

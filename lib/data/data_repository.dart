@@ -8,6 +8,7 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/domain/core/failures.dart';
@@ -34,7 +35,7 @@ class DataRepositoryImpl implements DataRepository {
       final externalVersion = versionHttpResult.data['version'] as int;
       final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
-      if (forceUpdate || externalVersion > savedVersion) {
+      if (true || externalVersion > savedVersion) {
         final futures = await Future.wait([
           // _apiService.getCities(),
           _apiService.getInfo(),
@@ -42,6 +43,7 @@ class DataRepositoryImpl implements DataRepository {
           _apiService.getProblems(),
           _apiService.getSchedule(),
           _apiService.getStages(),
+          _apiService.getSponsor(),
         ], eagerError: true);
 
         /// TODO update for future editions with multiple cities
@@ -52,6 +54,7 @@ class DataRepositoryImpl implements DataRepository {
         final problems = futures[2] as List<ProblemModelApi>;
         final performances = futures[3] as List<PerformanceModelApi>;
         final stages = futures[4] as List<StageModelApi>;
+        final sponsors = futures[5] as List<List<SponsorModelApi>>;
 
         List<int> previousFavIds = [];
         if (savedVersion != -1 && keepFavsOnUpdate) {
@@ -69,6 +72,7 @@ class DataRepositoryImpl implements DataRepository {
           stageModels: stages,
           problemModels: problems,
           previousFavIds: previousFavIds,
+          sponsors: sponsors
         );
 
         // On full success, save version.

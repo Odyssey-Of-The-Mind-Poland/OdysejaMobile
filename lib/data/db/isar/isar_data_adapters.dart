@@ -3,6 +3,7 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/isar/models/city_data.dart';
 import 'package:odyssey_mobile/data/db/isar/models/info.dart';
@@ -13,30 +14,35 @@ import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 
+import 'models/sponsor.dart';
+
 abstract class IsarDataAdapters {
-  static List<ProblemModelDb> convertProblems(List<ProblemModelApi> apiModels) => apiModels
-      .map((e) => ProblemModelDb()
-        ..name = e.name
-        ..number = e.id)
-      .toList(growable: false);
+  static List<ProblemModelDb> convertProblems(
+          List<ProblemModelApi> apiModels) =>
+      apiModels
+          .map((e) => ProblemModelDb()
+            ..name = e.name
+            ..number = e.id)
+          .toList(growable: false);
 
 // TODO Take city into account
-  static List<CityDataModelDb> convertCityData({
-    required List<CityModelApi> cityModels,
-    required List<InfoModelApi> infoModels,
-    required List<InfoCategoryModelApi> infoCategories,
-    required List<PerformanceModelApi> performanceModels,
-    required List<StageModelApi> stageModels,
-    required List<ProblemModelApi> problemModels,
-    required List<int> previousFavIds,
-  }) {
+  static List<CityDataModelDb> convertCityData(
+      {required List<CityModelApi> cityModels,
+      required List<InfoModelApi> infoModels,
+      required List<InfoCategoryModelApi> infoCategories,
+      required List<PerformanceModelApi> performanceModels,
+      required List<StageModelApi> stageModels,
+      required List<ProblemModelApi> problemModels,
+      required List<int> previousFavIds,
+      required List<List<SponsorModelApi>> sponsors}) {
     List<CityDataModelDb> citiesDb = [];
     for (final city in cityModels) {
       final cityDb = CityDataModelDb()
         ..id = city.id
         ..cityId = city.id
         ..cityName = city.name
-        ..infoIsarLinks.addAll(convertInfoCategories(infoCategories, infoModels))
+        ..infoIsarLinks
+            .addAll(convertInfoCategories(infoCategories, infoModels))
         ..performanceGroupIsarLinks.addAll(convertPerformanceGroups(
           performances: performanceModels,
           problems: problemModels,
@@ -45,14 +51,16 @@ abstract class IsarDataAdapters {
         ))
         // Sneaky mistake during refactoring led to adding stages to a getter...
         // ..stages.addAll(convertStages(stageModels));
-        ..stageIsarLinks.addAll(convertStages(stageModels));
+        ..stageIsarLinks.addAll(convertStages(stageModels))
+        ..sponsorIsarLinks.addAll(convertSponsors(sponsors));
       citiesDb.add(cityDb);
     }
     return citiesDb;
   }
 
   static List<InfoGroupModelDb> convertInfoCategories(
-      List<InfoCategoryModelApi> infoCategoryModels, List<InfoModelApi> infoModels) {
+      List<InfoCategoryModelApi> infoCategoryModels,
+      List<InfoModelApi> infoModels) {
     final List<InfoGroupModelDb> infoGroups = [];
 
     for (final infoCategory in infoCategoryModels) {
@@ -109,8 +117,8 @@ abstract class IsarDataAdapters {
                     ..age = division.number
                     ..part = part
                     ..league = league
-                    ..performancesIsarLinks
-                        .addAll(convertPerformances(filteredPerformances, previousFavIds))
+                    ..performancesIsarLinks.addAll(convertPerformances(
+                        filteredPerformances, previousFavIds))
                     ..day = day);
                   ++groupId;
                 }
@@ -143,9 +151,26 @@ abstract class IsarDataAdapters {
           ..isFavourite = previousFavIds.contains(e.id),
       );
 
-  static List<StageModelDb> convertStages(List<StageModelApi> apiModels) => apiModels
-      .map((e) => StageModelDb()
-        ..number = e.number
-        ..name = e.name)
-      .toList(growable: false);
+  static List<StageModelDb> convertStages(List<StageModelApi> apiModels) =>
+      apiModels
+          .map((e) => StageModelDb()
+            ..number = e.number
+            ..name = e.name)
+          .toList(growable: false);
+
+  static List<SponsorModelDb> convertSponsors(
+      List<List<SponsorModelApi>> sponsorsApi) {
+    List<SponsorModelDb> sponsorsModelDbList = [];
+
+    for (List<SponsorModelApi> sponsorListApi in sponsorsApi) {
+      for (SponsorModelApi s in sponsorListApi) {
+        sponsorsModelDbList.add(SponsorModelDb()
+          ..sponsorId = s.id
+          ..row = s.row
+          ..column = s.column);
+      }
+    }
+
+    return sponsorsModelDbList;
+  }
 }

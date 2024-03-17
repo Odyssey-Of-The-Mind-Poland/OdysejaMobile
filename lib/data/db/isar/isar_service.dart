@@ -18,6 +18,9 @@ import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 
+import '../../api/models/sponsor.dart';
+import 'models/sponsor.dart';
+
 /// Requires awaiting [init] method.
 class IsarDbService implements DbService {
   late final Isar _isar;
@@ -52,6 +55,7 @@ class IsarDbService implements DbService {
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
+    required List<List<SponsorModelApi>> sponsors
   }) async {
     final data = IsarDataAdapters.convertCityData(
       cityModels: cityModels,
@@ -61,6 +65,7 @@ class IsarDbService implements DbService {
       stageModels: stageModels,
       problemModels: problemModels,
       previousFavIds: previousFavIds,
+      sponsors: sponsors
     );
     return _isar.writeTxnSync(() => _isar.cityDataModelDbs.putAllSync(data));
   }
@@ -108,4 +113,5 @@ final List<CollectionSchema<dynamic>> _schemas = [
   PerformanceModelDbSchema,
   ProblemModelDbSchema,
   StageModelDbSchema,
+  SponsorModelDbSchema
 ];

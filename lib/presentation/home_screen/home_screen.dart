@@ -5,6 +5,8 @@ import 'package:odyssey_mobile/app/themes.dart';
 import 'package:odyssey_mobile/presentation/components/image_tile.dart';
 import 'package:odyssey_mobile/app/strings.dart';
 
+import '../core/city_data_builder.dart';
+
 @RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,6 +14,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    return CityDataBuilder(
+        onData: (data, _) {
+          return buildScaffold(size);
+        }
+    );
+  }
+
+  Scaffold buildScaffold(Size size) {
     return Scaffold(
         backgroundColor: AppColors.shadowGrey,
         appBar: AppBar(title: const Text(AppStrings.homeScreenTitle), centerTitle: true),
