@@ -15,6 +15,7 @@ import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/problem.dart';
+import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
@@ -37,6 +38,7 @@ class HiveDbService extends DbService {
       Hive.registerAdapter(PerformanceHiveModelAdapter());
       Hive.registerAdapter(ProblemHiveModelAdapter());
       Hive.registerAdapter(StageHiveModelAdapter());
+      Hive.registerAdapter(SponsorHiveModelAdapter());
       await Hive.initFlutter();
 
       _box = await Hive.openBox('finalsBox', compactionStrategy: (entries, deletedEntries) {

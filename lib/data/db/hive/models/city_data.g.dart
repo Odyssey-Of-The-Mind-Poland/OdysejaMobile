@@ -22,9 +22,7 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
       infoGroups: (fields[2] as List).cast<InfoGroupHiveModel>(),
       performanceGroups: (fields[3] as List).cast<PerformanceGroupHiveModel>(),
       stages: (fields[4] as List).cast<StageHiveModel>(),
-      sponsors: (fields[5] as List)
-          .map((dynamic e) => (e as List).cast<SponsorModelApi>())
-          .toList(),
+      sponsorModel: (fields[5] as List).cast<SponsorHiveModel>(),
     );
   }
 
@@ -43,7 +41,7 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
       ..writeByte(4)
       ..write(obj.stages)
       ..writeByte(5)
-      ..write(obj.sponsors);
+      ..write(obj.sponsorModel);
   }
 
   @override
