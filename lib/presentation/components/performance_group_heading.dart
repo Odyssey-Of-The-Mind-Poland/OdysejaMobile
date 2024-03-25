@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
 class PerformanceGroupHeading extends StatelessWidget {
   const PerformanceGroupHeading(this.pfGroup, {this.categoryEntity, Key? key}) : super(key: key);
@@ -13,15 +13,15 @@ class PerformanceGroupHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     late String heading;
     if (categoryEntity != null) {
-      switch (categoryEntity!.category) {
-        case ScheduleCategory.stage:
+      switch (categoryEntity!) {
+        case StageEntity():
           // In this case we can check for Juniors either by age or problem/
           heading = pfGroup.age != 0 ? '$_problem • $_age' : AppStrings.juniors;
           break;
-        case ScheduleCategory.problem:
+        case ProblemEntity():
           heading = '$_stage • ${pfGroup.problem != 0 ? _age : AppStrings.juniors}';
           break;
-        case ScheduleCategory.age:
+        case DivisionEntity():
           heading = '$_stage • ${pfGroup.age != 0 ? _problem : AppStrings.juniors}';
           break;
       }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar({
   required BuildContext context,

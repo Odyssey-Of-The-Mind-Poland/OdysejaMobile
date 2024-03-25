@@ -36,12 +36,12 @@ class ScheduleFilterBloc extends Bloc<ScheduleFilterEvent, CityDataState> {
 
   List<PerformanceGroup> _filterGroups(_ExternalRefresh event) {
     final pfGroups = (event.state as CityDataSuccess).cityData.performanceGroups;
-    switch (_scheduleCategory.category) {
-      case ScheduleCategory.stage:
+    switch (_scheduleCategory) {
+      case StageEntity():
         return pfGroups.where((e) => e.stage == _scheduleCategory.number).toList();
-      case ScheduleCategory.problem:
+      case ProblemEntity():
         return pfGroups.where((e) => e.problem == _scheduleCategory.number).toList();
-      case ScheduleCategory.age:
+      case DivisionEntity():
         return pfGroups.where((e) => e.age == _scheduleCategory.number).toList();
     }
   }

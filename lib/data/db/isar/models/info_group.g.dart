@@ -7,29 +7,29 @@ part of 'info_group.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
 extension GetInfoGroupModelDbCollection on Isar {
   IsarCollection<InfoGroupModelDb> get infoGroupModelDbs => this.collection();
 }
 
-const InfoGroupModelDbSchema = CollectionSchema(
+final InfoGroupModelDbSchema = CollectionSchema(
   name: r'InfoGroupModelDb',
-  id: 460958706835118,
+  id: BigInt.parse("2560460958706835118").toInt(),
   properties: {
     r'infoList': PropertySchema(
-      id: 0,
+      id: BigInt.parse("0").toInt(),
       name: r'infoList',
       type: IsarType.objectList,
       target: r'InfoModelDb',
     ),
     r'name': PropertySchema(
-      id: 1,
+      id: BigInt.parse("1").toInt(),
       name: r'name',
       type: IsarType.string,
     ),
     r'number': PropertySchema(
-      id: 2,
+      id: BigInt.parse("2").toInt(),
       name: r'number',
       type: IsarType.long,
     )
@@ -45,7 +45,7 @@ const InfoGroupModelDbSchema = CollectionSchema(
   getId: _infoGroupModelDbGetId,
   getLinks: _infoGroupModelDbGetLinks,
   attach: _infoGroupModelDbAttach,
-  version: '3.0.5',
+  version: '3.1.0',
 );
 
 int _infoGroupModelDbEstimateSize(

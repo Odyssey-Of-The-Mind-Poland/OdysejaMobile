@@ -7,28 +7,28 @@ part of 'sponsor.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
 extension GetSponsorModelDbCollection on Isar {
   IsarCollection<SponsorModelDb> get sponsorModelDbs => this.collection();
 }
 
-const SponsorModelDbSchema = CollectionSchema(
+final SponsorModelDbSchema = CollectionSchema(
   name: r'SponsorModelDb',
-  id: 015012701879546,
+  id: BigInt.parse("2895015012701879546").toInt(),
   properties: {
     r'column': PropertySchema(
-      id: 0,
+      id: BigInt.parse("0").toInt(),
       name: r'column',
       type: IsarType.long,
     ),
     r'row': PropertySchema(
-      id: 1,
+      id: BigInt.parse("1").toInt(),
       name: r'row',
       type: IsarType.long,
     ),
     r'sponsorId': PropertySchema(
-      id: 2,
+      id: BigInt.parse("2").toInt(),
       name: r'sponsorId',
       type: IsarType.long,
     )
@@ -44,7 +44,7 @@ const SponsorModelDbSchema = CollectionSchema(
   getId: _sponsorModelDbGetId,
   getLinks: _sponsorModelDbGetLinks,
   attach: _sponsorModelDbAttach,
-  version: '3.0.5',
+  version: '3.1.0',
 );
 
 int _sponsorModelDbEstimateSize(

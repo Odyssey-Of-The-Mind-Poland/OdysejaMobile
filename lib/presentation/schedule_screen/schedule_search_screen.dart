@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/app/ootm_icons.dart';
-import 'package:odyssey_mobile/app/router.dart';
-import 'package:odyssey_mobile/app/strings.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/ootm_icons.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/presentation/components/search_field.dart';
 import 'package:odyssey_mobile/presentation/components/search_result_list_tile.dart';
+import 'package:odyssey_mobile/presentation/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 
 @RoutePage()

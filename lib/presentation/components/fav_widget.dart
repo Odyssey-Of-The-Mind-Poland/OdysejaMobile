@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:odyssey_mobile/app/ootm_icons.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 
 class FavWidget extends StatefulWidget {
   const FavWidget(

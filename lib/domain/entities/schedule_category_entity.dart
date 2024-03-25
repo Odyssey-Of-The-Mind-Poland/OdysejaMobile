@@ -1,6 +1,6 @@
-import 'package:odyssey_mobile/app/strings.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 
-abstract class ScheduleCategoryEntity {
+sealed class ScheduleCategoryEntity {
   /// Used for labels on category tiles on [ScheduleScreen].
 
   String get name;
@@ -13,19 +13,11 @@ abstract class ScheduleCategoryEntity {
 
   /// Used for page titles on [ScheduleDetailScreen].
   String get title;
-
-  /// Used for discrimination between subclasses / categories.
-  ScheduleCategory get category;
 }
-
-enum ScheduleCategory { stage, problem, age }
 
 abstract class StageEntity implements ScheduleCategoryEntity {
   @override
   String get symbol => '$number';
-
-  @override
-  ScheduleCategory get category => ScheduleCategory.stage;
 
   @override
   String get title => '${AppStrings.stage} $symbol';
@@ -34,9 +26,6 @@ abstract class StageEntity implements ScheduleCategoryEntity {
 abstract class ProblemEntity implements ScheduleCategoryEntity {
   @override
   String get symbol => number > 0 ? '$number' : 'J';
-
-  @override
-  ScheduleCategory get category => ScheduleCategory.problem;
 
   @override
   String get title => number > 0 ? '${AppStrings.problem} $symbol' : AppStrings.juniorProblem;

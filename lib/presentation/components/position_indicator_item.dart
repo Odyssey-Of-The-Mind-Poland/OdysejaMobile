@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 
 class PositionIndicatorItem extends StatelessWidget {
   const PositionIndicatorItem(this.active, {Key? key}) : super(key: key);

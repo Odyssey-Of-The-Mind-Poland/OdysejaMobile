@@ -12,7 +12,7 @@ import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
-import 'package:odyssey_mobile/data/other/divisions.dart';
+import 'package:odyssey_mobile/domain/divisions.dart';
 
 import '../../api/models/sponsor.dart';
 

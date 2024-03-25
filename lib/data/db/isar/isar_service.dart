@@ -7,6 +7,7 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/isar/isar_data_adapters.dart';
@@ -15,20 +16,38 @@ import 'package:odyssey_mobile/data/db/isar/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance.dart';
 import 'package:odyssey_mobile/data/db/isar/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/isar/models/problem.dart';
+import 'package:odyssey_mobile/data/db/isar/models/sponsor.dart';
 import 'package:odyssey_mobile/data/db/isar/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:path_provider/path_provider.dart';
 
-import '../../api/models/sponsor.dart';
-import 'models/sponsor.dart';
-
-/// Requires awaiting [init] method.
 class IsarDbService implements DbService {
+  IsarDbService._create();
+
   late final Isar _isar;
 
-  @override
-  Future<void> init() async {
+  static Future<IsarDbService> create() async {
+    final service = IsarDbService._create();
+    await service._init();
+    return service;
+  }
+
+  Future<void> _init() async {
     try {
-      _isar = await Isar.open(_schemas, inspector: kDebugMode);
+      final dir = await getApplicationDocumentsDirectory();
+      _isar = await Isar.open(
+        [
+          CityDataModelDbSchema,
+          InfoGroupModelDbSchema,
+          PerformanceGroupModelDbSchema,
+          PerformanceModelDbSchema,
+          ProblemModelDbSchema,
+          StageModelDbSchema,
+          SponsorModelDbSchema,
+        ],
+        directory: dir.path,
+        inspector: kDebugMode,
+      );
     } catch (e) {
       log('Isar initialization error: $e');
     }
@@ -55,18 +74,17 @@ class IsarDbService implements DbService {
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
-    required List<List<SponsorModelApi>> sponsors
+    required List<List<SponsorModelApi>> sponsors,
   }) async {
     final data = IsarDataAdapters.convertCityData(
-      cityModels: cityModels,
-      infoModels: infoModels,
-      infoCategories: infoCategories,
-      performanceModels: performanceModels,
-      stageModels: stageModels,
-      problemModels: problemModels,
-      previousFavIds: previousFavIds,
-      sponsors: sponsors
-    );
+        cityModels: cityModels,
+        infoModels: infoModels,
+        infoCategories: infoCategories,
+        performanceModels: performanceModels,
+        stageModels: stageModels,
+        problemModels: problemModels,
+        previousFavIds: previousFavIds,
+        sponsors: sponsors);
     return _isar.writeTxnSync(() => _isar.cityDataModelDbs.putAllSync(data));
   }
 
@@ -105,13 +123,3 @@ class IsarDbService implements DbService {
     return _isar.writeTxn(() => _isar.clear());
   }
 }
-
-final List<CollectionSchema<dynamic>> _schemas = [
-  CityDataModelDbSchema,
-  InfoGroupModelDbSchema,
-  PerformanceGroupModelDbSchema,
-  PerformanceModelDbSchema,
-  ProblemModelDbSchema,
-  StageModelDbSchema,
-  SponsorModelDbSchema
-];

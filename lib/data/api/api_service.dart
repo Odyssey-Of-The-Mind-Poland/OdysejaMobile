@@ -27,7 +27,7 @@ abstract class ApiService {
   Future<List<InfoModelApi>> getInfo();
 
   @GET('/sponsor')
-  Future<List<List<SponsorModelApi>>> getSponsor();
+  Future<HttpResponse> getSponsor({@Query('cityId') required int cityId});
 
   @GET('/info/category')
   Future<List<InfoCategoryModelApi>> getInfoCategories();

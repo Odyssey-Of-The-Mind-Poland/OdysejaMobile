@@ -56,10 +56,8 @@ class CityDataModelDb extends CityData {
         if (cmp != 0) return cmp;
         return a.stage.compareTo(b.stage);
       });
-    infoGroups = infoIsarLinks.toList()
-      ..sort((a, b) => a.number.compareTo(b.number));
-    stages = stageIsarLinks.toList()
-      ..sort((a, b) => a.number.compareTo(b.number));
+    infoGroups = infoIsarLinks.toList()..sort((a, b) => a.number.compareTo(b.number));
+    stages = stageIsarLinks.toList()..sort((a, b) => a.number.compareTo(b.number));
 
     final Map<int, List<SponsorModelDb>> groupedByRow = {};
 
@@ -69,11 +67,10 @@ class CityDataModelDb extends CityData {
     }
 
     sponsors = groupedByRow.entries.map((entry) {
-      final sortedByColumn = entry.value
-        ..sort((a, b) => a.column.compareTo(b.column));
+      final sortedByColumn = entry.value..sort((a, b) => a.column.compareTo(b.column));
       return sortedByColumn
           .map((sponsorModelDb) => SponsorModelApi(
-                id: sponsorModelDb.sponsorId!,
+                id: sponsorModelDb.sponsorId,
                 row: sponsorModelDb.row,
                 column: sponsorModelDb.column,
               ))

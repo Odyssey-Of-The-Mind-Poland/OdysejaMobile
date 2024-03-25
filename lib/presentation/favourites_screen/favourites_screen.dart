@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/app/strings.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/presentation/components/error_body.dart';
+import 'package:odyssey_mobile/presentation/components/loader.dart';
 import 'package:odyssey_mobile/presentation/components/schedule_layout.dart';
-import 'package:odyssey_mobile/presentation/core/error_body.dart';
-import 'package:odyssey_mobile/presentation/core/loader.dart';
 import 'package:odyssey_mobile/presentation/favourites_screen/bloc/favourites_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
@@ -50,10 +50,10 @@ class FavouritesEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text(AppStrings.click, style: AppTextStyles.bodyText2),
           SizedBox(height: 4),
           Text(AppStrings.addToFavsLabel, style: AppTextStyles.button),

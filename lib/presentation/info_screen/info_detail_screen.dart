@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:odyssey_mobile/data/failures.dart';
+import 'package:odyssey_mobile/data/services/url_service.dart';
 import 'package:odyssey_mobile/domain/entities/info.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatefulWidget {
@@ -33,16 +34,13 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
         ));
   }
 
-  // // TODO move to a better place, refactor, etc
   Future<bool> _launchURL(String? url, BuildContext context) async {
     if (url == null) {
-      return true;
+      return false;
     }
-    try {
-      final uri = Uri.parse(url);
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {
-      showSnackBar(context: context, text: 'Nie udało się otworzyć strony :(');
+    if (!await UrlLauncher.openUrl(url) && context.mounted) {
+      showSnackBar(context: context, text: const UrlLauncherFailure().errorMessage);
+      return false;
     }
     return true;
   }

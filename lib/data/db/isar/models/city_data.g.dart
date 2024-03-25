@@ -7,23 +7,23 @@ part of 'city_data.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
 extension GetCityDataModelDbCollection on Isar {
   IsarCollection<CityDataModelDb> get cityDataModelDbs => this.collection();
 }
 
-const CityDataModelDbSchema = CollectionSchema(
+final CityDataModelDbSchema = CollectionSchema(
   name: r'CityDataModelDb',
-  id: 40796596843741,
+  id: BigInt.parse("-719440796596843741").toInt(),
   properties: {
     r'cityId': PropertySchema(
-      id: 0,
+      id: BigInt.parse("0").toInt(),
       name: r'cityId',
       type: IsarType.long,
     ),
     r'cityName': PropertySchema(
-      id: 1,
+      id: BigInt.parse("1").toInt(),
       name: r'cityName',
       type: IsarType.string,
     )
@@ -35,7 +35,7 @@ const CityDataModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'cityId': IndexSchema(
-      id: 551301138149930,
+      id: BigInt.parse("7617551301138149930").toInt(),
       name: r'cityId',
       unique: false,
       replace: false,
@@ -50,25 +50,25 @@ const CityDataModelDbSchema = CollectionSchema(
   },
   links: {
     r'stageIsarLinks': LinkSchema(
-      id: 438133364429224,
+      id: BigInt.parse("-2872438133364429224").toInt(),
       name: r'stageIsarLinks',
       target: r'StageModelDb',
       single: false,
     ),
     r'performanceGroupIsarLinks': LinkSchema(
-      id: 396827598225880,
+      id: BigInt.parse("-8470396827598225880").toInt(),
       name: r'performanceGroupIsarLinks',
       target: r'PerformanceGroupModelDb',
       single: false,
     ),
     r'infoIsarLinks': LinkSchema(
-      id: 283943511362216,
+      id: BigInt.parse("3408283943511362216").toInt(),
       name: r'infoIsarLinks',
       target: r'InfoGroupModelDb',
       single: false,
     ),
     r'sponsorIsarLinks': LinkSchema(
-      id: 043992176695344,
+      id: BigInt.parse("2834043992176695344").toInt(),
       name: r'sponsorIsarLinks',
       target: r'SponsorModelDb',
       single: false,
@@ -78,7 +78,7 @@ const CityDataModelDbSchema = CollectionSchema(
   getId: _cityDataModelDbGetId,
   getLinks: _cityDataModelDbGetLinks,
   attach: _cityDataModelDbAttach,
-  version: '3.0.5',
+  version: '3.1.0',
 );
 
 int _cityDataModelDbEstimateSize(

@@ -7,49 +7,49 @@ part of 'performance_group.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
 extension GetPerformanceGroupModelDbCollection on Isar {
   IsarCollection<PerformanceGroupModelDb> get performanceGroupModelDbs =>
       this.collection();
 }
 
-const PerformanceGroupModelDbSchema = CollectionSchema(
+final PerformanceGroupModelDbSchema = CollectionSchema(
   name: r'PerformanceGroupModelDb',
-  id: 503603692017367,
+  id: BigInt.parse("2365503603692017367").toInt(),
   properties: {
     r'age': PropertySchema(
-      id: 0,
+      id: BigInt.parse("0").toInt(),
       name: r'age',
       type: IsarType.long,
     ),
     r'day': PropertySchema(
-      id: 1,
+      id: BigInt.parse("1").toInt(),
       name: r'day',
       type: IsarType.string,
     ),
     r'groupId': PropertySchema(
-      id: 2,
+      id: BigInt.parse("2").toInt(),
       name: r'groupId',
       type: IsarType.long,
     ),
     r'league': PropertySchema(
-      id: 3,
+      id: BigInt.parse("3").toInt(),
       name: r'league',
       type: IsarType.string,
     ),
     r'part': PropertySchema(
-      id: 4,
+      id: BigInt.parse("4").toInt(),
       name: r'part',
       type: IsarType.long,
     ),
     r'problem': PropertySchema(
-      id: 5,
+      id: BigInt.parse("5").toInt(),
       name: r'problem',
       type: IsarType.long,
     ),
     r'stage': PropertySchema(
-      id: 6,
+      id: BigInt.parse("6").toInt(),
       name: r'stage',
       type: IsarType.long,
     )
@@ -61,7 +61,7 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'stage_problem_age': IndexSchema(
-      id: 36620667929960,
+      id: BigInt.parse("857636620667929960").toInt(),
       name: r'stage_problem_age',
       unique: false,
       replace: false,
@@ -86,7 +86,7 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
   },
   links: {
     r'performancesIsarLinks': LinkSchema(
-      id: 486198716847802,
+      id: BigInt.parse("7856486198716847802").toInt(),
       name: r'performancesIsarLinks',
       target: r'PerformanceModelDb',
       single: false,
@@ -96,7 +96,7 @@ const PerformanceGroupModelDbSchema = CollectionSchema(
   getId: _performanceGroupModelDbGetId,
   getLinks: _performanceGroupModelDbGetLinks,
   attach: _performanceGroupModelDbAttach,
-  version: '3.0.5',
+  version: '3.1.0',
 );
 
 int _performanceGroupModelDbEstimateSize(

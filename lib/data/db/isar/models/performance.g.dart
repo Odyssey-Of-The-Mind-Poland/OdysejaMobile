@@ -7,89 +7,89 @@ part of 'performance.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
 extension GetPerformanceModelDbCollection on Isar {
   IsarCollection<PerformanceModelDb> get performanceModelDbs =>
       this.collection();
 }
 
-const PerformanceModelDbSchema = CollectionSchema(
+final PerformanceModelDbSchema = CollectionSchema(
   name: r'PerformanceModelDb',
-  id: 298924368622558,
+  id: BigInt.parse("-8863298924368622558").toInt(),
   properties: {
     r'age': PropertySchema(
-      id: 0,
+      id: BigInt.parse("0").toInt(),
       name: r'age',
       type: IsarType.long,
     ),
     r'city': PropertySchema(
-      id: 1,
+      id: BigInt.parse("1").toInt(),
       name: r'city',
       type: IsarType.long,
     ),
     r'groupId': PropertySchema(
-      id: 2,
+      id: BigInt.parse("2").toInt(),
       name: r'groupId',
       type: IsarType.long,
     ),
     r'isFavourite': PropertySchema(
-      id: 3,
+      id: BigInt.parse("3").toInt(),
       name: r'isFavourite',
       type: IsarType.bool,
     ),
     r'league': PropertySchema(
-      id: 4,
+      id: BigInt.parse("4").toInt(),
       name: r'league',
       type: IsarType.string,
     ),
     r'part': PropertySchema(
-      id: 5,
+      id: BigInt.parse("5").toInt(),
       name: r'part',
       type: IsarType.long,
     ),
     r'performance': PropertySchema(
-      id: 6,
+      id: BigInt.parse("6").toInt(),
       name: r'performance',
       type: IsarType.string,
     ),
     r'performanceDay': PropertySchema(
-      id: 7,
+      id: BigInt.parse("7").toInt(),
       name: r'performanceDay',
       type: IsarType.string,
     ),
     r'performanceId': PropertySchema(
-      id: 8,
+      id: BigInt.parse("8").toInt(),
       name: r'performanceId',
       type: IsarType.long,
     ),
     r'problem': PropertySchema(
-      id: 9,
+      id: BigInt.parse("9").toInt(),
       name: r'problem',
       type: IsarType.long,
     ),
     r'searchableTeam': PropertySchema(
-      id: 10,
+      id: BigInt.parse("10").toInt(),
       name: r'searchableTeam',
       type: IsarType.string,
     ),
     r'spontan': PropertySchema(
-      id: 11,
+      id: BigInt.parse("11").toInt(),
       name: r'spontan',
       type: IsarType.string,
     ),
     r'spontanDay': PropertySchema(
-      id: 12,
+      id: BigInt.parse("12").toInt(),
       name: r'spontanDay',
       type: IsarType.string,
     ),
     r'stage': PropertySchema(
-      id: 13,
+      id: BigInt.parse("13").toInt(),
       name: r'stage',
       type: IsarType.long,
     ),
     r'team': PropertySchema(
-      id: 14,
+      id: BigInt.parse("14").toInt(),
       name: r'team',
       type: IsarType.string,
     )
@@ -101,7 +101,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'city': IndexSchema(
-      id: 973393509345332,
+      id: BigInt.parse("2121973393509345332").toInt(),
       name: r'city',
       unique: false,
       replace: false,
@@ -114,7 +114,7 @@ const PerformanceModelDbSchema = CollectionSchema(
       ],
     ),
     r'isFavourite': IndexSchema(
-      id: 437635301440716,
+      id: BigInt.parse("-3295437635301440716").toInt(),
       name: r'isFavourite',
       unique: false,
       replace: false,
@@ -129,7 +129,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   },
   links: {
     r'group': LinkSchema(
-      id: 506625030253595,
+      id: BigInt.parse("4235506625030253595").toInt(),
       name: r'group',
       target: r'PerformanceGroupModelDb',
       single: true,
@@ -140,7 +140,7 @@ const PerformanceModelDbSchema = CollectionSchema(
   getId: _performanceModelDbGetId,
   getLinks: _performanceModelDbGetLinks,
   attach: _performanceModelDbAttach,
-  version: '3.0.5',
+  version: '3.1.0',
 );
 
 int _performanceModelDbEstimateSize(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 
 class Heading extends StatelessWidget {
   const Heading(this.text, {this.leftPadding = 0, Key? key}) : super(key: key);

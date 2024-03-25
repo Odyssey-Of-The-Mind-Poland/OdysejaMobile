@@ -6,6 +6,7 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_data_adapter.dart';
@@ -20,16 +21,20 @@ import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 
-import '../../api/models/sponsor.dart';
-
-/// Requires awaiting [init] method.
 class HiveDbService extends DbService {
+  HiveDbService._create();
+
   late final Box<CityDataHiveModel> _box;
   late final Box<ProblemHiveModel> _pandoraBox;
   late final Box<PerformanceHiveModel> _performanceBox;
 
-  @override
-  Future<void> init() async {
+  static Future<HiveDbService> create() async {
+    final service = HiveDbService._create();
+    await service._init();
+    return service;
+  }
+
+  Future<void> _init() async {
     try {
       Hive.registerAdapter(CityDataHiveModelAdapter());
       Hive.registerAdapter(InfoGroupHiveModelAdapter());
@@ -75,7 +80,7 @@ class HiveDbService extends DbService {
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
-    required List<List<SponsorModelApi>> sponsors
+    required List<List<SponsorModelApi>> sponsors,
   }) async {
     // save performances first, to allow them to work as HiveObjects
     final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
@@ -90,7 +95,7 @@ class HiveDbService extends DbService {
       problemModels: problemModels,
       previousFavIds: previousFavIds,
       performanceBox: _performanceBox,
-      sponsors: sponsors
+      sponsors: sponsors,
     );
     await _box.addAll(data);
     // for (final group in data.first.performanceGroups) {

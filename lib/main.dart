@@ -1,14 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
-import 'package:odyssey_mobile/app/app.dart';
+
+// import 'package:firebase_core/firebase_core.dart';
+
+// import 'package:odyssey_mobile/data/services/logger_service.dart';
+// import 'package:odyssey_mobile/firebase_options.dart';
+import 'package:odyssey_mobile/presentation/app.dart';
 import 'package:odyssey_mobile/injectable.dart';
-import 'package:logging/logging.dart';
-import 'package:odyssey_mobile/presentation/core/bloc/state_observer.dart';
 
 void main() async {
   LicenseRegistry.addLicense(() async* {
@@ -18,20 +17,10 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  await configureDependencies(Environment.prod);
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // LoggerService.create();
 
-  if (kDebugMode) {
-    Logger.root.level = Level.FINE; // defaults to Level.INFO
-    Logger.root.onRecord.listen((record) {
-      // ignore: avoid_print
-      print('${record.level.name}: ${record.time}: ${record.message}');
-    });
+  await sl.init();
 
-    Bloc.observer = StateObserver();
-  }
-
-  runZonedGuarded(
-    () => runApp(OdysseyMobile()),
-    (error, stack) {},
-  );
+  runApp(OdysseyMobile());
 }

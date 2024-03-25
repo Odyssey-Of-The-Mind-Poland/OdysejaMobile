@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
 import 'package:odyssey_mobile/data/api/api_error_handler.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/api/models/city.dart';
@@ -11,17 +10,23 @@ import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
-import 'package:odyssey_mobile/domain/core/failures.dart';
+import 'package:odyssey_mobile/data/failures.dart';
+import 'package:odyssey_mobile/domain/failure.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:retrofit/retrofit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@Environment('prod')
-@Injectable(as: DataRepository)
 class DataRepositoryImpl implements DataRepository {
-  DataRepositoryImpl(this._apiService, this._sharedPrefs, this._dbService);
+  DataRepositoryImpl({
+    required ApiService apiService,
+    required SharedPreferences sharedPrefs,
+    required DbService dbService,
+  })  : _apiService = apiService,
+        _sharedPrefs = sharedPrefs,
+        _dbService = dbService;
 
   final ApiService _apiService;
   final SharedPreferences _sharedPrefs;
@@ -43,7 +48,7 @@ class DataRepositoryImpl implements DataRepository {
           _apiService.getProblems(),
           _apiService.getSchedule(),
           _apiService.getStages(),
-          _apiService.getSponsor(),
+          _apiService.getSponsor(cityId: 0),
         ], eagerError: true);
 
         /// TODO update for future editions with multiple cities
@@ -54,7 +59,7 @@ class DataRepositoryImpl implements DataRepository {
         final problems = futures[2] as List<ProblemModelApi>;
         final performances = futures[3] as List<PerformanceModelApi>;
         final stages = futures[4] as List<StageModelApi>;
-        final sponsors = futures[5] as List<List<SponsorModelApi>>;
+        final sponsors = SponsorModelApi.fromHttpResponse(futures[5] as HttpResponse);
 
         List<int> previousFavIds = [];
         if (savedVersion != -1 && keepFavsOnUpdate) {
@@ -72,7 +77,7 @@ class DataRepositoryImpl implements DataRepository {
           stageModels: stages,
           problemModels: problems,
           previousFavIds: previousFavIds,
-          sponsors: sponsors
+          sponsors: sponsors,
         );
 
         // On full success, save version.
@@ -80,7 +85,7 @@ class DataRepositoryImpl implements DataRepository {
       }
 
       return right(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final bool isSaved = (_sharedPrefs.getInt('version') ?? -1) != -1;
 
       if (isSaved && !forceUpdate) {
@@ -127,15 +132,4 @@ class DataRepositoryImpl implements DataRepository {
       return left(const DataBaseFailure());
     }
   }
-
-  // @override
-  // LoadingConfig get loadingConfig {
-  //   final showOnboarding = _sharedPrefs.getBool('showOnboarding') ?? true;
-  //   return LoadingConfig(showOnboarding: showOnboarding);
-  // }
-
-  // @override
-  // set updateLoadingConfig(LoadingConfig lc) {
-  //   _sharedPrefs.setBool('showOnboarding', lc.showOnboarding);
-  // }
 }
