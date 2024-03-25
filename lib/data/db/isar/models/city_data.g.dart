@@ -15,7 +15,7 @@ extension GetCityDataModelDbCollection on Isar {
 
 const CityDataModelDbSchema = CollectionSchema(
   name: r'CityDataModelDb',
-  id: -719440796596843741,
+  id: 40796596843741,
   properties: {
     r'cityId': PropertySchema(
       id: 0,
@@ -35,7 +35,7 @@ const CityDataModelDbSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'cityId': IndexSchema(
-      id: 7617551301138149930,
+      id: 551301138149930,
       name: r'cityId',
       unique: false,
       replace: false,
@@ -50,21 +50,27 @@ const CityDataModelDbSchema = CollectionSchema(
   },
   links: {
     r'stageIsarLinks': LinkSchema(
-      id: -2872438133364429224,
+      id: 438133364429224,
       name: r'stageIsarLinks',
       target: r'StageModelDb',
       single: false,
     ),
     r'performanceGroupIsarLinks': LinkSchema(
-      id: -8470396827598225880,
+      id: 396827598225880,
       name: r'performanceGroupIsarLinks',
       target: r'PerformanceGroupModelDb',
       single: false,
     ),
     r'infoIsarLinks': LinkSchema(
-      id: 3408283943511362216,
+      id: 283943511362216,
       name: r'infoIsarLinks',
       target: r'InfoGroupModelDb',
+      single: false,
+    ),
+    r'sponsorIsarLinks': LinkSchema(
+      id: 043992176695344,
+      name: r'sponsorIsarLinks',
+      target: r'SponsorModelDb',
       single: false,
     )
   },
@@ -132,7 +138,8 @@ List<IsarLinkBase<dynamic>> _cityDataModelDbGetLinks(CityDataModelDb object) {
   return [
     object.stageIsarLinks,
     object.performanceGroupIsarLinks,
-    object.infoIsarLinks
+    object.infoIsarLinks,
+    object.sponsorIsarLinks
   ];
 }
 
@@ -148,6 +155,8 @@ void _cityDataModelDbAttach(
       id);
   object.infoIsarLinks.attach(
       col, col.isar.collection<InfoGroupModelDb>(), r'infoIsarLinks', id);
+  object.sponsorIsarLinks.attach(
+      col, col.isar.collection<SponsorModelDb>(), r'sponsorIsarLinks', id);
 }
 
 extension CityDataModelDbQueryWhereSort
@@ -789,6 +798,68 @@ extension CityDataModelDbQueryLinks
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(
           r'infoIsarLinks', lower, includeLower, upper, includeUpper);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinks(FilterQuery<SponsorModelDb> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'sponsorIsarLinks');
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'sponsorIsarLinks', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'sponsorIsarLinks', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'sponsorIsarLinks', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'sponsorIsarLinks', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'sponsorIsarLinks', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<CityDataModelDb, CityDataModelDb, QAfterFilterCondition>
+      sponsorIsarLinksLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'sponsorIsarLinks', lower, includeLower, upper, includeUpper);
     });
   }
 }

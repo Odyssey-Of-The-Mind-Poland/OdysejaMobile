@@ -4,6 +4,7 @@ import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/domain/entities/city_data.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
@@ -22,7 +23,8 @@ abstract class DbService {
       required List<PerformanceModelApi> performanceModels,
       required List<StageModelApi> stageModels,
       required List<ProblemModelApi> problemModels,
-      required List<int> previousFavIds});
+      required List<int> previousFavIds,
+      required List<List<SponsorModelApi>> sponsors});
 
   Future<CityData?> readCityData(int cityId);
 

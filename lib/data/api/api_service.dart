@@ -3,6 +3,7 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
+import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -24,6 +25,9 @@ abstract class ApiService {
 
   @GET('/info')
   Future<List<InfoModelApi>> getInfo();
+
+  @GET('/sponsor')
+  Future<List<List<SponsorModelApi>>> getSponsor();
 
   @GET('/info/category')
   Future<List<InfoCategoryModelApi>> getInfoCategories();

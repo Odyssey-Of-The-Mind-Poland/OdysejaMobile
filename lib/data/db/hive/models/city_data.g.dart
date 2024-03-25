@@ -22,13 +22,14 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
       infoGroups: (fields[2] as List).cast<InfoGroupHiveModel>(),
       performanceGroups: (fields[3] as List).cast<PerformanceGroupHiveModel>(),
       stages: (fields[4] as List).cast<StageHiveModel>(),
+      sponsorModel: (fields[5] as List).cast<SponsorHiveModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, CityDataHiveModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.cityId)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
       ..writeByte(3)
       ..write(obj.performanceGroups)
       ..writeByte(4)
-      ..write(obj.stages);
+      ..write(obj.stages)
+      ..writeByte(5)
+      ..write(obj.sponsorModel);
   }
 
   @override

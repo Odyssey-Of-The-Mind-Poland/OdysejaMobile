@@ -15,9 +15,12 @@ import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/problem.dart';
+import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+
+import '../../api/models/sponsor.dart';
 
 /// Requires awaiting [init] method.
 class HiveDbService extends DbService {
@@ -35,6 +38,7 @@ class HiveDbService extends DbService {
       Hive.registerAdapter(PerformanceHiveModelAdapter());
       Hive.registerAdapter(ProblemHiveModelAdapter());
       Hive.registerAdapter(StageHiveModelAdapter());
+      Hive.registerAdapter(SponsorHiveModelAdapter());
       await Hive.initFlutter();
 
       _box = await Hive.openBox('finalsBox', compactionStrategy: (entries, deletedEntries) {
@@ -71,6 +75,7 @@ class HiveDbService extends DbService {
     required List<StageModelApi> stageModels,
     required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
+    required List<List<SponsorModelApi>> sponsors
   }) async {
     // save performances first, to allow them to work as HiveObjects
     final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
@@ -85,6 +90,7 @@ class HiveDbService extends DbService {
       problemModels: problemModels,
       previousFavIds: previousFavIds,
       performanceBox: _performanceBox,
+      sponsors: sponsors
     );
     await _box.addAll(data);
     // for (final group in data.first.performanceGroups) {

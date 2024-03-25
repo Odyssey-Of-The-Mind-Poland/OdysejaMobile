@@ -11,7 +11,7 @@ part of 'info.dart';
 
 const InfoModelDbSchema = Schema(
   name: r'InfoModelDb',
-  id: 4990734683231690946,
+  id: 734683231690946,
   properties: {
     r'city': PropertySchema(
       id: 0,

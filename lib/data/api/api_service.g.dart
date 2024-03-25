@@ -120,6 +120,33 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<List<List<SponsorModelApi>>> getSponsor() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<List<SponsorModelApi>>>(Options(
+          method: 'GET',
+          headers: _headers,
+          extra: _extra,
+        )
+            .compose(
+          _dio.options,
+          '/sponsor?cityId=0',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => (i as List)
+        .map((item) => SponsorModelApi.fromJson(item as Map<String, dynamic>))
+        .toList())
+        .toList();
+    return value;
+  }
+
+  @override
   Future<List<InfoCategoryModelApi>> getInfoCategories() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

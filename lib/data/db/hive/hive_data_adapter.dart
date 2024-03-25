@@ -10,52 +10,61 @@ import 'package:odyssey_mobile/data/db/hive/models/info.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
+import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/data/other/divisions.dart';
 
+import '../../api/models/sponsor.dart';
+
 // Adapt for multiple cities
 abstract class HiveDataAdapter {
-  static List<CityDataHiveModel> convertCityData({
-    required List<CityModelApi> cityModels,
-    required List<InfoModelApi> infoModels,
-    required List<InfoCategoryModelApi> infoCategories,
-    required List<PerformanceHiveModel> performanceModels,
-    required List<StageModelApi> stageModels,
-    required List<ProblemModelApi> problemModels,
-    required List<int> previousFavIds,
-    required Box<PerformanceHiveModel> performanceBox,
-  }) {
+  static List<CityDataHiveModel> convertCityData(
+      {required List<CityModelApi> cityModels,
+      required List<InfoModelApi> infoModels,
+      required List<InfoCategoryModelApi> infoCategories,
+      required List<PerformanceHiveModel> performanceModels,
+      required List<StageModelApi> stageModels,
+      required List<ProblemModelApi> problemModels,
+      required List<int> previousFavIds,
+      required Box<PerformanceHiveModel> performanceBox,
+      required List<List<SponsorModelApi>> sponsors}) {
     final List<CityDataHiveModel> citiesDb = [];
     for (final city in cityModels) {
       citiesDb.add(CityDataHiveModel(
-        cityId: city.id,
-        cityName: city.name,
-        infoGroups: _convertInfoCategories(infoCategories, infoModels),
-        performanceGroups: convertPerformanceGroups(
-            performances: performanceModels,
-            problems: problemModels,
-            stages: stageModels,
-            previousFavIds: previousFavIds,
-            performanceBox: performanceBox),
-        stages: convertStages(stageModels),
-      ));
+          cityId: city.id,
+          cityName: city.name,
+          infoGroups: _convertInfoCategories(infoCategories, infoModels),
+          performanceGroups: convertPerformanceGroups(
+              performances: performanceModels,
+              problems: problemModels,
+              stages: stageModels,
+              previousFavIds: previousFavIds,
+              performanceBox: performanceBox),
+          stages: convertStages(stageModels),
+          sponsorModel: convertSponsors(sponsors)));
     }
     return citiesDb;
   }
 
   static List<InfoGroupHiveModel> _convertInfoCategories(
-      List<InfoCategoryModelApi> infoCategoryModels, List<InfoModelApi> infoModels) {
+      List<InfoCategoryModelApi> infoCategoryModels,
+      List<InfoModelApi> infoModels) {
     final List<InfoGroupHiveModel> infoGroups = [];
     for (final infoCategory in infoCategoryModels) {
-      infoGroups.add(InfoGroupHiveModel(infoCategory.id, infoCategory.name,
-          _convertInfo(infoModels.where((e) => e.category == infoCategory.id))));
+      infoGroups.add(InfoGroupHiveModel(
+          infoCategory.id,
+          infoCategory.name,
+          _convertInfo(
+              infoModels.where((e) => e.category == infoCategory.id))));
     }
     return infoGroups;
   }
 
-  static List<InfoHiveModel> _convertInfo(Iterable<InfoModelApi> apiModels) => apiModels
-      .map((e) => InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber))
-      .toList();
+  static List<InfoHiveModel> _convertInfo(Iterable<InfoModelApi> apiModels) =>
+      apiModels
+          .map((e) =>
+              InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber))
+          .toList();
 
   static List<StageHiveModel> convertStages(List<StageModelApi> apiModels) =>
       apiModels.map((e) => StageHiveModel(e.name, e.number)).toList();
@@ -95,8 +104,8 @@ abstract class HiveDataAdapter {
                       part: part,
                       league: league,
                       day: day,
-                      performancesHiveList:
-                          HiveList(performanceBox, objects: filteredPerformances.toList())));
+                      performancesHiveList: HiveList(performanceBox,
+                          objects: filteredPerformances.toList())));
                   ++groupId;
                 }
               }
@@ -123,4 +132,17 @@ abstract class HiveDataAdapter {
           stage: e.stage,
           team: e.team,
           isFavourite: previousFavIds.contains(e.id)));
+
+  static List<SponsorHiveModel> convertSponsors(
+      List<List<SponsorModelApi>> sponsors) {
+    List<SponsorHiveModel> sponsorsModelDbList = [];
+
+    for (List<SponsorModelApi> sponsorListApi in sponsors) {
+      for (SponsorModelApi s in sponsorListApi) {
+        sponsorsModelDbList.add(SponsorHiveModel(s.id, s.row, s.column));
+      }
+    }
+
+    return sponsorsModelDbList;
+  }
 }
