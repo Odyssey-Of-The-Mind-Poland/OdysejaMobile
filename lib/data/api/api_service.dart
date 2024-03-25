@@ -3,7 +3,6 @@ import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
-import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -31,17 +30,6 @@ abstract class ApiService {
 
   @GET('/info/category')
   Future<List<InfoCategoryModelApi>> getInfoCategories();
-
-  /// Not used.
-  // @GET('/age')
-  // Future<List<AgeGroup>> getAgeGroups();
-
-  /// Not used this year.
-  // @GET('/sponsor')
-  // Future<List<Sponsor>> getSponsors();
-
-  // @GET('/sponsor/{imageId}')
-  // Future<List<String>> getSponsorImage(@Path('imageId') int imageId);
 
   @GET('/city')
   Future<List<CityModelApi>> getCities();

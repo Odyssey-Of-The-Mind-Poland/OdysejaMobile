@@ -5,8 +5,7 @@ import 'package:odyssey_mobile/presentation/components/performance_group_widget.
 
 class ScheduleList extends StatefulWidget {
   const ScheduleList(
-      {Key? key, required this.groups, required this.categoryEntity, required this.secretWidth})
-      : super(key: key);
+      {super.key, required this.groups, required this.categoryEntity, required this.secretWidth});
 
   final List<PerformanceGroup> groups;
   final ScheduleCategoryEntity? categoryEntity;

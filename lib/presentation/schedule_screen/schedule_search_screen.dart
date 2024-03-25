@@ -11,7 +11,7 @@ import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search
 
 @RoutePage()
 class ScheduleSearchScreen extends StatefulWidget {
-  const ScheduleSearchScreen({Key? key}) : super(key: key);
+  const ScheduleSearchScreen({super.key});
 
   @override
   State<ScheduleSearchScreen> createState() => _ScheduleSearchScreenState();

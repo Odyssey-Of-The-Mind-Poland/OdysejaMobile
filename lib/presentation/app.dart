@@ -7,7 +7,7 @@ import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dar
 import 'package:odyssey_mobile/presentation/router.dart';
 
 class OdysseyMobile extends StatelessWidget {
-  OdysseyMobile({Key? key}) : super(key: key);
+  OdysseyMobile({super.key});
   final _appRouter = AppRouter();
 
   @override

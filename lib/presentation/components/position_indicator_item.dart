@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 
 class PositionIndicatorItem extends StatelessWidget {
-  const PositionIndicatorItem(this.active, {Key? key}) : super(key: key);
+  const PositionIndicatorItem(this.active, {super.key});
   final bool active;
   @override
   Widget build(BuildContext context) {

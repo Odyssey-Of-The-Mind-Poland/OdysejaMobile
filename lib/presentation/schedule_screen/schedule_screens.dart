@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class ScheduleScreens extends StatelessWidget {
-  const ScheduleScreens({Key? key}) : super(key: key);
+  const ScheduleScreens({super.key});
 
   @override
   Widget build(BuildContext context) => const AutoRouter();

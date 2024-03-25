@@ -7,8 +7,7 @@ class BasicBox extends StatelessWidget {
       required this.label,
       this.splashGradientPair,
       this.centerLabel = false,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   final VoidCallback onTap;
   final String label;

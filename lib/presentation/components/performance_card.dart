@@ -13,8 +13,7 @@ import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_blo
 import 'package:swipeable_tile/swipeable_tile.dart';
 
 class PerformanceCard extends StatefulWidget {
-  const PerformanceCard({required this.performance, required this.secretWidth, Key? key})
-      : super(key: key);
+  const PerformanceCard({required this.performance, required this.secretWidth, super.key});
   final Performance performance;
   final double secretWidth;
 

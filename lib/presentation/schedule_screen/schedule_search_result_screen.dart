@@ -14,7 +14,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 @RoutePage()
 class ScheduleSearchResultScreen extends StatefulWidget {
-  const ScheduleSearchResultScreen(this.performance, {Key? key}) : super(key: key);
+  const ScheduleSearchResultScreen(this.performance, {super.key});
   final Performance performance;
 
   @override

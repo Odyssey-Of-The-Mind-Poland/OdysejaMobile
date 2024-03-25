@@ -8,7 +8,7 @@ import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatefulWidget {
-  const InfoDetailScreen({required this.info, Key? key}) : super(key: key);
+  const InfoDetailScreen({required this.info, super.key});
   final Info info;
 
   @override

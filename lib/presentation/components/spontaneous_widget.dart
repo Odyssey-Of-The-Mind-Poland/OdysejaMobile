@@ -6,8 +6,8 @@ class SpontaneousWidget extends StatelessWidget {
   const SpontaneousWidget({
     required this.performance,
     required this.secretWidth,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Performance performance;
   final double secretWidth;

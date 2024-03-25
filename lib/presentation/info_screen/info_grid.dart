@@ -8,7 +8,7 @@ import 'package:odyssey_mobile/presentation/router.dart';
 import '../helpers/string_helpers.dart';
 
 class InfoGrid extends StatelessWidget {
-  const InfoGrid(this.infoGroup, {Key? key}) : super(key: key);
+  const InfoGrid(this.infoGroup, {super.key});
   final InfoCategory infoGroup;
 
   @override

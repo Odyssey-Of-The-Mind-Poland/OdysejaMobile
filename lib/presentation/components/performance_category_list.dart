@@ -8,8 +8,7 @@ import 'package:odyssey_mobile/presentation/router.dart';
 import '../helpers/string_helpers.dart';
 
 class PerformanceCategoryList extends StatelessWidget {
-  const PerformanceCategoryList({required this.parameters, this.splashGradientPair, Key? key})
-      : super(key: key);
+  const PerformanceCategoryList({required this.parameters, this.splashGradientPair, super.key});
   final List<ScheduleCategoryEntity> parameters;
   final SplashGradientPair? splashGradientPair;
   @override

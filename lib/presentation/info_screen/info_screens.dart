@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class InfoScreens extends StatelessWidget {
-  const InfoScreens({Key? key}) : super(key: key);
+  const InfoScreens({super.key});
 
   @override
   Widget build(BuildContext context) => const AutoRouter();

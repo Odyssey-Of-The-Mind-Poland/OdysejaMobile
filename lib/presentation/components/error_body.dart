@@ -5,7 +5,7 @@ import 'package:odyssey_mobile/presentation/components/loader.dart';
 import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
 
 class ErrorBody extends StatelessWidget {
-  const ErrorBody(this.failure, {Key? key}) : super(key: key);
+  const ErrorBody(this.failure, {super.key});
   final Failure failure;
 
   @override

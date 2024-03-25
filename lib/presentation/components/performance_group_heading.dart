@@ -5,7 +5,7 @@ import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 
 class PerformanceGroupHeading extends StatelessWidget {
-  const PerformanceGroupHeading(this.pfGroup, {this.categoryEntity, Key? key}) : super(key: key);
+  const PerformanceGroupHeading(this.pfGroup, {this.categoryEntity, super.key});
   final ScheduleCategoryEntity? categoryEntity;
   final PerformanceGroup pfGroup;
 

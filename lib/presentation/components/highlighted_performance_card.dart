@@ -6,10 +6,10 @@ import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 
 class HighlightedPerformanceCard extends StatefulWidget {
   const HighlightedPerformanceCard({
-    Key? key,
+    super.key,
     required this.performance,
     required this.secretWidth,
-  }) : super(key: key);
+  });
   final Performance performance;
   final double secretWidth;
 

@@ -5,8 +5,7 @@ import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 
 class SearchResultListTile extends StatelessWidget {
   const SearchResultListTile(
-      {Key? key, required this.onTap, required this.performance, required this.searchPhrase})
-      : super(key: key);
+      {super.key, required this.onTap, required this.performance, required this.searchPhrase});
   final VoidCallback onTap;
   final Performance performance;
   final String searchPhrase;

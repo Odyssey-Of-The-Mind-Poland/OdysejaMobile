@@ -8,7 +8,7 @@ import 'package:odyssey_mobile/presentation/components/loader.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 
 class CityDataBuilder extends StatelessWidget {
-  const CityDataBuilder({required this.onData, this.onFailure, Key? key}) : super(key: key);
+  const CityDataBuilder({required this.onData, this.onFailure, super.key});
   final Widget Function(CityData cityData, List<ScheduleCategoryEntity> problems) onData;
   final Widget Function(Failure failure)? onFailure;
 

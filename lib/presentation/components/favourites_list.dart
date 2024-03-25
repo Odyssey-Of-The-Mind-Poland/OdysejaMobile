@@ -6,7 +6,7 @@ import 'package:odyssey_mobile/presentation/favourites_screen/bloc/favourites_bl
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 
 class FavouritesList extends StatefulWidget {
-  const FavouritesList({Key? key, required this.secretWidth, this.day}) : super(key: key);
+  const FavouritesList({super.key, required this.secretWidth, this.day});
   final String? day;
   final double secretWidth;
 

@@ -12,7 +12,7 @@ import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_blo
 
 @RoutePage()
 class FavouritesScreen extends StatelessWidget {
-  const FavouritesScreen({Key? key}) : super(key: key);
+  const FavouritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class FavouritesScreen extends StatelessWidget {
 }
 
 class FavouritesEmpty extends StatelessWidget {
-  const FavouritesEmpty({Key? key}) : super(key: key);
+  const FavouritesEmpty({super.key});
 
   @override
   Widget build(BuildContext context) {

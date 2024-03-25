@@ -10,7 +10,7 @@ import 'package:odyssey_mobile/presentation/components/schedule_list.dart';
 
 class ScheduleLayout extends StatelessWidget {
   const ScheduleLayout({
-    Key? key,
+    super.key,
     required this.days,
     required this.performanceGroups,
     required this.title,
@@ -19,7 +19,7 @@ class ScheduleLayout extends StatelessWidget {
     this.actions = const [],
     this.inFavourites = false,
     this.emptyWidget = const EmptyData(),
-  }) : super(key: key);
+  });
 
   final bool centerTitle;
   final String title;

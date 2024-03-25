@@ -11,7 +11,7 @@ import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 
 class PerformanceDialog extends StatefulWidget {
-  const PerformanceDialog(this.performance, {required this.bloc, Key? key}) : super(key: key);
+  const PerformanceDialog(this.performance, {required this.bloc, super.key});
   final Performance performance;
   final UpdateFavouritesBloc bloc;
   @override
@@ -77,7 +77,7 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
-                  onPressed: context.router.pop,
+                  onPressed: context.router.maybePop,
                   style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.lightGrey, foregroundColor: AppColors.darkestGrey),
                   child: const Text(AppStrings.close),
@@ -92,7 +92,7 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
 }
 
 class _PerformanceDialogStaticInfo extends StatelessWidget {
-  const _PerformanceDialogStaticInfo(this.pf, {Key? key}) : super(key: key);
+  const _PerformanceDialogStaticInfo(this.pf);
   final Performance pf;
   @override
   Widget build(BuildContext context) {
@@ -128,9 +128,12 @@ class _PerformanceDialogStaticInfo extends StatelessWidget {
 }
 
 class _DayWidget extends StatelessWidget {
-  const _DayWidget(
-      {Key? key, required this.day, required this.hour, required this.type, required this.toolTip})
-      : super(key: key);
+  const _DayWidget({
+    required this.day,
+    required this.hour,
+    required this.type,
+    required this.toolTip,
+  });
 
   final String day;
   final String hour;

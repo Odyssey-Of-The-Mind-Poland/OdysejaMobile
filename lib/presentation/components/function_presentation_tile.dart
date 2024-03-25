@@ -3,13 +3,13 @@ import 'package:odyssey_mobile/consts/themes.dart';
 
 class FunctionPresentationTile extends StatelessWidget {
   const FunctionPresentationTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.subtitle,
     required this.iconColor,
     required this.iconBackgroundColor,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final String title;

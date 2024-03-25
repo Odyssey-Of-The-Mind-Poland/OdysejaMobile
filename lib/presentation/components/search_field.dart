@@ -6,13 +6,13 @@ import 'package:odyssey_mobile/consts/themes.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({
-    Key? key,
+    super.key,
     this.onChange,
     this.onSubmitted,
     this.onEditingComplete,
     this.initialValue,
     this.onClearCallback,
-  }) : super(key: key);
+  });
 
   final Function(String)? onChange;
   final Function(String)? onSubmitted;

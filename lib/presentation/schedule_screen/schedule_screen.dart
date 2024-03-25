@@ -11,7 +11,7 @@ import 'package:odyssey_mobile/presentation/router.dart';
 
 @RoutePage()
 class ScheduleScreen extends StatelessWidget {
-  const ScheduleScreen({Key? key}) : super(key: key);
+  const ScheduleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

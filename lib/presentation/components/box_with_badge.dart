@@ -5,12 +5,11 @@ import 'package:odyssey_mobile/consts/themes.dart';
 // Add disabled variant
 class BoxWithBadge extends StatelessWidget {
   const BoxWithBadge(
-      {Key? key,
+      {super.key,
       this.splashGradientPair,
       required this.onTap,
       required this.label,
-      required this.badgeLabel})
-      : super(key: key);
+      required this.badgeLabel});
   final VoidCallback onTap;
   final String label;
   final SplashGradientPair? splashGradientPair;

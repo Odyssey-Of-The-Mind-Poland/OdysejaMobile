@@ -4,8 +4,7 @@ import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 
 class ShowMoreButton extends StatefulWidget {
-  const ShowMoreButton({required this.expanded, required this.initialExpanded, Key? key})
-      : super(key: key);
+  const ShowMoreButton({required this.expanded, required this.initialExpanded, super.key});
   final ValueChanged<bool> expanded;
   final bool initialExpanded;
 

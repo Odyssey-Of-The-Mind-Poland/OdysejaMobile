@@ -7,8 +7,8 @@ class FavWidget extends StatefulWidget {
     this.isFavourite, {
     required this.controller,
     required this.secretWidth,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final bool isFavourite;
   final AnimationController controller;

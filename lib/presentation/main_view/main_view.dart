@@ -14,7 +14,7 @@ import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search
 
 @RoutePage()
 class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   @override
   State<MainView> createState() => _MainViewState();

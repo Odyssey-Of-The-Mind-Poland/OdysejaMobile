@@ -13,8 +13,8 @@ class FavouritesGroupWidget extends StatefulWidget {
     required this.performanceGroup,
     required this.secretWidth,
     this.categoryEntity,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final PerformanceGroup performanceGroup;
   final ScheduleCategoryEntity? categoryEntity;

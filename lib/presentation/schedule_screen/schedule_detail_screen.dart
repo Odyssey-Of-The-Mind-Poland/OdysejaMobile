@@ -11,7 +11,7 @@ import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_filter
 
 @RoutePage()
 class ScheduleDetailScreen extends StatelessWidget {
-  const ScheduleDetailScreen({required this.categoryEntity, Key? key}) : super(key: key);
+  const ScheduleDetailScreen({required this.categoryEntity, super.key});
   final ScheduleCategoryEntity categoryEntity;
   @override
   Widget build(BuildContext context) {

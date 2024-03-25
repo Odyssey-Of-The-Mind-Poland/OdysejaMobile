@@ -11,8 +11,8 @@ class PerformanceGroupWidget extends StatefulWidget {
     required this.performanceGroup,
     required this.secretWidth,
     this.categoryEntity,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final pfg_entity.PerformanceGroup performanceGroup;
   final ScheduleCategoryEntity? categoryEntity;
