@@ -31,6 +31,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />    
     </application>
         <queries>
             <!-- If your app opens https URLs -->
