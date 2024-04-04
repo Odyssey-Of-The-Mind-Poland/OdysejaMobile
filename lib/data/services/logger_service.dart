@@ -1,24 +1,28 @@
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:odyssey_mobile/presentation/state_observer.dart';
+import 'package:odyssey_mobile/firebase_options.dart';
 
 class LoggerService {
   LoggerService._();
   late final Logger logger;
 
-  static LoggerService create() {
+  static Future<LoggerService> create() async {
     final service = LoggerService._();
-    service._init();
+    await service._init();
     return service;
   }
 
-  _init() {
+  _init() async {
     logger = Logger('Łappka Omera');
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+    if (kDebugMode) {
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+    }
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
     PlatformDispatcher.instance.onError = (error, stack) {
@@ -26,15 +30,10 @@ class LoggerService {
       return true;
     };
 
-    if (kDebugMode) {
-      Bloc.observer = StateObserver();
-    }
-
-    if (kDebugMode) return;
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       log('${record.level.name}: ${record.time}: ${record.message}');
-      if (record.level != Level.SEVERE || kIsWeb) {
+      if (record.level != Level.SEVERE) {
         return;
       }
       FirebaseCrashlytics.instance.recordError(
@@ -46,11 +45,9 @@ class LoggerService {
     });
   }
 
-  static void logInfo(String message, Object? e, StackTrace? s) => Logger.root.info(message, e, s);
+  void logInfo(String message, [Object? e, StackTrace? s]) => Logger.root.info(message, e, s);
 
-  static void logWarning(String message, Object? e, StackTrace? s) =>
-      Logger.root.warning(message, e, s);
+  void logWarning(String message, [Object? e, StackTrace? s]) => Logger.root.warning(message, e, s);
 
-  static void logError(String message, Object? e, StackTrace? s) =>
-      Logger.root.severe(message, e, s);
+  void logError(String message, Object? e, StackTrace? s) => Logger.root.severe(message, e, s);
 }

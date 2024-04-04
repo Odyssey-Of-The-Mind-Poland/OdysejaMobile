@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:odyssey_mobile/consts/app_config.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
@@ -6,7 +7,9 @@ import 'package:odyssey_mobile/data/data_repository.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
 import 'package:odyssey_mobile/data/db/isar/isar_service.dart';
+import 'package:odyssey_mobile/data/services/logger_service.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
+import 'package:odyssey_mobile/presentation/state_observer.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +21,9 @@ enum Env { dev, prod }
 extension Initialize on GetIt {
   Future<void> init() async {
     const env = kDebugMode ? Env.dev : Env.prod;
+    if (!kIsWeb) {
+      sl.registerSingletonAsync(() => LoggerService.create());
+    }
 
     sl.registerSingleton<AppConfig>(env == Env.dev ? DevConfig() : ProductionConfig());
 
@@ -36,6 +42,10 @@ extension Initialize on GetIt {
             ),
         dependsOn: [SharedPreferences, DbService]);
     await sl.allReady(ignorePendingAsyncCreation: false);
+
+    if (kDebugMode && !kIsWeb) {
+      Bloc.observer = StateObserver(sl());
+    }
   }
 
   Dio get _dioInstance {
@@ -49,7 +59,7 @@ extension Initialize on GetIt {
     ));
     if (kDebugMode) {
       dio.interceptors.add(PrettyDioLogger(
-        responseBody: false,
+        responseBody: true,
         requestBody: false,
         requestHeader: false,
         responseHeader: false,
@@ -57,4 +67,16 @@ extension Initialize on GetIt {
     }
     return dio;
   }
+}
+
+extension MaybeGet on GetIt {
+  T? maybeGet<T extends Object>({
+    dynamic param1,
+    dynamic param2,
+    String? instanceName,
+    Type? type,
+  }) =>
+      isRegistered<T>()
+          ? get(instanceName: instanceName, param1: param1, param2: param2, type: type)
+          : null;
 }
