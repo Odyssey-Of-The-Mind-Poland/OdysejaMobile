@@ -155,9 +155,11 @@ class _DayWidget extends StatelessWidget {
           ),
           textStyle: AppTextStyles.subtitleWhite,
           padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.symmetric(horizontal: 40),
           triggerMode: TooltipTriggerMode.tap,
           message: toolTip,
           verticalOffset: 48,
+          showDuration: const Duration(seconds: 2),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

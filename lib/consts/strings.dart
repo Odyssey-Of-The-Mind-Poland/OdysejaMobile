@@ -78,8 +78,9 @@ abstract class AppStrings {
   static const String spontan = 'Spontan';
 
   static const String performanceToolTip =
-      'Drużyna powinna się\nzgłosić na 20-30 minut\nprzed występem!';
-  static const String spontanToolTip = 'Drużyna powinna się\nzgłosić na 30 minut\nprzed czasem!';
+      'Na odprawę u Sędziego Przedstartowego ekipa powinna przyjść na\u00A025-20 minut wcześniej.';
+  static const String spontanToolTip =
+      'Na recepcji w Strefie Spontanicznej ekipa powinna zgłosić się na\u00A020-15 minut wcześniej';
 
   static const String click = 'Kliknij';
   static const String emptyFavouritesCaption = 'Wybrane przedstawienie,\naby go nie przegapić';
