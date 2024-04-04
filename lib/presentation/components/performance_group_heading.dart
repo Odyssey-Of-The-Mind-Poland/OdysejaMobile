@@ -9,37 +9,39 @@ class PerformanceGroupHeading extends StatelessWidget {
   final ScheduleCategoryEntity? categoryEntity;
   final PerformanceGroup pfGroup;
 
+  static const _separator = '•';
+
   @override
   Widget build(BuildContext context) {
-    late String heading;
+    final List<String> heading = [];
     if (categoryEntity != null) {
       switch (categoryEntity!) {
         case StageEntity():
-          // In this case we can check for Juniors either by age or problem/
-          heading = pfGroup.age != 0 ? '$_problem • $_age' : AppStrings.juniors;
+          // In this case we can check for Juniors either by age or problem.
+          heading.addAll(pfGroup.age != 0 ? [_problem, _age] : [AppStrings.juniors]);
           break;
         case ProblemEntity():
-          heading = '$_stage • ${pfGroup.problem != 0 ? _age : AppStrings.juniors}';
+          heading.addAll([_stage, if (pfGroup.problem != 0) _age]);
           break;
         case DivisionEntity():
-          heading = '$_stage • ${pfGroup.age != 0 ? _problem : AppStrings.juniors}';
+          heading.addAll([_stage, if (pfGroup.age != 0) _problem]);
           break;
       }
     } else {
-      heading =
-          pfGroup.age != 0 ? '$_stage • $_problem • $_age' : '$_stage • ${AppStrings.juniors}';
+      heading.addAll(pfGroup.age != 0 ? [_stage, _problem, _age] : [_stage, AppStrings.juniors]);
     }
     if (pfGroup.part != 0) {
-      heading += ' • $_part';
-    } else if (pfGroup.league.isNotEmpty) {
-      heading += ' • $_league';
+      heading.add(_part);
     }
-    return Heading(heading);
+    if (pfGroup.league.isNotEmpty) {
+      heading.add(_league);
+    }
+    return Heading(heading.join(' $_separator '));
   }
 
-  String get _problem => '${AppStrings.problem} ${pfGroup.problem}';
-  String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pfGroup.age]}';
-  String get _stage => '${AppStrings.stage} ${pfGroup.stage}';
-  String get _part => '${AppStrings.part} ${pfGroup.part}';
-  String get _league => '${AppStrings.league} ${pfGroup.league}';
+  String get _problem => '${AppStrings.problem} ${pfGroup.problem}'.nonBreaking;
+  String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pfGroup.age]}'.nonBreaking;
+  String get _stage => '${AppStrings.stage} ${pfGroup.stage}'.nonBreaking;
+  String get _part => '${AppStrings.part} ${pfGroup.part}'.nonBreaking;
+  String get _league => '${AppStrings.league} ${pfGroup.league}'.nonBreaking;
 }
