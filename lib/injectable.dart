@@ -6,7 +6,6 @@ import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/data_repository.dart';
 import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
-import 'package:odyssey_mobile/data/db/isar/isar_service.dart';
 import 'package:odyssey_mobile/data/services/logger_service.dart';
 import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/presentation/state_observer.dart';
@@ -31,8 +30,7 @@ extension Initialize on GetIt {
 
     sl.registerSingletonAsync(() => SharedPreferences.getInstance());
 
-    sl.registerSingletonAsync<DbService>(
-        () => kIsWeb ? HiveDbService.create() : IsarDbService.create());
+    sl.registerSingletonAsync<DbService>(() => HiveDbService.create());
 
     sl.registerSingletonWithDependencies<DataRepository>(
         () => DataRepositoryImpl(

@@ -7,6 +7,6 @@ part of 'city.dart';
 // **************************************************************************
 
 CityModelApi _$CityModelApiFromJson(Map<String, dynamic> json) => CityModelApi(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );

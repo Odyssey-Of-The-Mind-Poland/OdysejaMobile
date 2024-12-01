@@ -8,6 +8,6 @@ part of 'problem.dart';
 
 ProblemModelApi _$ProblemModelApiFromJson(Map<String, dynamic> json) =>
     ProblemModelApi(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       name: json['name'] as String,
     );

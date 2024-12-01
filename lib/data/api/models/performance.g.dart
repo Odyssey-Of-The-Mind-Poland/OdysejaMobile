@@ -8,15 +8,15 @@ part of 'performance.dart';
 
 PerformanceModelApi _$PerformanceModelApiFromJson(Map<String, dynamic> json) =>
     PerformanceModelApi(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       city: json['city'] as String,
       team: json['team'] as String,
-      problem: json['problem'] as int,
-      age: json['age'] as int,
-      stage: json['stage'] as int,
+      problem: (json['problem'] as num).toInt(),
+      age: (json['age'] as num).toInt(),
+      stage: (json['stage'] as num).toInt(),
       performance: json['performance'] as String,
       spontan: json['spontan'] as String,
-      part: json['part'] as int,
+      part: (json['part'] as num).toInt(),
       league: json['league'] as String,
       performanceDay: json['performanceDay'] as String,
       spontanDay: json['spontanDay'] as String,

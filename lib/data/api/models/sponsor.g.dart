@@ -8,7 +8,7 @@ part of 'sponsor.dart';
 
 SponsorModelApi _$SponsorModelApiFromJson(Map<String, dynamic> json) =>
     SponsorModelApi(
-      id: json['id'] as int,
-      row: json['row'] as int,
-      column: json['column'] as int,
+      id: (json['id'] as num).toInt(),
+      row: (json['row'] as num).toInt(),
+      column: (json['column'] as num).toInt(),
     );

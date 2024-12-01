@@ -8,8 +8,8 @@ part of 'stage.dart';
 
 StageModelApi _$StageModelApiFromJson(Map<String, dynamic> json) =>
     StageModelApi(
-      id: json['id'] as int,
-      number: json['number'] as int,
-      city: json['city'] as int,
+      id: (json['id'] as num).toInt(),
+      number: (json['number'] as num).toInt(),
+      city: (json['city'] as num).toInt(),
       name: json['name'] as String,
     );
