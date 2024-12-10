@@ -69,6 +69,15 @@ abstract class AppTextStyles {
       fontWeight: FontWeight.w700,
       letterSpacing: 0.1,
       color: AppColors.primaryOrange);
+  static const h1orange = TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.1,
+      color: AppColors.primaryOrange);
+  static const regular = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
   static const subtitleWhite = TextStyle(
       fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1, color: AppColors.pureWhite);
   static const subtitle1 = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1);
@@ -120,6 +129,7 @@ abstract class AppColors {
 
   static const darkGreen = Color(0xFF2D9C5A);
   static const lightestGreen = Color(0xFFE4FCEC);
+
 
   static const darkestBlue = Color(0xFF164577);
   static const darkBlue = Color(0xFF3373B7);

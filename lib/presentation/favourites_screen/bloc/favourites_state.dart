@@ -13,4 +13,12 @@ class FavouritesSuccess extends FavouritesState {
 
   int get count =>
       performanceGroups.fold<int>(0, (previousValue, e) => previousValue + e.performances.length);
+
+  List<Performance> get favourites {
+    return performanceGroups
+        .expand((group) => group.performances)
+        .where((p) => p.isFavourite)
+        .toList();
+  }
+
 }

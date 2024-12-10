@@ -27,9 +27,6 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => CityDataBloc(sl())..add(const FetchCityData()), lazy: false),
-        BlocProvider(create: (context) => UpdateFavouritesBloc(sl())),
         BlocProvider(create: (context) => ScheduleSearchBloc(context.read<CityDataBloc>())),
       ],
       child: MultiBlocListener(

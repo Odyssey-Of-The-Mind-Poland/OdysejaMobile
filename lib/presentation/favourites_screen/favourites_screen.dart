@@ -16,31 +16,25 @@ class FavouritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FavouritesBloc(
-        context.read<CityDataBloc>(),
-        context.read<UpdateFavouritesBloc>(),
-      ),
-      child: BlocBuilder<FavouritesBloc, CityDataState>(
-        buildWhen: (p, c) =>
-            c is FavouritesSuccess && p is FavouritesSuccess && p.days.length != c.days.length ||
-            p is CityDataLoading,
-        builder: (context, state) {
-          if (state is FavouritesSuccess) {
-            return ScheduleLayout(
-              days: state.days,
-              performanceGroups: state.performanceGroups,
-              title: AppStrings.favScreenTitle,
-              inFavourites: true,
-              emptyWidget: const FavouritesEmpty(),
-              centerTitle: false,
-            );
-          } else if (state is CityDataError) {
-            return ErrorBody(state.failure);
-          }
-          return const Loader();
-        },
-      ),
+    return BlocBuilder<FavouritesBloc, CityDataState>(
+      buildWhen: (p, c) =>
+          c is FavouritesSuccess && p is FavouritesSuccess && p.days.length != c.days.length ||
+          p is CityDataLoading,
+      builder: (context, state) {
+        if (state is FavouritesSuccess) {
+          return ScheduleLayout(
+            days: state.days,
+            performanceGroups: state.performanceGroups,
+            title: AppStrings.favScreenTitle,
+            inFavourites: true,
+            emptyWidget: const FavouritesEmpty(),
+            centerTitle: false,
+          );
+        } else if (state is CityDataError) {
+          return ErrorBody(state.failure);
+        }
+        return const Loader();
+      },
     );
   }
 }
