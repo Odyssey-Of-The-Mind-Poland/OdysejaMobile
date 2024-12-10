@@ -3,14 +3,16 @@ import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/consts/ootm_icons.dart';
+import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/injectable.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
+
+import '../favourites_screen/bloc/favourites_bloc.dart';
 
 @RoutePage()
 class MainView extends StatefulWidget {
@@ -28,6 +30,16 @@ class _MainViewState extends State<MainView> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ScheduleSearchBloc(context.read<CityDataBloc>())),
+        BlocProvider(
+            create: (context) => CityDataBloc(sl())..add(const FetchCityData()),
+            lazy: false),
+        BlocProvider(create: (context) => UpdateFavouritesBloc(sl())),
+        BlocProvider(
+          create: (context) => FavouritesBloc(
+            context.read<CityDataBloc>(),
+            context.read<UpdateFavouritesBloc>(),
+          ),
+        ),
       ],
       child: MultiBlocListener(
         listeners: [
