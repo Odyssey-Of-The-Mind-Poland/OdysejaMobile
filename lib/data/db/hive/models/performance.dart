@@ -57,6 +57,11 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
   @HiveField(11)
   @override
   bool isFavourite;
+
+  @override
+  @HiveField(13)
+  final DateTime performanceDate;
+
   PerformanceHiveModel({
     required this.performanceId,
     required this.age,
@@ -70,6 +75,7 @@ class PerformanceHiveModel extends Performance with HiveObjectMixin {
     required this.league,
     required this.team,
     required this.isFavourite,
+    required this.performanceDate,
   });
 
   @override

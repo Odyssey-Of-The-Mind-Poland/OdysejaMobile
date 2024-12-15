@@ -17,6 +17,7 @@ class PerformanceModelApi {
     required this.league,
     required this.performanceDay,
     required this.spontanDay,
+    required this.performanceDate,
   });
 
   final int id;
@@ -31,6 +32,7 @@ class PerformanceModelApi {
   final String league;
   final String performanceDay;
   final String spontanDay;
+  final DateTime performanceDate;
 
   factory PerformanceModelApi.fromJson(Map<String, dynamic> json) =>
       _$PerformanceModelApiFromJson(json);

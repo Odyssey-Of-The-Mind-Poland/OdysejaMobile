@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
 
 import '../../domain/entities/performance.dart';
@@ -35,64 +34,40 @@ class _NextPerformanceState extends State<NextPerformance> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CityDataBloc, CityDataState>(
-      builder: (context, cityState) {
-        if (cityState is CityDataSuccess) {
-          final allPerformances = cityState.cityData.performanceGroups
-              .expand((group) => group.performances)
-              .toList();
+    return BlocBuilder<FavouritesBloc, CityDataState>(
+      builder: (context, favState) {
+        final now = DateTime.now();
 
-          return BlocBuilder<FavouritesBloc, CityDataState>(
-            builder: (context, favState) {
-              final now = DateTime.now();
-
-              Performance? closestFavorite;
-              if (favState is FavouritesSuccess) {
-                closestFavorite = _getClosestPerformance(favState.favourites, now);
-              }
-
-              final closestPerformance =
-                  closestFavorite ?? _getClosestPerformance(allPerformances, now);
-
-              if (closestPerformance != null) {
-                return _buildPerformanceWidget(closestPerformance);
-              }
-
-              return _noUpcomingPerformancesWidget();
-            },
-          );
+        Performance? closestFavorite;
+        if (favState is FavouritesSuccess) {
+          closestFavorite = _getClosestPerformance(favState.favourites, now);
         }
 
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        final closestPerformance = closestFavorite;
+
+        if (closestPerformance != null) {
+          return _buildPerformanceWidget(closestPerformance);
+        }
+
+        return SizedBox.shrink();
       },
     );
   }
 
-  Performance? _getClosestPerformance(List<Performance> performances, DateTime now) {
+  Performance? _getClosestPerformance(
+      List<Performance> performances, DateTime now) {
     final upcomingPerformances = performances.where((p) {
-      final performanceTime = _parseTime(p.performance);
-      return performanceTime != null;
+      final fullDateTime = p.getPerofrmanceDateTime();
+      return fullDateTime != null && fullDateTime.isAfter(now);
     }).toList();
 
     if (upcomingPerformances.isEmpty) return null;
 
     return upcomingPerformances.reduce((a, b) {
-      final aTime = _parseTime(a.performance)!;
-      final bTime = _parseTime(b.performance)!;
-      return aTime.isBefore(bTime) ? a : b;
+      final aDateTime = a.getPerofrmanceDateTime()!;
+      final bDateTime = b.getPerofrmanceDateTime()!;
+      return aDateTime.isBefore(bDateTime) ? a : b;
     });
-  }
-
-  Widget _noUpcomingPerformancesWidget() {
-    return Container(
-      margin: const EdgeInsets.all(16.0),
-      child: Text(
-        'Brak nadchodzących występów',
-        style: AppTextStyles.regular,
-      ),
-    );
   }
 
   Widget _buildPerformanceWidget(Performance performance) {
@@ -109,7 +84,7 @@ class _NextPerformanceState extends State<NextPerformance> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Najbliższy występ',
+                  'Najbliższy występ w ulubionych',
                   style: AppTextStyles.regular,
                 ),
                 Row(
@@ -130,7 +105,7 @@ class _NextPerformanceState extends State<NextPerformance> {
                   ],
                 ),
                 Text(
-                  '${performance.stage} • ${performance.problem} • ${performance.age}', // Additional details
+                  'Scena ${performance.stage} • Problem ${performance.problem} • Gr. wiekowa ${performance.age}',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
@@ -143,21 +118,5 @@ class _NextPerformanceState extends State<NextPerformance> {
         ),
       ),
     );
-  }
-
-  DateTime? _parseTime(String time) {
-    try {
-      final now = DateTime.now();
-      final parsedTime = DateFormat('HH:mm').parse(time);
-      return DateTime(
-        now.year,
-        now.month,
-        now.day,
-        parsedTime.hour,
-        parsedTime.minute,
-      );
-    } catch (e) {
-      return null;
-    }
   }
 }

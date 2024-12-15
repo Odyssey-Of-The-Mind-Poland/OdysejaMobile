@@ -29,13 +29,14 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       league: fields[12] as String,
       team: fields[10] as String,
       isFavourite: fields[11] as bool,
+      performanceDate: fields[13] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, PerformanceHiveModel obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.performanceId)
       ..writeByte(1)
@@ -59,7 +60,9 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       ..writeByte(12)
       ..write(obj.league)
       ..writeByte(11)
-      ..write(obj.isFavourite);
+      ..write(obj.isFavourite)
+      ..writeByte(13)
+      ..write(obj.performanceDate);
   }
 
   @override

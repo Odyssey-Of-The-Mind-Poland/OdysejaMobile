@@ -20,4 +20,5 @@ PerformanceModelApi _$PerformanceModelApiFromJson(Map<String, dynamic> json) =>
       league: json['league'] as String,
       performanceDay: json['performanceDay'] as String,
       spontanDay: json['spontanDay'] as String,
+      performanceDate: DateTime.parse(json['performanceDate'] as String),
     );

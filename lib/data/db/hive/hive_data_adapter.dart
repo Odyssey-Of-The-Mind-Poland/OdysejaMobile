@@ -131,6 +131,7 @@ abstract class HiveDataAdapter {
           league: e.league,
           stage: e.stage,
           team: e.team,
+          performanceDate: e.performanceDate,
           isFavourite: previousFavIds.contains(e.id)));
 
   static List<SponsorHiveModel> convertSponsors(

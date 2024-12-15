@@ -9,5 +9,5 @@ class ProductionConfig implements AppConfig {
 
 class DevConfig implements AppConfig {
   @override
-  String get baseUrl => 'http://grzybek.snet.ovh:8082';
+  String get baseUrl => 'http://grzybek.snet.ovh';
 }
