@@ -22,9 +22,9 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<PerformanceModelApi>> getSchedule() async {
+  Future<List<PerformanceModelApi>> getSchedule({required int cityId}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'cityId': cityId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<PerformanceModelApi>>(Options(
@@ -58,9 +58,9 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<StageModelApi>> getStages() async {
+  Future<List<StageModelApi>> getStages({required int cityId}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'cityId': cityId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<StageModelApi>>(Options(
@@ -129,9 +129,9 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<InfoModelApi>> getInfo() async {
+  Future<List<InfoModelApi>> getInfo({required int cityId}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'cityId': cityId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<InfoModelApi>>(Options(

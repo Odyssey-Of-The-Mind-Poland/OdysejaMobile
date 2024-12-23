@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       return Scaffold(
         backgroundColor: AppColors.shadowGrey,
         appBar: AppBar(
-            title: const Text(AppStrings.homeScreenTitle), centerTitle: true),
+            title: const Text(AppStrings.homeScreenTitle)),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [

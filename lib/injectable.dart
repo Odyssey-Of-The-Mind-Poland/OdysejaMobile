@@ -4,10 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:odyssey_mobile/consts/app_config.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/data_repository.dart';
-import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
 import 'package:odyssey_mobile/data/services/logger_service.dart';
-import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/presentation/state_observer.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:dio/dio.dart';
@@ -30,15 +28,15 @@ extension Initialize on GetIt {
 
     sl.registerSingletonAsync(() => SharedPreferences.getInstance());
 
-    sl.registerSingletonAsync<DbService>(() => HiveDbService.create());
+    sl.registerSingletonAsync<HiveDbService>(() => HiveDbService.create());
 
     sl.registerSingletonWithDependencies<DataRepository>(
-        () => DataRepositoryImpl(
+        () => DataRepository(
               apiService: sl(),
               dbService: sl(),
               sharedPrefs: sl(),
             ),
-        dependsOn: [SharedPreferences, DbService]);
+        dependsOn: [SharedPreferences, HiveDbService]);
     await sl.allReady(ignorePendingAsyncCreation: false);
 
     if (kDebugMode && !kIsWeb) {

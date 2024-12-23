@@ -5,6 +5,6 @@ abstract class UpdateEvent {
 }
 
 class StartUpdateProcess extends UpdateEvent {
-  const StartUpdateProcess([this.forceUpdate = false]);
+  const StartUpdateProcess([this.forceUpdate = true]);
   final bool forceUpdate;
 }

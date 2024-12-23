@@ -4,17 +4,19 @@ abstract class CityDataState {
   const CityDataState();
 }
 
-class CityDataSuccess extends CityDataState {
-  const CityDataSuccess(this.cityData, this.problems);
-  final CityData cityData;
-  final List<ScheduleCategoryEntity> problems;
-}
-
 class CityDataLoading extends CityDataState {
   const CityDataLoading();
 }
 
 class CityDataError extends CityDataState {
-  const CityDataError(this.failure);
   final Failure failure;
+
+  const CityDataError(this.failure);
+}
+
+class CityDataSuccess extends CityDataState {
+  final CityData cityData;
+  final List<ScheduleCategoryEntity> problems;
+
+  const CityDataSuccess(this.cityData, this.problems);
 }

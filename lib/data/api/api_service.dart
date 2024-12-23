@@ -14,16 +14,16 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @GET('/timeTable')
-  Future<List<PerformanceModelApi>> getSchedule();
+  Future<List<PerformanceModelApi>> getSchedule({@Query('cityId') required int cityId});
 
   @GET('/stage')
-  Future<List<StageModelApi>> getStages();
+  Future<List<StageModelApi>> getStages({@Query('cityId') required int cityId});
 
   @GET('/problem')
   Future<List<ProblemModelApi>> getProblems();
 
   @GET('/info')
-  Future<List<InfoModelApi>> getInfo();
+  Future<List<InfoModelApi>> getInfo({@Query('cityId') required int cityId});
 
   @GET('/sponsor')
   Future<HttpResponse> getSponsor({@Query('cityId') required int cityId});

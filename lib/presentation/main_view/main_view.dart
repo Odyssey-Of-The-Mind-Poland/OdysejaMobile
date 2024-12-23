@@ -11,8 +11,9 @@ import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
-
 import '../favourites_screen/bloc/favourites_bloc.dart';
+import 'bloc/city_bloc.dart';
+import 'city_select_button.dart';
 
 @RoutePage()
 class MainView extends StatefulWidget {
@@ -29,11 +30,21 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ScheduleSearchBloc(context.read<CityDataBloc>())),
         BlocProvider(
-            create: (context) => CityDataBloc(sl())..add(const FetchCityData()),
-            lazy: false),
-        BlocProvider(create: (context) => UpdateFavouritesBloc(sl())),
+          create: (context) => CityBloc(sl())..add(FetchCities()),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => CityDataBloc(sl())..add(const FetchCityData(0)),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) =>
+              ScheduleSearchBloc(context.read<CityDataBloc>()),
+        ),
+        BlocProvider(
+          create: (context) => UpdateFavouritesBloc(sl()),
+        ),
         BlocProvider(
           create: (context) => FavouritesBloc(
             context.read<CityDataBloc>(),
@@ -56,37 +67,56 @@ class _MainViewState extends State<MainView> {
           BlocListener<UpdateBloc, UpdateState>(
             listener: (context, state) {
               if (state is UpdateFinished) {
-                context.read<CityDataBloc>().add(const FetchCityData());
+                context.read<CityDataBloc>().add(const FetchCityData(0));
               }
             },
           ),
         ],
-        child: AutoTabsScaffold(
-            key: _scaffoldKey,
-            routes: const [
-              HomeRoute(),
-              InfoRoutes(),
-              ScheduleRoutes(),
-              FavouritesRoute(),
-            ],
-            homeIndex: 0,
-            bottomNavigationBuilder: (_, tabsRouter) {
-              return DotNavigationBar(
-                selectedItemColor: AppColors.primaryOrange,
-                unselectedItemColor: AppColors.darkestGrey,
-                enableFloatingNavBar: false,
-                enablePaddingAnimation: false,
-                currentIndex: tabsRouter.activeIndex,
-                onTap: tabsRouter.setActiveIndex,
-                items: [
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.home)),
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.info)),
-                  DotNavigationBarItem(icon: const Icon(OotmIcons.schedule)),
-                  DotNavigationBarItem(icon: const Icon(Icons.favorite_outline)),
-                ],
-              );
-            }),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: [
+                AutoTabsScaffold(
+                  key: _scaffoldKey,
+                  routes: const [
+                    HomeRoute(),
+                    InfoRoutes(),
+                    ScheduleRoutes(),
+                    FavouritesRoute(),
+                  ],
+                  homeIndex: 0,
+                  bottomNavigationBuilder: (_, tabsRouter) {
+                    return SizedBox(
+                      child: DotNavigationBar(
+                        selectedItemColor: AppColors.primaryOrange,
+                        unselectedItemColor: AppColors.darkestGrey,
+                        enableFloatingNavBar: false,
+                        enablePaddingAnimation: false,
+                        currentIndex: tabsRouter.activeIndex,
+                        onTap: tabsRouter.setActiveIndex,
+                        items: [
+                          DotNavigationBarItem(
+                              icon: const Icon(OotmIcons.home)),
+                          DotNavigationBarItem(
+                              icon: const Icon(OotmIcons.info)),
+                          DotNavigationBarItem(
+                              icon: const Icon(OotmIcons.schedule)),
+                          DotNavigationBarItem(
+                              icon: const Icon(Icons.favorite_outline)),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                // Floating Button Relative to Bottom Navigation Bar
+                CitySelectButton(),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
+
+

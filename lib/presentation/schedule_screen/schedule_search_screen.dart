@@ -19,8 +19,7 @@ class ScheduleSearchScreen extends StatefulWidget {
 
 class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
   // Just nope, but no time.
-  String? tryForInitialValue(BuildContext context) {
-    final state = context.read<ScheduleSearchBloc>().state;
+  String? tryForInitialValue(ScheduleSearchState state) {
     return state is SearchResult ? state.originalPhrase : null;
   }
 
@@ -28,28 +27,38 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
-        title: Row(
-          children: [
-            Expanded(
-                child: SearchField(
-              initialValue: tryForInitialValue(context),
-              onClearCallback: () =>
-                  context.read<ScheduleSearchBloc>().add(const SearchRequest('')),
-              onChange: (value) => context.read<ScheduleSearchBloc>().add(SearchRequest(value)),
-            )),
-            Container(
-              height: 44,
-              width: 44,
-              margin: const EdgeInsets.only(left: 16, right: 8.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-                  color: AppColors.primaryOrange),
-              child: const Icon(OotmIcons.search, color: AppColors.pureWhite),
-            ),
-          ],
-        ),
-      ),
+          titleSpacing: 0,
+          title: BlocBuilder<ScheduleSearchBloc, ScheduleSearchState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: SearchField(
+                      initialValue: tryForInitialValue(state),
+                      onClearCallback: () => context
+                          .read<ScheduleSearchBloc>()
+                          .add(const SearchRequest('')),
+                      onChange: (value) => context
+                          .read<ScheduleSearchBloc>()
+                          .add(SearchRequest(value)),
+                    ),
+                  ),
+                  Container(
+                    height: 44,
+                    width: 44,
+                    margin: const EdgeInsets.only(left: 16, right: 8.0),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.circular(AppValues.defaultBrRadius),
+                      color: AppColors.primaryOrange,
+                    ),
+                    child: const Icon(OotmIcons.search,
+                        color: AppColors.pureWhite),
+                  ),
+                ],
+              );
+            },
+          )),
       body: BlocBuilder<ScheduleSearchBloc, ScheduleSearchState>(
         builder: (context, state) {
           if (state is SearchResult) {
@@ -68,7 +77,8 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                     ));
           } else if (state is SearchEmpty) {
             return const Center(
-                child: Text(AppStrings.emptyResultsFailure, style: AppTextStyles.h1grey));
+                child: Text(AppStrings.emptyResultsFailure,
+                    style: AppTextStyles.h1grey));
           }
           return const SizedBox();
         },

@@ -137,6 +137,8 @@ abstract class AppColors {
   static const lightBlue = Color(0xFF80BDFE);
   static const lightestBlue = Color(0xFFDDEDFF);
 
+  static const grey200 = Color.fromRGBO(249, 250, 251, 1);
+
   // aditional colors after review
   static const omerBlue = Color(0xFF110329);
   static const mdHeadlineBlue = Color(0xFF3C4AA5);

@@ -19,7 +19,7 @@ import '../../api/models/sponsor.dart';
 // Adapt for multiple cities
 abstract class HiveDataAdapter {
   static List<CityDataHiveModel> convertCityData(
-      {required List<CityModelApi> cityModels,
+      {required CityModelApi city,
       required List<InfoModelApi> infoModels,
       required List<InfoCategoryModelApi> infoCategories,
       required List<PerformanceHiveModel> performanceModels,
@@ -29,7 +29,7 @@ abstract class HiveDataAdapter {
       required Box<PerformanceHiveModel> performanceBox,
       required List<List<SponsorModelApi>> sponsors}) {
     final List<CityDataHiveModel> citiesDb = [];
-    for (final city in cityModels) {
+
       citiesDb.add(CityDataHiveModel(
           cityId: city.id,
           cityName: city.name,
@@ -42,7 +42,7 @@ abstract class HiveDataAdapter {
               performanceBox: performanceBox),
           stages: convertStages(stageModels),
           sponsorModel: convertSponsors(sponsors)));
-    }
+
     return citiesDb;
   }
 

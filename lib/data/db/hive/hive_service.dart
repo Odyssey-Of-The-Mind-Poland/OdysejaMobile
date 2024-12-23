@@ -8,7 +8,6 @@ import 'package:odyssey_mobile/data/api/models/performance.dart';
 import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
-import 'package:odyssey_mobile/data/db/db_service.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_data_adapter.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city_data.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info.dart';
@@ -21,12 +20,15 @@ import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 
-class HiveDbService extends DbService {
+import 'models/city.dart';
+
+class HiveDbService {
   HiveDbService._create();
 
   late final Box<CityDataHiveModel> _box;
   late final Box<ProblemHiveModel> _pandoraBox;
   late final Box<PerformanceHiveModel> _performanceBox;
+  late final Box<CityHiveModel> _citiesBox;
 
   static Future<HiveDbService> create() async {
     final service = HiveDbService._create();
@@ -44,36 +46,40 @@ class HiveDbService extends DbService {
       Hive.registerAdapter(ProblemHiveModelAdapter());
       Hive.registerAdapter(StageHiveModelAdapter());
       Hive.registerAdapter(SponsorHiveModelAdapter());
+      Hive.registerAdapter(CityHiveModelAdapter());
       await Hive.initFlutter();
 
-      _box = await Hive.openBox('finalsBox', compactionStrategy: (entries, deletedEntries) {
+      _box = await Hive.openBox('finalsBox',
+          compactionStrategy: (entries, deletedEntries) {
         return deletedEntries > 2;
       });
-      _pandoraBox = await Hive.openBox('pandoraBox', compactionStrategy: (entries, deletedEntries) {
+      _pandoraBox = await Hive.openBox('pandoraBox',
+          compactionStrategy: (entries, deletedEntries) {
         return deletedEntries > 12;
       });
-      _performanceBox =
-          await Hive.openBox('performanceBox', compactionStrategy: (entries, deletedEntries) {
+      _performanceBox = await Hive.openBox('performanceBox',
+          compactionStrategy: (entries, deletedEntries) {
         return deletedEntries > 50;
+      });      
+      _citiesBox = await Hive.openBox('citiesBox',
+          compactionStrategy: (entries, deletedEntries) {
+        return deletedEntries > 3;
       });
     } catch (e) {
       log('Hive initialization error: $e');
     }
   }
 
-  @override
   Future<void> createProblems(List<ProblemModelApi> problems) async {
     final data = problems.map((e) => ProblemHiveModel(e.name, e.id));
     await _pandoraBox.addAll(data);
   }
 
-  @override
   Future<List<ScheduleCategoryEntity>> readProblems() async =>
       _pandoraBox.values.toList()..sort((a, b) => a.number.compareTo(b.number));
 
-  @override
   Future<void> createCityData({
-    required List<CityModelApi> cityModels,
+    required CityModelApi cityModels,
     required List<InfoModelApi> infoModels,
     required List<InfoCategoryModelApi> infoCategories,
     required List<PerformanceModelApi> performanceModels,
@@ -83,11 +89,12 @@ class HiveDbService extends DbService {
     required List<List<SponsorModelApi>> sponsors,
   }) async {
     // save performances first, to allow them to work as HiveObjects
-    final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
+    final performances =
+        HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
     _performanceBox.addAll(performances);
 
     final data = HiveDataAdapter.convertCityData(
-      cityModels: cityModels,
+      city: cityModels,
       infoModels: infoModels,
       infoCategories: infoCategories,
       performanceModels: _performanceBox.values.toList(),
@@ -98,19 +105,21 @@ class HiveDbService extends DbService {
       sponsors: sponsors,
     );
     await _box.addAll(data);
-    // for (final group in data.first.performanceGroups) {
-    //   group.performances.forEach((e) async {e.updatePerformance()});
-    // }
   }
 
-  @override
-  Future<CityDataHiveModel?> readCityData(int cityId) async => _box.get(0);
+  Future<CityDataHiveModel> readCityData(int cityId) async {
+    try {
+      return _box.values.firstWhere((city) => city.cityId == cityId);
+    } catch (e) {
+      throw Exception('City with ID $cityId not found');
+    }
+  }
 
-  @override
-  Future<List<int>> readFavIds() async =>
-      _performanceBox.values.where((p) => p.isFavourite).map((e) => e.performanceId).toList();
+  Future<List<int>> readFavIds() async => _performanceBox.values
+      .where((p) => p.isFavourite)
+      .map((e) => e.performanceId)
+      .toList();
 
-  @override
   Future<void> updateFav(Performance performance) async {
     try {
       await performance.updatePerformance();
@@ -119,13 +128,20 @@ class HiveDbService extends DbService {
     }
   }
 
-  @override
   Future<void> dispose() => Hive.close();
 
-  @override
   Future<void> clearData() async {
     await _box.clear();
     await _pandoraBox.clear();
     await _performanceBox.clear();
+    await _citiesBox.clear();
+  }
+
+  createCities(List<CityModelApi> cities) {
+    _citiesBox.addAll(cities.map((c) => CityHiveModel.fromCityApiModel(c)).toList());
+  }
+
+  Iterable<CityHiveModel> readCities() {
+    return _citiesBox.values;
   }
 }

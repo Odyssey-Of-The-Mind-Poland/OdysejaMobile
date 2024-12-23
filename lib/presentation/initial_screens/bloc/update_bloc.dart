@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/data/failures.dart';
-import 'package:odyssey_mobile/domain/data_repository.dart';
+import 'package:odyssey_mobile/data/data_repository.dart';
 import 'package:odyssey_mobile/domain/failure.dart';
 
 part 'update_event.dart';

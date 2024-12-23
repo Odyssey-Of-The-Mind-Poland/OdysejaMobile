@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/domain/failure.dart';
-import 'package:odyssey_mobile/domain/data_repository.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
+
+import '../../../data/data_repository.dart';
 
 part 'update_favourites_event.dart';
 part 'update_favourites_state.dart';

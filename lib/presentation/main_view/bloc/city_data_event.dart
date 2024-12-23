@@ -5,10 +5,13 @@ abstract class CityDataEvent {
 }
 
 class FetchCityData extends CityDataEvent {
-  const FetchCityData();
+  final int selectedCity;
+
+  const FetchCityData(this.selectedCity);
 }
 
-class UpdateFavourites extends CityDataEvent {
-  const UpdateFavourites(this.performance);
-  final Performance performance;
+class SelectCity extends CityDataEvent {
+  final String selectedCity;
+
+  const SelectCity(this.selectedCity);
 }
