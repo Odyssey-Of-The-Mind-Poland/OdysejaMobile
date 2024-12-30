@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:odyssey_mobile/consts/light_colors.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city.dart';
 
 import '../../consts/themes.dart';
@@ -31,17 +32,22 @@ class CitySelectButton extends StatelessWidget {
                   _showCitySelection(
                     context,
                     cities,
-                        (selectedCity) {
-                      context.read<CityDataBloc>().add(FetchCityData(selectedCity));
+                    cityName,
+                    (selectedCity) {
+                      context
+                          .read<CityDataBloc>()
+                          .add(FetchCityData(selectedCity));
                     },
                   );
                 },
                 child: Container(
                   width: 150,
-                  height: 48,
+                  height: 58,
                   decoration: BoxDecoration(
-                    color: AppColors.primaryOrange,
-                    border: Border.all(color: Colors.orangeAccent, width: 2),
+                    color: LightColors.appColors.primary.color500,
+                    border: Border.all(
+                        color: LightColors.appColors.primary.color700,
+                        width: 2),
                     borderRadius: BorderRadius.circular(80),
                     boxShadow: [
                       BoxShadow(
@@ -55,7 +61,8 @@ class CitySelectButton extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.location_pin, color: AppColors.grey200, size: 22),
+                        Icon(Icons.location_pin,
+                            color: AppColors.grey200, size: 22),
                         SizedBox(width: 5),
                         Text(
                           cityName,
@@ -78,7 +85,8 @@ class CitySelectButton extends StatelessWidget {
     );
   }
 
-  void _showCitySelection(BuildContext context, List<CityHiveModel> cities, Function(int) onCitySelected) {
+  void _showCitySelection(BuildContext context, List<CityHiveModel> cities,
+      String selectedCityName, Function(int) onCitySelected) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -92,34 +100,119 @@ class CitySelectButton extends StatelessWidget {
         }
 
         return Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: AppColors.pureWhite,
-            border: Border.all(color: Colors.orangeAccent, width: 2),
-            borderRadius: BorderRadius.circular(16),
-          ),
+          margin: EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Select a City',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Container(
+                width: 48,
+                height: 6,
+                margin: EdgeInsets.only(top: 8),
+                decoration: BoxDecoration(
+                  color: LightColors.appColors.universal.grey.color100,
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: cities.length,
-                separatorBuilder: (_, __) => Divider(),
-                itemBuilder: (context, index) {
-                  final city = cities[index];
-                  return ListTile(
-                    leading: Icon(Icons.location_city),
-                    title: Text(city.name),
-                    onTap: () {
-                      onCitySelected(city.id);
-                      Navigator.pop(context);
-                    },
-                  );
-                },
+              SizedBox(height: 8),
+              Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: LightColors.appColors.universal.grey.color100,
+                  border: Border.all(
+                      color: LightColors.appColors.universal.grey.color300,
+                      width: 2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Wybór eliminacji',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: LightColors
+                                    .appColors.universal.grey.color700,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Spacer(),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  LightColors.appColors.universal.grey.color300,
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context); // Close the dialog
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: LightColors
+                                      .appColors.universal.grey.color300,
+                                ),
+                                child: Icon(
+                                  size: 22,
+                                  Icons.close,
+                                  color: LightColors
+                                      .appColors.universal.grey.color500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: cities.length,
+                      itemBuilder: (context, index) {
+                        final city = cities[index];
+                        final isSelected = city.name == selectedCityName;
+
+                        final bgColor = isSelected
+                            ? LightColors.appColors.primary.color500
+                            : Colors.transparent;
+                        final textColor = isSelected
+                            ? Colors.white
+                            : LightColors.appColors.universal.grey.color700;
+                        final iconColor = isSelected
+                            ? Colors.white
+                            : LightColors.appColors.universal.grey.color400;
+
+                        return Container(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: bgColor,
+                          ),
+                          child: ListTile(
+                            leading: Icon(Icons.location_pin, color: iconColor),
+                            trailing: isSelected
+                                ? Icon(Icons.check, color: Colors.white)
+                                : null,
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              city.name,
+                              style: TextStyle(color: textColor, fontWeight: FontWeight.w500),
+                            ),
+                            onTap: () {
+                              onCitySelected(city.id);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
