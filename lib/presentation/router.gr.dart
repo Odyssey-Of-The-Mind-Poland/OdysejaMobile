@@ -9,105 +9,6 @@
 
 part of 'router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    FavouritesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FavouritesScreen(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    InfoDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<InfoDetailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: InfoDetailScreen(
-          info: args.info,
-          key: args.key,
-        ),
-      );
-    },
-    InfoRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InfoScreen(),
-      );
-    },
-    InfoRoutes.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const InfoScreens(),
-      );
-    },
-    LoadingRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoadingScreen(),
-      );
-    },
-    MainRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MainView(),
-      );
-    },
-    ScheduleDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<ScheduleDetailRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ScheduleDetailScreen(
-          categoryEntity: args.categoryEntity,
-          key: args.key,
-        ),
-      );
-    },
-    ScheduleRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ScheduleScreen(),
-      );
-    },
-    ScheduleRoutes.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ScheduleScreens(),
-      );
-    },
-    ScheduleSearchResultRoute.name: (routeData) {
-      final args = routeData.argsAs<ScheduleSearchResultRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ScheduleSearchResultScreen(
-          args.performance,
-          key: args.key,
-        ),
-      );
-    },
-    ScheduleSearchRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ScheduleSearchScreen(),
-      );
-    },
-    SplashRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SplashScreen(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [FavouritesScreen]
 class FavouritesRoute extends PageRouteInfo<void> {
@@ -119,7 +20,12 @@ class FavouritesRoute extends PageRouteInfo<void> {
 
   static const String name = 'FavouritesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FavouritesScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -133,7 +39,12 @@ class HomeRoute extends PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -154,8 +65,16 @@ class InfoDetailRoute extends PageRouteInfo<InfoDetailRouteArgs> {
 
   static const String name = 'InfoDetailRoute';
 
-  static const PageInfo<InfoDetailRouteArgs> page =
-      PageInfo<InfoDetailRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<InfoDetailRouteArgs>();
+      return InfoDetailScreen(
+        info: args.info,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class InfoDetailRouteArgs {
@@ -185,7 +104,12 @@ class InfoRoute extends PageRouteInfo<void> {
 
   static const String name = 'InfoRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const InfoScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -199,7 +123,12 @@ class InfoRoutes extends PageRouteInfo<void> {
 
   static const String name = 'InfoRoutes';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const InfoScreens();
+    },
+  );
 }
 
 /// generated route for
@@ -213,7 +142,12 @@ class LoadingRoute extends PageRouteInfo<void> {
 
   static const String name = 'LoadingRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoadingScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -227,7 +161,12 @@ class MainRoute extends PageRouteInfo<void> {
 
   static const String name = 'MainRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainView();
+    },
+  );
 }
 
 /// generated route for
@@ -248,8 +187,16 @@ class ScheduleDetailRoute extends PageRouteInfo<ScheduleDetailRouteArgs> {
 
   static const String name = 'ScheduleDetailRoute';
 
-  static const PageInfo<ScheduleDetailRouteArgs> page =
-      PageInfo<ScheduleDetailRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ScheduleDetailRouteArgs>();
+      return ScheduleDetailScreen(
+        categoryEntity: args.categoryEntity,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class ScheduleDetailRouteArgs {
@@ -279,7 +226,12 @@ class ScheduleRoute extends PageRouteInfo<void> {
 
   static const String name = 'ScheduleRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ScheduleScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -293,7 +245,12 @@ class ScheduleRoutes extends PageRouteInfo<void> {
 
   static const String name = 'ScheduleRoutes';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ScheduleScreens();
+    },
+  );
 }
 
 /// generated route for
@@ -315,8 +272,16 @@ class ScheduleSearchResultRoute
 
   static const String name = 'ScheduleSearchResultRoute';
 
-  static const PageInfo<ScheduleSearchResultRouteArgs> page =
-      PageInfo<ScheduleSearchResultRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ScheduleSearchResultRouteArgs>();
+      return ScheduleSearchResultScreen(
+        args.performance,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class ScheduleSearchResultRouteArgs {
@@ -346,7 +311,12 @@ class ScheduleSearchRoute extends PageRouteInfo<void> {
 
   static const String name = 'ScheduleSearchRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ScheduleSearchScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -360,5 +330,10 @@ class SplashRoute extends PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SplashScreen();
+    },
+  );
 }
