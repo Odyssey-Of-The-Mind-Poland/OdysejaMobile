@@ -17,15 +17,15 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PerformanceHiveModel(
-      performanceId: fields[0] as int,
-      age: fields[1] as int,
-      part: fields[3] as int,
+      performanceId: (fields[0] as num).toInt(),
+      age: (fields[1] as num).toInt(),
+      part: (fields[3] as num).toInt(),
       performance: fields[4] as String,
       performanceDay: fields[5] as String,
-      problem: fields[6] as int,
+      problem: (fields[6] as num).toInt(),
       spontan: fields[7] as String,
       spontanDay: fields[8] as String,
-      stage: fields[9] as int,
+      stage: (fields[9] as num).toInt(),
       league: fields[12] as String,
       team: fields[10] as String,
       isFavourite: fields[11] as bool,
@@ -41,8 +41,6 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       ..write(obj.performanceId)
       ..writeByte(1)
       ..write(obj.age)
-      ..writeByte(10)
-      ..write(obj.team)
       ..writeByte(3)
       ..write(obj.part)
       ..writeByte(4)
@@ -57,10 +55,12 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
       ..write(obj.spontanDay)
       ..writeByte(9)
       ..write(obj.stage)
-      ..writeByte(12)
-      ..write(obj.league)
+      ..writeByte(10)
+      ..write(obj.team)
       ..writeByte(11)
       ..write(obj.isFavourite)
+      ..writeByte(12)
+      ..write(obj.league)
       ..writeByte(13)
       ..write(obj.performanceDate);
   }

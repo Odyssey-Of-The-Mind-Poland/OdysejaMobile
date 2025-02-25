@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -13,10 +14,7 @@ part of 'router.dart';
 /// [FavouritesScreen]
 class FavouritesRoute extends PageRouteInfo<void> {
   const FavouritesRoute({List<PageRouteInfo>? children})
-      : super(
-          FavouritesRoute.name,
-          initialChildren: children,
-        );
+    : super(FavouritesRoute.name, initialChildren: children);
 
   static const String name = 'FavouritesRoute';
 
@@ -32,10 +30,7 @@ class FavouritesRoute extends PageRouteInfo<void> {
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -50,18 +45,12 @@ class HomeRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [InfoDetailScreen]
 class InfoDetailRoute extends PageRouteInfo<InfoDetailRouteArgs> {
-  InfoDetailRoute({
-    required Info info,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          InfoDetailRoute.name,
-          args: InfoDetailRouteArgs(
-            info: info,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+  InfoDetailRoute({required Info info, Key? key, List<PageRouteInfo>? children})
+    : super(
+        InfoDetailRoute.name,
+        args: InfoDetailRouteArgs(info: info, key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'InfoDetailRoute';
 
@@ -69,19 +58,13 @@ class InfoDetailRoute extends PageRouteInfo<InfoDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<InfoDetailRouteArgs>();
-      return InfoDetailScreen(
-        info: args.info,
-        key: args.key,
-      );
+      return InfoDetailScreen(info: args.info, key: args.key);
     },
   );
 }
 
 class InfoDetailRouteArgs {
-  const InfoDetailRouteArgs({
-    required this.info,
-    this.key,
-  });
+  const InfoDetailRouteArgs({required this.info, this.key});
 
   final Info info;
 
@@ -97,10 +80,7 @@ class InfoDetailRouteArgs {
 /// [InfoScreen]
 class InfoRoute extends PageRouteInfo<void> {
   const InfoRoute({List<PageRouteInfo>? children})
-      : super(
-          InfoRoute.name,
-          initialChildren: children,
-        );
+    : super(InfoRoute.name, initialChildren: children);
 
   static const String name = 'InfoRoute';
 
@@ -116,10 +96,7 @@ class InfoRoute extends PageRouteInfo<void> {
 /// [InfoScreens]
 class InfoRoutes extends PageRouteInfo<void> {
   const InfoRoutes({List<PageRouteInfo>? children})
-      : super(
-          InfoRoutes.name,
-          initialChildren: children,
-        );
+    : super(InfoRoutes.name, initialChildren: children);
 
   static const String name = 'InfoRoutes';
 
@@ -135,10 +112,7 @@ class InfoRoutes extends PageRouteInfo<void> {
 /// [LoadingScreen]
 class LoadingRoute extends PageRouteInfo<void> {
   const LoadingRoute({List<PageRouteInfo>? children})
-      : super(
-          LoadingRoute.name,
-          initialChildren: children,
-        );
+    : super(LoadingRoute.name, initialChildren: children);
 
   static const String name = 'LoadingRoute';
 
@@ -154,10 +128,7 @@ class LoadingRoute extends PageRouteInfo<void> {
 /// [MainView]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
+    : super(MainRoute.name, initialChildren: children);
 
   static const String name = 'MainRoute';
 
@@ -177,13 +148,13 @@ class ScheduleDetailRoute extends PageRouteInfo<ScheduleDetailRouteArgs> {
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          ScheduleDetailRoute.name,
-          args: ScheduleDetailRouteArgs(
-            categoryEntity: categoryEntity,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         ScheduleDetailRoute.name,
+         args: ScheduleDetailRouteArgs(
+           categoryEntity: categoryEntity,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ScheduleDetailRoute';
 
@@ -200,10 +171,7 @@ class ScheduleDetailRoute extends PageRouteInfo<ScheduleDetailRouteArgs> {
 }
 
 class ScheduleDetailRouteArgs {
-  const ScheduleDetailRouteArgs({
-    required this.categoryEntity,
-    this.key,
-  });
+  const ScheduleDetailRouteArgs({required this.categoryEntity, this.key});
 
   final ScheduleCategoryEntity categoryEntity;
 
@@ -219,10 +187,7 @@ class ScheduleDetailRouteArgs {
 /// [ScheduleScreen]
 class ScheduleRoute extends PageRouteInfo<void> {
   const ScheduleRoute({List<PageRouteInfo>? children})
-      : super(
-          ScheduleRoute.name,
-          initialChildren: children,
-        );
+    : super(ScheduleRoute.name, initialChildren: children);
 
   static const String name = 'ScheduleRoute';
 
@@ -238,10 +203,7 @@ class ScheduleRoute extends PageRouteInfo<void> {
 /// [ScheduleScreens]
 class ScheduleRoutes extends PageRouteInfo<void> {
   const ScheduleRoutes({List<PageRouteInfo>? children})
-      : super(
-          ScheduleRoutes.name,
-          initialChildren: children,
-        );
+    : super(ScheduleRoutes.name, initialChildren: children);
 
   static const String name = 'ScheduleRoutes';
 
@@ -262,13 +224,13 @@ class ScheduleSearchResultRoute
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          ScheduleSearchResultRoute.name,
-          args: ScheduleSearchResultRouteArgs(
-            performance: performance,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         ScheduleSearchResultRoute.name,
+         args: ScheduleSearchResultRouteArgs(
+           performance: performance,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ScheduleSearchResultRoute';
 
@@ -276,19 +238,13 @@ class ScheduleSearchResultRoute
     name,
     builder: (data) {
       final args = data.argsAs<ScheduleSearchResultRouteArgs>();
-      return ScheduleSearchResultScreen(
-        args.performance,
-        key: args.key,
-      );
+      return ScheduleSearchResultScreen(args.performance, key: args.key);
     },
   );
 }
 
 class ScheduleSearchResultRouteArgs {
-  const ScheduleSearchResultRouteArgs({
-    required this.performance,
-    this.key,
-  });
+  const ScheduleSearchResultRouteArgs({required this.performance, this.key});
 
   final Performance performance;
 
@@ -304,10 +260,7 @@ class ScheduleSearchResultRouteArgs {
 /// [ScheduleSearchScreen]
 class ScheduleSearchRoute extends PageRouteInfo<void> {
   const ScheduleSearchRoute({List<PageRouteInfo>? children})
-      : super(
-          ScheduleSearchRoute.name,
-          initialChildren: children,
-        );
+    : super(ScheduleSearchRoute.name, initialChildren: children);
 
   static const String name = 'ScheduleSearchRoute';
 
@@ -323,10 +276,7 @@ class ScheduleSearchRoute extends PageRouteInfo<void> {
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
+    : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 

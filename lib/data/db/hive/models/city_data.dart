@@ -1,4 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
@@ -56,16 +56,17 @@ class CityDataHiveModel extends CityData with HiveObjectMixin {
     }
 
     return groupedByRow.entries.map((entry) {
-      final sortedByColumn = entry.value
-        ..sort((a, b) => a.column.compareTo(b.column));
-      return sortedByColumn
-          .map((sponsorModelDb) => SponsorModelApi(
-        id: sponsorModelDb.id,
-        row: sponsorModelDb.row,
-        column: sponsorModelDb.column,
-      ))
-          .toList();
-    }).toList()
+        final sortedByColumn = entry.value..sort((a, b) => a.column.compareTo(b.column));
+        return sortedByColumn
+            .map(
+              (sponsorModelDb) => SponsorModelApi(
+                id: sponsorModelDb.id,
+                row: sponsorModelDb.row,
+                column: sponsorModelDb.column,
+              ),
+            )
+            .toList();
+      }).toList()
       ..sort((a, b) => a[0].row.compareTo(b[0].row));
   }
 }

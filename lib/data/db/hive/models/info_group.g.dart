@@ -17,7 +17,7 @@ class InfoGroupHiveModelAdapter extends TypeAdapter<InfoGroupHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return InfoGroupHiveModel(
-      fields[0] as int,
+      (fields[0] as num).toInt(),
       fields[1] as String,
       (fields[2] as List).cast<InfoHiveModel>(),
     );

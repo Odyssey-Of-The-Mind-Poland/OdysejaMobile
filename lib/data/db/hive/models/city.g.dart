@@ -16,10 +16,7 @@ class CityHiveModelAdapter extends TypeAdapter<CityHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CityHiveModel(
-      fields[0] as String,
-      fields[1] as int,
-    );
+    return CityHiveModel(fields[0] as String, (fields[1] as num).toInt());
   }
 
   @override

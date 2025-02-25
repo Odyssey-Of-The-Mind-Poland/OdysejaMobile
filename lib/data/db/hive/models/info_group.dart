@@ -1,4 +1,4 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:odyssey_mobile/data/db/hive/models/info.dart';
 import 'package:odyssey_mobile/domain/entities/info_category.dart';
 

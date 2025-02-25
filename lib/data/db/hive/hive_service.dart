@@ -1,6 +1,5 @@
 import 'dart:developer';
-
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:odyssey_mobile/data/api/models/city.dart';
 import 'package:odyssey_mobile/data/api/models/info.dart';
 import 'package:odyssey_mobile/data/api/models/info_category.dart';
@@ -10,15 +9,11 @@ import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_data_adapter.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city_data.dart';
-import 'package:odyssey_mobile/data/db/hive/models/info.dart';
-import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
-import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/problem.dart';
-import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
-import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/hive_registrar.g.dart';
 
 import 'models/city.dart';
 
@@ -38,33 +33,33 @@ class HiveDbService {
 
   Future<void> _init() async {
     try {
-      Hive.registerAdapter(CityDataHiveModelAdapter());
-      Hive.registerAdapter(InfoGroupHiveModelAdapter());
-      Hive.registerAdapter(InfoHiveModelAdapter());
-      Hive.registerAdapter(PerformanceGroupHiveModelAdapter());
-      Hive.registerAdapter(PerformanceHiveModelAdapter());
-      Hive.registerAdapter(ProblemHiveModelAdapter());
-      Hive.registerAdapter(StageHiveModelAdapter());
-      Hive.registerAdapter(SponsorHiveModelAdapter());
-      Hive.registerAdapter(CityHiveModelAdapter());
+      Hive.registerAdapters();
       await Hive.initFlutter();
 
-      _box = await Hive.openBox('finalsBox',
-          compactionStrategy: (entries, deletedEntries) {
-        return deletedEntries > 2;
-      });
-      _pandoraBox = await Hive.openBox('pandoraBox',
-          compactionStrategy: (entries, deletedEntries) {
-        return deletedEntries > 12;
-      });
-      _performanceBox = await Hive.openBox('performanceBox',
-          compactionStrategy: (entries, deletedEntries) {
-        return deletedEntries > 50;
-      });      
-      _citiesBox = await Hive.openBox('citiesBox',
-          compactionStrategy: (entries, deletedEntries) {
-        return deletedEntries > 3;
-      });
+      _box = await Hive.openBox(
+        'finalsBox',
+        compactionStrategy: (entries, deletedEntries) {
+          return deletedEntries > 2;
+        },
+      );
+      _pandoraBox = await Hive.openBox(
+        'pandoraBox',
+        compactionStrategy: (entries, deletedEntries) {
+          return deletedEntries > 12;
+        },
+      );
+      _performanceBox = await Hive.openBox(
+        'performanceBox',
+        compactionStrategy: (entries, deletedEntries) {
+          return deletedEntries > 50;
+        },
+      );
+      _citiesBox = await Hive.openBox(
+        'citiesBox',
+        compactionStrategy: (entries, deletedEntries) {
+          return deletedEntries > 3;
+        },
+      );
     } catch (e) {
       log('Hive initialization error: $e');
     }
@@ -89,8 +84,7 @@ class HiveDbService {
     required List<List<SponsorModelApi>> sponsors,
   }) async {
     // save performances first, to allow them to work as HiveObjects
-    final performances =
-        HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
+    final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
     _performanceBox.addAll(performances);
 
     final data = HiveDataAdapter.convertCityData(
@@ -115,10 +109,8 @@ class HiveDbService {
     }
   }
 
-  Future<List<int>> readFavIds() async => _performanceBox.values
-      .where((p) => p.isFavourite)
-      .map((e) => e.performanceId)
-      .toList();
+  Future<List<int>> readFavIds() async =>
+      _performanceBox.values.where((p) => p.isFavourite).map((e) => e.performanceId).toList();
 
   Future<void> updateFav(Performance performance) async {
     try {

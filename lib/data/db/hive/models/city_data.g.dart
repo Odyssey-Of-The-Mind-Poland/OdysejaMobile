@@ -17,7 +17,7 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CityDataHiveModel(
-      cityId: fields[0] as int,
+      cityId: (fields[0] as num).toInt(),
       cityName: fields[1] as String,
       infoGroups: (fields[2] as List).cast<InfoGroupHiveModel>(),
       performanceGroups: (fields[3] as List).cast<PerformanceGroupHiveModel>(),

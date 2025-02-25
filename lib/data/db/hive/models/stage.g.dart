@@ -16,10 +16,7 @@ class StageHiveModelAdapter extends TypeAdapter<StageHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return StageHiveModel(
-      fields[0] as String,
-      fields[1] as int,
-    );
+    return StageHiveModel(fields[0] as String, (fields[1] as num).toInt());
   }
 
   @override

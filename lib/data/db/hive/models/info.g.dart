@@ -17,10 +17,10 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return InfoHiveModel(
-      fields[0] as int,
+      (fields[0] as num).toInt(),
       fields[1] as String,
       fields[2] as String,
-      fields[3] as int,
+      (fields[3] as num).toInt(),
     );
   }
 

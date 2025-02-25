@@ -18,11 +18,11 @@ class PerformanceGroupHiveModelAdapter
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return PerformanceGroupHiveModel(
-      groupId: fields[0] as int,
-      problem: fields[1] as int,
-      age: fields[2] as int,
-      stage: fields[3] as int,
-      part: fields[4] as int,
+      groupId: (fields[0] as num).toInt(),
+      problem: (fields[1] as num).toInt(),
+      age: (fields[2] as num).toInt(),
+      stage: (fields[3] as num).toInt(),
+      part: (fields[4] as num).toInt(),
       league: fields[7] as String,
       day: fields[5] as String,
       performancesHiveList: (fields[6] as HiveList).castHiveList(),
