@@ -95,6 +95,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  disable-swift-package-manager: false
   generate: false
 
   # The following line ensures that the Material Icons font is
