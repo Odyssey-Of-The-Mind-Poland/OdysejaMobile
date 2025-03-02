@@ -1,91 +1,85 @@
 import 'dart:ui';
 
-import 'package:odyssey_mobile/consts/hex_color.dart';
+import 'package:odyssey_mobile/consts/theme_extensions.dart';
 
-import 'colors.dart';
-
-class LightColors implements Colors {
-
+@Deprecated('Obsolete. Migrate to theme extensions')
+class LightColors {
   static final LightColors appColors = LightColors._();
 
   LightColors._();
 
-
-  @override
   final UniversalColors universal = UniversalColors(
     grey: ColorSet(
-      color100: HexColor.fromHex('#FFFFFF'),
-      color200: HexColor.fromHex('#F9FAFB'),
-      color300: HexColor.fromHex('#EDEDED'),
-      color400: HexColor.fromHex('#808489'),
-      color500: HexColor.fromHex('#3C3E40'),
-      color600: HexColor.fromHex('#292B2D'),
-      color700: HexColor.fromHex('#202224'),
+      color100: Color(0xFFFFFFFF),
+      color200: Color(0xFFF9FAFB),
+      color300: Color(0xFFEDEDED),
+      color400: Color(0xFF808489),
+      color500: Color(0xFF3C3E40),
+      color600: Color(0xFF292B2D),
+      color700: Color(0xFF202224),
     ),
     blue: ColorSet(
-      color100: HexColor.fromHex('#E4FCEC'),
-      color200: HexColor.fromHex('#AAEDC2'),
-      color300: HexColor.fromHex('#78D8A1'),
-      color500: HexColor.fromHex('#2D9C5A'),
-      color700: HexColor.fromHex('#18513A'),
+      color100: Color(0xFFE4FCEC),
+      color200: Color(0xFFAAEDC2),
+      color300: Color(0xFF78D8A1),
+      color500: Color(0xFF2D9C5A),
+      color700: Color(0xFF18513A),
     ),
     green: ColorSet(
-      color100: HexColor.fromHex('#E8F5E9'),
-      color200: HexColor.fromHex('#C8E6C9'),
-      color300: HexColor.fromHex('#A5D6A7'),
-      color400: HexColor.fromHex('#81C784'),
-      color500: HexColor.fromHex('#66BB6A'),
-      color600: HexColor.fromHex('#4CAF50'),
-      color700: HexColor.fromHex('#43A047'),
+      color100: Color(0xFFE8F5E9),
+      color200: Color(0xFFC8E6C9),
+      color300: Color(0xFFA5D6A7),
+      color400: Color(0xFF81C784),
+      color500: Color(0xFF66BB6A),
+      color600: Color(0xFF4CAF50),
+      color700: Color(0xFF43A047),
     ),
     red: ColorSet(
-      color100: HexColor.fromHex('#FBE7E7'),
-      color200: HexColor.fromHex('#F3AAAB'),
-      color300: HexColor.fromHex('#D83236'),
-      color500: HexColor.fromHex('#B52226'),
-      color700: HexColor.fromHex('#5F191B'),
+      color100: Color(0xFFFBE7E7),
+      color200: Color(0xFFF3AAAB),
+      color300: Color(0xFFD83236),
+      color500: Color(0xFFB52226),
+      color700: Color(0xFF5F191B),
     ),
   );
 
-  @override
   final ColorSet primary = ColorSet(
-    color100: HexColor.fromHex('#FFEFDD'),
-    color200: HexColor.fromHex('#FFD8AC'),
-    color300: HexColor.fromHex('#FF8800'),
+    color100: Color(0xFFFFEFDD),
+    color200: Color(0xFFFFD8AC),
+    color300: Color(0xFFFF8800),
     color500: Color.fromRGBO(238, 127, 0, 1),
     color700: Color.fromRGBO(227, 121, 0, 1),
   );
 
-  @override
   final AccentColors accent = AccentColors(
     blue: ColorSet(
-      color100: HexColor.fromHex('#E7F3FF'),
-      color300: HexColor.fromHex('#E1F0FE'),
-      color400: HexColor.fromHex('#D0E7FD'),
-      color500: HexColor.fromHex('#C4E1FD'),
-      color700: HexColor.fromHex('#228AF2'),
+      color100: Color(0xFFE7F3FF),
+      color300: Color(0xFFE1F0FE),
+      color400: Color(0xFFD0E7FD),
+      color500: Color(0xFFC4E1FD),
+      color700: Color(0xFF228AF2),
     ),
     orange: ColorSet(
-      color100: HexColor.fromHex('#FFF1DE'),
-      color300: HexColor.fromHex('#FFEDD9'),
-      color400: HexColor.fromHex('#FFE1CB'),
-      color500: HexColor.fromHex('#FFDCC2'),
-      color700: HexColor.fromHex('#F24D06'),
+      color100: Color(0xFFFFF1DE),
+      color300: Color(0xFFFFEDD9),
+      color400: Color(0xFFFFE1CB),
+      color500: Color(0xFFFFDCC2),
+      color700: Color(0xFFF24D06),
     ),
     red: ColorSet(
-      color100: HexColor.fromHex('#FFDADA'),
-      color300: HexColor.fromHex('#FFDADA'),
-      color400: HexColor.fromHex('#FDCDCD'),
-      color500: HexColor.fromHex('#FDC4C4'),
-      color700: HexColor.fromHex('#F42F2F'),
+      color100: Color(0xFFFFDADA),
+      color300: Color(0xFFFFDADA),
+      color400: Color(0xFFFDCDCD),
+      color500: Color(0xFFFDC4C4),
+      color700: Color(0xFFF42F2F),
     ),
     purple: ColorSet(
-      color100: HexColor.fromHex('#EEEAFF'),
-      color300: HexColor.fromHex('#EAE5FE'),
-      color400: HexColor.fromHex('#DCD5FD'),
-      color500: HexColor.fromHex('#D7CFFC'),
-      color600: HexColor.fromHex('#4CAF50'),
-      color700: HexColor.fromHex('#6E52F4'),
+      color100: Color(0xFFEEEAFF),
+      color300: Color(0xFFEAE5FE),
+      color400: Color(0xFFDCD5FD),
+      color500: Color(0xFFD7CFFC),
+      color600: Color(0xFF4CAF50),
+      color700: Color(0xFF6E52F4),
     ),
   );
 }

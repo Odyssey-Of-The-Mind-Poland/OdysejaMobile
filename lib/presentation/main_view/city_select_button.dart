@@ -46,7 +46,7 @@ class CitySelectButton extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: LightColors.appColors.primary.color500,
                     border: Border.all(
-                        color: LightColors.appColors.primary.color700,
+                        color: LightColors.appColors.primary.color700!,
                         width: 2),
                     borderRadius: BorderRadius.circular(80),
                     boxShadow: [
@@ -120,7 +120,7 @@ class CitySelectButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: LightColors.appColors.universal.grey.color100,
                   border: Border.all(
-                      color: LightColors.appColors.universal.grey.color300,
+                      color: LightColors.appColors.universal.grey.color300!,
                       width: 2),
                   borderRadius: BorderRadius.circular(16),
                 ),
