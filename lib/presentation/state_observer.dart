@@ -3,6 +3,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/data/services/logger_service.dart';
 
+// TODO: Move to logging services.
 class StateObserver extends BlocObserver {
   const StateObserver(this._service);
 

@@ -1,6 +1,8 @@
 import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/domain/failure.dart';
 
+// TODO: Refactor to enums.
+
 class DataBaseFailure extends Failure {
   const DataBaseFailure();
 

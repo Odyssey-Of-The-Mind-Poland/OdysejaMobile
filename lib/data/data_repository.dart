@@ -17,14 +17,16 @@ import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DataRepository  {
+// TODO: Refactor into separate data and update repositories.
+// TODO: Consider API changes to reduce number of small requests.
+class DataRepository {
   DataRepository({
     required ApiService apiService,
     required SharedPreferences sharedPrefs,
     required HiveDbService dbService,
-  })  : _apiService = apiService,
-        _sharedPrefs = sharedPrefs,
-        _dbService = dbService;
+  }) : _apiService = apiService,
+       _sharedPrefs = sharedPrefs,
+       _dbService = dbService;
 
   final ApiService _apiService;
   final SharedPreferences _sharedPrefs;
@@ -40,7 +42,6 @@ class DataRepository  {
       final savedVersion = _sharedPrefs.getInt('version') ?? -1;
 
       if (forceUpdate || externalVersion > savedVersion) {
-
         List<int> previousFavIds = [];
         if (savedVersion != -1 && keepFavsOnUpdate) {
           previousFavIds = await _dbService.readFavIds();
@@ -67,6 +68,7 @@ class DataRepository  {
           final infoCategories = futures[1] as List<InfoCategoryModelApi>;
           final performances = futures[2] as List<PerformanceModelApi>;
           final stages = futures[3] as List<StageModelApi>;
+          // TODO: Refactor json parsing
           final sponsors = SponsorModelApi.fromHttpResponse(futures[4] as HttpResponse);
 
           await _dbService.createCityData(
@@ -119,7 +121,6 @@ class DataRepository  {
   //   // TODO: implement getCities
   //   throw UnimplementedError();
   // }
-
 
   Future<Either<Failure, Unit>> updateFavourite(Performance performance) async {
     try {

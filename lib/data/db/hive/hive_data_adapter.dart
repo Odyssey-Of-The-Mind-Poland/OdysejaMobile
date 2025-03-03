@@ -88,6 +88,7 @@ abstract class HiveDataAdapter {
     final Set<int> parts = performances.map((e) => e.part).toSet();
     final Set<String> leagues = performances.map((e) => e.league).toSet();
     int groupId = 0;
+    // TODO; migrate to performanceGroups API.
     // I cry when I look at it.
     for (final stage in stages) {
       for (final problem in problems) {

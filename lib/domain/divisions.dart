@@ -3,6 +3,7 @@ import 'package:odyssey_mobile/consts/strings.dart';
 
 // Overcomplicated solution for a simple problem, in case one day we'll become
 // crazy and 'll internationalize the app.
+// TODO: Check if it's really necessary.
 const List<DivisionEntity> divisions = [
   JuniorDivision(),
   FirstDivision(),

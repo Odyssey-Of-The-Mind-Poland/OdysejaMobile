@@ -17,6 +17,9 @@ import 'package:odyssey_mobile/hive_registrar.g.dart';
 
 import 'models/city.dart';
 
+// TODO: Refactor, there should be seperate boxes per city.
+// Opening a box loads its content into memory and there is no point
+// in loading all the cities at the same time.
 class HiveDbService {
   HiveDbService._create();
 

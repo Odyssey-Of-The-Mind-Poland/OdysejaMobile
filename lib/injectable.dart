@@ -15,6 +15,10 @@ final sl = GetIt.instance;
 
 enum Env { dev, prod }
 
+// TODO: Refactor and aggregate logging services. They should be injected into
+// classes with failable methods and centralized around one logging class, instead
+// of three seperate (dio interceptor, bloc observer, firebase logger in LoggerService)
+// TODO: MAke clearer distinction between environments, with seperate dbs etc.
 extension Initialize on GetIt {
   Future<void> init() async {
     const env = kDebugMode ? Env.dev : Env.prod;
@@ -31,12 +35,9 @@ extension Initialize on GetIt {
     sl.registerSingletonAsync<HiveDbService>(() => HiveDbService.create());
 
     sl.registerSingletonWithDependencies<DataRepository>(
-        () => DataRepository(
-              apiService: sl(),
-              dbService: sl(),
-              sharedPrefs: sl(),
-            ),
-        dependsOn: [SharedPreferences, HiveDbService]);
+      () => DataRepository(apiService: sl(), dbService: sl(), sharedPrefs: sl()),
+      dependsOn: [SharedPreferences, HiveDbService],
+    );
     await sl.allReady(ignorePendingAsyncCreation: false);
 
     if (kDebugMode && !kIsWeb) {
@@ -45,21 +46,23 @@ extension Initialize on GetIt {
   }
 
   Dio get _dioInstance {
-    Dio dio = Dio(BaseOptions(
-      sendTimeout: const Duration(seconds: 5),
-      connectTimeout: const Duration(seconds: 5),
-      receiveTimeout: const Duration(seconds: 7),
-      headers: <String, String>{
-        'accept': 'application/json',
-      },
-    ));
+    Dio dio = Dio(
+      BaseOptions(
+        sendTimeout: const Duration(seconds: 5),
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 7),
+        headers: <String, String>{'accept': 'application/json'},
+      ),
+    );
     if (kDebugMode) {
-      dio.interceptors.add(PrettyDioLogger(
-        responseBody: true,
-        requestBody: false,
-        requestHeader: false,
-        responseHeader: false,
-      ));
+      dio.interceptors.add(
+        PrettyDioLogger(
+          responseBody: true,
+          requestBody: false,
+          requestHeader: false,
+          responseHeader: false,
+        ),
+      );
     }
     return dio;
   }
