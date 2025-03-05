@@ -150,12 +150,14 @@ class AccentColors {
     required this.orange,
     required this.red,
     required this.purple,
+    required this.green,
   });
 
   final ColorSet blue;
   final ColorSet orange;
   final ColorSet red;
   final ColorSet purple;
+  final ColorSet green;
 
   AccentColors lerp(AccentColors? other, double t) {
     if (identical(other, this)) {
@@ -166,6 +168,7 @@ class AccentColors {
       orange: orange.lerp(other?.orange, t),
       red: red.lerp(other?.red, t),
       purple: purple.lerp(other?.purple, t),
+      green: green.lerp(other?.green, t),
     );
   }
 }

@@ -20,13 +20,11 @@ const colorsUniversal = UniversalColors(
     color700: Color(0xFF164577),
   ),
   green: ColorSet(
-    color100: Color(0xFFE8F5E9),
-    color200: Color(0xFFC8E6C9),
-    color300: Color(0xFFA5D6A7),
-    color400: Color(0xFF81C784),
-    color500: Color(0xFF66BB6A),
-    color600: Color(0xFF4CAF50),
-    color700: Color(0xFF43A047),
+    color100: Color(0xFFE4FCEC),
+    color200: Color(0xFFAAEDC2),
+    color300: Color(0xFF78D8A1),
+    color500: Color(0xFF2D9C5A),
+    color700: Color(0xFF18513A),
   ),
   red: ColorSet(
     color100: Color(0xFFFBE7E7),

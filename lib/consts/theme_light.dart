@@ -14,8 +14,8 @@ const _colors = AppColors(
     color100: Color(0xFFFFEFDD),
     color200: Color(0xFFFFD8AC),
     color300: Color(0xFFFF8800),
-    color500: Color.fromRGBO(238, 127, 0, 1),
-    color700: Color.fromRGBO(227, 121, 0, 1),
+    color500: Color(0xFFEE7F00),
+    color700: Color(0xFFE37900),
   ),
   accent: AccentColors(
     blue: ColorSet(
@@ -33,7 +33,7 @@ const _colors = AppColors(
       color700: Color(0xFFF24D06),
     ),
     red: ColorSet(
-      color100: Color(0xFFFFDADA),
+      color100: Color(0xFFFFDEDE),
       color300: Color(0xFFFFDADA),
       color400: Color(0xFFFDCDCD),
       color500: Color(0xFFFDC4C4),
@@ -44,8 +44,14 @@ const _colors = AppColors(
       color300: Color(0xFFEAE5FE),
       color400: Color(0xFFDCD5FD),
       color500: Color(0xFFD7CFFC),
-      color600: Color(0xFF4CAF50),
       color700: Color(0xFF6E52F4),
+    ),
+    green: ColorSet(
+      color100: Color(0xFFECFADB),
+      color300: Color(0xFFE7F8D1),
+      color400: Color(0xFFD7F3B5),
+      color500: Color(0xFFD2F1AC),
+      color700: Color(0xFF5B9315),
     ),
   ),
 );

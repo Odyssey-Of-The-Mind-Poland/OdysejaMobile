@@ -81,5 +81,12 @@ class LightColors {
       color600: Color(0xFF4CAF50),
       color700: Color(0xFF6E52F4),
     ),
+    green: ColorSet(
+      color100: Color(0xFFECFADB),
+      color300: Color(0xFFE7F8D1),
+      color400: Color(0xFFD7F3B5),
+      color500: Color(0xFFD2F1AC),
+      color700: Color(0xFF5B9315),
+    ),
   );
 }
