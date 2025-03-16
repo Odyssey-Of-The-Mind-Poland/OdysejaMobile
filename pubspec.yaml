@@ -18,12 +18,12 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.2.1+19
 
 environment:
-  sdk: ">=3.7.0 <4.0.0" # dart SDK
+  sdk: ">=3.6.0 <4.0.0" # dart SDK
   flutter: ">=3.29.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work. vbv
 # To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# consider running `flutter pub upgrade  --major-versions`. Alternatively,
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
@@ -31,12 +31,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  auto_route: ^9.3.0
   # The following adds the Cupertino Icons font to your application.
+  cupertino_icons: ^1.0.8
+  auto_route: ^10.0.1
   logging: ^1.3.0
   equatable: ^2.0.7
-  flutter_bloc: ^9.0.0
+  flutter_bloc: ^9.1.0
   cached_network_image: ^3.4.1
   dartz: ^0.10.1
   dio: ^5.8.0+1
@@ -54,13 +54,13 @@ dependencies:
   hive_ce: ^2.10.1
   flutter_widget_from_html_core: ^0.16.0
   path_provider: ^2.1.5
-  firebase_core: ^3.12.0
-  firebase_crashlytics: ^4.3.3
-  firebase_analytics: ^11.4.3
+  firebase_core: ^3.12.1
+  firebase_crashlytics: ^4.3.4
+  firebase_analytics: ^11.4.4
   intl: ^0.20.2
 
 dev_dependencies:
-  auto_route_generator: ^9.3.1
+  auto_route_generator: ^10.0.1
   build_runner: ^2.4.15
   hive_ce_generator: ^1.8.2
   flutter_launcher_icons: ^0.14.3
