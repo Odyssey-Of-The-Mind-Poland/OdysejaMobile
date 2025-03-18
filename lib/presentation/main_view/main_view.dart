@@ -1,19 +1,19 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/consts/ootm_icons.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/injectable.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
-import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
+import 'package:odyssey_mobile/features/data_update/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
+import 'package:odyssey_mobile/widgets/ootm_navigation_bar.dart';
 import '../favourites_screen/bloc/favourites_bloc.dart';
 import 'bloc/city_bloc.dart';
-import 'city_select_button.dart';
+// import 'city_select_button.dart';
 
 @RoutePage()
 class MainView extends StatefulWidget {
@@ -39,8 +39,7 @@ class _MainViewState extends State<MainView> {
           lazy: false,
         ),
         BlocProvider(
-          create: (context) =>
-              ScheduleSearchBloc(context.read<CityDataBloc>()),
+          create: (context) => ScheduleSearchBloc(context.read<CityDataBloc>()),
         ),
         BlocProvider(
           create: (context) => UpdateFavouritesBloc(sl()),
@@ -72,44 +71,42 @@ class _MainViewState extends State<MainView> {
             },
           ),
         ],
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Stack(
-              children: [
-                AutoTabsScaffold(
-                  key: _scaffoldKey,
-                  routes: const [
-                    HomeRoute(),
-                    InfoRoutes(),
-                    ScheduleRoutes(),
-                    FavouritesRoute(),
-                  ],
-                  homeIndex: 0,
-                  bottomNavigationBuilder: (_, tabsRouter) {
-                    return SizedBox(
-                      child: DotNavigationBar(
-                        selectedItemColor: AppColors.primaryOrange,
-                        unselectedItemColor: AppColors.darkestGrey,
-                        enableFloatingNavBar: false,
-                        enablePaddingAnimation: false,
-                        currentIndex: tabsRouter.activeIndex,
-                        onTap: tabsRouter.setActiveIndex,
-                        items: [
-                          DotNavigationBarItem(
-                              icon: const Icon(OotmIcons.home)),
-                          DotNavigationBarItem(
-                              icon: const Icon(OotmIcons.info)),
-                          DotNavigationBarItem(
-                              icon: const Icon(OotmIcons.schedule)),
-                          DotNavigationBarItem(
-                              icon: const Icon(Icons.favorite_outline)),
-                        ],
-                      ),
-                    );
-                  },
+        child: AutoTabsScaffold(
+          key: _scaffoldKey,
+          routes: const [
+            HomeRoute(),
+            InfoRoutes(),
+            ScheduleRoutes(),
+            FavouritesRoute(),
+          ],
+          homeIndex: 0,
+          // TODO: Add height compensation to all the screens before enabling!
+          extendBody: false,
+          // FIXME: Add a mechanism to hide the button if there is only one city.
+          // floatingActionButton: CitySelectButton(),
+          bottomNavigationBuilder: (_, tabsRouter) {
+            return OotmNavigationBar(
+              selectedIndex: tabsRouter.activeIndex,
+              onDestinationSelected: tabsRouter.setActiveIndex,
+              // TODO: Requires extendBody: true
+              blurEnabled: false,
+              destinations: [
+                Destination(
+                  iconData: OotmIcons.home,
+                  label: AppStrings.homeScreenNavigationLabel,
                 ),
-                // Floating Button Relative to Bottom Navigation Bar
-                CitySelectButton(),
+                Destination(
+                  iconData: OotmIcons.info,
+                  label: AppStrings.infoScreenNavigationLabel,
+                ),
+                Destination(
+                  iconData: OotmIcons.schedule,
+                  label: AppStrings.scheduleScreenNavigationLabel,
+                ),
+                Destination(
+                  iconData: Icons.favorite_outline,
+                  label: AppStrings.favScreenNavigationLabel,
+                ),
               ],
             );
           },
@@ -118,5 +115,3 @@ class _MainViewState extends State<MainView> {
     );
   }
 }
-
-

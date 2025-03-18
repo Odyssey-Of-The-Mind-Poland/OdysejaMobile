@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/theme_common.dart';
-import 'package:odyssey_mobile/consts/theme_extensions.dart';
+import 'package:odyssey_mobile/consts/theme.dart';
 
 final themeLight = ThemeData(
   brightness: Brightness.light,
   fontFamily: _fontFamily,
-  extensions: [_colors, _typography, appStyling],
+  splashFactory: NoSplash.splashFactory,
+  highlightColor: _colors.universal.grey.color300,
+  extensions: [
+    _colors,
+    _typography,
+    appStyling,
+    _navigationBar,
+  ],
+);
+
+final _navigationBar = OotmNavigationBarThemeData(
+  iconColor: _colors.universal.grey.color400,
+  iconColorSelected: _colors.primary.color700,
+  colorBackground: _colors.universal.grey.color100,
+  borderColor: _colors.universal.grey.color300,
+  highlightColor: _colors.primary.color200,
+  indicatorBorderColor: _colors.primary.color200,
+  indicatorColor: _colors.primary.color100,
 );
 
 const _colors = AppColors(

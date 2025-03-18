@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/theme_common.dart';
-import 'package:odyssey_mobile/consts/theme_extensions.dart';
-import 'package:odyssey_mobile/consts/theme_light.dart';
+import 'package:odyssey_mobile/consts/theme.dart';
 
 @Deprecated('Obsolete. Migrate to new theme definitions')
 final lightTheme = ThemeData(
@@ -41,7 +39,7 @@ final lightTheme = ThemeData(
       minimumSize: const Size(0, 40),
     ),
   ),
-  extensions: [themeLight.u, themeLight.t, appStyling],
+  extensions: themeLight.extensions.values,
 );
 
 @Deprecated('Obsolete. Migrate to AppTypography ThemeExtention')

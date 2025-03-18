@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Requires providing [AppTypography], [AppColors], and [AppStyling]
-extension ThemeDataExtention on ThemeData {
-  AppTypography get t => extension<AppTypography>()!;
-  AppColors get u => extension<AppColors>()!;
-  AppStyling get s => extension<AppStyling>()!;
-}
-
 /// App styling settings extracted from the design system.
 class AppStyling extends ThemeExtension<AppStyling> {
   const AppStyling();
@@ -58,17 +51,18 @@ class AppTypography extends ThemeExtension<AppTypography> {
     TextStyle? bodyMediumRegular,
     TextStyle? bodySmallRegular,
     TextStyle? bodySmallBold,
-  }) => AppTypography(
-    h1: h1 ?? this.h1,
-    h2: h2 ?? this.h2,
-    h3: h3 ?? this.h3,
-    bodyLargeBold: bodyLargeBold ?? this.bodyLargeBold,
-    bodyLargeRegular: bodyLargeRegular ?? this.bodyLargeRegular,
-    bodyMediumBold: bodyMediumBold ?? this.bodyMediumBold,
-    bodyMediumRegular: bodyMediumRegular ?? this.bodyMediumRegular,
-    bodySmallBold: bodySmallBold ?? this.bodySmallBold,
-    bodySmallRegular: bodySmallRegular ?? this.bodySmallRegular,
-  );
+  }) =>
+      AppTypography(
+        h1: h1 ?? this.h1,
+        h2: h2 ?? this.h2,
+        h3: h3 ?? this.h3,
+        bodyLargeBold: bodyLargeBold ?? this.bodyLargeBold,
+        bodyLargeRegular: bodyLargeRegular ?? this.bodyLargeRegular,
+        bodyMediumBold: bodyMediumBold ?? this.bodyMediumBold,
+        bodyMediumRegular: bodyMediumRegular ?? this.bodyMediumRegular,
+        bodySmallBold: bodySmallBold ?? this.bodySmallBold,
+        bodySmallRegular: bodySmallRegular ?? this.bodySmallRegular,
+      );
 
   @override
   AppTypography lerp(AppTypography? other, double t) {
