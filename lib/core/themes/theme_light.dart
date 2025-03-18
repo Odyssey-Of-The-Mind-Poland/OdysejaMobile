@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/theme.dart';
+import 'package:odyssey_mobile/core/themes/theme.dart';
 
 final themeLight = ThemeData(
   brightness: Brightness.light,

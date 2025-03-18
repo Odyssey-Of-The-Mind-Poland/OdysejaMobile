@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:odyssey_mobile/consts/theme_extensions.dart';
+import 'package:odyssey_mobile/core/themes/theme_extensions.dart';
 
 const colorsUniversal = UniversalColors(
   grey: ColorSet(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/theme.dart';
+import 'package:odyssey_mobile/core/themes/theme.dart';
 
 @Deprecated('Obsolete. Migrate to new theme definitions')
 final lightTheme = ThemeData(

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:odyssey_mobile/consts/app_config.dart';
+import 'package:odyssey_mobile/core/env_config.dart';
 import 'package:odyssey_mobile/data/api/api_service.dart';
 import 'package:odyssey_mobile/data/data_repository.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
@@ -13,22 +13,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
-enum Env { dev, prod }
-
 // TODO: Refactor and aggregate logging services. They should be injected into
 // classes with failable methods and centralized around one logging class, instead
 // of three seperate (dio interceptor, bloc observer, firebase logger in LoggerService)
 // TODO: MAke clearer distinction between environments, with seperate dbs etc.
 extension Initialize on GetIt {
   Future<void> init() async {
-    const env = kDebugMode ? Env.dev : Env.prod;
     if (!kIsWeb) {
       sl.registerSingletonAsync(() => LoggerService.create());
     }
 
-    sl.registerSingleton<AppConfig>(env == Env.dev ? DevConfig() : ProductionConfig());
+    sl.registerSingleton<EnvConfig>(kDebugMode ? EnvConfig.development : EnvConfig.production);
 
-    sl.registerLazySingleton(() => ApiService(_dioInstance, baseUrl: sl<AppConfig>().baseUrl));
+    sl.registerLazySingleton(() => ApiService(_dioInstance, baseUrl: sl<EnvConfig>().baseUrl));
 
     sl.registerSingletonAsync(() => SharedPreferences.getInstance());
 

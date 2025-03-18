@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/theme_extensions.dart';
-import 'package:odyssey_mobile/consts/theme_extensions_widgets.dart';
+import 'package:odyssey_mobile/core/themes/theme_extensions.dart';
+import 'package:odyssey_mobile/core/themes/theme_extensions_widgets.dart';
 
 export 'theme_extensions_widgets.dart';
 export 'theme_extensions.dart';
