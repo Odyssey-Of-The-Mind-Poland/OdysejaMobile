@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/domain/failure.dart';
-import 'package:odyssey_mobile/data/data_repository.dart';
-import 'package:odyssey_mobile/domain/entities/city_data.dart';
-import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/core/failure.dart';
+import 'package:odyssey_mobile/core/data/data_repository.dart';
+import 'package:odyssey_mobile/core/domain/city_data.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 
 part 'city_data_event.dart';
 part 'city_data_state.dart';
@@ -22,10 +22,10 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
     final result2 = await _repository.getProblems();
 
     result.fold(
-          (l) => emit(CityDataError(l)),
-          (r) => result2.fold(
-            (l) => emit(CityDataError(l)),
-            (r2) => emit(CityDataSuccess(r, r2)),
+      (l) => emit(CityDataError(l)),
+      (r) => result2.fold(
+        (l) => emit(CityDataError(l)),
+        (r2) => emit(CityDataSuccess(r, r2)),
       ),
     );
   }

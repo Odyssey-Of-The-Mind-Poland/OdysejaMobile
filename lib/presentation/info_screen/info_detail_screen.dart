@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:odyssey_mobile/data/failures.dart';
-import 'package:odyssey_mobile/data/services/url_service.dart';
-import 'package:odyssey_mobile/domain/entities/info.dart';
+import 'package:odyssey_mobile/core/data/failures.dart';
+import 'package:odyssey_mobile/core/data/services/url_service.dart';
+import 'package:odyssey_mobile/core/domain/info.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 
 @RoutePage()

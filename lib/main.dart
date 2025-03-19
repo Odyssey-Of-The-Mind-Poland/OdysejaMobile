@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:odyssey_mobile/presentation/app.dart';
-import 'package:odyssey_mobile/injectable.dart';
+import 'package:odyssey_mobile/app/app.dart';
+import 'package:odyssey_mobile/app/injectable.dart';
 
 void main() async {
   LicenseRegistry.addLicense(() async* {

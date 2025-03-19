@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 
-import '../../domain/entities/performance.dart';
+import '../../core/domain/performance.dart';
 import '../favourites_screen/bloc/favourites_bloc.dart';
 import '../main_view/bloc/city_data_bloc.dart';
 
@@ -54,8 +54,7 @@ class _NextPerformanceState extends State<NextPerformance> {
     );
   }
 
-  Performance? _getClosestPerformance(
-      List<Performance> performances, DateTime now) {
+  Performance? _getClosestPerformance(List<Performance> performances, DateTime now) {
     final upcomingPerformances = performances.where((p) {
       final fullDateTime = p.getPerofrmanceDateTime();
       return fullDateTime != null && fullDateTime.isAfter(now);

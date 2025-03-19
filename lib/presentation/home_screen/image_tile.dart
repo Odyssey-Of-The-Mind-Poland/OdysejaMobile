@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 
 class ImageTile extends StatelessWidget {
   const ImageTile(this.id, {this.color = AppColors.pureWhite, super.key});

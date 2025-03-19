@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
-import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 
 class SearchResultListTile extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:odyssey_mobile/core/themes/theme_extensions.dart';
+import 'package:odyssey_mobile/app/themes/theme_extensions.dart';
 
 @Deprecated('Obsolete. Migrate to theme extensions')
 class LightColors {

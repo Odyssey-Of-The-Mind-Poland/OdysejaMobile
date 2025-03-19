@@ -1,5 +1,5 @@
-import 'package:odyssey_mobile/consts/strings.dart';
-import 'package:odyssey_mobile/domain/entities/performance.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
+import 'package:odyssey_mobile/core/domain/performance.dart';
 
 class CohortHelper {
   final Performance pf;

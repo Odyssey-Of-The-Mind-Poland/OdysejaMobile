@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/domain/failure.dart';
+import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/presentation/components/loader.dart';
-import 'package:odyssey_mobile/presentation/initial_screens/bloc/update_bloc.dart';
+import 'package:odyssey_mobile/features/update_data/bloc/update_bloc.dart';
 
 class ErrorBody extends StatelessWidget {
   const ErrorBody(this.failure, {super.key});

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/home_screen/image_tile.dart';
-import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/home_screen/next_performance.dart';
 
 @RoutePage()
@@ -16,8 +16,7 @@ class HomeScreen extends StatelessWidget {
     return CityDataBuilder(onData: (data, _) {
       return Scaffold(
         backgroundColor: AppColors.shadowGrey,
-        appBar: AppBar(
-            title: const Text(AppStrings.homeScreenTitle)),
+        appBar: AppBar(title: const Text(AppStrings.homeScreenTitle)),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [
@@ -26,11 +25,9 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    margin:
-                        const EdgeInsets.only(left: 16.0, right: 16.0, top: 16),
+                    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16),
                     height: size.width,
-                    child: ImageTile(data.sponsors[0][0].id,
-                        color: AppColors.omerBlue),
+                    child: ImageTile(data.sponsors[0][0].id, color: AppColors.omerBlue),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(24.0),

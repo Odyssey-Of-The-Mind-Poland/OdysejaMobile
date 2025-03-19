@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/domain/entities/performance.dart';
-import 'package:odyssey_mobile/domain/entities/performance_group.dart';
+import 'package:odyssey_mobile/core/domain/performance.dart';
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 

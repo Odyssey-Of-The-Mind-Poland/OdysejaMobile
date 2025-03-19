@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/domain/entities/performance.dart';
-import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/core/domain/performance.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/show_more_button.dart';
-import 'package:odyssey_mobile/domain/entities/performance_group.dart' as pfg_entity;
+import 'package:odyssey_mobile/core/domain/performance_group.dart' as pfg_entity;
 
 class PerformanceGroupWidget extends StatefulWidget {
   const PerformanceGroupWidget({

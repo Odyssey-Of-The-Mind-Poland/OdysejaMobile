@@ -55,18 +55,19 @@ They should be user-presented / business functionalities. Can depend on each oth
 
 ### root-level folders
 assets/ -> fonts, graphics, icons
-lib/** -> only dart code
+lib/** -> mostly dart code
 
 > Don't add new files to these folders, they should be removed after their dependent classes are refactored:
 lib/consts -> DEPRECATED
 lib/presentation -> DEPRECATED
 
-> Previous architecture being heighly layer-specific, rewriting it requires time and testing. There are other priorities now, so folders below are still in use.
-lib/data -> TEMPORARY. 
-lib/domain -> TEMPORARY.
+> Previous architecture was heighly layer-specific and rewriting it requires time and testing. For now former domain and data folders have been put into core folder. Subject to refactoring.
+
 
 > New folders:
-lib/core -> feature-independent files like: configs, theming, routing, validators. Mostly configuration classes without logic. Better suited name than "consts".
+lib/app -> contains application entry points and related components, router, and themes.
+lib/config -> configuration variables and constants
+lib/core -> fundamental building blocks used throughout the application, as well as util functions, validators. To some extent shared data and domain code
 lib/features -> features
 lib/widgets -> universal widgets
 

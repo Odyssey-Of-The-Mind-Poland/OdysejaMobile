@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:odyssey_mobile/consts/strings.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
-import 'package:odyssey_mobile/core/ootm_icons.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/config/ootm_icons.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({

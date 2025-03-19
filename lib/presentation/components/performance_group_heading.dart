@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/domain/entities/performance_group.dart';
-import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
-import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
 
 class PerformanceGroupHeading extends StatelessWidget {
   const PerformanceGroupHeading(this.pfGroup, {this.categoryEntity, super.key});

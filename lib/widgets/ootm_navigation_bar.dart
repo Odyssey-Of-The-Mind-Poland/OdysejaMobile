@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/core/themes/theme.dart';
+import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/widgets/elements/animation_status_builder.dart';
 import 'package:odyssey_mobile/widgets/elements/selectable_animated_builder.dart';
 

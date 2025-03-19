@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/consts/light_colors.dart';
-import 'package:odyssey_mobile/core/ootm_icons.dart';
-import 'package:odyssey_mobile/data/db/hive/models/city.dart';
+import 'package:odyssey_mobile/config/ootm_icons.dart';
+import 'package:odyssey_mobile/core/data/db/hive/models/city.dart';
 
-import '../../consts/themes.dart';
+import '../../app/themes/themes.dart';
 import 'bloc/city_bloc.dart';
 import 'bloc/city_data_bloc.dart';
 

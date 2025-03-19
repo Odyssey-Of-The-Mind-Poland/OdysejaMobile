@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/domain/entities/info_category.dart';
+import 'package:odyssey_mobile/core/domain/info_category.dart';
 import 'package:odyssey_mobile/presentation/components/basic_box.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
-import 'package:odyssey_mobile/presentation/router.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/app/routing/router.dart';
 
 import '../helpers/string_helpers.dart';
 

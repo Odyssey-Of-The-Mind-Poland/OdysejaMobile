@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/presentation/components/basic_box.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 
 // Add disabled variant
 class BoxWithBadge extends StatelessWidget {

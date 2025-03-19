@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:odyssey_mobile/consts/themes.dart';
-import 'package:odyssey_mobile/domain/entities/performance_group.dart';
-import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/presentation/components/empty_data.dart';
 import 'package:odyssey_mobile/presentation/components/favourites_list.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';

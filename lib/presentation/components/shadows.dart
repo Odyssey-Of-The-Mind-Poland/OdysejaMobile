@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 
 const defaultShadow = BoxShadow(
   color: AppColors.shadowGrey,
