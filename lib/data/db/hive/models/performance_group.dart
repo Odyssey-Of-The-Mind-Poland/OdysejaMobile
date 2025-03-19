@@ -1,46 +1,10 @@
 import 'package:hive_ce_flutter/hive_flutter.dart';
-import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 
+import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/performance_group.dart';
 
-part 'performance_group.g.dart';
-
-@HiveType(typeId: 5)
 class PerformanceGroupHiveModel extends PerformanceGroup {
-  @HiveField(0)
-  @override
-  final int groupId;
-
-  @HiveField(1)
-  @override
-  final int problem;
-
-  @HiveField(2)
-  @override
-  final int age;
-
-  @HiveField(3)
-  @override
-  final int stage;
-
-  @HiveField(4)
-  @override
-  final int part;
-
-  @HiveField(5)
-  @override
-  final String day;
-
-  @HiveField(6)
-  late HiveList<PerformanceHiveModel> performancesHiveList;
-
-  @HiveField(7)
-  @override
-  late String league;
-
-  @override
-  late List<Performance> performances;
   PerformanceGroupHiveModel({
     required this.groupId,
     required this.problem,
@@ -50,9 +14,37 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
     required this.league,
     required this.day,
     required this.performancesHiveList,
-  }) {
-    performances = performancesHiveList;
-  }
+  }) : _performances = performancesHiveList;
+
+  @override
+  final int groupId;
+
+  @override
+  final int problem;
+
+  @override
+  final int age;
+
+  @override
+  final int stage;
+
+  @override
+  final int part;
+
+  @override
+  final String day;
+
+  late HiveList<PerformanceHiveModel> performancesHiveList;
+
+  @override
+  late String league;
+
+  @override
+  List<Performance> get performances => _performances;
+
+  /// Variable set to private to be ignored by Hive generator.
+  /// Used for list manipulations, for instance in favourites.
+  List<Performance> _performances;
 
   @override
   PerformanceGroup copyWith({
@@ -74,6 +66,6 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
       league: league ?? this.league,
       day: day ?? this.day,
       performancesHiveList: performancesHiveList,
-    )..performances = performances ?? this.performances;
+    ).._performances = performances ?? this.performances;
   }
 }

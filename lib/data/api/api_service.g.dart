@@ -36,13 +36,12 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<PerformanceModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) =>
-                    PerformanceModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) =>
+                PerformanceModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -69,13 +68,11 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<StageModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) =>
-                    StageModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) => StageModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -102,13 +99,11 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<ProblemModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) =>
-                    ProblemModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) => ProblemModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -135,12 +130,11 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<InfoModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) => InfoModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) => InfoModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -189,13 +183,12 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<InfoCategoryModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) =>
-                    InfoCategoryModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) =>
+                InfoCategoryModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -222,12 +215,11 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<CityModelApi> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) => CityModelApi.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) => CityModelApi.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

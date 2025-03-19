@@ -3,15 +3,7 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:odyssey_mobile/data/db/hive/models/city.dart';
-import 'package:odyssey_mobile/data/db/hive/models/city_data.dart';
-import 'package:odyssey_mobile/data/db/hive/models/info.dart';
-import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
-import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
-import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
-import 'package:odyssey_mobile/data/db/hive/models/problem.dart';
-import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
-import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
+import 'package:odyssey_mobile/data/db/hive/hive_service.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

@@ -7,8 +7,8 @@ part of 'info_category.dart';
 // **************************************************************************
 
 InfoCategoryModelApi _$InfoCategoryModelApiFromJson(
-  Map<String, dynamic> json,
-) => InfoCategoryModelApi(
-  id: (json['id'] as num).toInt(),
-  name: json['name'] as String,
-);
+        Map<String, dynamic> json) =>
+    InfoCategoryModelApi(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );

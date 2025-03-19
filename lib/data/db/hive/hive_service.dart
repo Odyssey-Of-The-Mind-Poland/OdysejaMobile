@@ -8,18 +8,36 @@ import 'package:odyssey_mobile/data/api/models/problem.dart';
 import 'package:odyssey_mobile/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/data/api/models/stage.dart';
 import 'package:odyssey_mobile/data/db/hive/hive_data_adapter.dart';
+import 'package:odyssey_mobile/data/db/hive/hive_registrar.g.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city_data.dart';
+import 'package:odyssey_mobile/data/db/hive/models/info.dart';
+import 'package:odyssey_mobile/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/performance.dart';
+import 'package:odyssey_mobile/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/data/db/hive/models/problem.dart';
+import 'package:odyssey_mobile/data/db/hive/models/sponsor.dart';
+import 'package:odyssey_mobile/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/domain/entities/schedule_category_entity.dart';
-import 'package:odyssey_mobile/hive_registrar.g.dart';
 
 import 'models/city.dart';
+
+part 'hive_service.g.dart';
 
 // TODO: Refactor, there should be seperate boxes per city.
 // Opening a box loads its content into memory and there is no point
 // in loading all the cities at the same time.
+@GenerateAdapters([
+  AdapterSpec<CityDataHiveModel>(),
+  AdapterSpec<CityHiveModel>(),
+  AdapterSpec<InfoGroupHiveModel>(),
+  AdapterSpec<InfoHiveModel>(),
+  AdapterSpec<PerformanceGroupHiveModel>(),
+  AdapterSpec<PerformanceHiveModel>(),
+  AdapterSpec<ProblemHiveModel>(),
+  AdapterSpec<SponsorHiveModel>(),
+  AdapterSpec<StageHiveModel>(),
+])
 class HiveDbService {
   HiveDbService._create();
 
