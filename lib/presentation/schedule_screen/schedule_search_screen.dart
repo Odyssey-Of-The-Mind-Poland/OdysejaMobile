@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/consts/ootm_icons.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/presentation/components/search_field.dart';
 import 'package:odyssey_mobile/presentation/components/search_result_list_tile.dart';
 import 'package:odyssey_mobile/presentation/router.dart';
@@ -35,12 +35,10 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                   Expanded(
                     child: SearchField(
                       initialValue: tryForInitialValue(state),
-                      onClearCallback: () => context
-                          .read<ScheduleSearchBloc>()
-                          .add(const SearchRequest('')),
-                      onChange: (value) => context
-                          .read<ScheduleSearchBloc>()
-                          .add(SearchRequest(value)),
+                      onClearCallback: () =>
+                          context.read<ScheduleSearchBloc>().add(const SearchRequest('')),
+                      onChange: (value) =>
+                          context.read<ScheduleSearchBloc>().add(SearchRequest(value)),
                     ),
                   ),
                   Container(
@@ -48,12 +46,10 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                     width: 44,
                     margin: const EdgeInsets.only(left: 16, right: 8.0),
                     decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(AppValues.defaultBrRadius),
+                      borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
                       color: AppColors.primaryOrange,
                     ),
-                    child: const Icon(OotmIcons.search,
-                        color: AppColors.pureWhite),
+                    child: const Icon(OotmIcons.search, color: AppColors.pureWhite),
                   ),
                 ],
               );
@@ -77,8 +73,7 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                     ));
           } else if (state is SearchEmpty) {
             return const Center(
-                child: Text(AppStrings.emptyResultsFailure,
-                    style: AppTextStyles.h1grey));
+                child: Text(AppStrings.emptyResultsFailure, style: AppTextStyles.h1grey));
           }
           return const SizedBox();
         },

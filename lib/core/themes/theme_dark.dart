@@ -6,6 +6,7 @@ final themeDark = ThemeData(
   fontFamily: _fontFamily,
   splashFactory: NoSplash.splashFactory,
   highlightColor: _colors.universal.grey.color500,
+  iconTheme: IconThemeData(size: 22),
   extensions: [
     _colors,
     _typography,

@@ -17,7 +17,7 @@ final lightTheme = ThemeData(
       color: AppColors.darkestGrey,
     ),
     backgroundColor: AppColors.lightestGrey,
-    iconTheme: IconThemeData(color: AppColors.darkestGrey),
+    iconTheme: IconThemeData(color: AppColors.darkestGrey, size: 22),
     actionsIconTheme: IconThemeData(color: AppColors.darkestGrey),
   ),
   tabBarTheme: const TabBarTheme(

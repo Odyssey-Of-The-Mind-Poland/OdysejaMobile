@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/consts/ootm_icons.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/domain/divisions.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/consts/ootm_icons.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/injectable.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 import 'package:odyssey_mobile/features/data_update/bloc/update_bloc.dart';
@@ -104,7 +104,7 @@ class _MainViewState extends State<MainView> {
                   label: AppStrings.scheduleScreenNavigationLabel,
                 ),
                 Destination(
-                  iconData: Icons.favorite_outline,
+                  iconData: OotmIcons.favourites,
                   label: AppStrings.favScreenNavigationLabel,
                 ),
               ],

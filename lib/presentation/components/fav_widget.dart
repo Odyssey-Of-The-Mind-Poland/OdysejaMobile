@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:odyssey_mobile/app/ootm_icons.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 
 class FavWidget extends StatefulWidget {
   const FavWidget(
@@ -80,9 +80,9 @@ class _FavWidgetState extends State<FavWidget> with SingleTickerProviderStateMix
                 child: AnimatedSwitcher(
                   duration: AppValues.defaultAnimationDuration,
                   child: isFavourite
-                      ? const Icon(Icons.favorite, color: AppColors.pureWhite, key: Key('1'))
-                      : const Icon(Icons.favorite_outline,
-                          color: AppColors.pureWhite, key: Key('2')),
+                      ? const Icon(OotmIcons.favouritesFilled,
+                          color: AppColors.pureWhite, key: Key('1'))
+                      : const Icon(OotmIcons.favourites, color: AppColors.pureWhite, key: Key('2')),
                 ),
               );
             }));

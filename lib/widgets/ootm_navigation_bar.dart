@@ -164,7 +164,7 @@ class _NavigationButton extends StatelessWidget {
                     child: AnimatedBuilder(
                       animation: iconAnimation,
                       builder: (context, child) =>
-                          Icon(destination.iconData, color: iconAnimation.value),
+                          Icon(destination.iconData, color: iconAnimation.value, size: 24),
                     ),
                   ),
                 );

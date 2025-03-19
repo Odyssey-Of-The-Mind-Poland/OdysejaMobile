@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/consts/ootm_icons.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/components/fav_widget.dart';
 import 'package:odyssey_mobile/presentation/components/performance_dialog.dart';
@@ -108,7 +108,7 @@ class _PerformanceCardState extends State<PerformanceCard> {
                       SizedBox(
                           width: 32,
                           child: Icon(
-                            OotmIcons.forward,
+                            OotmIcons.chevronRight,
                             color: isFavourite ? AppColors.primaryOrange : null,
                           ))
                     ],

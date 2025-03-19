@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/consts/light_colors.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/data/db/hive/models/city.dart';
 
 import '../../consts/themes.dart';
@@ -53,7 +54,7 @@ class CitySelectButton extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.location_pin, color: AppColors.grey200, size: 22),
+                      Icon(OotmIcons.location, color: AppColors.grey200, size: 22),
                       SizedBox(width: 5),
                       Text(
                         cityName,
@@ -145,7 +146,7 @@ class CitySelectButton extends StatelessWidget {
                                 ),
                                 child: Icon(
                                   size: 22,
-                                  Icons.close,
+                                  OotmIcons.close,
                                   color: LightColors.appColors.universal.grey.color500,
                                 ),
                               ),
@@ -179,8 +180,9 @@ class CitySelectButton extends StatelessWidget {
                             color: bgColor,
                           ),
                           child: ListTile(
-                            leading: Icon(Icons.location_pin, color: iconColor),
-                            trailing: isSelected ? Icon(Icons.check, color: Colors.white) : null,
+                            leading: Icon(OotmIcons.location, color: iconColor),
+                            trailing:
+                                isSelected ? Icon(OotmIcons.check, color: Colors.white) : null,
                             contentPadding: EdgeInsets.zero,
                             title: Text(
                               city.name,

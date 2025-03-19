@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:odyssey_mobile/consts/ootm_icons.dart';
 import 'package:odyssey_mobile/consts/strings.dart';
 import 'package:odyssey_mobile/consts/themes.dart';
+import 'package:odyssey_mobile/core/ootm_icons.dart';
 import 'package:odyssey_mobile/domain/entities/performance.dart';
 import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
 import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
@@ -69,8 +69,9 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
                 ElevatedButton.icon(
                   onPressed: () =>
                       widget.bloc.add(Update(widget.performance..isFavourite = !isFavourite)),
-                  icon:
-                      isFavourite ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
+                  icon: isFavourite
+                      ? const Icon(OotmIcons.favouritesFilled)
+                      : const Icon(OotmIcons.favourites),
                   label: isFavourite
                       ? const Text(AppStrings.removeFromFavsLabel)
                       : const Text(AppStrings.addToFavsLabel),
