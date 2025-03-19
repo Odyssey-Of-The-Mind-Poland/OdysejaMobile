@@ -9,7 +9,6 @@ import 'package:odyssey_mobile/presentation/info_screen/info_detail_screen.dart'
 import 'package:odyssey_mobile/presentation/info_screen/info_screens.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_screen.dart';
 import 'package:odyssey_mobile/presentation/initial_screens/loading_screen.dart';
-import 'package:odyssey_mobile/presentation/initial_screens/splash_screen.dart';
 import 'package:odyssey_mobile/presentation/main_view/main_view.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/schedule_screens.dart';
