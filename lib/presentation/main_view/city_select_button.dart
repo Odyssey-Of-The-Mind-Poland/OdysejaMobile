@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/consts/light_colors.dart';
+import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/city.dart';
 
-import '../../app/themes/themes.dart';
 import 'bloc/city_bloc.dart';
 import 'bloc/city_data_bloc.dart';
 
+// FIXME: add proper theming
 class CitySelectButton extends StatelessWidget {
   const CitySelectButton({super.key});
 
@@ -39,8 +39,8 @@ class CitySelectButton extends StatelessWidget {
                 width: 150,
                 height: 58,
                 decoration: BoxDecoration(
-                  color: LightColors.appColors.primary.color500,
-                  border: Border.all(color: LightColors.appColors.primary.color700!, width: 2),
+                  color: themeLight.c.primary.color500,
+                  border: Border.all(color: themeLight.c.primary.color700!, width: 2),
                   borderRadius: BorderRadius.circular(80),
                   boxShadow: [
                     BoxShadow(
@@ -54,12 +54,13 @@ class CitySelectButton extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(OotmIcons.location, color: AppColors.grey200, size: 22),
+                      Icon(OotmIcons.location,
+                          color: themeLight.c.universal.grey.color200, size: 22),
                       SizedBox(width: 5),
                       Text(
                         cityName,
                         style: TextStyle(
-                          color: AppColors.grey200,
+                          color: themeLight.c.universal.grey.color200,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                           decoration: TextDecoration.none,
@@ -101,7 +102,7 @@ class CitySelectButton extends StatelessWidget {
                 height: 6,
                 margin: EdgeInsets.only(top: 8),
                 decoration: BoxDecoration(
-                  color: LightColors.appColors.universal.grey.color100,
+                  color: themeLight.c.universal.grey.color100,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
@@ -109,9 +110,8 @@ class CitySelectButton extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: LightColors.appColors.universal.grey.color100,
-                  border:
-                      Border.all(color: LightColors.appColors.universal.grey.color300!, width: 2),
+                  color: themeLight.c.universal.grey.color100,
+                  border: Border.all(color: themeLight.c.universal.grey.color300!, width: 2),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -125,7 +125,7 @@ class CitySelectButton extends StatelessWidget {
                             'Wybór eliminacji',
                             style: TextStyle(
                                 fontSize: 20,
-                                color: LightColors.appColors.universal.grey.color700,
+                                color: themeLight.c.universal.grey.color700,
                                 fontWeight: FontWeight.w500),
                           ),
                           Spacer(),
@@ -133,7 +133,7 @@ class CitySelectButton extends StatelessWidget {
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: LightColors.appColors.universal.grey.color300,
+                              color: themeLight.c.universal.grey.color300,
                             ),
                             child: GestureDetector(
                               onTap: () {
@@ -142,12 +142,12 @@ class CitySelectButton extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: LightColors.appColors.universal.grey.color300,
+                                  color: themeLight.c.universal.grey.color300,
                                 ),
                                 child: Icon(
                                   size: 22,
                                   OotmIcons.close,
-                                  color: LightColors.appColors.universal.grey.color500,
+                                  color: themeLight.c.universal.grey.color500,
                                 ),
                               ),
                             ),
@@ -163,15 +163,12 @@ class CitySelectButton extends StatelessWidget {
                         final city = cities[index];
                         final isSelected = city.name == selectedCityName;
 
-                        final bgColor = isSelected
-                            ? LightColors.appColors.primary.color500
-                            : Colors.transparent;
-                        final textColor = isSelected
-                            ? Colors.white
-                            : LightColors.appColors.universal.grey.color700;
-                        final iconColor = isSelected
-                            ? Colors.white
-                            : LightColors.appColors.universal.grey.color400;
+                        final bgColor =
+                            isSelected ? themeLight.c.primary.color500 : Colors.transparent;
+                        final textColor =
+                            isSelected ? Colors.white : themeLight.c.universal.grey.color700;
+                        final iconColor =
+                            isSelected ? Colors.white : themeLight.c.universal.grey.color400;
 
                         return Container(
                           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
