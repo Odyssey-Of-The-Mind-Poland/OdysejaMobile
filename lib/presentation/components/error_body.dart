@@ -23,7 +23,9 @@ class ErrorBody extends StatelessWidget {
               children: [
                 Text(failure.errorMessage, textAlign: TextAlign.center),
                 TextButton(
-                    onPressed: () => context.read<UpdateBloc>().add(const BootstrapEvent()),
+                    onPressed: () => context
+                        .read<UpdateBloc>()
+                        .add(const CheckForUpdatesEvent(forceUpdate: true)),
                     child: const Text(
                       'Odśwież',
                       textAlign: TextAlign.center,

@@ -4,10 +4,8 @@ sealed class UpdateEvent {
   const UpdateEvent();
 }
 
-class BootstrapEvent extends UpdateEvent {
-  const BootstrapEvent();
-}
-
 class CheckForUpdatesEvent extends UpdateEvent {
-  const CheckForUpdatesEvent();
+  const CheckForUpdatesEvent({this.forceUpdate = false});
+
+  final bool forceUpdate;
 }

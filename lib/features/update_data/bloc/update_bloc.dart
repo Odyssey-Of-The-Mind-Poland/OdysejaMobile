@@ -8,8 +8,8 @@ part 'update_state.dart';
 
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   UpdateBloc(this._repository) : super(const UpdateLoading()) {
-    on<BootstrapEvent>((event, emit) async {
-      if (!_repository.shouldCheckForUpdates()) {
+    on<CheckForUpdatesEvent>((event, emit) async {
+      if (!_repository.shouldCheckForUpdates() && !event.forceUpdate) {
         emit(const UpdateFinished());
         return;
       }
@@ -33,7 +33,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
             return;
           }
 
-          if (!dataUpdate.updateAvailable) {
+          if (!dataUpdate.updateAvailable && !event.forceUpdate) {
             emit(UpdateFinished(appUpdateRecommended: appUpdate == AppUpdateStatus.recommended));
             return;
           }
@@ -50,7 +50,6 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
         },
       );
     });
-    on<CheckForUpdatesEvent>((event, emit) {});
   }
   final UpdateDataRepository _repository;
 }
