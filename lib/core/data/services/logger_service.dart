@@ -10,13 +10,19 @@ class LoggerService {
   LoggerService._();
   late final Logger logger;
 
-  static Future<LoggerService> create() async {
+  static Future<LoggerService> create({required bool isWeb}) async {
     final service = LoggerService._();
-    await service._init();
+
+    if (isWeb) {
+      await service._initWeb();
+    } else {
+      await service._init();
+    }
+
     return service;
   }
 
-  _init() async {
+  Future<void> _init() async {
     logger = Logger('Łappka Omera');
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -32,7 +38,9 @@ class LoggerService {
 
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
-      log('${record.level.name}: ${record.time}: ${record.message}');
+      if (kDebugMode) {
+        log(_formatLog(record));
+      }
       if (record.level != Level.SEVERE) {
         return;
       }
@@ -44,6 +52,28 @@ class LoggerService {
       );
     });
   }
+
+  Future<void> _initWeb() async {
+    logger = Logger('Łappka Omera');
+
+    FlutterError.onError = (error) => logError('FlutterError', error, StackTrace.current);
+    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      logError('FlutterError', error, stack);
+      return true;
+    };
+
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      if (!kDebugMode) {
+        return;
+      }
+      log(_formatLog(record));
+    });
+  }
+
+  String _formatLog(LogRecord record) =>
+      '${record.level.name}: ${record.time} — ${record.message}: ${record.error}';
 
   void logInfo(String message, [Object? e, StackTrace? s]) => Logger.root.info(message, e, s);
 

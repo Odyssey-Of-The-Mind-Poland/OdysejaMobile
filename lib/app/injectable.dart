@@ -22,9 +22,7 @@ final sl = GetIt.instance;
 // TODO: MAke clearer distinction between environments, with seperate dbs etc.
 extension Initialize on GetIt {
   Future<void> init() async {
-    if (!kIsWeb) {
-      sl.registerSingletonAsync(() => LoggerService.create());
-    }
+    sl.registerSingletonAsync(() => LoggerService.create(isWeb: kIsWeb));
 
     sl.registerSingleton<EnvConfig>(kDebugMode ? EnvConfig.development : EnvConfig.production);
 
@@ -55,7 +53,7 @@ extension Initialize on GetIt {
     );
     await sl.allReady(ignorePendingAsyncCreation: false);
 
-    if (kDebugMode && !kIsWeb) {
+    if (kDebugMode) {
       Bloc.observer = StateObserver(sl());
     }
   }
