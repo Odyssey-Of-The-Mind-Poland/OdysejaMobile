@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/core/failure.dart';
-import 'package:odyssey_mobile/core/data/data_repository.dart';
+import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 
@@ -15,7 +15,7 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
     on<SelectCity>(_selectCityHandler);
   }
 
-  final DataRepository _repository;
+  final LoadDataRepository _repository;
 
   Future<void> _fetchHandler(FetchCityData event, Emitter<CityDataState> emit) async {
     final result = await _repository.getCityData(event.selectedCity);

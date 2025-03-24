@@ -1,10 +1,13 @@
 part of 'update_bloc.dart';
 
-abstract class UpdateEvent {
+sealed class UpdateEvent {
   const UpdateEvent();
 }
 
-class StartUpdateProcess extends UpdateEvent {
-  const StartUpdateProcess([this.forceUpdate = true]);
-  final bool forceUpdate;
+class BootstrapEvent extends UpdateEvent {
+  const BootstrapEvent();
+}
+
+class CheckForUpdatesEvent extends UpdateEvent {
+  const CheckForUpdatesEvent();
 }

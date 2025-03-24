@@ -14,13 +14,17 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       body: BlocListener<UpdateBloc, UpdateState>(
         listener: (context, state) {
-          if (state is UpdateFinished) {
+          if (state is UpdateFinished || state is UpdateFailed && state.offlineModeAvailable) {
+            context.router.replaceAll([const MainRoute()]);
+          } else if (state is AppUpdateRequired) {
+            // TODO: implement updateRequired screen.
             context.router.replaceAll([const MainRoute()]);
           }
         },
         child: BlocBuilder<UpdateBloc, UpdateState>(
           builder: (context, state) {
-            if (state is UpdateFailed) {
+            if (state is UpdateFailed && !state.offlineModeAvailable) {
+              // TODO: Implement proper no data widget.
               return ErrorBody(state.failure);
             }
             return const Center(child: CircularProgressIndicator());

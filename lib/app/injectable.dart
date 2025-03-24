@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:odyssey_mobile/config/env_config.dart';
 import 'package:odyssey_mobile/core/data/api/api_service.dart';
-import 'package:odyssey_mobile/core/data/data_repository.dart';
+import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/data/db/hive/hive_service.dart';
 import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/app/state_observer.dart';
+import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
+import 'package:odyssey_mobile/core/data/services/store_service.dart';
+import 'package:odyssey_mobile/features/update_data/data/update_data_repository.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,14 +28,29 @@ extension Initialize on GetIt {
 
     sl.registerSingleton<EnvConfig>(kDebugMode ? EnvConfig.development : EnvConfig.production);
 
-    sl.registerLazySingleton(() => ApiService(_dioInstance, baseUrl: sl<EnvConfig>().baseUrl));
+    sl.registerSingleton(ApiService(_dioInstance, baseUrl: sl<EnvConfig>().baseUrl));
 
-    sl.registerSingletonAsync(() => SharedPreferences.getInstance());
+    sl.registerSingletonAsync<SharedPreferences>(() => SharedPreferences.getInstance());
 
     sl.registerSingletonAsync<HiveDbService>(() => HiveDbService.create());
 
-    sl.registerSingletonWithDependencies<DataRepository>(
-      () => DataRepository(apiService: sl(), dbService: sl(), sharedPrefs: sl()),
+    sl.registerSingleton<PackageInfoService>(PackageInfoService());
+
+    sl.registerSingleton<StoreService>(StoreService(config: sl()));
+
+    sl.registerSingletonWithDependencies<UpdateDataRepository>(
+      () => UpdateDataRepository(
+        apiService: sl(),
+        dbService: sl(),
+        sharedPreferences: sl(),
+        packageInfoService: sl(),
+        storeService: sl(),
+      ),
+      dependsOn: [HiveDbService, SharedPreferences],
+    );
+
+    sl.registerSingletonWithDependencies<LoadDataRepository>(
+      () => LoadDataRepository(dbService: sl()),
       dependsOn: [SharedPreferences, HiveDbService],
     );
     await sl.allReady(ignorePendingAsyncCreation: false);

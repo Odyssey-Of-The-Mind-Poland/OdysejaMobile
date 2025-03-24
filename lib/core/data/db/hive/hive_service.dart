@@ -157,4 +157,10 @@ class HiveDbService {
   Iterable<CityHiveModel> readCities() {
     return _citiesBox.values;
   }
+
+  bool validateDatabase() =>
+      _box.isNotEmpty &&
+      _pandoraBox.isNotEmpty &&
+      _performanceBox.isNotEmpty &&
+      _citiesBox.isNotEmpty;
 }

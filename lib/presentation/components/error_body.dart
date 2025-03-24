@@ -16,17 +16,20 @@ class ErrorBody extends StatelessWidget {
           if (state is UpdateLoading) {
             return const Loader();
           }
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(failure.errorMessage),
-              TextButton(
-                  onPressed: () => context.read<UpdateBloc>().add(const StartUpdateProcess(true)),
-                  child: const Text(
-                    'Odśwież',
-                    textAlign: TextAlign.center,
-                  )),
-            ],
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(failure.errorMessage, textAlign: TextAlign.center),
+                TextButton(
+                    onPressed: () => context.read<UpdateBloc>().add(const BootstrapEvent()),
+                    child: const Text(
+                      'Odśwież',
+                      textAlign: TextAlign.center,
+                    )),
+              ],
+            ),
           );
         },
       ),

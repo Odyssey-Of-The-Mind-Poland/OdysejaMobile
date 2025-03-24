@@ -1,4 +1,5 @@
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
+import 'package:odyssey_mobile/core/data/api/models/data_version.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance.dart';
@@ -35,5 +36,8 @@ abstract class ApiService {
   Future<List<CityModelApi>> getCities();
 
   @GET('/version')
-  Future<HttpResponse> getVersion();
+  Future<DataVersion> getVersion();
+
+  @GET('/breaking/change/shouldUpdate')
+  Future<HttpResponse<bool>> getShouldUpdate(@Query('version') String version);
 }

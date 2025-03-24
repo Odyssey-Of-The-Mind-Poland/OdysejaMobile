@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/data/data_repository.dart';
+import '../../../core/data/load_data_repository.dart';
 import '../../../core/data/db/hive/models/city.dart';
 import '../../../core/failure.dart';
 
@@ -17,5 +17,5 @@ class CityBloc extends Bloc<CityEvent, CityState> {
     });
   }
 
-  final DataRepository _repository;
+  final LoadDataRepository _repository;
 }
