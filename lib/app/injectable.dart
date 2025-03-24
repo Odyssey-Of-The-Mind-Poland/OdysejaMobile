@@ -61,7 +61,7 @@ extension Initialize on GetIt {
   Dio get _dioInstance {
     Dio dio = Dio(
       BaseOptions(
-        sendTimeout: const Duration(seconds: 5),
+        sendTimeout: kIsWeb ? null : const Duration(seconds: 5),
         connectTimeout: const Duration(seconds: 5),
         receiveTimeout: const Duration(seconds: 7),
         headers: <String, String>{'accept': 'application/json'},
