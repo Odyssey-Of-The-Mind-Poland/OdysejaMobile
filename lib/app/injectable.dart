@@ -10,6 +10,7 @@ import 'package:odyssey_mobile/app/state_observer.dart';
 import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
 import 'package:odyssey_mobile/core/data/services/store_service.dart';
 import 'package:odyssey_mobile/features/update_data/data/update_data_repository.dart';
+import 'package:odyssey_mobile/features/update_data/data/update_data_repository_web.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,13 +38,21 @@ extension Initialize on GetIt {
     sl.registerSingleton<StoreService>(StoreService(config: sl()));
 
     sl.registerSingletonWithDependencies<UpdateDataRepository>(
-      () => UpdateDataRepository(
-        apiService: sl(),
-        dbService: sl(),
-        sharedPreferences: sl(),
-        packageInfoService: sl(),
-        storeService: sl(),
-      ),
+      () => kIsWeb
+          ? UpdateDataRepositoryWeb(
+              apiService: sl(),
+              dbService: sl(),
+              sharedPreferences: sl(),
+              packageInfoService: sl(),
+              storeService: sl(),
+            )
+          : UpdateDataRepository(
+              apiService: sl(),
+              dbService: sl(),
+              sharedPreferences: sl(),
+              packageInfoService: sl(),
+              storeService: sl(),
+            ),
       dependsOn: [HiveDbService, SharedPreferences],
     );
 

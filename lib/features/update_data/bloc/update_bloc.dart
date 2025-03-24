@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/features/update_data/data/update_data_repository.dart';
 import 'package:odyssey_mobile/core/extensions.dart';
+import 'package:odyssey_mobile/features/update_data/domain/app_update_status.dart';
 
 part 'update_event.dart';
 part 'update_state.dart';

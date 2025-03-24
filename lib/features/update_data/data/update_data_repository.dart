@@ -14,10 +14,9 @@ import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
 import 'package:odyssey_mobile/core/data/services/store_service.dart';
 import 'package:odyssey_mobile/core/typedefs.dart';
+import 'package:odyssey_mobile/features/update_data/domain/app_update_status.dart';
 import 'package:retrofit/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-enum AppUpdateStatus { required, recommended, upToDate }
 
 // TODO: Consider API changes to reduce number of small requests.
 class UpdateDataRepository {
