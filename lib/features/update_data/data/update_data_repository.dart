@@ -3,9 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/api_error_handler.dart';
 import 'package:odyssey_mobile/core/data/api/api_service.dart';
+import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance.dart';
+import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:odyssey_mobile/core/data/db/hive/hive_service.dart';
@@ -116,10 +118,15 @@ class UpdateDataRepository {
 
       await _dbService.clearData();
 
-      final problems = await _apiService.getProblems();
-      await _dbService.createProblems(problems);
+      final commonData = await Future.wait([
+        _apiService.getProblems(),
+        _apiService.getCities(),
+      ], eagerError: true);
 
-      final cities = await _apiService.getCities();
+      final problems = commonData[0] as List<ProblemModelApi>;
+      final cities = commonData[1] as List<CityModelApi>;
+
+      await _dbService.createProblems(problems);
       await _dbService.createCities(cities);
 
       for (final city in cities) {
