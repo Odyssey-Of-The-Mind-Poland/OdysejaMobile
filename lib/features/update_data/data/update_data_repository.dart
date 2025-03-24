@@ -157,8 +157,9 @@ class UpdateDataRepository {
         );
       }
 
-      _sharedPreferences.setInt(_keyDataVersion, newVersion);
-      _sharedPreferences.setInt(_keyLastSuccessfulUpdate, DateTime.now().millisecondsSinceEpoch);
+      await _sharedPreferences.setInt(_keyDataVersion, newVersion);
+      await _sharedPreferences.setInt(
+          _keyLastSuccessfulUpdate, DateTime.now().millisecondsSinceEpoch);
       return none();
     } on DioException catch (e, s) {
       return some(dioErrorHandler(e, s));
