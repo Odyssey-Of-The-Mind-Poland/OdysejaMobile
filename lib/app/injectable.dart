@@ -79,7 +79,7 @@ extension Initialize on GetIt {
     if (kDebugMode) {
       dio.interceptors.add(
         PrettyDioLogger(
-          responseBody: true,
+          responseBody: false,
           requestBody: false,
           requestHeader: false,
           responseHeader: false,
