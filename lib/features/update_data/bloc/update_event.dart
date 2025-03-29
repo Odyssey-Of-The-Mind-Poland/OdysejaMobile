@@ -9,3 +9,7 @@ class CheckForUpdatesEvent extends UpdateEvent {
 
   final bool isBoot;
 }
+
+class SkipAppUpdateEvent extends UpdateEvent {
+  const SkipAppUpdateEvent();
+}

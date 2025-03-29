@@ -1,1 +1,1 @@
-enum AppUpdateStatus { required, recommended, upToDate }
+enum AppUpdateStatus { required, recommended, upToDate, web, impossible, versionSkipped }

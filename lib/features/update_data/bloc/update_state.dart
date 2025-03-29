@@ -13,15 +13,17 @@ class UpdateLoading extends UpdateState {
 }
 
 class AppUpdateRequired extends UpdateState {
-  const AppUpdateRequired();
+  const AppUpdateRequired(this.status);
+
+  final AppUpdateStatus status;
 }
 
 class UpdateFinished extends UpdateState {
-  const UpdateFinished(this.appUpdateStatus);
+  const UpdateFinished(this.status);
 
-  final AppUpdateStatus appUpdateStatus;
+  final AppUpdateStatus status;
 
-  bool get isUpdateRecommended => appUpdateStatus == AppUpdateStatus.recommended;
+  bool get isUpdateRecommended => status == AppUpdateStatus.recommended;
 }
 
 class UpdateFailed extends UpdateState {

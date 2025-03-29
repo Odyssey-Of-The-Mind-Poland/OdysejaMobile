@@ -10,8 +10,6 @@ abstract class AppStrings {
   static const String updateFailedFailureMessage =
       'Nie udało się połączyć z serwerem danych. Ale nie łam się, zapisaliśmy je już wcześniej :)';
   static const String urlLauncherFailureMessage = 'Nie udało się otworzyć linku';
-  static const String updateImpossibleFailureMessage =
-      'Łappka wymaga aktualizacji, ale nie udało się znaleźć odpowiedniej wersji w sklepie. Aplikacja może działać niestabilnie. Naprawiamy ten błąd tak szybko, jak tylko możemy!';
   // Age group labels
   static const String juniors = 'Juniorzy';
   static const String firstDivision = 'I - V klasa';

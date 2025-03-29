@@ -13,7 +13,5 @@ class UpdateDataRepositoryWeb extends UpdateDataRepository {
   });
 
   @override
-  AsyncResult<AppUpdateStatus> checkAppAPICompatibility() async {
-    return right(AppUpdateStatus.upToDate);
-  }
+  AsyncResult<AppUpdateStatus> checkAppAPICompatibility() async => right(AppUpdateStatus.web);
 }

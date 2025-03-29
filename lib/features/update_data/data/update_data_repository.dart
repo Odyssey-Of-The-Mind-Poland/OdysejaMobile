@@ -11,7 +11,6 @@ import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:odyssey_mobile/core/data/db/hive/hive_service.dart';
-import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
 import 'package:odyssey_mobile/core/data/services/store_service.dart';
@@ -43,6 +42,7 @@ class UpdateDataRepository {
   static const _keyDataVersion = 'version';
   static const _keyDataDirty = 'dataDirty';
   static const _keyLastUpdateCheck = 'lastCheck';
+  static const _keySkippedAppUpdates = 'skippedAppUpdates';
 
   bool shouldCheckForUpdates(Duration throttleTime) {
     final lastUpdateCheck = _sharedPreferences.getInt(_keyLastUpdateCheck);
@@ -65,7 +65,17 @@ class UpdateDataRepository {
 
   bool get isOfflineModeAvailable => _dbService.validateDatabase();
 
-// TODO: zabezpieczyć na wypadek problemu z StoreServicec
+  String? _pendingAppUpdateVersion;
+
+  Future<void> markAppUpdateAsSkipped() async {
+    final pendingVersion = _pendingAppUpdateVersion;
+    if (pendingVersion == null) return;
+    _sharedPreferences.setString(_keySkippedAppUpdates, pendingVersion);
+  }
+
+  bool isAppUpdateSkipped(String version) =>
+      _sharedPreferences.getString(_keySkippedAppUpdates) == version;
+
   AsyncResult<AppUpdateStatus> checkAppAPICompatibility() async {
     try {
       final currentVersion = _packageInfoService.version;
@@ -76,32 +86,40 @@ class UpdateDataRepository {
       final results = await Future.wait([isIncompatibleFuture, storeFuture], eagerError: false);
 
       final isIncompatible = (results[0] as HttpResponse<bool>).data;
-      final storeData = results[1] as StoreData;
+      final storeData = results[1] as StoreData?;
 
-      final canUpdate =
-          _storeService.canUpdate(version: currentVersion, versionStore: storeData.storeVersion);
+      late AppUpdateStatus status;
 
-      if (!isIncompatible) {
-        if (canUpdate) {
-          return right(AppUpdateStatus.recommended);
-        }
-        return right(AppUpdateStatus.upToDate);
+      switch ((isIncompatible, storeData?.canUpdate)) {
+        case (false, true):
+          if (isAppUpdateSkipped(storeData!.storeVersion)) {
+            status = AppUpdateStatus.versionSkipped;
+            break;
+          }
+          status = AppUpdateStatus.recommended;
+          _pendingAppUpdateVersion = storeData.storeVersion;
+          break;
+        case (false, false):
+        case (false, null):
+          status = AppUpdateStatus.upToDate;
+          break;
+        case (true, true):
+          status = AppUpdateStatus.required;
+          break;
+        case (true, null):
+        case (true, false):
+          status = AppUpdateStatus.impossible;
+          sl.maybeGet<LoggerService>()?.logError(
+              'Reached impossible update condition',
+              {
+                'storeVersion': storeData?.storeVersion,
+                'currentVersion': currentVersion,
+                'isIncompatible': isIncompatible,
+              },
+              StackTrace.current);
       }
-      // isIncompatible &&
-      if (canUpdate) {
-        return right(AppUpdateStatus.required);
-      }
 
-      // isIncompatible && !canUpdate
-      sl.maybeGet<LoggerService>()?.logError(
-          'Critical app update error',
-          {
-            'storeVersion': storeData.storeVersion,
-            'currentVersion': currentVersion,
-            'isIncompatible': isIncompatible,
-          },
-          StackTrace.current);
-      return left(UpdateImpossibleFailure());
+      return right(status);
     } on DioException catch (e, s) {
       return left(dioErrorHandler(e, s));
     } catch (e, s) {

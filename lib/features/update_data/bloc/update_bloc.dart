@@ -26,10 +26,10 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
 
       await appUpdate.fold(
         (l) async => _updateFailed(l, emit),
-        (appUpdateStatus) async {
-          if (appUpdateStatus == AppUpdateStatus.required) {
+        (status) async {
+          if (status == AppUpdateStatus.required || status == AppUpdateStatus.impossible) {
             _repository.markDataAsDirty();
-            emit(const AppUpdateRequired());
+            emit(AppUpdateRequired(status));
             return;
           }
 
@@ -41,7 +41,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
             (r) async {
               if (!r.updateAvailable && !_repository.isDataDirty) {
                 await _repository.saveCheckDate();
-                emit(UpdateFinished(appUpdateStatus));
+                emit(UpdateFinished(status));
                 return;
               }
 
@@ -51,7 +51,7 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
                   await _repository.saveCheckDate();
                   await _repository.saveDataVersion(r.version);
                   await _repository.clearDataDirtyFlagIfAny();
-                  emit(UpdateFinished(appUpdateStatus));
+                  emit(UpdateFinished(status));
                 },
                 (failure) async => _updateFailed(failure, emit),
               );
@@ -60,6 +60,9 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
         },
       );
     }, transformer: throttleTransformer());
+    on<SkipAppUpdateEvent>((event, emit) {
+      _repository.markAppUpdateAsSkipped();
+    });
   }
   void _updateFailed(Failure f, Emitter<UpdateState> emit) =>
       emit(UpdateFailed(f, offlineModeAvailable: _repository.isOfflineModeAvailable));
