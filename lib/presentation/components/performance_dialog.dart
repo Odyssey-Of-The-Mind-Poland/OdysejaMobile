@@ -6,7 +6,7 @@ import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
-import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
+import 'package:odyssey_mobile/widgets/snackbar.dart';
 import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 

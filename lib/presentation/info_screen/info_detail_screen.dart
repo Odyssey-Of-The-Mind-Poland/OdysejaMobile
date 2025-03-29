@@ -4,7 +4,7 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/data/services/url_service.dart';
 import 'package:odyssey_mobile/core/domain/info.dart';
-import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
+import 'package:odyssey_mobile/widgets/snackbar.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatefulWidget {

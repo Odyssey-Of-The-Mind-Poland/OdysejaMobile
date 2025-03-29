@@ -7,7 +7,7 @@ import 'package:odyssey_mobile/presentation/components/performance_dialog.dart';
 import 'package:odyssey_mobile/presentation/components/shadows.dart';
 import 'package:odyssey_mobile/presentation/components/spontaneous_widget.dart';
 import 'package:odyssey_mobile/presentation/helpers/dialog_helper.dart';
-import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
+import 'package:odyssey_mobile/widgets/snackbar.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 import 'package:swipeable_tile/swipeable_tile.dart';
