@@ -41,20 +41,34 @@ class UpdateDataRepository {
   final StoreService _storeService;
 
   static const _keyDataVersion = 'version';
-  static const _keyLastSuccessfulUpdate = 'lastUpdate';
-  static const _updateSnooze = Duration(hours: 12);
+  static const _keyDataDirty = 'dataDirty';
+  static const _keyLastUpdateCheck = 'lastCheck';
 
-  bool shouldCheckForUpdates() {
-    final lastUpdate = _sharedPreferences.getInt(_keyLastSuccessfulUpdate);
+  bool shouldCheckForUpdates(Duration throttleTime) {
+    final lastUpdateCheck = _sharedPreferences.getInt(_keyLastUpdateCheck);
 
-    return !isOfflineModeAvailable ||
-        lastUpdate == null ||
-        DateTime.now().isAfter(DateTime.fromMillisecondsSinceEpoch(lastUpdate).add(_updateSnooze));
+    return lastUpdateCheck == null ||
+        DateTime.now()
+            .isAfter(DateTime.fromMillisecondsSinceEpoch(lastUpdateCheck).add(throttleTime));
   }
 
+  Future<void> saveCheckDate() =>
+      _sharedPreferences.setInt(_keyLastUpdateCheck, DateTime.now().millisecondsSinceEpoch);
+
+  Future<void> markDataAsDirty() => _sharedPreferences.setBool(_keyDataDirty, true);
+
+  Future<void> clearDataDirtyFlagIfAny() => _sharedPreferences.remove(_keyDataDirty);
+
+  bool get isDataDirty => _sharedPreferences.getBool(_keyDataDirty) ?? false;
+
+  Future<void> saveDataVersion(int version) => _sharedPreferences.setInt(_keyDataVersion, version);
+
+  bool get isOfflineModeAvailable => _dbService.validateDatabase();
+
+// TODO: zabezpieczyć na wypadek problemu z StoreServicec
   AsyncResult<AppUpdateStatus> checkAppAPICompatibility() async {
     try {
-      final currentVersion = await _packageInfoService.getPackageInfo().then((v) => v.version);
+      final currentVersion = _packageInfoService.version;
 
       final isIncompatibleFuture = _apiService.getShouldUpdate(currentVersion);
       final storeFuture = _storeService.checkForUpdates();
@@ -94,8 +108,6 @@ class UpdateDataRepository {
       return left(unknownErrorHandler(e, s));
     }
   }
-
-  bool get isOfflineModeAvailable => _dbService.validateDatabase();
 
   AsyncResult<({bool updateAvailable, int version})> isDataUpdateAvailable() async {
     try {
@@ -156,10 +168,6 @@ class UpdateDataRepository {
           sponsors: sponsors,
         );
       }
-
-      await _sharedPreferences.setInt(_keyDataVersion, newVersion);
-      await _sharedPreferences.setInt(
-          _keyLastSuccessfulUpdate, DateTime.now().millisecondsSinceEpoch);
       return none();
     } on DioException catch (e, s) {
       return some(dioErrorHandler(e, s));

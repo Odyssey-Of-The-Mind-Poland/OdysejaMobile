@@ -1,56 +1,77 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/features/update_data/data/update_data_repository.dart';
-import 'package:odyssey_mobile/core/extensions.dart';
 import 'package:odyssey_mobile/features/update_data/domain/app_update_status.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'update_event.dart';
 part 'update_state.dart';
 
+//TODO: See if the code can refactored into a function chain, making it simpler and easier to follow.
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
-  UpdateBloc(this._repository) : super(const UpdateLoading()) {
+  UpdateBloc(this._repository) : super(const UpdateInitial()) {
     on<CheckForUpdatesEvent>((event, emit) async {
-      if (!_repository.shouldCheckForUpdates() && !event.forceUpdate) {
-        emit(const UpdateFinished());
+      if (!event.isBoot && !_repository.shouldCheckForUpdates(_throttleTime)) {
         return;
       }
+      emit(const UpdateLoading());
 
-      final appUpdate = _repository.checkAppAPICompatibility();
-      final dataUpdate = _repository.isDataUpdateAvailable();
+      final appUpdateFuture = _repository.checkAppAPICompatibility();
+      final dataUpdateAvailableFuture = _repository.isDataUpdateAvailable();
 
-      final results = await [appUpdate, dataUpdate].wait(eagerError: true);
+      final results = await Future.wait([appUpdateFuture, dataUpdateAvailableFuture]);
 
-      await results.fold(
-        (failure) async => emit(UpdateFailed(
-          failure,
-          offlineModeAvailable: _repository.isOfflineModeAvailable,
-        )),
-        (r) async {
-          final AppUpdateStatus appUpdate = r[0].asRight();
-          final ({bool updateAvailable, int version}) dataUpdate = r[1].asRight();
+      final appUpdate = results[0] as Either<Failure, AppUpdateStatus>;
 
-          if (appUpdate == AppUpdateStatus.required) {
+      await appUpdate.fold(
+        (l) async => _updateFailed(l, emit),
+        (appUpdateStatus) async {
+          if (appUpdateStatus == AppUpdateStatus.required) {
+            _repository.markDataAsDirty();
             emit(const AppUpdateRequired());
             return;
           }
 
-          if (!dataUpdate.updateAvailable && !event.forceUpdate) {
-            emit(UpdateFinished(appUpdateRecommended: appUpdate == AppUpdateStatus.recommended));
-            return;
-          }
+          final dataUpdateAvailable =
+              results[1] as Either<Failure, ({bool updateAvailable, int version})>;
 
-          final result = await _repository.updateData(newVersion: dataUpdate.version);
-          result.fold(
-            () => emit(
-                UpdateFinished(appUpdateRecommended: appUpdate == AppUpdateStatus.recommended)),
-            (failure) => emit(UpdateFailed(
-              failure,
-              offlineModeAvailable: _repository.isOfflineModeAvailable,
-            )),
+          await dataUpdateAvailable.fold(
+            (l) async => _updateFailed(l, emit),
+            (r) async {
+              if (!r.updateAvailable && !_repository.isDataDirty) {
+                await _repository.saveCheckDate();
+                emit(UpdateFinished(appUpdateStatus));
+                return;
+              }
+
+              final result = await _repository.updateData(newVersion: r.version);
+              await result.fold(
+                () async {
+                  await _repository.saveCheckDate();
+                  await _repository.saveDataVersion(r.version);
+                  await _repository.clearDataDirtyFlagIfAny();
+                  emit(UpdateFinished(appUpdateStatus));
+                },
+                (failure) async => _updateFailed(failure, emit),
+              );
+            },
           );
         },
       );
-    });
+    }, transformer: throttleTransformer());
   }
+  void _updateFailed(Failure f, Emitter<UpdateState> emit) =>
+      emit(UpdateFailed(f, offlineModeAvailable: _repository.isOfflineModeAvailable));
+
   final UpdateDataRepository _repository;
+
+  static const _throttleTime = Duration(hours: 8);
+
+  /// Additional throttle mechanism to prevent multiple API requests mid check process.
+  /// It's not sufficient on its own due to posibility of pausing the app in the background,
+  /// breaking the throttle mechanism. Therefore, a solution with persistence is also necessary
+  /// (like [_repository.shouldCheckForUpdates] method).
+  EventTransformer<CheckForUpdatesEvent> throttleTransformer<Event>() =>
+      (events, mapper) => events.throttleTime(const Duration(minutes: 1)).asyncExpand(mapper);
 }

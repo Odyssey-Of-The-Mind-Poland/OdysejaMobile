@@ -10,6 +10,7 @@ class StoreService {
 
   static const _storeCountry = 'pl';
 
+  // TODO: safegaurd against thrown Exceptions and invalid results.
   Future<StoreData> checkForUpdates() => AppVersionUpdate.checkForUpdates(
         country: _storeCountry,
         appleId: _config.appleId,

@@ -5,7 +5,7 @@ sealed class UpdateEvent {
 }
 
 class CheckForUpdatesEvent extends UpdateEvent {
-  const CheckForUpdatesEvent({this.forceUpdate = false});
+  const CheckForUpdatesEvent({this.isBoot = false});
 
-  final bool forceUpdate;
+  final bool isBoot;
 }

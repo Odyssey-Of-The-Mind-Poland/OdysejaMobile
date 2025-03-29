@@ -4,6 +4,10 @@ sealed class UpdateState {
   const UpdateState();
 }
 
+class UpdateInitial extends UpdateState {
+  const UpdateInitial();
+}
+
 class UpdateLoading extends UpdateState {
   const UpdateLoading();
 }
@@ -13,9 +17,11 @@ class AppUpdateRequired extends UpdateState {
 }
 
 class UpdateFinished extends UpdateState {
-  const UpdateFinished({this.appUpdateRecommended = false});
+  const UpdateFinished(this.appUpdateStatus);
 
-  final bool appUpdateRecommended;
+  final AppUpdateStatus appUpdateStatus;
+
+  bool get isUpdateRecommended => appUpdateStatus == AppUpdateStatus.recommended;
 }
 
 class UpdateFailed extends UpdateState {
