@@ -34,7 +34,11 @@ class _PerformanceDialogState extends State<PerformanceDialog> {
       bloc: widget.bloc,
       listener: (context, state) {
         if (state is UpdateFavouritesError) {
-          showSnackBar(context: context, text: state.failure.errorMessage);
+          showSnackBar(
+            context: context,
+            text: state.failure.errorMessage,
+            type: SnackBarType.error,
+          );
         } else if (state is UpdateFavouritesSuccess) {
           setState(() {
             isFavourite = state.performance.isFavourite;

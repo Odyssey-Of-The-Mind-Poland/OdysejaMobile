@@ -39,7 +39,11 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
       return false;
     }
     if (!await UrlLauncher.openUrl(url) && context.mounted) {
-      showSnackBar(context: context, text: const UrlLauncherFailure().errorMessage);
+      showSnackBar(
+        context: context,
+        text: const UrlLauncherFailure().errorMessage,
+        type: SnackBarType.error,
+      );
       return false;
     }
     return true;

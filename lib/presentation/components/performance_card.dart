@@ -77,7 +77,11 @@ class _PerformanceCardState extends State<PerformanceCard> {
                     c.performance.performanceId == widget.performance.performanceId,
                 listener: (context, state) {
                   if (state is UpdateFavouritesError) {
-                    showSnackBar(context: context, text: state.failure.errorMessage);
+                    showSnackBar(
+                      context: context,
+                      text: state.failure.errorMessage,
+                      type: SnackBarType.error,
+                    );
                   } else if (state is UpdateFavouritesSuccess) {
                     setState(() {
                       isFavourite = state.performance.isFavourite;
