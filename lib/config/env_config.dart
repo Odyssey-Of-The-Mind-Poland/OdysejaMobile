@@ -2,12 +2,12 @@ enum EnvConfig {
   production(
     baseUrl: 'http://grzybek.snet.ovh:8082',
     appleId: '1616380523',
-    playStoreId: '',
+    playStoreId: 'pl.odyssey.lappka',
   ),
   development(
     baseUrl: 'http://grzybek.snet.ovh:8082',
     appleId: '1616380523',
-    playStoreId: '',
+    playStoreId: 'pl.odyssey.lappka',
   );
 
   final String baseUrl;
