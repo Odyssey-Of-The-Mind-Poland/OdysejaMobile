@@ -16,7 +16,7 @@ class SelectableAnimatedBuilder extends StatefulWidget {
   final bool isSelected;
   final Duration duration;
   final bool alwaysDoFullAnimation;
-  final Widget Function(BuildContext, Animation<double>) builder;
+  final Widget Function(BuildContext context, Animation<double> animation) builder;
 
   @override
   State<SelectableAnimatedBuilder> createState() => _SelectableAnimatedBuilderState();
