@@ -1,5 +1,101 @@
 import 'package:flutter/material.dart';
 
+class OotmMainButtonTheme extends ThemeExtension<OotmMainButtonTheme> {
+  const OotmMainButtonTheme({
+    required this.primaryBackground,
+    required this.primaryBorder,
+    required this.primaryHighlight,
+    required this.primaryForeground,
+    required this.secondaryDefault,
+    required this.secondaryPressed,
+    required this.tertiaryForeground,
+    required this.tertiaryBackground,
+    required this.tertiaryBorder,
+    required this.tertiaryHighlight,
+    required this.tertiaryForegroundSelected,
+    required this.tertiaryBackgroundSelected,
+    required this.tertiaryBorderSelected,
+    required this.tertiaryHighlightSelected,
+  });
+
+  final Color? primaryBackground;
+  final Color? primaryBorder;
+  final Color? primaryHighlight;
+  final Color? primaryForeground;
+
+  final Color? secondaryDefault;
+  final Color? secondaryPressed;
+
+  final Color? tertiaryForeground;
+  final Color? tertiaryBackground;
+  final Color? tertiaryBorder;
+  final Color? tertiaryHighlight;
+  final Color? tertiaryForegroundSelected;
+  final Color? tertiaryBackgroundSelected;
+  final Color? tertiaryBorderSelected;
+  final Color? tertiaryHighlightSelected;
+
+  @override
+  OotmMainButtonTheme copyWith({
+    Color? primaryBackground,
+    Color? primaryBorder,
+    Color? primaryHighlight,
+    Color? primaryForeground,
+    Color? secondaryDefault,
+    Color? secondaryPressed,
+    Color? tertiaryForeground,
+    Color? tertiaryBackground,
+    Color? tertiaryBorder,
+    Color? tertiaryHighlight,
+    Color? tertiaryForegroundSelected,
+    Color? tertiaryBackgroundSelected,
+    Color? tertiaryBorderSelected,
+    Color? tertiaryHighlightSelected,
+  }) =>
+      OotmMainButtonTheme(
+        primaryBackground: primaryBackground ?? this.primaryBackground,
+        primaryBorder: primaryBorder ?? this.primaryBorder,
+        primaryHighlight: primaryHighlight ?? this.primaryHighlight,
+        primaryForeground: primaryForeground ?? this.primaryForeground,
+        secondaryDefault: secondaryDefault ?? this.secondaryDefault,
+        secondaryPressed: secondaryPressed ?? this.secondaryPressed,
+        tertiaryForeground: tertiaryForeground ?? this.tertiaryForeground,
+        tertiaryBackground: tertiaryBackground ?? this.tertiaryBackground,
+        tertiaryBorder: tertiaryBorder ?? this.tertiaryBorder,
+        tertiaryHighlight: tertiaryHighlight ?? this.tertiaryHighlight,
+        tertiaryForegroundSelected: tertiaryForegroundSelected ?? this.tertiaryForegroundSelected,
+        tertiaryBackgroundSelected: tertiaryBackgroundSelected ?? this.tertiaryBackgroundSelected,
+        tertiaryBorderSelected: tertiaryBorderSelected ?? this.tertiaryBorderSelected,
+        tertiaryHighlightSelected: tertiaryHighlightSelected ?? this.tertiaryHighlightSelected,
+      );
+
+  @override
+  OotmMainButtonTheme lerp(OotmMainButtonTheme? other, double t) {
+    if (identical(other, this)) {
+      return this;
+    }
+    return OotmMainButtonTheme(
+      primaryBackground: Color.lerp(primaryBackground, other?.primaryBackground, t),
+      primaryBorder: Color.lerp(primaryBorder, other?.primaryBorder, t),
+      primaryHighlight: Color.lerp(primaryHighlight, other?.primaryHighlight, t),
+      primaryForeground: Color.lerp(primaryForeground, other?.primaryForeground, t),
+      secondaryDefault: Color.lerp(secondaryDefault, other?.secondaryDefault, t),
+      secondaryPressed: Color.lerp(secondaryPressed, other?.secondaryPressed, t),
+      tertiaryForeground: Color.lerp(tertiaryForeground, other?.tertiaryForeground, t),
+      tertiaryBackground: Color.lerp(tertiaryBackground, other?.tertiaryBackground, t),
+      tertiaryBorder: Color.lerp(tertiaryBorder, other?.tertiaryBorder, t),
+      tertiaryHighlight: Color.lerp(tertiaryHighlight, other?.tertiaryHighlight, t),
+      tertiaryForegroundSelected:
+          Color.lerp(tertiaryForegroundSelected, other?.tertiaryForegroundSelected, t),
+      tertiaryBackgroundSelected:
+          Color.lerp(tertiaryBackgroundSelected, other?.tertiaryBackgroundSelected, t),
+      tertiaryBorderSelected: Color.lerp(tertiaryBorderSelected, other?.tertiaryBorderSelected, t),
+      tertiaryHighlightSelected:
+          Color.lerp(tertiaryHighlightSelected, other?.tertiaryHighlightSelected, t),
+    );
+  }
+}
+
 class OotmNavigationBarThemeData extends ThemeExtension<OotmNavigationBarThemeData> {
   const OotmNavigationBarThemeData({
     required this.colorBackground,

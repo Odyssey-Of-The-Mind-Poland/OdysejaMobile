@@ -12,7 +12,25 @@ final themeDark = ThemeData(
     _typography,
     appStyling,
     _navigationBar,
+    _buttons,
   ],
+);
+
+final _buttons = OotmMainButtonTheme(
+  primaryBackground: _colors.primary.color100,
+  primaryBorder: _colors.primary.color200,
+  primaryHighlight: _colors.primary.color200,
+  primaryForeground: _colors.primary.color700,
+  secondaryDefault: _colors.primary.color100,
+  secondaryPressed: _colors.primary.color200,
+  tertiaryForeground: _colors.universal.grey.color100,
+  tertiaryBackground: _colors.universal.grey.color700,
+  tertiaryBorder: _colors.universal.grey.color500,
+  tertiaryHighlight: _colors.universal.grey.color500,
+  tertiaryForegroundSelected: _colors.primary.color700,
+  tertiaryBackgroundSelected: _colors.primary.color100,
+  tertiaryBorderSelected: _colors.primary.color200,
+  tertiaryHighlightSelected: _colors.primary.color200,
 );
 
 final _navigationBar = OotmNavigationBarThemeData(
