@@ -109,7 +109,6 @@ abstract class AppStrings {
       'Jeśli chcesz się cieszyć najlepszym doświadczeniem, kliknij w przycisk poniżej i zaktualizuj aplikację w';
 
   static const String nextPerformance = 'Najbliższy występ w ulubionych';
-  static const String homeScreenOurPartners = 'Nasi Partnerzy';
 
   // App critical failure
   static const String criticalAppFailureMessage = 'Wystąpił krytyczny błąd aplikacji';

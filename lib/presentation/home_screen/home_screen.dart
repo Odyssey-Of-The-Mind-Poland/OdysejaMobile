@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/home_screen/image_tile.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
@@ -13,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final typography = Theme.of(context).t;
     return CityDataBuilder(onData: (data, _) {
       final size = MediaQuery.of(context).size;
       return Scaffold(
@@ -30,14 +28,6 @@ class HomeScreen extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16),
                     height: size.width,
                     child: ImageTile(data.sponsors[0][0].id),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: Text(
-                      AppStrings.homeScreenOurPartners,
-                      style: typography.h2,
-                      textAlign: TextAlign.center,
-                    ),
                   ),
                 ],
               ),
