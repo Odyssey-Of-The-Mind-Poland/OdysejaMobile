@@ -7,7 +7,7 @@ final themeLight = ThemeData(
   splashFactory: NoSplash.splashFactory,
   highlightColor: _colors.universal.grey.color300,
   scaffoldBackgroundColor: _colors.universal.grey.color200,
-  iconTheme: IconThemeData(size: 22),
+  iconTheme: IconThemeData(size: 22, color: _fontColorDefault),
   extensions: [
     _colors,
     _typography,
