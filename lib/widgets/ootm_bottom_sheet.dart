@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
-
-const _handleColor = Colors.white;
-const _bottomSheetBackground = Color(0xFFFFFFFF);
-const _bottomSheetBorder = Color(0xFFEDEDED);
+import 'package:odyssey_mobile/config/ootm_icons.dart';
 
 // TODO: find a way to limit bottom sheet height.
 /// A BottomSheet with more refined, draggable interations.
@@ -39,7 +36,7 @@ Future<T?> showOotmScrollableBottomSheet<T>({
 
 Future<T?> showOotmBottomSheet<T>({
   required BuildContext context,
-  required List<Widget> content,
+  required Widget child,
   String? routeName,
 }) =>
     showModalBottomSheet(
@@ -49,12 +46,7 @@ Future<T?> showOotmBottomSheet<T>({
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) => _BottomSheetBody(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: content,
-          ),
-        ),
+        child: SingleChildScrollView(child: child),
       ),
     );
 
