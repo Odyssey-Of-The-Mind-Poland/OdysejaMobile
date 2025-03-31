@@ -91,6 +91,21 @@ abstract class AppStrings {
 
   static const String searchFieldHint = 'Wyszukaj drużynę';
   static const String emptyResultsFailure = 'Brak wyników';
+
+  // App updates
+  static const String appUpdateHeader = 'Zaktualizuj Łappkę Omera';
+  static const String appUpdateButton = 'Przejdź do sklepu';
+  static const String appUpdateAppStore = 'App Store';
+  static const String appUpdatePlayStore = 'Play Store';
+
+  static const String appUpdateRequiredBody1 =
+      'Aby aplikacja mogła poprawnie działać i wyświetlać aktualne treści, konieczne jest pobranie nowej wersji.';
+  static const String appUpdateRequiredBody2 =
+      'Wystarczy, że klikniesz w przycisk poniżej i zaktualizujesz aplikację w';
+
+  static const String appUpdateRecommendedBody1 = 'Dostępna jest nowa wersja aplikacji!';
+  static const String appUpdateRecommendedBody2 =
+      'Jeśli chcesz się cieszyć najlepszym doświadczeniem, kliknij w przycisk poniżej i zaktualizuj aplikację w';
 }
 // \u200B
 // \u00A0

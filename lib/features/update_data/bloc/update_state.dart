@@ -13,9 +13,10 @@ class UpdateLoading extends UpdateState {
 }
 
 class AppUpdateRequired extends UpdateState {
-  const AppUpdateRequired(this.status);
+  const AppUpdateRequired({required this.status, required this.offlineAvailable});
 
   final AppUpdateStatus status;
+  final bool offlineAvailable;
 }
 
 class UpdateFinished extends UpdateState {

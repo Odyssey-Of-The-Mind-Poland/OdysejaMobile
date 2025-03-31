@@ -11,6 +11,58 @@
 part of 'router.dart';
 
 /// generated route for
+/// [AppUpdateRequiredScreen]
+class AppUpdateRequiredRoute extends PageRouteInfo<AppUpdateRequiredRouteArgs> {
+  AppUpdateRequiredRoute({
+    Key? key,
+    required bool updateImpossible,
+    required bool availableOffline,
+    List<PageRouteInfo>? children,
+  }) : super(
+         AppUpdateRequiredRoute.name,
+         args: AppUpdateRequiredRouteArgs(
+           key: key,
+           updateImpossible: updateImpossible,
+           availableOffline: availableOffline,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'AppUpdateRequiredRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AppUpdateRequiredRouteArgs>();
+      return AppUpdateRequiredScreen(
+        key: args.key,
+        updateImpossible: args.updateImpossible,
+        availableOffline: args.availableOffline,
+      );
+    },
+  );
+}
+
+class AppUpdateRequiredRouteArgs {
+  const AppUpdateRequiredRouteArgs({
+    this.key,
+    required this.updateImpossible,
+    required this.availableOffline,
+  });
+
+  final Key? key;
+
+  final bool updateImpossible;
+
+  final bool availableOffline;
+
+  @override
+  String toString() {
+    return 'AppUpdateRequiredRouteArgs{key: $key, updateImpossible: $updateImpossible, availableOffline: $availableOffline}';
+  }
+}
+
+/// generated route for
 /// [FavouritesScreen]
 class FavouritesRoute extends PageRouteInfo<void> {
   const FavouritesRoute({List<PageRouteInfo>? children})

@@ -29,7 +29,10 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
         (status) async {
           if (status == AppUpdateStatus.required || status == AppUpdateStatus.impossible) {
             _repository.markDataAsDirty();
-            emit(AppUpdateRequired(status));
+            emit(AppUpdateRequired(
+              status: status,
+              offlineAvailable: _repository.isOfflineModeAvailable,
+            ));
             return;
           }
 

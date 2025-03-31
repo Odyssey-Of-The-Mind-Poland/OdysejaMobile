@@ -110,6 +110,7 @@ flutter:
     - assets/graphics/x2/ootm_logo.png
     - assets/graphics/x3/ootm_logo.png
     - assets/graphics/x4/ootm_logo.png
+    - assets/graphics/app_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
