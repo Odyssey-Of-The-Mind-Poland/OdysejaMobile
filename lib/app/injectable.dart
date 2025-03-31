@@ -31,7 +31,10 @@ extension Initialize on GetIt {
 
     sl.registerSingletonAsync<SharedPreferences>(() => SharedPreferences.getInstance());
 
-    sl.registerSingletonAsync<HiveDbService>(() => HiveDbService.create());
+    sl.registerSingletonAsync<HiveDbService>(
+      () => HiveDbService.create(),
+      dependsOn: [LoggerService],
+    );
 
     sl.registerSingletonAsync<PackageInfoService>(() => PackageInfoService.create());
 
@@ -53,7 +56,7 @@ extension Initialize on GetIt {
               packageInfoService: sl(),
               storeService: sl(),
             ),
-      dependsOn: [HiveDbService, SharedPreferences, PackageInfoService],
+      dependsOn: [HiveDbService, SharedPreferences, PackageInfoService, LoggerService],
     );
 
     sl.registerSingletonWithDependencies<LoadDataRepository>(
