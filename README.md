@@ -86,3 +86,7 @@ https://www.fluttericon.com/
 https://pub.dev/packages/icon_font_generator
 https://github.com/fontello/fontello/wiki/How-to-use-custom-images#importing-svg-images
 https://www.sitepoint.com/understanding-svg-fill-rule-property/
+
+## Strange bugs
+Xcode issues
+https://stackoverflow.com/questions/79118572/xcode-16-and-ios-18-project-not-compiling

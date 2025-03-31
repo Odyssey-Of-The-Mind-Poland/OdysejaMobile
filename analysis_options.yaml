@@ -16,6 +16,7 @@ analyzer:
     - lib/**/*.g.dart
     - lib/consts/ootm_icons.dart
     - scripts.dart
+    - ios/
 
 
 linter:
