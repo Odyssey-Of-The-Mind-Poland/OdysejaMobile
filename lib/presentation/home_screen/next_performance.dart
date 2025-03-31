@@ -93,6 +93,8 @@ class _NextPerformanceBody extends StatelessWidget {
 
   final Performance performance;
 
+  static const _fallbackBorderColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     final typography = Theme.of(context).t;
@@ -103,6 +105,7 @@ class _NextPerformanceBody extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme?.surfaceColor,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(width: 2, color: theme?.borderColor ?? _fallbackBorderColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
