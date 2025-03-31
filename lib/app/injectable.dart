@@ -63,7 +63,7 @@ extension Initialize on GetIt {
       () => LoadDataRepository(dbService: sl()),
       dependsOn: [SharedPreferences, HiveDbService],
     );
-    await sl.allReady(ignorePendingAsyncCreation: false);
+    await sl.allReady(ignorePendingAsyncCreation: false, timeout: Duration(seconds: 5));
 
     if (kDebugMode) {
       Bloc.observer = StateObserver(sl());
