@@ -106,6 +106,8 @@ abstract class AppStrings {
   static const String appUpdateRecommendedBody1 = 'Dostępna jest nowa wersja aplikacji!';
   static const String appUpdateRecommendedBody2 =
       'Jeśli chcesz się cieszyć najlepszym doświadczeniem, kliknij w przycisk poniżej i zaktualizuj aplikację w';
+
+  static const String nextPerformance = 'Najbliższy występ w ulubionych';
 }
 // \u200B
 // \u00A0

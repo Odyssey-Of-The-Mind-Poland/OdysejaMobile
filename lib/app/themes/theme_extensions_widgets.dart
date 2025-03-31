@@ -1,5 +1,46 @@
 import 'package:flutter/material.dart';
 
+class OotmCommonTheme extends ThemeExtension<OotmCommonTheme> {
+  const OotmCommonTheme({
+    required this.surfaceColor,
+    required this.borderColor,
+    required this.primaryColor,
+    required this.textLighterColor,
+  });
+
+  final Color? surfaceColor;
+  final Color? borderColor;
+  final Color? primaryColor;
+  final Color? textLighterColor;
+
+  @override
+  OotmCommonTheme copyWith({
+    Color? surfaceColor,
+    Color? borderColor,
+    Color? primaryColor,
+    Color? textLighterColor,
+  }) =>
+      OotmCommonTheme(
+        surfaceColor: surfaceColor ?? this.surfaceColor,
+        borderColor: borderColor ?? this.borderColor,
+        primaryColor: primaryColor ?? this.primaryColor,
+        textLighterColor: textLighterColor ?? this.textLighterColor,
+      );
+
+  @override
+  OotmCommonTheme lerp(OotmCommonTheme? other, double t) {
+    if (identical(other, this)) {
+      return this;
+    }
+    return OotmCommonTheme(
+      surfaceColor: Color.lerp(surfaceColor, other?.surfaceColor, t),
+      borderColor: Color.lerp(borderColor, other?.borderColor, t),
+      primaryColor: Color.lerp(primaryColor, other?.primaryColor, t),
+      textLighterColor: Color.lerp(textLighterColor, other?.textLighterColor, t),
+    );
+  }
+}
+
 class OotmBottomSheetTheme extends ThemeExtension<OotmBottomSheetTheme> {
   const OotmBottomSheetTheme({
     required this.handleColor,

@@ -15,7 +15,15 @@ final themeDark = ThemeData(
     _navigationBar,
     _buttons,
     _bottomSheet,
+    _common,
   ],
+);
+
+final _common = OotmCommonTheme(
+  surfaceColor: _colors.universal.grey.color600,
+  borderColor: _colors.universal.grey.color500,
+  primaryColor: _colors.primary.color200,
+  textLighterColor: _colors.universal.grey.color300,
 );
 
 final _bottomSheet = OotmBottomSheetTheme(

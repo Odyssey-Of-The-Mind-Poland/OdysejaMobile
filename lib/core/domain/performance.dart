@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 abstract class Performance {
   String get team;
   int get performanceId;
@@ -17,20 +15,4 @@ abstract class Performance {
   String get searchableTeam => team.toLowerCase();
   Future<void> updatePerformance();
   DateTime get performanceDate;
-
-  DateTime? getPerofrmanceDateTime() {
-    try {
-      final parsedTime = DateFormat('HH:mm').parse(performance);
-
-      return DateTime(
-        performanceDate.year,
-        performanceDate.month,
-        performanceDate.day,
-        parsedTime.hour,
-        parsedTime.minute,
-      );
-    } catch (e) {
-      return null;
-    }
-  }
 }

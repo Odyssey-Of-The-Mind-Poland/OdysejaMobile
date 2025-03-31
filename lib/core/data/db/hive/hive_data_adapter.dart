@@ -1,4 +1,5 @@
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
@@ -149,10 +150,21 @@ abstract class HiveDataAdapter {
           league: e.league,
           stage: e.stage,
           team: e.team,
-          performanceDate: e.performanceDate,
+          performanceDate: _parseToDateTime(e),
           isFavourite: previousFavIds.contains(e.id),
         ),
       );
+
+  static DateTime _parseToDateTime(PerformanceModelApi pf) {
+    final parsedTime = DateFormat('HH:mm').parse(pf.performance);
+    return DateTime(
+      pf.performanceDate.year,
+      pf.performanceDate.month,
+      pf.performanceDate.day,
+      parsedTime.hour,
+      parsedTime.minute,
+    );
+  }
 
   static List<SponsorHiveModel> convertSponsors(List<List<SponsorModelApi>> sponsors) {
     List<SponsorHiveModel> sponsorsModelDbList = [];
