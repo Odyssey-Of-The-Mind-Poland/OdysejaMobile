@@ -87,11 +87,15 @@ class HiveDbService {
       );
       initSuccess = true;
     } catch (e, s) {
-      sl.maybeGet<LoggerService>()?.logWarning('Hive initialization error, trying db reset', e, s);
       if (initSuccess == null) {
         initSuccess = false;
+        sl
+            .maybeGet<LoggerService>()
+            ?.logWarning('Hive initialization error, trying db reset', e, s);
         await _retryInit();
+        return;
       }
+      sl.maybeGet<LoggerService>()?.logError('Hive initialization error, failed db reset', e, s);
     }
   }
 
