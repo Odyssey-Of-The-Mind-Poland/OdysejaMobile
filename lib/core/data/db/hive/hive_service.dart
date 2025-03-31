@@ -87,12 +87,12 @@ class HiveDbService {
   }
 
   Future<void> createProblems(List<ProblemModelApi> problems) async {
-    final data = problems.map((e) => ProblemHiveModel(e.name, e.id));
+    final data = problems.map((e) => ProblemHiveModel(e.name, e.id)).toList()
+      ..sort((a, b) => a.number.compareTo(b.number));
     await _pandoraBox.addAll(data);
   }
 
-  Future<List<ScheduleCategoryEntity>> readProblems() async =>
-      _pandoraBox.values.toList()..sort((a, b) => a.number.compareTo(b.number));
+  Future<List<ScheduleCategoryEntity>> readProblems() async => _pandoraBox.values.toList();
 
   Future<void> createCityData({
     required CityModelApi cityModels,
