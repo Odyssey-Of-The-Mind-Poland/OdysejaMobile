@@ -1,15 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
-import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/error_body.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/highlighted_performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 @RoutePage()
@@ -50,16 +51,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
   Widget build(BuildContext context) {
     final secretWidth = MediaQuery.of(context).size.width * AppValues.swipeTreshold - 24;
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Wyszukano'),
-          actions: [
-            IconButton(
-              onPressed: context.router.popUntilRoot,
-              icon: const Icon(OotmIcons.close),
-            )
-          ],
-        ),
+        appBar: TopBar.backAction(title: AppStrings.scheduleSearchResultTitle),
         body: CityDataBuilder(onData: (cityData, _) {
           final groupIndex = cityData.performanceGroups.indexWhere((e) =>
               e.age == widget.performance.age &&

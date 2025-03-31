@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/home_screen/image_tile.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/home_screen/next_performance.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
     return CityDataBuilder(onData: (data, _) {
       final size = MediaQuery.of(context).size;
       return Scaffold(
-        appBar: AppBar(title: const Text(AppStrings.homeScreenTitle)),
+        appBar: TopBar(title: AppStrings.homeScreenTitle),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [

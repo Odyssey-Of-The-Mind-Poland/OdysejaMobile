@@ -8,6 +8,7 @@ import 'package:odyssey_mobile/presentation/components/performance_category_list
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/app/routing/router.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
 class ScheduleScreen extends StatelessWidget {
@@ -16,14 +17,13 @@ class ScheduleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.scheduleScreenTitle),
+      appBar: TopBar(
+        title: AppStrings.scheduleScreenTitle,
         actions: [
-          IconButton(
-            padding: const EdgeInsets.all(18),
+          TopBarAction(
+            iconData: OotmIcons.search,
             onPressed: () => context.router.push(const ScheduleSearchRoute()),
-            icon: const Icon(OotmIcons.search),
-          )
+          ),
         ],
       ),
       body: CityDataBuilder(

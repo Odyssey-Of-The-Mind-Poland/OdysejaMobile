@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
-import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/presentation/components/search_field.dart';
 import 'package:odyssey_mobile/presentation/components/search_result_list_tile.dart';
 import 'package:odyssey_mobile/app/routing/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
 class ScheduleSearchScreen extends StatefulWidget {
@@ -26,35 +26,25 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          titleSpacing: 0,
-          title: BlocBuilder<ScheduleSearchBloc, ScheduleSearchState>(
-            builder: (context, state) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: SearchField(
-                      initialValue: tryForInitialValue(state),
-                      onClearCallback: () =>
-                          context.read<ScheduleSearchBloc>().add(const SearchRequest('')),
-                      onChange: (value) =>
-                          context.read<ScheduleSearchBloc>().add(SearchRequest(value)),
-                    ),
+      appBar: TopBar.backAction(
+        titleWidget: BlocBuilder<ScheduleSearchBloc, ScheduleSearchState>(
+          builder: (context, state) {
+            return Row(
+              children: [
+                Expanded(
+                  child: SearchField(
+                    initialValue: tryForInitialValue(state),
+                    onClearCallback: () =>
+                        context.read<ScheduleSearchBloc>().add(const SearchRequest('')),
+                    onChange: (value) =>
+                        context.read<ScheduleSearchBloc>().add(SearchRequest(value)),
                   ),
-                  Container(
-                    height: 44,
-                    width: 44,
-                    margin: const EdgeInsets.only(left: 16, right: 8.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-                      color: AppColors.primaryOrange,
-                    ),
-                    child: const Icon(OotmIcons.search, color: AppColors.pureWhite),
-                  ),
-                ],
-              );
-            },
-          )),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
       body: BlocBuilder<ScheduleSearchBloc, ScheduleSearchState>(
         builder: (context, state) {
           if (state is SearchResult) {

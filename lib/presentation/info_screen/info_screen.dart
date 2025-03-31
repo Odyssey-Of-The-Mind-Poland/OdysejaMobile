@@ -4,6 +4,7 @@ import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/error_body.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_grid.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
 class InfoScreen extends StatelessWidget {
@@ -16,8 +17,8 @@ class InfoScreen extends StatelessWidget {
         return DefaultTabController(
           length: data.infoGroups.length,
           child: Scaffold(
-            appBar: AppBar(
-              title: const Text(AppStrings.infoScreenTitle),
+            appBar: TopBar(
+              title: AppStrings.infoScreenTitle,
               bottom: TabBar(
                   tabs: data.infoGroups
                       .map((e) => Text(e.name, textAlign: TextAlign.center))
@@ -28,9 +29,7 @@ class InfoScreen extends StatelessWidget {
         );
       },
       onFailure: (failure) => Scaffold(
-        appBar: AppBar(
-          title: const Text(AppStrings.infoScreenTitle),
-        ),
+        appBar: TopBar(title: AppStrings.infoScreenTitle),
         body: ErrorBody(failure),
       ),
     );

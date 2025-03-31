@@ -28,7 +28,6 @@ class FavouritesScreen extends StatelessWidget {
             title: AppStrings.favScreenTitle,
             inFavourites: true,
             emptyWidget: const FavouritesEmpty(),
-            centerTitle: false,
           );
         } else if (state is CityDataError) {
           return ErrorBody(state.failure);

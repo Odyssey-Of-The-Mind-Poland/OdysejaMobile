@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:odyssey_mobile/app/themes/theme.dart';
 
 import 'package:odyssey_mobile/l10n/strings.dart';
-import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 
 class SearchField extends StatefulWidget {
@@ -54,6 +54,8 @@ class _SearchFieldState extends State<SearchField> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<OotmCommonTheme>();
+    final typography = Theme.of(context).t;
     return TextField(
       controller: controller,
       autocorrect: false,
@@ -62,10 +64,10 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
           border: InputBorder.none,
           hintText: AppStrings.searchFieldHint,
-          hintStyle: AppTextStyles.hint,
+          hintStyle: typography.bodyMediumBold?.copyWith(color: theme?.textLighterColor),
           suffixIcon: controller.text.isNotEmpty
               ? IconButton(
-                  icon: const Icon(OotmIcons.close, size: 20),
+                  icon: Icon(OotmIcons.close, size: 24, color: theme?.searchFieldCancelColor),
                   onPressed: () {
                     setState(() {
                       controller.clear();
@@ -75,14 +77,14 @@ class _SearchFieldState extends State<SearchField> {
                     }
                   })
               : null),
-      cursorWidth: 2.5,
+      cursorWidth: 2,
       textCapitalization: TextCapitalization.sentences,
       autofocus: true,
-      cursorColor: AppColors.primaryOrange,
+      cursorColor: theme?.primaryColor,
       onChanged: widget.onChange,
       onSubmitted: widget.onSubmitted,
       onEditingComplete: widget.onEditingComplete,
-      style: AppTextStyles.h3,
+      style: typography.bodyMediumBold?.copyWith(color: theme?.primaryColor),
     );
   }
 }

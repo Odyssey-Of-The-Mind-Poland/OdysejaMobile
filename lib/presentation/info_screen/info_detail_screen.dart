@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/data/services/url_service.dart';
 import 'package:odyssey_mobile/core/domain/info.dart';
 import 'package:odyssey_mobile/widgets/snackbar.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatefulWidget {
@@ -19,10 +20,7 @@ class _InfoDetailScreenState extends State<InfoDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.info.infoName),
-          centerTitle: true,
-        ),
+        appBar: TopBar.backAction(title: widget.info.infoName),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

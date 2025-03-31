@@ -7,6 +7,7 @@ import 'package:odyssey_mobile/presentation/components/empty_data.dart';
 import 'package:odyssey_mobile/presentation/components/favourites_list.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/schedule_list.dart';
+import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 class ScheduleLayout extends StatefulWidget {
   const ScheduleLayout({
@@ -14,14 +15,12 @@ class ScheduleLayout extends StatefulWidget {
     required this.days,
     required this.performanceGroups,
     required this.title,
-    this.centerTitle = true,
     this.categoryEntity,
     this.actions = const [],
     this.inFavourites = false,
     this.emptyWidget = const EmptyData(),
   });
 
-  final bool centerTitle;
   final String title;
   final List<String> days;
   final List<Widget> actions;
@@ -63,10 +62,10 @@ class _ScheduleLayoutState extends State<ScheduleLayout> with SingleTickerProvid
     final numDays = widget.days.length;
     if (numDays > 1) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: widget.centerTitle,
+        appBar: TopBar(
+          title: widget.title,
           actions: widget.actions,
+          leading: widget.inFavourites ? null : BackAction(),
           bottom: TabBar(
             controller: _controller,
             tabs: widget.days.map((e) => Text(e)).toList(),
@@ -88,10 +87,10 @@ class _ScheduleLayoutState extends State<ScheduleLayout> with SingleTickerProvid
       );
     } else if (numDays == 1) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: widget.centerTitle,
+        appBar: TopBar(
+          title: widget.title,
           actions: widget.actions,
+          leading: widget.inFavourites ? null : BackAction(),
         ),
         body: Column(children: [
           Heading(widget.days.first),
@@ -107,10 +106,10 @@ class _ScheduleLayoutState extends State<ScheduleLayout> with SingleTickerProvid
       );
     } else {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          centerTitle: widget.centerTitle,
+        appBar: TopBar(
+          title: widget.title,
           actions: widget.actions,
+          leading: widget.inFavourites ? null : BackAction(),
         ),
         body: widget.emptyWidget,
       );

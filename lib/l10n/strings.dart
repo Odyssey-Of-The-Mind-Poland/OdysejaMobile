@@ -21,6 +21,7 @@ abstract class AppStrings {
   static const String infoScreenTitle = 'Informacje';
   static const String scheduleScreenTitle = 'Harmonogram';
   static const String favScreenTitle = 'Ulubione';
+  static const String scheduleSearchResultTitle = 'Wyniki wyszukiwania';
   static const String homeScreenNavigationLabel = 'Ekran powitalny';
   static const String infoScreenNavigationLabel = 'Informacje';
   static const String scheduleScreenNavigationLabel = 'Harmonogram';
