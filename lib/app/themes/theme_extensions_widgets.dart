@@ -5,22 +5,34 @@ class OotmBottomSheetTheme extends ThemeExtension<OotmBottomSheetTheme> {
     required this.handleColor,
     required this.backgroundColor,
     required this.borderColor,
+    required this.closeButtonHighlight,
+    required this.closeButtonForeground,
+    required this.closeButtonBackground,
   });
 
   final Color? handleColor;
   final Color? backgroundColor;
   final Color? borderColor;
+  final Color? closeButtonHighlight;
+  final Color? closeButtonForeground;
+  final Color? closeButtonBackground;
 
   @override
   OotmBottomSheetTheme copyWith({
     Color? handleColor,
     Color? backgroundColor,
     Color? borderColor,
+    Color? closeButtonHighlight,
+    Color? closeButtonForeground,
+    Color? closeButtonBackground,
   }) =>
       OotmBottomSheetTheme(
         handleColor: handleColor ?? this.handleColor,
         backgroundColor: backgroundColor ?? this.backgroundColor,
         borderColor: borderColor ?? this.borderColor,
+        closeButtonHighlight: closeButtonHighlight ?? this.closeButtonHighlight,
+        closeButtonForeground: closeButtonForeground ?? this.closeButtonForeground,
+        closeButtonBackground: closeButtonBackground ?? this.closeButtonBackground,
       );
 
   @override
@@ -32,6 +44,9 @@ class OotmBottomSheetTheme extends ThemeExtension<OotmBottomSheetTheme> {
       handleColor: Color.lerp(handleColor, other?.handleColor, t),
       backgroundColor: Color.lerp(backgroundColor, other?.backgroundColor, t),
       borderColor: Color.lerp(borderColor, other?.borderColor, t),
+      closeButtonHighlight: Color.lerp(closeButtonHighlight, other?.closeButtonHighlight, t),
+      closeButtonForeground: Color.lerp(closeButtonForeground, other?.closeButtonForeground, t),
+      closeButtonBackground: Color.lerp(closeButtonBackground, other?.closeButtonBackground, t),
     );
   }
 }

@@ -144,3 +144,36 @@ class __DraggableBuilderState extends State<_DraggableBuilder> {
     );
   }
 }
+
+class OotmBottomSheetHeader extends StatelessWidget {
+  const OotmBottomSheetHeader({required this.text, super.key});
+
+  final String text;
+
+  static const _defaultDuration = Duration(milliseconds: 200);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<OotmBottomSheetTheme>();
+    return Row(
+      spacing: 16,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(text, style: Theme.of(context).t.h3),
+        IconButton(
+          style: ButtonStyle(
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            minimumSize: WidgetStatePropertyAll(Size(32, 32)),
+            padding: WidgetStatePropertyAll(EdgeInsets.all(4)),
+            animationDuration: _defaultDuration,
+            backgroundColor: WidgetStatePropertyAll(theme?.closeButtonBackground),
+            foregroundColor: WidgetStatePropertyAll(theme?.closeButtonForeground),
+            overlayColor: WidgetStatePropertyAll(theme?.closeButtonHighlight),
+          ),
+          onPressed: Navigator.of(context).pop,
+          icon: Icon(OotmIcons.close),
+        ),
+      ],
+    );
+  }
+}

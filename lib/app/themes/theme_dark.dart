@@ -21,6 +21,9 @@ final _bottomSheet = OotmBottomSheetTheme(
   handleColor: _colors.universal.grey.color300,
   backgroundColor: _colors.universal.grey.color600,
   borderColor: _colors.universal.grey.color500,
+  closeButtonBackground: _colors.universal.grey.color500,
+  closeButtonForeground: _colors.universal.grey.color200,
+  closeButtonHighlight: _colors.universal.grey.color400?.withValues(alpha: 0.5),
 );
 
 final _buttons = OotmMainButtonTheme(
