@@ -65,6 +65,7 @@ dev_dependencies:
   build_runner: ^2.4.15
   hive_ce_generator: ^1.8.2
   flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.5
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -75,21 +76,6 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.9.4
   retrofit_generator: ^9.1.9
-
-
-# flutter pub run flutter_launcher_icons:main -f <your config file name here>
-# flutter pub run flutter_launcher_icons:main
-# Currently requires changing flutter.minSdkVersion to int format
-# https://pub.dev/packages/flutter_launcher_icons
-flutter_icons:
-  android: true
-  ios: true
-  remove_alpha_ios: true
-  image_path: "assets/graphics/app_logo.png"
-  adaptive_icon_background: "#ffab33"
-  adaptive_icon_foreground: "assets/graphics/adaptive_icon_foreground.png"
-  # image_path_android: "assets/graphics/app_logo_rounded.png"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

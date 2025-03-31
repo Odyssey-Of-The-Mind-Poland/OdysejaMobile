@@ -1,0 +1,10 @@
+# dart run flutter_launcher_icons -f <your config file name here>
+# dart run flutter_launcher_icons
+# https://pub.dev/packages/flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/graphics/app_logo.png"
+  adaptive_icon_background: "#ffab33"
+  adaptive_icon_foreground: "assets/graphics/adaptive_icon_foreground.png"
