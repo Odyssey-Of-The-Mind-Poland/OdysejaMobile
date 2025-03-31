@@ -8,6 +8,19 @@ final themeDark = ThemeData(
   highlightColor: _colors.universal.grey.color500,
   scaffoldBackgroundColor: _colors.universal.grey.color700,
   iconTheme: IconThemeData(size: 22, color: _fontColorDefault),
+
+  /// Used with [TopBar]
+  appBarTheme: AppBarTheme(
+    actionsPadding: EdgeInsets.symmetric(horizontal: 16),
+    elevation: 0,
+    titleTextStyle: _typography.h2,
+    backgroundColor: _colors.universal.grey.color600,
+    surfaceTintColor: Colors.transparent,
+    centerTitle: false,
+    shape: Border(
+      bottom: BorderSide(width: 2, color: _colors.universal.grey.color500 ?? _borderColorFallback),
+    ),
+  ),
   extensions: [
     _colors,
     _typography,
@@ -16,7 +29,18 @@ final themeDark = ThemeData(
     _buttons,
     _bottomSheet,
     _common,
+    _topBar,
   ],
+);
+
+const _borderColorFallback = Color(0xFF3C3E40);
+
+final _topBar = TopBarTheme(
+  actionBackground: _colors.universal.grey.color500?.withValues(alpha: 0.64),
+  actionForeground: _colors.universal.grey.color300,
+  actionForegroundPressed: _colors.universal.grey.color400,
+  actionBorder: _colors.universal.grey.color500,
+  actionBorderPressed: _colors.universal.grey.color600,
 );
 
 final _common = OotmCommonTheme(
@@ -24,6 +48,7 @@ final _common = OotmCommonTheme(
   borderColor: _colors.universal.grey.color500,
   primaryColor: _colors.primary.color200,
   textLighterColor: _colors.universal.grey.color300,
+  searchFieldCancelColor: _colors.universal.grey.color400,
 );
 
 final _bottomSheet = OotmBottomSheetTheme(

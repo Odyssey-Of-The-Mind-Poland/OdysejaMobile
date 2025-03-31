@@ -1,17 +1,66 @@
 import 'package:flutter/material.dart';
 
+class TopBarTheme extends ThemeExtension<TopBarTheme> {
+  const TopBarTheme({
+    required this.actionBackground,
+    required this.actionForeground,
+    required this.actionForegroundPressed,
+    required this.actionBorder,
+    required this.actionBorderPressed,
+  });
+
+  final Color? actionBackground;
+  final Color? actionForeground;
+  final Color? actionForegroundPressed;
+  final Color? actionBorder;
+  final Color? actionBorderPressed;
+
+  @override
+  TopBarTheme copyWith({
+    Color? actionBackground,
+    Color? actionForeground,
+    Color? actionForegroundPressed,
+    Color? actionBorder,
+    Color? actionBorderPressed,
+  }) =>
+      TopBarTheme(
+        actionBackground: actionBackground ?? this.actionBackground,
+        actionForeground: actionForeground ?? this.actionForeground,
+        actionForegroundPressed: actionForegroundPressed ?? this.actionForegroundPressed,
+        actionBorder: actionBorder ?? this.actionBorder,
+        actionBorderPressed: actionBorderPressed ?? this.actionBorderPressed,
+      );
+
+  @override
+  TopBarTheme lerp(TopBarTheme? other, double t) {
+    if (identical(other, this)) {
+      return this;
+    }
+    return TopBarTheme(
+      actionBackground: Color.lerp(actionBackground, other?.actionBackground, t),
+      actionForeground: Color.lerp(actionForeground, other?.actionForeground, t),
+      actionForegroundPressed:
+          Color.lerp(actionForegroundPressed, other?.actionForegroundPressed, t),
+      actionBorder: Color.lerp(actionBorder, other?.actionBorder, t),
+      actionBorderPressed: Color.lerp(actionBorderPressed, other?.actionBorderPressed, t),
+    );
+  }
+}
+
 class OotmCommonTheme extends ThemeExtension<OotmCommonTheme> {
   const OotmCommonTheme({
     required this.surfaceColor,
     required this.borderColor,
     required this.primaryColor,
     required this.textLighterColor,
+    required this.searchFieldCancelColor,
   });
 
   final Color? surfaceColor;
   final Color? borderColor;
   final Color? primaryColor;
   final Color? textLighterColor;
+  final Color? searchFieldCancelColor;
 
   @override
   OotmCommonTheme copyWith({
@@ -19,12 +68,14 @@ class OotmCommonTheme extends ThemeExtension<OotmCommonTheme> {
     Color? borderColor,
     Color? primaryColor,
     Color? textLighterColor,
+    Color? searchFieldCancelColor,
   }) =>
       OotmCommonTheme(
         surfaceColor: surfaceColor ?? this.surfaceColor,
         borderColor: borderColor ?? this.borderColor,
         primaryColor: primaryColor ?? this.primaryColor,
         textLighterColor: textLighterColor ?? this.textLighterColor,
+        searchFieldCancelColor: searchFieldCancelColor ?? this.searchFieldCancelColor,
       );
 
   @override
@@ -37,6 +88,7 @@ class OotmCommonTheme extends ThemeExtension<OotmCommonTheme> {
       borderColor: Color.lerp(borderColor, other?.borderColor, t),
       primaryColor: Color.lerp(primaryColor, other?.primaryColor, t),
       textLighterColor: Color.lerp(textLighterColor, other?.textLighterColor, t),
+      searchFieldCancelColor: Color.lerp(searchFieldCancelColor, other?.searchFieldCancelColor, t),
     );
   }
 }
