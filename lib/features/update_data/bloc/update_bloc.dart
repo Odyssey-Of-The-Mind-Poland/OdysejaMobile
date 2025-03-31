@@ -79,5 +79,5 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   /// breaking the throttle mechanism. Therefore, a solution with persistence is also necessary
   /// (like [_repository.shouldCheckForUpdates] method).
   EventTransformer<CheckForUpdatesEvent> throttleTransformer<Event>() =>
-      (events, mapper) => events.throttleTime(const Duration(minutes: 1)).asyncExpand(mapper);
+      (events, mapper) => events.throttleTime(_throttleTime).asyncExpand(mapper);
 }

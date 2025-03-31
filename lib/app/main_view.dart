@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:odyssey_mobile/features/update_data/app_update_recommended_bottom_sheet.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
-import 'package:odyssey_mobile/presentation/helpers/snackbar_helper.dart';
+import 'package:odyssey_mobile/widgets/ootm_bottom_sheet.dart';
+import 'package:odyssey_mobile/widgets/snackbar.dart';
 import 'package:odyssey_mobile/features/update_data/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
@@ -25,6 +27,46 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  late final AppLifecycleListener _listener;
+
+  @override
+  void initState() {
+    super.initState();
+    _listener = AppLifecycleListener(
+      onResume: () => context.read<UpdateBloc>().add(CheckForUpdatesEvent()),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) => _shouldPresentAppUpdateBottomSheet());
+  }
+
+  @override
+  void dispose() {
+    _listener.dispose();
+    super.dispose();
+  }
+
+  Future<void> _shouldPresentAppUpdateBottomSheet() async {
+    final state = context.read<UpdateBloc>().state;
+    if (state is! UpdateFinished) {
+      return;
+    }
+    if (state.isUpdateRecommended) {
+      final result = await showOotmBottomSheet<bool>(
+        context: context,
+        child: AppUpdateRecommendedBottomSheet(),
+      );
+      if (!mounted) return;
+
+      if (result == null) {
+        context.read<UpdateBloc>().add(SkipAppUpdateEvent());
+      } else if (!result) {
+        showSnackBar(
+          context: context,
+          text: AppStrings.urlLauncherFailureMessage,
+          type: SnackBarType.error,
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
