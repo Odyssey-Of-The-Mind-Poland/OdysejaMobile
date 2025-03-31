@@ -13,7 +13,14 @@ final themeLight = ThemeData(
     appStyling,
     _navigationBar,
     _buttons,
+    _bottomSheet,
   ],
+);
+
+final _bottomSheet = OotmBottomSheetTheme(
+  handleColor: _colors.universal.grey.color200,
+  backgroundColor: _colors.universal.grey.color100,
+  borderColor: _colors.universal.grey.color300,
 );
 
 final _buttons = OotmMainButtonTheme(

@@ -1,5 +1,41 @@
 import 'package:flutter/material.dart';
 
+class OotmBottomSheetTheme extends ThemeExtension<OotmBottomSheetTheme> {
+  const OotmBottomSheetTheme({
+    required this.handleColor,
+    required this.backgroundColor,
+    required this.borderColor,
+  });
+
+  final Color? handleColor;
+  final Color? backgroundColor;
+  final Color? borderColor;
+
+  @override
+  OotmBottomSheetTheme copyWith({
+    Color? handleColor,
+    Color? backgroundColor,
+    Color? borderColor,
+  }) =>
+      OotmBottomSheetTheme(
+        handleColor: handleColor ?? this.handleColor,
+        backgroundColor: backgroundColor ?? this.backgroundColor,
+        borderColor: borderColor ?? this.borderColor,
+      );
+
+  @override
+  OotmBottomSheetTheme lerp(OotmBottomSheetTheme? other, double t) {
+    if (identical(other, this)) {
+      return this;
+    }
+    return OotmBottomSheetTheme(
+      handleColor: Color.lerp(handleColor, other?.handleColor, t),
+      backgroundColor: Color.lerp(backgroundColor, other?.backgroundColor, t),
+      borderColor: Color.lerp(borderColor, other?.borderColor, t),
+    );
+  }
+}
+
 class OotmMainButtonTheme extends ThemeExtension<OotmMainButtonTheme> {
   const OotmMainButtonTheme({
     required this.primaryBackground,
