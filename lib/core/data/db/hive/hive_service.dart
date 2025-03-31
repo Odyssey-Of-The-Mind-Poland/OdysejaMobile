@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
