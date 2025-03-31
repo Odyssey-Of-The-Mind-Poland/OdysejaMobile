@@ -5,13 +5,15 @@ sealed class UpdateEvent {
 }
 
 class CheckForUpdatesEvent extends UpdateEvent {
-  const CheckForUpdatesEvent({this.isBoot = false});
-
-  final bool isBoot;
+  const CheckForUpdatesEvent();
 }
 
 class RetryCheckEvent extends UpdateEvent {
   const RetryCheckEvent();
+}
+
+class BootCheckEvent extends UpdateEvent {
+  const BootCheckEvent();
 }
 
 class SkipAppUpdateEvent extends UpdateEvent {

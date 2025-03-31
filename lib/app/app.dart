@@ -18,7 +18,7 @@ class OdysseyMobile extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => UpdateBloc(sl())..add(const CheckForUpdatesEvent(isBoot: true)),
+          create: (context) => UpdateBloc(sl())..add(const BootCheckEvent()),
         ),
       ],
       child: MaterialApp.router(

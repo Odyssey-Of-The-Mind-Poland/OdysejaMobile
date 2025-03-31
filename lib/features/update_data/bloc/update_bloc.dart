@@ -12,13 +12,14 @@ part 'update_state.dart';
 class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
   UpdateBloc(this._repository) : super(const UpdateInitial()) {
     on<CheckForUpdatesEvent>((event, emit) async {
-      if (!event.isBoot && !_repository.shouldCheckForUpdates(_throttleTime)) {
+      if (!_repository.shouldCheckForUpdates(_throttleTime)) {
         return;
       }
       await _checkForUpdates(emit);
     }, transformer: throttleTransformer());
     on<SkipAppUpdateEvent>((event, emit) => _repository.markAppUpdateAsSkipped());
     on<RetryCheckEvent>((event, emit) => _checkForUpdates(emit));
+    on<BootCheckEvent>((event, emit) => _checkForUpdates(emit));
   }
   Future<void> _checkForUpdates(Emitter<UpdateState> emit) async {
     emit(const UpdateLoading());
