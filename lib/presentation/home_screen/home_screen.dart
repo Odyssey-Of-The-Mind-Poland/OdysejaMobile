@@ -15,7 +15,6 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return CityDataBuilder(onData: (data, _) {
       return Scaffold(
-        backgroundColor: AppColors.shadowGrey,
         appBar: AppBar(title: const Text(AppStrings.homeScreenTitle)),
         body: CustomScrollView(
           cacheExtent: 200,

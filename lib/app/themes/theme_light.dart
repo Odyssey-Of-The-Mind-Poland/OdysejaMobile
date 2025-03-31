@@ -6,6 +6,7 @@ final themeLight = ThemeData(
   fontFamily: _fontFamily,
   splashFactory: NoSplash.splashFactory,
   highlightColor: _colors.universal.grey.color300,
+  scaffoldBackgroundColor: _colors.universal.grey.color200,
   iconTheme: IconThemeData(size: 22),
   extensions: [
     _colors,

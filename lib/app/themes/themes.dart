@@ -5,7 +5,7 @@ import 'package:odyssey_mobile/app/themes/theme.dart';
 final lightTheme = ThemeData(
   fontFamily: 'Ubuntu',
   primaryColor: AppColors.primaryOrange,
-  scaffoldBackgroundColor: AppColors.lightestGrey,
+  scaffoldBackgroundColor: themeLight.c.universal.grey.color200,
   appBarTheme: const AppBarTheme(
     elevation: 0,
     toolbarHeight: 64,

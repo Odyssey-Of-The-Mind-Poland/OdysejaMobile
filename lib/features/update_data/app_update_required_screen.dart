@@ -30,7 +30,7 @@ class AppUpdateRequiredScreen extends StatelessWidget {
           ? SystemUiOverlayStyle.dark
           : SystemUiOverlayStyle.light,
       child: Scaffold(
-        backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
+        backgroundColor: Theme.of(context).extension<OotmBottomSheetTheme>()?.backgroundColor,
         bottomNavigationBar: Padding(
           padding: EdgeInsets.only(
               bottom: max(MediaQuery.viewPaddingOf(context).bottom, 16), left: 16, right: 16),
