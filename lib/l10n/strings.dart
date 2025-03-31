@@ -109,6 +109,16 @@ abstract class AppStrings {
 
   static const String nextPerformance = 'Najbliższy występ w ulubionych';
   static const String homeScreenOurPartners = 'Nasi Partnerzy';
+
+  // App critical failure
+  static const String criticalAppFailureMessage = 'Wystąpił krytyczny błąd aplikacji';
+  static const String appReinstallHeader = 'Wystąpił krytyczny błąd';
+  static const String appReinstallButton = 'Przejdź do sklepu';
+  static const String appReinstallAppStore = 'App Store';
+  static const String appReinstallPlayStore = 'Play Store';
+  static const String appReinstallBody1 =
+      'Nie udało się prawidłowo uruchomić Łappki Omera. Prosimy o odinstalowanie i ponowną instalację aplikacji.';
+  static const String appReinstallBody2 = 'W razie dalszych problemów bardzo prosimy o kontakt!';
 }
 // \u200B
 // \u00A0

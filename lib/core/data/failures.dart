@@ -58,3 +58,10 @@ class UrlLauncherFailure extends Failure {
   @override
   String get errorMessage => AppStrings.urlLauncherFailureMessage;
 }
+
+class CriticalAppFailure extends Failure {
+  const CriticalAppFailure();
+
+  @override
+  String get errorMessage => AppStrings.criticalAppFailureMessage;
+}

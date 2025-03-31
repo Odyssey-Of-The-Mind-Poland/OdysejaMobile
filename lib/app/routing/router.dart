@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:odyssey_mobile/core/domain/info.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
+import 'package:odyssey_mobile/features/update_data/app_reinstall_required_screen.dart';
 import 'package:odyssey_mobile/features/update_data/app_update_required_screen.dart';
 import 'package:odyssey_mobile/presentation/favourites_screen/favourites_screen.dart';
 import 'package:odyssey_mobile/presentation/home_screen/home_screen.dart';
@@ -30,6 +31,7 @@ class AppRouter extends RootStackRouter {
   final List<AutoRoute> routes = [
     AutoRoute(page: LoadingRoute.page, path: '/'),
     AutoRoute(page: AppUpdateRequiredRoute.page),
+    AutoRoute(page: AppReinstallRequiredRoute.page),
     AutoRoute(page: MainRoute.page, children: [
       AutoRoute(page: HomeRoute.page, path: ''),
       AutoRoute(page: InfoRoutes.page, children: [

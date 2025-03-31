@@ -32,3 +32,7 @@ class UpdateFailed extends UpdateState {
   final Failure failure;
   final bool offlineModeAvailable;
 }
+
+class AppCriticalError extends UpdateState {
+  const AppCriticalError();
+}

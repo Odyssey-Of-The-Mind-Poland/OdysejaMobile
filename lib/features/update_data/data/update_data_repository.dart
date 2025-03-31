@@ -11,9 +11,11 @@ import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:odyssey_mobile/core/data/db/hive/hive_service.dart';
+import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
 import 'package:odyssey_mobile/core/data/services/store_service.dart';
+import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/core/typedefs.dart';
 import 'package:odyssey_mobile/features/update_data/domain/app_update_status.dart';
 import 'package:retrofit/dio.dart';
@@ -64,6 +66,9 @@ class UpdateDataRepository {
   Future<void> saveDataVersion(int version) => _sharedPreferences.setInt(_keyDataVersion, version);
 
   bool get isOfflineModeAvailable => _dbService.validateDatabase();
+
+  Option<Failure> get dbInitSuccess =>
+      _dbService.initSuccess ?? false ? none() : some(CriticalAppFailure());
 
   String? _pendingAppUpdateVersion;
 

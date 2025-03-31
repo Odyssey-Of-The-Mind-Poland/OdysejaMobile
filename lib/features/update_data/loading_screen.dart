@@ -24,6 +24,8 @@ class LoadingScreen extends StatelessWidget {
                 availableOffline: state.offlineAvailable,
               )
             ]);
+          } else if (state is AppCriticalError) {
+            context.router.replaceAll([AppReinstallRequiredRoute()]);
           }
         },
         child: BlocBuilder<UpdateBloc, UpdateState>(

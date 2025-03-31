@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
@@ -17,6 +19,7 @@ import 'package:odyssey_mobile/core/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/problem.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/stage.dart';
+import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 
@@ -41,22 +44,23 @@ part 'hive_service.g.dart';
 class HiveDbService {
   HiveDbService._create();
 
-  late final Box<CityDataHiveModel> _box;
-  late final Box<ProblemHiveModel> _pandoraBox;
-  late final Box<PerformanceHiveModel> _performanceBox;
-  late final Box<CityHiveModel> _citiesBox;
+  late Box<CityDataHiveModel> _box;
+  late Box<ProblemHiveModel> _pandoraBox;
+  late Box<PerformanceHiveModel> _performanceBox;
+  late Box<CityHiveModel> _citiesBox;
+
+  bool? initSuccess;
 
   static Future<HiveDbService> create() async {
     final service = HiveDbService._create();
+    Hive.registerAdapters();
     await service._init();
     return service;
   }
 
   Future<void> _init() async {
     try {
-      Hive.registerAdapters();
       await Hive.initFlutter();
-
       _box = await Hive.openBox(
         'finalsBox',
         compactionStrategy: (entries, deletedEntries) {
@@ -81,9 +85,26 @@ class HiveDbService {
           return deletedEntries > 3;
         },
       );
-    } catch (e) {
-      log('Hive initialization error: $e');
+      initSuccess = true;
+    } catch (e, s) {
+      sl.maybeGet<LoggerService>()?.logWarning('Hive initialization error, trying db reset', e, s);
+      if (initSuccess == null) {
+        initSuccess = false;
+        await _retryInit();
+      }
     }
+  }
+
+  Future<void> _retryInit() async {
+    await _deleteDbFiles();
+    await _init();
+  }
+
+  Future<void> _deleteDbFiles() async {
+    await Hive.deleteBoxFromDisk('finalsBox');
+    await Hive.deleteBoxFromDisk('pandoraBox');
+    await Hive.deleteBoxFromDisk('performanceBox');
+    await Hive.deleteBoxFromDisk('citiesBox');
   }
 
   Future<void> createProblems(List<ProblemModelApi> problems) async {

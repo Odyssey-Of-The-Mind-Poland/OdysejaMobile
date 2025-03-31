@@ -19,7 +19,15 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
     }, transformer: throttleTransformer());
     on<SkipAppUpdateEvent>((event, emit) => _repository.markAppUpdateAsSkipped());
     on<RetryCheckEvent>((event, emit) => _checkForUpdates(emit));
-    on<BootCheckEvent>((event, emit) => _checkForUpdates(emit));
+    on<BootCheckEvent>((event, emit) {
+      // TODO: Design logic that provides user with that his favs might be lost due to db init failure
+      //  and subsequent db refresh.
+      final result = _repository.dbInitSuccess;
+      return result.fold(
+        () async => _checkForUpdates(emit),
+        (a) async => emit(AppCriticalError()),
+      );
+    });
   }
   Future<void> _checkForUpdates(Emitter<UpdateState> emit) async {
     emit(const UpdateLoading());
@@ -49,7 +57,9 @@ class UpdateBloc extends Bloc<UpdateEvent, UpdateState> {
         await dataUpdateAvailable.fold(
           (l) async => _updateFailed(l, emit),
           (r) async {
-            if (!r.updateAvailable && !_repository.isDataDirty) {
+            if (!r.updateAvailable &&
+                !_repository.isDataDirty &&
+                _repository.isOfflineModeAvailable) {
               await _repository.saveCheckDate();
               emit(UpdateFinished(status));
               return;
