@@ -73,7 +73,8 @@ abstract class HiveDataAdapter {
       .toList();
 
   static List<StageHiveModel> convertStages(List<StageModelApi> apiModels) =>
-      apiModels.map((e) => StageHiveModel(e.name, e.number)).toList();
+      apiModels.map((e) => StageHiveModel(e.name, e.number)).toList()
+        ..sort((a, b) => a.number.compareTo(b.number));
 
   static List<PerformanceGroupHiveModel> convertPerformanceGroups({
     required List<PerformanceHiveModel> performances,
