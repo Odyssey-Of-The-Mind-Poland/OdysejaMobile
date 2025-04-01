@@ -59,9 +59,12 @@ class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (c, i, animation) => SizeTransition(
             sizeFactor: animation,
-            child: PerformanceCard(
-              performance: performances[i],
-              secretWidth: widget.secretWidth,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: PerformanceCard(
+                performance: performances[i],
+                secretWidth: widget.secretWidth,
+              ),
             ),
           ),
         ),

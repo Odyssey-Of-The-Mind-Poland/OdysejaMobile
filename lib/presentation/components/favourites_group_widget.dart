@@ -98,10 +98,13 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (c, i, animation) => SizeTransition(
               sizeFactor: animation,
-              child: PerformanceCard(
-                key: Key('${performances[i].performanceId}'),
-                performance: performances[i],
-                secretWidth: widget.secretWidth,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: PerformanceCard(
+                  key: Key('${performances[i].performanceId}'),
+                  performance: performances[i],
+                  secretWidth: widget.secretWidth,
+                ),
               ),
             ),
           ),
