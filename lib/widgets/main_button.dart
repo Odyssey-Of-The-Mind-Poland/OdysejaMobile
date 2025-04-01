@@ -12,12 +12,14 @@ class MainButton extends StatelessWidget {
     required _Level level,
     this.iconData,
     this.isSelected,
+    super.key,
   }) : _level = level;
 
   factory MainButton.primary({
     required String label,
     required void Function() onPressed,
     required IconData iconData,
+    Key? key,
   }) =>
       MainButton._(
         onPressed: onPressed,
@@ -26,12 +28,14 @@ class MainButton extends StatelessWidget {
         iconData: iconData,
         height: 48,
         level: _Level.primary,
+        key: key,
       );
 
   factory MainButton.secondary({
     required String label,
     required void Function() onPressed,
     required IconData iconData,
+    Key? key,
   }) =>
       MainButton._(
         onPressed: onPressed,
@@ -40,12 +44,14 @@ class MainButton extends StatelessWidget {
         iconData: iconData,
         height: 48,
         level: _Level.secondary,
+        key: key,
       );
 
   factory MainButton.tertiary({
     required String label,
     required void Function() onPressed,
     required bool isSelected,
+    Key? key,
   }) =>
       MainButton._(
         onPressed: onPressed,
@@ -54,6 +60,7 @@ class MainButton extends StatelessWidget {
         isSelected: isSelected,
         height: 40,
         level: _Level.tertiary,
+        key: key,
       );
 
   final void Function() onPressed;
