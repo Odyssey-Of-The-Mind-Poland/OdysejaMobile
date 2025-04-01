@@ -33,26 +33,38 @@ class ScheduleLayout extends StatefulWidget {
   State<ScheduleLayout> createState() => _ScheduleLayoutState();
 }
 
-class _ScheduleLayoutState extends State<ScheduleLayout> with SingleTickerProviderStateMixin {
+class _ScheduleLayoutState extends State<ScheduleLayout> with TickerProviderStateMixin {
   static int _initialIndex = 0;
 
-  late final TabController _controller;
+  late TabController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = TabController(
-      length: widget.days.length,
-      vsync: this,
-      initialIndex: widget.days.length > 1 ? _initialIndex : 0,
-    );
-    _controller.addListener(() => _initialIndex = _controller.index);
+    _controller = _createController();
+  }
+
+  @override
+  void didUpdateWidget(covariant ScheduleLayout oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _controller.dispose();
+    _controller = _createController();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  TabController _createController() {
+    final controller = TabController(
+      length: widget.days.length,
+      vsync: this,
+      initialIndex: widget.days.length > 1 ? _initialIndex : 0,
+    );
+    controller.addListener(() => _initialIndex = controller.index);
+    return controller;
   }
 
   @override
