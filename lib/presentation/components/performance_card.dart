@@ -35,9 +35,9 @@ class _PerformanceCardState extends State<PerformanceCard> {
     return SwipeableTile.swipeToTriggerCard(
       key: Key(widget.performance.performanceId.toString()),
       color: AppColors.pureWhite,
-      horizontalPadding: 8,
+      horizontalPadding: 0,
       shadow: defaultShadow,
-      verticalPadding: 8,
+      verticalPadding: 0,
       borderRadius: AppValues.defaultBrRadius,
       direction: SwipeDirection.horizontal,
       swipeThreshold: AppValues.swipeTreshold,

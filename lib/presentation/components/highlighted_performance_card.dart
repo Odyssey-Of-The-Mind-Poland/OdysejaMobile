@@ -33,40 +33,19 @@ class _HighlightedPerformanceCardState extends State<HighlightedPerformanceCard>
   // decoration: decorationTween.animate(_controller),
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        PerformanceCard(performance: widget.performance, secretWidth: widget.secretWidth),
-        IgnorePointer(
-          child: DecoratedBoxTransition(
-              decoration: decorationTween.animate(_controller),
-              child: const SizedBox(width: double.infinity, height: 56)),
-        ),
-      ],
+    return DecoratedBoxTransition(
+      position: DecorationPosition.foreground,
+      decoration: decorationTween.animate(_controller),
+      child: PerformanceCard(performance: widget.performance, secretWidth: widget.secretWidth),
     );
   }
 
   final DecorationTween decorationTween = DecorationTween(
     begin: BoxDecoration(
         borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-        border: Border.all(color: AppColors.primaryOrange, width: 2)
-        // boxShadow: const <BoxShadow>[
-        //   BoxShadow(
-        //     color: AppColors.halfOrange,
-        //     blurRadius: 4.0,
-        //     offset: Offset(0, 0.0),
-        //   )
-        // ],
-        ),
+        border: Border.all(color: AppColors.primaryOrange, width: 1)),
     end: BoxDecoration(
-      borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-      // boxShadow: const <BoxShadow>[
-      //   BoxShadow(
-      //     color: AppColors.quaterOrange,
-      //     blurRadius: 4.0,
-      //     offset: Offset(0, 0.0),
-      //   )
-      // ],
-    ),
+        borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
+        border: Border.all(color: AppColors.primaryOrange, width: 3)),
   );
 }

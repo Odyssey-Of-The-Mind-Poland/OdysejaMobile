@@ -68,9 +68,10 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
                 Heading(widget.performance.performanceDay),
                 PerformanceGroupHeading(group, categoryEntity: null),
                 Expanded(
-                  child: ScrollablePositionedList.builder(
+                  child: ScrollablePositionedList.separated(
+                    separatorBuilder: (context, _) => const SizedBox(height: 16),
                     itemScrollController: itemScrollController,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     itemCount: length!,
                     itemBuilder: (context, i) => i == index
                         ? HighlightedPerformanceCard(
