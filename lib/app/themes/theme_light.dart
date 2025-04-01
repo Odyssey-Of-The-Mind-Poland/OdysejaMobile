@@ -203,14 +203,14 @@ const _typography = AppTypography(
     fontFamily: _fontFamily,
     fontSize: 12,
     height: 1.667,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: _fontColorDefault,
   ),
   bodySmallRegular: TextStyle(
     fontFamily: _fontFamily,
     fontSize: 12,
     height: 1.667,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     color: _fontColorDefault,
   ),
 );
