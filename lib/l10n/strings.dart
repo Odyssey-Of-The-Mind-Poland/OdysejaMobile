@@ -76,16 +76,6 @@ abstract class AppStrings {
   static const String league = 'Liga';
 
   static const String close = 'ZAMKNIJ';
-  static const String removeFromFavsLabel = 'USUŃ Z ULUBIONYCH';
-  static const String addToFavsLabel = 'DODAJ DO ULUBIONYCH';
-
-  static const String performance = 'Występ';
-  static const String spontan = 'Spontan';
-
-  static const String performanceToolTip =
-      'Na odprawę u Sędziego Przedstartowego ekipa powinna przyjść na\u00A025-20 minut wcześniej.';
-  static const String spontanToolTip =
-      'Na recepcji w Strefie Spontanicznej ekipa powinna zgłosić się na\u00A020-15 minut wcześniej';
 
   static const String click = 'Kliknij';
   static const String emptyFavouritesCaption = 'Wybrane przedstawienie,\naby go nie przegapić';
@@ -119,6 +109,20 @@ abstract class AppStrings {
   static const String appReinstallBody1 =
       'Nie udało się prawidłowo uruchomić Łappki Omera. Prosimy o odinstalowanie i ponowną instalację aplikacji.';
   static const String appReinstallBody2 = 'W razie dalszych problemów bardzo prosimy o kontakt!';
+
+  // Schedule
+  static const String removeFromFavsLabel = 'Usuń z ulubionych';
+  static const String addToFavsLabel = 'Dodaj do ulubionych';
+  static const String performance = 'Występ';
+  static const String spontan = 'Spontan';
+  static const String performanceTooltip1 = 'Drużyna powinna stawić się na';
+  static const String performanceTooltip2 = '25-20 min';
+  static const String performanceTooltip3 = 'przed występem';
+  static const String spontanTooltip1 = 'Drużyna powinna stawić się na';
+  static const String spontanTooltip2 = '20-15 min';
+  static const String spontanTooltip3 = 'przed spontanem';
+  static const String daySaturdayShort = 'Sb';
+  static const String daySundayShort = 'Nd';
 }
 // \u200B
 // \u00A0

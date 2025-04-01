@@ -41,4 +41,11 @@ class StringHelper {
   static String replaceAtIndex(int index, String input, String replace) {
     return input.substring(0, index + 1) + replace + input.substring(index + 2);
   }
+
+  static String? shortDayFormat(day) => _dayFormatConversionMap[day];
+
+  static const _dayFormatConversionMap = {
+    'sobota': AppStrings.daySaturdayShort,
+    'niedziela': AppStrings.daySundayShort,
+  };
 }

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
+import 'package:odyssey_mobile/features/schedule/performance_bottom_sheet.dart';
 import 'package:odyssey_mobile/presentation/components/fav_widget.dart';
-import 'package:odyssey_mobile/presentation/components/performance_dialog.dart';
 import 'package:odyssey_mobile/presentation/components/shadows.dart';
 import 'package:odyssey_mobile/presentation/components/spontaneous_widget.dart';
-import 'package:odyssey_mobile/presentation/helpers/dialog_helper.dart';
+import 'package:odyssey_mobile/widgets/ootm_bottom_sheet.dart';
 import 'package:odyssey_mobile/widgets/snackbar.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
@@ -63,12 +63,13 @@ class _PerformanceCardState extends State<PerformanceCard> {
           color: AppColors.pureWhite,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-            onTap: () => showModalDialog(
-                context: context,
-                widget: PerformanceDialog(
-                  widget.performance,
-                  bloc: context.read<UpdateFavouritesBloc>(),
-                )),
+            onTap: () => showOotmBottomSheet(
+              context: context,
+              child: PerformanceBottomSheet(
+                performance: widget.performance,
+                bloc: context.read<UpdateFavouritesBloc>(),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
