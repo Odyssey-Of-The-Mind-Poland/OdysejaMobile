@@ -207,10 +207,16 @@ class _ToolTip extends StatelessWidget {
     final colors = Theme.of(context).c;
     final typography = Theme.of(context).t;
 
+    final tooltipKey = GlobalKey<TooltipState>();
+
     return InkWell(
       borderRadius: BorderRadius.circular(_defaultRadius),
-      onTap: () {},
+      onTap: () async {
+        await Future.delayed(const Duration(milliseconds: 100));
+        tooltipKey.currentState?.ensureTooltipVisible();
+      },
       child: Tooltip(
+        key: tooltipKey,
         richMessage: _tooltipContent(typography, colors),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(_defaultRadius),
@@ -223,9 +229,8 @@ class _ToolTip extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.symmetric(horizontal: 32),
-        triggerMode: TooltipTriggerMode.tap,
+        triggerMode: TooltipTriggerMode.manual,
         verticalOffset: 48,
-        showDuration: const Duration(seconds: 2),
         child: child,
       ),
     );
