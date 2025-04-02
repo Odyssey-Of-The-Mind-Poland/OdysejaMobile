@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16),
+                    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16, bottom: 8),
                     height: size.width,
                     child: ImageTile(data.sponsors[0][0].id),
                   ),
