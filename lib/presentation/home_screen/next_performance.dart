@@ -135,7 +135,7 @@ class _NextPerformanceBody extends StatelessWidget {
             ],
           ),
           Text(
-            CohortHelper(performance).string,
+            CohortHelper.fromPerformance(performance).format(),
             style: typography.bodySmallRegular?.copyWith(color: theme?.textLighterColor),
           ),
         ],

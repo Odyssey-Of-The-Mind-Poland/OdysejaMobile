@@ -10,7 +10,7 @@ import 'package:odyssey_mobile/presentation/components/error_body.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/highlighted_performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
-import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
+import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 import 'package:odyssey_mobile/widgets/top_bar.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -70,7 +70,7 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Heading(toBeginningOfSentenceCase(widget.performance.performanceDay)),
-                  PerformanceGroupHeading(group, categoryEntity: null),
+                  Heading(CohortHelper.fromPerformanceGroup(group).format()),
                   Expanded(
                     child: ScrollablePositionedList.separated(
                       separatorBuilder: (context, _) => const SizedBox(height: 16),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
-import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
+import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/presentation/components/show_more_button.dart';
 import 'package:odyssey_mobile/core/domain/performance_group.dart' as pfg_entity;
+import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 
 class PerformanceGroupWidget extends StatefulWidget {
   const PerformanceGroupWidget({
@@ -47,9 +48,9 @@ class _PerformanceGroupWidgetState extends State<PerformanceGroupWidget>
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: PerformanceGroupHeading(
-            widget.performanceGroup,
-            categoryEntity: widget.categoryEntity,
+          child: Heading(
+            CohortHelper.fromPerformanceGroup(widget.performanceGroup)
+                .format(widget.categoryEntity),
           ),
         ),
         AnimatedList(

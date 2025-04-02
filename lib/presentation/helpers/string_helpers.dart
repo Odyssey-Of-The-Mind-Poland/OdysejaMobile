@@ -1,17 +1,69 @@
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 
 class CohortHelper {
-  final Performance pf;
+  CohortHelper.fromPerformance(Performance performance)
+      : _problem = performance.problem,
+        _age = performance.age,
+        _stage = performance.stage,
+        _part = performance.part,
+        _league = performance.league;
 
-  CohortHelper(this.pf);
+  CohortHelper.fromPerformanceGroup(PerformanceGroup group)
+      : _problem = group.problem,
+        _age = group.age,
+        _stage = group.stage,
+        _part = group.part,
+        _league = group.league;
 
-  List<String> get _cohort => pf.age == 0 ? [_stage, AppStrings.juniors] : [_stage, _age, _problem];
-  String get _problem => '${AppStrings.problem} ${pf.problem}';
-  String get _age => '${AppStrings.age} ${AppStrings.divisionSymbols[pf.age]}';
-  String get _stage => '${AppStrings.stage} ${pf.stage}';
+  final int _problem;
+  final int _age;
+  final int _stage;
+  final int _part;
+  final String _league;
 
-  String get string => _cohort.join(' • ');
+  static const _separator = '•';
+
+  // We can check for Juniors either by age or problem.
+  String format([ScheduleCategoryEntity? categoryEntity]) {
+    final List<String> heading = [];
+
+    switch (categoryEntity) {
+      case StageEntity():
+        heading.addAll(_isJunior ? [AppStrings.juniors] : [problemString, ageString]);
+        break;
+      case ProblemEntity():
+        heading.addAll([stageString, if (!_isJunior) ageString]);
+        break;
+      case DivisionEntity():
+        heading.addAll([stageString, if (!_isJunior) problemString]);
+        break;
+      case null:
+        heading.addAll(_isJunior
+            ? [stageString, AppStrings.juniors]
+            : [stageString, problemString, ageString]);
+        break;
+    }
+
+    if (_part != 0) {
+      heading.add(partString);
+    }
+    if (_league.isNotEmpty) {
+      heading.add(leagueString);
+    }
+    return heading.join(' $_separator ');
+  }
+
+  // In this case we can check for Juniors either by age or problem.
+  bool get _isJunior => _age == 0;
+
+  String get problemString => '${AppStrings.problem} $_problem'.nonBreaking;
+  String get ageString => '${AppStrings.age} ${AppStrings.divisionSymbols[_age]}'.nonBreaking;
+  String get stageString => '${AppStrings.stage} $_stage'.nonBreaking;
+  String get partString => '${AppStrings.part} $_part'.nonBreaking;
+  String get leagueString => '${AppStrings.league} $_league'.nonBreaking;
 }
 
 class StringHelper {
@@ -48,4 +100,10 @@ class StringHelper {
     'sobota': AppStrings.daySaturdayShort,
     'niedziela': AppStrings.daySundayShort,
   };
+}
+
+extension StringExtension on String {
+  static const int _nbsp = 0x00A0;
+
+  String get nonBreaking => replaceAll(' ', String.fromCharCode(_nbsp));
 }

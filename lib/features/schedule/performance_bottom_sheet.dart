@@ -28,7 +28,7 @@ class PerformanceBottomSheet extends StatelessWidget {
     );
 
     final cohortWidget = Text(
-      CohortHelper(performance).string,
+      CohortHelper.fromPerformance(performance).format(),
       style: typography.bodyMediumRegular?.copyWith(color: common?.textLighterColor),
     );
 

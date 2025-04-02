@@ -126,9 +126,3 @@ abstract class AppStrings {
 }
 // \u200B
 // \u00A0
-
-const int _nbsp = 0x00A0;
-
-extension StringExtension on String {
-  String get nonBreaking => replaceAll(' ', String.fromCharCode(_nbsp));
-}

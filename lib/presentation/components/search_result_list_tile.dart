@@ -15,7 +15,7 @@ class SearchResultListTile extends StatelessWidget {
       onTap: onTap,
       title: RichText(text: _richTextContent(searchPhrase, performance.team)),
       subtitle: Text(
-        CohortHelper(performance).string,
+        CohortHelper.fromPerformance(performance).format(),
         style: AppTextStyles.bodyText1,
       ),
     );

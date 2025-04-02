@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
-import 'package:odyssey_mobile/presentation/components/performance_group_heading.dart';
+import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/presentation/helpers/string_helpers.dart';
 // import 'package:odyssey_mobile/presentation/components/show_more_button.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/update_favourites_bloc.dart';
 
@@ -88,8 +89,10 @@ class _FavouritesGroupWidgetState extends State<FavouritesGroupWidget>
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: PerformanceGroupHeading(widget.performanceGroup,
-                categoryEntity: widget.categoryEntity),
+            child: Heading(
+              CohortHelper.fromPerformanceGroup(widget.performanceGroup)
+                  .format(widget.categoryEntity),
+            ),
           ),
           AnimatedList(
             key: _listKey,
