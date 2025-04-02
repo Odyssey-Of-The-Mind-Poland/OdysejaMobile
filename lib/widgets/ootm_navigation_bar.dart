@@ -17,7 +17,7 @@ class OotmNavigationBar extends StatelessWidget {
         assert(0 <= selectedIndex && selectedIndex < destinations.length);
 
   final List<Destination> destinations;
-  final Function(int) onDestinationSelected;
+  final Function(int index) onDestinationSelected;
   final int selectedIndex;
   final bool blurEnabled;
 

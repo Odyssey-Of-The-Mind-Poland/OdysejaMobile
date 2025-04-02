@@ -129,7 +129,14 @@ class _MainViewState extends State<MainView> {
           bottomNavigationBuilder: (_, tabsRouter) {
             return OotmNavigationBar(
               selectedIndex: tabsRouter.activeIndex,
-              onDestinationSelected: tabsRouter.setActiveIndex,
+              onDestinationSelected: (index) {
+                if (tabsRouter.activeIndex == index) {
+                  final nestedRouter = tabsRouter.stackRouterOfIndex(index);
+                  nestedRouter?.maybePop();
+                  return;
+                }
+                tabsRouter.setActiveIndex(index);
+              },
               // TODO: Requires extendBody: true
               blurEnabled: false,
               destinations: [
