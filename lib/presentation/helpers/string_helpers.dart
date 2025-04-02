@@ -51,7 +51,7 @@ class CohortHelper {
       heading.add(partString);
     }
     if (_league.isNotEmpty) {
-      heading.add(leagueString);
+      heading.add(_league);
     }
     return heading.join(' $_separator ');
   }
@@ -63,7 +63,6 @@ class CohortHelper {
   String get ageString => '${AppStrings.age} ${AppStrings.divisionSymbols[_age]}'.nonBreaking;
   String get stageString => '${AppStrings.stage} $_stage'.nonBreaking;
   String get partString => '${AppStrings.part} $_part'.nonBreaking;
-  String get leagueString => '${AppStrings.league} $_league'.nonBreaking;
 }
 
 class StringHelper {
