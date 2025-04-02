@@ -17,6 +17,12 @@ class ScheduleList extends StatefulWidget {
 
 class _ScheduleListState extends State<ScheduleList> with AutomaticKeepAliveClientMixin {
   @override
+  void initState() {
+    super.initState();
+    widget.groups.sortGroups(widget.categoryEntity);
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return ListView.builder(

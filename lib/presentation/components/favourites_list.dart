@@ -31,6 +31,7 @@ class _FavouritesListState extends State<FavouritesList> with AutomaticKeepAlive
           } else {
             groups = state.performanceGroups;
           }
+          groups.sortGroups();
           return ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             itemCount: groups.length,
