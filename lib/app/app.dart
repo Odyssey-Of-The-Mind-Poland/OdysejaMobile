@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/features/update_data/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/app/themes/theme_dark.dart';
 import 'package:odyssey_mobile/app/themes/theme_light.dart';
+import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
 
 class OdysseyMobile extends StatelessWidget {
@@ -23,9 +24,8 @@ class OdysseyMobile extends StatelessWidget {
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
         title: AppStrings.title,
-        themeMode: ThemeMode.system,
-        theme: themeLight,
-        darkTheme: themeDark,
+        themeMode: ThemeMode.light,
+        theme: lightTheme,
       ),
     );
   }

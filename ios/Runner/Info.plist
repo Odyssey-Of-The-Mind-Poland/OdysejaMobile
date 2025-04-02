@@ -53,5 +53,7 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
+		<false/>
 	</dict>
 </plist>

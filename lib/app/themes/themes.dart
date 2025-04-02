@@ -3,44 +3,49 @@ import 'package:odyssey_mobile/app/themes/theme.dart';
 
 @Deprecated('Obsolete. Migrate to new theme definitions')
 final lightTheme = ThemeData(
-  fontFamily: 'Ubuntu',
-  primaryColor: AppColors.primaryOrange,
+  brightness: Brightness.light,
+  fontFamily: _fontFamily,
+  splashFactory: NoSplash.splashFactory,
+  highlightColor: themeLight.c.universal.grey.color300,
   scaffoldBackgroundColor: themeLight.c.universal.grey.color200,
-  appBarTheme: const AppBarTheme(
+  iconTheme: IconThemeData(size: 22, color: themeLight.c.universal.grey.color400),
+
+  /// Used with [TopBar]
+  appBarTheme: AppBarTheme(
+    actionsPadding: EdgeInsets.symmetric(horizontal: 16),
     elevation: 0,
-    toolbarHeight: 64,
-    titleTextStyle: TextStyle(
-      fontFamily: 'Ubuntu',
-      fontSize: 24,
-      fontWeight: FontWeight.w700,
-      letterSpacing: 0.25,
-      color: AppColors.darkestGrey,
+    titleTextStyle: themeLight.t.h2,
+    backgroundColor: themeLight.c.universal.grey.color100,
+    surfaceTintColor: Colors.transparent,
+    centerTitle: false,
+    shape: Border(
+      bottom:
+          BorderSide(width: 2, color: themeLight.c.universal.grey.color300 ?? _borderColorFallback),
     ),
-    backgroundColor: AppColors.lightestGrey,
-    iconTheme: IconThemeData(color: AppColors.darkestGrey, size: 22),
-    actionsIconTheme: IconThemeData(color: AppColors.darkestGrey),
   ),
-  tabBarTheme: const TabBarTheme(
+  primaryColor: themeLight.c.primary.color500,
+  tabBarTheme: TabBarTheme(
     labelPadding: EdgeInsets.symmetric(vertical: 8.0),
     labelStyle: AppTextStyles.h3,
     unselectedLabelStyle: AppTextStyles.h3,
-    labelColor: AppColors.darkestGrey,
+    labelColor: Color(0xFF3C3E40),
     unselectedLabelColor: AppColors.mediumGrey,
     indicator: UnderlineTabIndicator(
       insets: EdgeInsets.symmetric(horizontal: 48.0),
-      borderSide: BorderSide(width: 4, color: AppColors.primaryOrange),
+      borderSide: BorderSide(
+        width: 4,
+        color: themeLight.c.primary.color500 ?? AppColors.primaryOrange,
+      ),
     ),
   ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primaryOrange,
-      textStyle: AppTextStyles.button,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppValues.defaultBrRadius)),
-      minimumSize: const Size(0, 40),
-    ),
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: themeLight.c.primary.color500,
   ),
   extensions: themeLight.extensions.values,
 );
+
+const _borderColorFallback = Color(0xFF3C3E40);
+const _fontFamily = 'Ubuntu';
 
 @Deprecated('Obsolete. Migrate to AppTypography ThemeExtention')
 abstract class AppTextStyles {

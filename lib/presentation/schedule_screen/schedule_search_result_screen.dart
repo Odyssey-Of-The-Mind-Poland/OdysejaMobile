@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
@@ -63,28 +64,31 @@ class _ScheduleSearchResultScreenState extends State<ScheduleSearchResultScreen>
             index = group.performances
                 .indexWhere((e) => e.performanceId == widget.performance.performanceId);
             length = group.performances.length;
-            return Column(
-              children: [
-                Heading(widget.performance.performanceDay),
-                PerformanceGroupHeading(group, categoryEntity: null),
-                Expanded(
-                  child: ScrollablePositionedList.separated(
-                    separatorBuilder: (context, _) => const SizedBox(height: 16),
-                    itemScrollController: itemScrollController,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    itemCount: length!,
-                    itemBuilder: (context, i) => i == index
-                        ? HighlightedPerformanceCard(
-                            performance: group.performances[i],
-                            secretWidth: secretWidth,
-                          )
-                        : PerformanceCard(
-                            performance: group.performances[i],
-                            secretWidth: secretWidth,
-                          ),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Heading(toBeginningOfSentenceCase(widget.performance.performanceDay)),
+                  PerformanceGroupHeading(group, categoryEntity: null),
+                  Expanded(
+                    child: ScrollablePositionedList.separated(
+                      separatorBuilder: (context, _) => const SizedBox(height: 16),
+                      itemScrollController: itemScrollController,
+                      itemCount: length!,
+                      itemBuilder: (context, i) => i == index
+                          ? HighlightedPerformanceCard(
+                              performance: group.performances[i],
+                              secretWidth: secretWidth,
+                            )
+                          : PerformanceCard(
+                              performance: group.performances[i],
+                              secretWidth: secretWidth,
+                            ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           } else {
             return const ErrorBody(UnknownFailure());

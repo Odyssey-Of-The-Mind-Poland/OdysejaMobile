@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/core/domain/performance_group.dart';
@@ -80,7 +81,7 @@ class _ScheduleLayoutState extends State<ScheduleLayout> with TickerProviderStat
           leading: widget.inFavourites ? null : BackAction(),
           bottom: TabBar(
             controller: _controller,
-            tabs: widget.days.map((e) => Text(e)).toList(),
+            tabs: widget.days.map((e) => Text(toBeginningOfSentenceCase(e))).toList(),
           ),
         ),
         body: TabBarView(
