@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
@@ -23,10 +24,14 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
 
     result.fold(
       (l) => emit(CityDataError(l)),
-      (r) => result2.fold(
-        (l) => emit(CityDataError(l)),
-        (r2) => emit(CityDataSuccess(r, r2)),
-      ),
+      (r) {
+        // TODO: Move to HiveService on write;
+        r.performanceGroups.sortPerformances();
+        result2.fold(
+          (l) => emit(CityDataError(l)),
+          (r2) => emit(CityDataSuccess(r, r2)),
+        );
+      },
     );
   }
 

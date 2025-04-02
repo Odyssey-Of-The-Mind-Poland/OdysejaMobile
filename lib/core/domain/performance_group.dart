@@ -24,7 +24,13 @@ abstract class PerformanceGroup {
   });
 }
 
-extension SortGroups on List<PerformanceGroup> {
+extension SortExtension on List<PerformanceGroup> {
+  void sortPerformances() {
+    for (final group in this) {
+      group.performances.sort((a, b) => a.performanceDate.compareTo(b.performanceDate));
+    }
+  }
+
   void sortGroups([ScheduleCategoryEntity? categoryEntity]) {
     switch (categoryEntity) {
       case StageEntity():
