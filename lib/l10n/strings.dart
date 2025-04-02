@@ -14,7 +14,7 @@ abstract class AppStrings {
   static const String juniors = 'Juniorzy';
   static const String firstDivision = 'I - V klasa';
   static const String secondDivision = 'VI – VIII klasa';
-  static const String thirdDivision = 'Liceum / technikum';
+  static const String thirdDivision = 'Szkoły średnie';
   static const String forthDivision = 'Uczelnie wyższe';
 
   static const String homeScreenTitle = 'Witaj!';
