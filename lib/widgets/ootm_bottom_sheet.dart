@@ -12,9 +12,11 @@ Future<T?> showOotmScrollableBottomSheet<T>({
   double initialSize = 0.5,
   double maxChildSize = 1.0,
   String? routeName,
+  bool useRootNavigator = false,
 }) =>
     showModalBottomSheet(
       context: context,
+      useRootNavigator: useRootNavigator,
       routeSettings: RouteSettings(name: routeName),
       useSafeArea: true,
       isScrollControlled: true,
@@ -38,8 +40,10 @@ Future<T?> showOotmBottomSheet<T>({
   required BuildContext context,
   required Widget child,
   String? routeName,
+  bool useRootNavigator = false,
 }) =>
     showModalBottomSheet(
+      useRootNavigator: useRootNavigator,
       context: context,
       routeSettings: RouteSettings(name: routeName),
       useSafeArea: true,
@@ -62,8 +66,8 @@ class _BottomSheetBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<OotmBottomSheetTheme>();
-    return Padding(
-      padding: const EdgeInsets.all(16),
+    return SafeArea(
+      minimum: EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         spacing: 8,

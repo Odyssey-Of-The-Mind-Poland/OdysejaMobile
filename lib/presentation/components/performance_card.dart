@@ -65,6 +65,7 @@ class _PerformanceCardState extends State<PerformanceCard> {
             borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
             onTap: () => showOotmBottomSheet(
               context: context,
+              useRootNavigator: true,
               child: PerformanceBottomSheet(
                 performance: widget.performance,
                 bloc: context.read<UpdateFavouritesBloc>(),
