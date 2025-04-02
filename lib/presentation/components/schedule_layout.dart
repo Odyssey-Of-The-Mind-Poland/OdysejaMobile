@@ -105,8 +105,8 @@ class _ScheduleLayoutState extends State<ScheduleLayout> with TickerProviderStat
           actions: widget.actions,
           leading: widget.inFavourites ? null : BackAction(),
         ),
-        body: Column(children: [
-          Heading(widget.days.first),
+        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Heading(toBeginningOfSentenceCase(widget.days.first), leftPadding: 16),
           Expanded(
             child: widget.inFavourites
                 ? FavouritesList(secretWidth: secretWidth)
