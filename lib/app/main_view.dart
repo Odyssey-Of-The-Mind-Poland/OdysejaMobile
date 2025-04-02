@@ -132,7 +132,9 @@ class _MainViewState extends State<MainView> {
               onDestinationSelected: (index) {
                 if (tabsRouter.activeIndex == index) {
                   final nestedRouter = tabsRouter.stackRouterOfIndex(index);
-                  nestedRouter?.maybePop();
+                  if (nestedRouter != null && nestedRouter.canPop()) {
+                    nestedRouter.pop();
+                  }
                   return;
                 }
                 tabsRouter.setActiveIndex(index);
