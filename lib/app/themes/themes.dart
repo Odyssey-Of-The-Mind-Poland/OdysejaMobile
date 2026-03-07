@@ -24,7 +24,7 @@ final lightTheme = ThemeData(
     ),
   ),
   primaryColor: themeLight.c.primary.color500,
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     labelPadding: EdgeInsets.symmetric(vertical: 8.0),
     labelStyle: AppTextStyles.h3,
     unselectedLabelStyle: AppTextStyles.h3,

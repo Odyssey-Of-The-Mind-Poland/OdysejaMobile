@@ -82,7 +82,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  disable-swift-package-manager: false
+  config:
+    enable-swift-package-manager: true
   generate: false
 
   # The following line ensures that the Material Icons font is
