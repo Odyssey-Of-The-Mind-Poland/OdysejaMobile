@@ -1,0 +1,25 @@
+
+name: deploy
+
+on:
+  push:
+    branch: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy app
+        uses: appleboy/ssh-action@master
+        with:
+          host: 37.27.71.201
+          username: ${{ secrets.DEPLOY_USERNAME }}
+          key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          script: |
+            cd Odysejapka
+            git pull
+            flutter build web --no-tree-shake-icons
+            docker build -t grzybek/odyseja-pwa .
+            docker kill $(docker ps -q --filter ancestor=grzybek/odyseja-pwa )
+            docker run --net=host -d grzybek/odyseja-pwa
