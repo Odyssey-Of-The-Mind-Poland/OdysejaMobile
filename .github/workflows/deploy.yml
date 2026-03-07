@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
           script: |
-            cd OdysejaMobile 
+            cd OdysejaMobile/OdysejaMobile 
             git pull
             flutter build web --no-tree-shake-icons
             docker build -t grzybek/odyseja-pwa .
