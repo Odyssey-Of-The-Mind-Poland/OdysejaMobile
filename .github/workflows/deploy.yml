@@ -22,5 +22,6 @@ jobs:
             git pull --ff-only
             COMMIT_SHA="$(git rev-parse --short HEAD)"
             docker build --pull --build-arg GIT_SHA="$COMMIT_SHA" -t grzybek/odyseja-pwa:latest .
+            docker ps -aq --filter ancestor=grzybek/odyseja-pwa --format '{{.ID}}' | xargs -r docker rm -f
             docker rm -f odyseja-pwa || true
             docker run --name odyseja-pwa --restart unless-stopped --net=host -d grzybek/odyseja-pwa:latest
