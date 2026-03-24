@@ -9,20 +9,23 @@ class CohortHelper {
         _age = performance.age,
         _stage = performance.stage,
         _part = performance.part,
-        _league = performance.league;
+        _league = performance.league,
+        _guest = false;
 
   CohortHelper.fromPerformanceGroup(PerformanceGroup group)
       : _problem = group.problem,
         _age = group.age,
         _stage = group.stage,
         _part = group.part,
-        _league = group.league;
+        _league = group.league,
+        _guest = group.guest;
 
   final int _problem;
   final int _age;
   final int _stage;
   final int _part;
   final String _league;
+  final bool _guest;
 
   static const _separator = '•';
 
@@ -52,6 +55,9 @@ class CohortHelper {
     }
     if (_league.isNotEmpty) {
       heading.add(_league);
+    }
+    if (_guest) {
+      heading.add(AppStrings.guest);
     }
     return heading.join(' $_separator ');
   }

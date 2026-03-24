@@ -3,6 +3,7 @@ import 'package:odyssey_mobile/core/data/api/models/data_version.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance.dart';
+import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:retrofit/retrofit.dart';
@@ -16,6 +17,9 @@ abstract class ApiService {
 
   @GET('/timeTable')
   Future<List<PerformanceModelApi>> getSchedule({@Query('cityId') required int cityId});
+
+  @GET('/api/v2/timeTable')
+  Future<List<PerformanceGroupV2ModelApi>> getScheduleV2({@Query('cityId') required int cityId});
 
   @GET('/stage')
   Future<List<StageModelApi>> getStages({@Query('cityId') required int cityId});

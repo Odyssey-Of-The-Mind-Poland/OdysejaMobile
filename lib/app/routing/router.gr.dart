@@ -14,7 +14,7 @@ part of 'router.dart';
 /// [AppReinstallRequiredScreen]
 class AppReinstallRequiredRoute extends PageRouteInfo<void> {
   const AppReinstallRequiredRoute({List<PageRouteInfo>? children})
-      : super(AppReinstallRequiredRoute.name, initialChildren: children);
+    : super(AppReinstallRequiredRoute.name, initialChildren: children);
 
   static const String name = 'AppReinstallRequiredRoute';
 
@@ -35,14 +35,14 @@ class AppUpdateRequiredRoute extends PageRouteInfo<AppUpdateRequiredRouteArgs> {
     required bool availableOffline,
     List<PageRouteInfo>? children,
   }) : super(
-          AppUpdateRequiredRoute.name,
-          args: AppUpdateRequiredRouteArgs(
-            key: key,
-            updateImpossible: updateImpossible,
-            availableOffline: availableOffline,
-          ),
-          initialChildren: children,
-        );
+         AppUpdateRequiredRoute.name,
+         args: AppUpdateRequiredRouteArgs(
+           key: key,
+           updateImpossible: updateImpossible,
+           availableOffline: availableOffline,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'AppUpdateRequiredRoute';
 
@@ -82,7 +82,7 @@ class AppUpdateRequiredRouteArgs {
 /// [FavouritesScreen]
 class FavouritesRoute extends PageRouteInfo<void> {
   const FavouritesRoute({List<PageRouteInfo>? children})
-      : super(FavouritesRoute.name, initialChildren: children);
+    : super(FavouritesRoute.name, initialChildren: children);
 
   static const String name = 'FavouritesRoute';
 
@@ -98,7 +98,7 @@ class FavouritesRoute extends PageRouteInfo<void> {
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(HomeRoute.name, initialChildren: children);
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -114,11 +114,11 @@ class HomeRoute extends PageRouteInfo<void> {
 /// [InfoDetailScreen]
 class InfoDetailRoute extends PageRouteInfo<InfoDetailRouteArgs> {
   InfoDetailRoute({required Info info, Key? key, List<PageRouteInfo>? children})
-      : super(
-          InfoDetailRoute.name,
-          args: InfoDetailRouteArgs(info: info, key: key),
-          initialChildren: children,
-        );
+    : super(
+        InfoDetailRoute.name,
+        args: InfoDetailRouteArgs(info: info, key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'InfoDetailRoute';
 
@@ -148,7 +148,7 @@ class InfoDetailRouteArgs {
 /// [InfoScreen]
 class InfoRoute extends PageRouteInfo<void> {
   const InfoRoute({List<PageRouteInfo>? children})
-      : super(InfoRoute.name, initialChildren: children);
+    : super(InfoRoute.name, initialChildren: children);
 
   static const String name = 'InfoRoute';
 
@@ -164,7 +164,7 @@ class InfoRoute extends PageRouteInfo<void> {
 /// [InfoScreens]
 class InfoRoutes extends PageRouteInfo<void> {
   const InfoRoutes({List<PageRouteInfo>? children})
-      : super(InfoRoutes.name, initialChildren: children);
+    : super(InfoRoutes.name, initialChildren: children);
 
   static const String name = 'InfoRoutes';
 
@@ -180,7 +180,7 @@ class InfoRoutes extends PageRouteInfo<void> {
 /// [LoadingScreen]
 class LoadingRoute extends PageRouteInfo<void> {
   const LoadingRoute({List<PageRouteInfo>? children})
-      : super(LoadingRoute.name, initialChildren: children);
+    : super(LoadingRoute.name, initialChildren: children);
 
   static const String name = 'LoadingRoute';
 
@@ -196,7 +196,7 @@ class LoadingRoute extends PageRouteInfo<void> {
 /// [MainView]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
-      : super(MainRoute.name, initialChildren: children);
+    : super(MainRoute.name, initialChildren: children);
 
   static const String name = 'MainRoute';
 
@@ -216,13 +216,13 @@ class ScheduleDetailRoute extends PageRouteInfo<ScheduleDetailRouteArgs> {
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          ScheduleDetailRoute.name,
-          args: ScheduleDetailRouteArgs(
-            categoryEntity: categoryEntity,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         ScheduleDetailRoute.name,
+         args: ScheduleDetailRouteArgs(
+           categoryEntity: categoryEntity,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ScheduleDetailRoute';
 
@@ -255,7 +255,7 @@ class ScheduleDetailRouteArgs {
 /// [ScheduleScreen]
 class ScheduleRoute extends PageRouteInfo<void> {
   const ScheduleRoute({List<PageRouteInfo>? children})
-      : super(ScheduleRoute.name, initialChildren: children);
+    : super(ScheduleRoute.name, initialChildren: children);
 
   static const String name = 'ScheduleRoute';
 
@@ -271,7 +271,7 @@ class ScheduleRoute extends PageRouteInfo<void> {
 /// [ScheduleScreens]
 class ScheduleRoutes extends PageRouteInfo<void> {
   const ScheduleRoutes({List<PageRouteInfo>? children})
-      : super(ScheduleRoutes.name, initialChildren: children);
+    : super(ScheduleRoutes.name, initialChildren: children);
 
   static const String name = 'ScheduleRoutes';
 
@@ -285,19 +285,20 @@ class ScheduleRoutes extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ScheduleSearchResultScreen]
-class ScheduleSearchResultRoute extends PageRouteInfo<ScheduleSearchResultRouteArgs> {
+class ScheduleSearchResultRoute
+    extends PageRouteInfo<ScheduleSearchResultRouteArgs> {
   ScheduleSearchResultRoute({
     required Performance performance,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          ScheduleSearchResultRoute.name,
-          args: ScheduleSearchResultRouteArgs(
-            performance: performance,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         ScheduleSearchResultRoute.name,
+         args: ScheduleSearchResultRouteArgs(
+           performance: performance,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ScheduleSearchResultRoute';
 
@@ -327,7 +328,7 @@ class ScheduleSearchResultRouteArgs {
 /// [ScheduleSearchScreen]
 class ScheduleSearchRoute extends PageRouteInfo<void> {
   const ScheduleSearchRoute({List<PageRouteInfo>? children})
-      : super(ScheduleSearchRoute.name, initialChildren: children);
+    : super(ScheduleSearchRoute.name, initialChildren: children);
 
   static const String name = 'ScheduleSearchRoute';
 

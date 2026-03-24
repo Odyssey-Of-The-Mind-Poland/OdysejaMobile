@@ -4,7 +4,7 @@ import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
-import 'package:odyssey_mobile/core/data/api/models/performance.dart';
+import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
@@ -122,24 +122,26 @@ class HiveDbService {
     required CityModelApi cityModels,
     required List<InfoModelApi> infoModels,
     required List<InfoCategoryModelApi> infoCategories,
-    required List<PerformanceModelApi> performanceModels,
+    required List<PerformanceGroupV2ModelApi> performanceGroupsApi,
     required List<StageModelApi> stageModels,
-    required List<ProblemModelApi> problemModels,
     required List<int> previousFavIds,
     required List<List<SponsorModelApi>> sponsors,
   }) async {
     // save performances first, to allow them to work as HiveObjects
-    final performances = HiveDataAdapter.convertPerformances(performanceModels, previousFavIds);
-    _performanceBox.addAll(performances);
+    final rawPerformances = performanceGroupsApi.expand((group) => group.performances).toList();
+    final performances = HiveDataAdapter.convertPerformances(rawPerformances, previousFavIds).toList();
+    await _performanceBox.addAll(performances);
+    final performancesById = {
+      for (final performance in _performanceBox.values) performance.performanceId: performance,
+    };
 
     final data = HiveDataAdapter.convertCityData(
       city: cityModels,
       infoModels: infoModels,
       infoCategories: infoCategories,
-      performanceModels: _performanceBox.values.toList(),
+      performanceGroupsApi: performanceGroupsApi,
       stageModels: stageModels,
-      problemModels: problemModels,
-      previousFavIds: previousFavIds,
+      performancesById: performancesById,
       performanceBox: _performanceBox,
       sponsors: sponsors,
     );

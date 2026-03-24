@@ -6,7 +6,7 @@ import 'package:odyssey_mobile/core/data/api/api_service.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
-import 'package:odyssey_mobile/core/data/api/models/performance.dart';
+import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
@@ -159,7 +159,7 @@ class UpdateDataRepository {
       ], eagerError: true);
 
       final problems = commonData[0] as List<ProblemModelApi>;
-      final cities = commonData[1] as List<CityModelApi>;
+      final cities = [commonData[1][0] as CityModelApi];
 
       await _dbService.createProblems(problems);
       await _dbService.createCities(cities);
@@ -168,14 +168,14 @@ class UpdateDataRepository {
         final futures = await Future.wait([
           _apiService.getInfo(cityId: city.id),
           _apiService.getInfoCategories(),
-          _apiService.getSchedule(cityId: city.id),
+          _apiService.getScheduleV2(cityId: city.id),
           _apiService.getStages(cityId: city.id),
           _apiService.getSponsor(cityId: city.id),
         ], eagerError: true);
 
         final infos = futures[0] as List<InfoModelApi>;
         final infoCategories = futures[1] as List<InfoCategoryModelApi>;
-        final performances = futures[2] as List<PerformanceModelApi>;
+        final performanceGroups = futures[2] as List<PerformanceGroupV2ModelApi>;
         final stages = futures[3] as List<StageModelApi>;
         // TODO: Refactor json parsing
         final sponsors = SponsorModelApi.fromHttpResponse(futures[4] as HttpResponse);
@@ -184,9 +184,8 @@ class UpdateDataRepository {
           cityModels: city,
           infoModels: infos,
           infoCategories: infoCategories,
-          performanceModels: performances,
+          performanceGroupsApi: performanceGroups,
           stageModels: stages,
-          problemModels: problems,
           previousFavIds: previousFavIds,
           sponsors: sponsors,
         );

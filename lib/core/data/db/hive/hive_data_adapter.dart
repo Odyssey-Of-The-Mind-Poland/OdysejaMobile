@@ -4,7 +4,7 @@ import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance.dart';
-import 'package:odyssey_mobile/core/data/api/models/problem.dart';
+import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/city_data.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/info.dart';
@@ -13,8 +13,6 @@ import 'package:odyssey_mobile/core/data/db/hive/models/performance.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/performance_group.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/stage.dart';
-import 'package:odyssey_mobile/core/domain/divisions.dart';
-
 import '../../api/models/sponsor.dart';
 
 // Adapt for multiple cities
@@ -23,10 +21,9 @@ abstract class HiveDataAdapter {
     required CityModelApi city,
     required List<InfoModelApi> infoModels,
     required List<InfoCategoryModelApi> infoCategories,
-    required List<PerformanceHiveModel> performanceModels,
+    required List<PerformanceGroupV2ModelApi> performanceGroupsApi,
     required List<StageModelApi> stageModels,
-    required List<ProblemModelApi> problemModels,
-    required List<int> previousFavIds,
+    required Map<int, PerformanceHiveModel> performancesById,
     required Box<PerformanceHiveModel> performanceBox,
     required List<List<SponsorModelApi>> sponsors,
   }) {
@@ -38,10 +35,8 @@ abstract class HiveDataAdapter {
         cityName: city.name,
         infoGroups: _convertInfoCategories(infoCategories, infoModels),
         performanceGroups: convertPerformanceGroups(
-          performances: performanceModels,
-          problems: problemModels,
-          stages: stageModels,
-          previousFavIds: previousFavIds,
+          performanceGroupsApi: performanceGroupsApi,
+          performancesById: performancesById,
           performanceBox: performanceBox,
         ),
         stages: convertStages(stageModels),
@@ -78,57 +73,37 @@ abstract class HiveDataAdapter {
         ..sort((a, b) => a.number.compareTo(b.number));
 
   static List<PerformanceGroupHiveModel> convertPerformanceGroups({
-    required List<PerformanceHiveModel> performances,
-    required List<ProblemModelApi> problems,
-    required List<StageModelApi> stages,
-    required List<int> previousFavIds,
+    required List<PerformanceGroupV2ModelApi> performanceGroupsApi,
+    required Map<int, PerformanceHiveModel> performancesById,
     required Box<PerformanceHiveModel> performanceBox,
   }) {
     final List<PerformanceGroupHiveModel> performanceGroups = [];
-    final Set<String> days = performances.map((e) => e.performanceDay).toSet();
-    final Set<int> parts = performances.map((e) => e.part).toSet();
-    final Set<String> leagues = performances.map((e) => e.league).toSet();
     int groupId = 0;
-    // TODO; migrate to performanceGroups API.
-    // I cry when I look at it.
-    for (final stage in stages) {
-      for (final problem in problems) {
-        for (final division in divisions) {
-          for (final part in parts) {
-            for (final league in leagues) {
-              for (final day in days) {
-                final filteredPerformances = performances.where(
-                  (e) =>
-                      e.problem == problem.id &&
-                      e.stage == stage.number &&
-                      e.age == division.number &&
-                      e.part == part &&
-                      e.league == league &&
-                      e.performanceDay == day,
-                );
-                if (filteredPerformances.isNotEmpty) {
-                  performanceGroups.add(
-                    PerformanceGroupHiveModel(
-                      groupId: groupId,
-                      problem: problem.id,
-                      age: division.number,
-                      stage: stage.number,
-                      part: part,
-                      league: league,
-                      day: day,
-                      performancesHiveList: HiveList(
-                        performanceBox,
-                        objects: filteredPerformances.toList(),
-                      ),
-                    ),
-                  );
-                  ++groupId;
-                }
-              }
-            }
-          }
-        }
-      }
+
+    for (final apiGroup in performanceGroupsApi) {
+      final linkedPerformances = apiGroup.performances
+          .map((p) => performancesById[p.id])
+          .whereType<PerformanceHiveModel>()
+          .toList();
+      if (linkedPerformances.isEmpty) continue;
+
+      performanceGroups.add(
+        PerformanceGroupHiveModel(
+          groupId: groupId,
+          problem: apiGroup.group.problem,
+          age: apiGroup.group.age,
+          stage: apiGroup.group.stage,
+          part: apiGroup.group.part ?? 0,
+          league: apiGroup.group.league ?? '',
+          guest: apiGroup.group.guest,
+          day: linkedPerformances.first.performanceDay,
+          performancesHiveList: HiveList(
+            performanceBox,
+            objects: linkedPerformances,
+          ),
+        ),
+      );
+      ++groupId;
     }
     return performanceGroups;
   }

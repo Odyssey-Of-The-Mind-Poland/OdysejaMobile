@@ -8,6 +8,7 @@ abstract class PerformanceGroup {
   int get stage;
   int get part;
   String get league;
+  bool get guest;
 
   /// Performance day
   String get day;
@@ -18,6 +19,7 @@ abstract class PerformanceGroup {
     String? day,
     int? part,
     String? league,
+    bool? guest,
     List<Performance>? performances,
     int? problem,
     int? stage,

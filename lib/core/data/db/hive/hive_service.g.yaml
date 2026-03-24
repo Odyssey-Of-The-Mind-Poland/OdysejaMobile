@@ -51,7 +51,7 @@ types:
         index: 3
   PerformanceGroupHiveModel:
     typeId: 4
-    nextIndex: 8
+    nextIndex: 9
     fields:
       groupId:
         index: 0
@@ -69,6 +69,8 @@ types:
         index: 6
       league:
         index: 7
+      guest:
+        index: 8
   PerformanceHiveModel:
     typeId: 5
     nextIndex: 13

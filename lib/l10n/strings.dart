@@ -122,6 +122,7 @@ abstract class AppStrings {
   static const String spontanTooltip3 = 'przed spontanem';
   static const String daySaturdayShort = 'Sb';
   static const String daySundayShort = 'Nd';
+  static const String guest = 'Goście';
 }
 // \u200B
 // \u00A0

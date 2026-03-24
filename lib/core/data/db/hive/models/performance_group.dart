@@ -12,6 +12,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
     required this.stage,
     required this.part,
     required this.league,
+    required this.guest,
     required this.day,
     required this.performancesHiveList,
   }) : _performances = performancesHiveList;
@@ -40,6 +41,9 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
   late String league;
 
   @override
+  final bool guest;
+
+  @override
   List<Performance> get performances => _performances;
 
   /// Variable set to private to be ignored by Hive generator.
@@ -54,6 +58,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
     int? stage,
     int? part,
     String? league,
+    bool? guest,
     String? day,
     List<Performance>? performances,
   }) {
@@ -64,6 +69,7 @@ class PerformanceGroupHiveModel extends PerformanceGroup {
       stage: stage ?? this.stage,
       part: part ?? this.part,
       league: league ?? this.league,
+      guest: guest ?? this.guest,
       day: day ?? this.day,
       performancesHiveList: performancesHiveList,
     ).._performances = performances ?? this.performances;
