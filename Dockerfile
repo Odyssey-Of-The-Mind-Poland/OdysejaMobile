@@ -1,4 +1,4 @@
-FROM ghcr.io/cirruslabs/flutter:3.19.5 AS build-env
+FROM ghcr.io/cirruslabs/flutter:3.29.0 AS build-env
 
 WORKDIR /app
 COPY pubspec.* ./
