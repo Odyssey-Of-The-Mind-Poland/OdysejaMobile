@@ -14,7 +14,7 @@ abstract class AppStrings {
   static const String juniors = 'Juniorzy';
   static const String firstDivision = 'I - V klasa';
   static const String secondDivision = 'VI – VIII klasa';
-  static const String thirdDivision = 'Szkoły średnie';
+  static const String thirdDivision = 'Szkoły \nśrednie';
   static const String forthDivision = 'Uczelnie wyższe';
 
   static const String homeScreenTitle = 'Witaj!';
@@ -45,7 +45,7 @@ abstract class AppStrings {
   static const String beginButtonLabel = 'ZACZYNAJMY!';
 
   static const String scheduleScreenStageHeading = 'Scena';
-  static const String scheduleScreenProblemHeading = 'Problem długoterminowy';
+  static const String scheduleScreenProblemHeading = 'Problem Długoterminowy';
   static const String scheduleScreenDivisionHeading = 'Grupa wiekowa';
 
   static const String problem = 'Problem';
