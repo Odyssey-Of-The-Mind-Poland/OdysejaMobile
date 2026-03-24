@@ -1,21 +1,16 @@
-FROM debian:bookworm AS build-env
+FROM ghcr.io/cirruslabs/flutter:3.19.5 AS build-env
 
-# Install flutter dependencies
-RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
-    curl \
-    git \
-    wget \
-    unzip \
-    libstdc++6 \
-    libglu1-mesa \
-    fonts-noto-core \
-    python3 \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY pubspec.* ./
+RUN flutter pub get
+COPY . .
+RUN flutter build web --no-tree-shake-icons
 
 # Stage 2 - Create the run-time image
 FROM nginx:1.21.1-alpine
-COPY build/web /usr/share/nginx/html
+ARG GIT_SHA=unknown
+COPY --from=build-env /app/build/web /usr/share/nginx/html
+RUN echo "${GIT_SHA}" > /usr/share/nginx/html/.last_build_id
 
 COPY nginx.conf /etc/nginx/
 EXPOSE 9080

@@ -20,10 +20,7 @@ jobs:
             set -euo pipefail
             cd OdysejaMobile/OdysejaMobile 
             git pull --ff-only
-            rm -rf build/web
-            flutter pub get
-            flutter build web --no-tree-shake-icons
-            echo "$(git rev-parse --short HEAD)" > build/web/.last_build_id
-            docker build --pull -t grzybek/odyseja-pwa:latest .
+            COMMIT_SHA="$(git rev-parse --short HEAD)"
+            docker build --pull --build-arg GIT_SHA="$COMMIT_SHA" -t grzybek/odyseja-pwa:latest .
             docker rm -f odyseja-pwa || true
             docker run --name odyseja-pwa --restart unless-stopped --net=host -d grzybek/odyseja-pwa:latest
