@@ -1,5 +1,4 @@
 {
-  "originHash" : "ea3d41eac1602e0b66a52fda6ac26d4cb16f5174c7b71793610bfac7c18c95bd",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "eb523407e4293568ed55590728205c359cbecc5b",
-        "version" : "11.9.0"
+        "revision" : "52548902007e7beda99fcdca31f62eccc4befe38",
+        "version" : "12.11.0"
       }
     },
     {
@@ -33,8 +32,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/flutterfire",
       "state" : {
-        "revision" : "438c4c36ba188d071920e2a19d1c2b0b28799860",
-        "version" : "3.12.1-firebase-core-swift"
+        "revision" : "a10a4148e769fadb01b1ff8d6bb76e9137f35b81",
+        "version" : "4.6.0-firebase-core-swift"
+      }
+    },
+    {
+      "identity" : "google-ads-on-device-conversion-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/google-ads-on-device-conversion-ios-sdk",
+      "state" : {
+        "revision" : "7b722132d1f2ab421c88a2e5c384c984cebd0d00",
+        "version" : "3.4.0"
       }
     },
     {
@@ -42,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "d80e25104abe76d69a134d4ec18f011edd8df06c",
-        "version" : "11.9.0"
+        "revision" : "1657f705bc70255ff9d66dfcc697a85db164998f",
+        "version" : "12.11.0"
       }
     },
     {
@@ -60,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
       "state" : {
-        "revision" : "53156c7ec267db846e6b64c9f4c4e31ba4cf75eb",
-        "version" : "8.0.2"
+        "revision" : "60da361632d0de02786f709bdc0c4df340f7613e",
+        "version" : "8.1.0"
       }
     },
     {
@@ -117,16 +125,7 @@
         "revision" : "540318ecedd63d883069ae7f1ed811a2df00b6ac",
         "version" : "2.4.0"
       }
-    },
-    {
-      "identity" : "swift-protobuf",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-protobuf.git",
-      "state" : {
-        "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
-        "version" : "1.29.0"
-      }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
