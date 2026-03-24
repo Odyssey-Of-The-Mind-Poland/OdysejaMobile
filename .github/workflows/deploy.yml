@@ -3,7 +3,7 @@ name: deploy
 
 on:
   push:
-    branch: ["master"]
+    branches: ["main"]
 
 jobs:
   build:
@@ -17,9 +17,13 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
           script: |
+            set -euo pipefail
             cd OdysejaMobile/OdysejaMobile 
-            git pull
+            git pull --ff-only
+            rm -rf build/web
+            flutter pub get
             flutter build web --no-tree-shake-icons
-            docker build -t grzybek/odyseja-pwa .
-            docker kill $(docker ps -q --filter ancestor=grzybek/odyseja-pwa)
-            docker run --net=host -d grzybek/odyseja-pwa
+            echo "$(git rev-parse --short HEAD)" > build/web/.last_build_id
+            docker build --pull -t grzybek/odyseja-pwa:latest .
+            docker rm -f odyseja-pwa || true
+            docker run --name odyseja-pwa --restart unless-stopped --net=host -d grzybek/odyseja-pwa:latest
