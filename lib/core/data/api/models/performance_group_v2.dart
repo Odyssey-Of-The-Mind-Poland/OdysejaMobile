@@ -27,6 +27,7 @@ class PerformanceGroupInfoV2ModelApi {
     required this.part,
     required this.league,
     required this.guest,
+    required this.day,
   });
 
   final String city;
@@ -37,6 +38,7 @@ class PerformanceGroupInfoV2ModelApi {
   final String? league;
   @JsonKey(defaultValue: false)
   final bool guest;
+  final String day;
 
   factory PerformanceGroupInfoV2ModelApi.fromJson(Map<String, dynamic> json) =>
       _$PerformanceGroupInfoV2ModelApiFromJson(json);

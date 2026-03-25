@@ -96,7 +96,7 @@ abstract class HiveDataAdapter {
           part: apiGroup.group.part ?? 0,
           league: apiGroup.group.league ?? '',
           guest: apiGroup.group.guest,
-          day: linkedPerformances.first.performanceDay,
+          day: apiGroup.group.day,
           performancesHiveList: HiveList(
             performanceBox,
             objects: linkedPerformances,

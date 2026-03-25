@@ -26,4 +26,5 @@ PerformanceGroupInfoV2ModelApi _$PerformanceGroupInfoV2ModelApiFromJson(
       part: (json['part'] as num?)?.toInt(),
       league: json['league'] as String?,
       guest: json['guest'] as bool? ?? false,
+      day: json['day'] as String,
     );
