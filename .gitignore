@@ -48,4 +48,4 @@ app.*.map.json
 /lib/**/*.g.dart
 !/lib/core/data/db/hive/hive_registrar.g.dart
 
-/lib/app/routing.gr.dart
+/lib/app/routing/router.gr.dart
