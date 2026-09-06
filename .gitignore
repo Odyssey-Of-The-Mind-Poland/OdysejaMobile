@@ -44,7 +44,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/.cxx
-scripts.dart
-.gitignore
-# pubspec.lock
-.vscode/launch.json
+
+/lib/**/*.g.dart
+!/lib/core/data/db/hive/hive_registrar.g.dart
+
+/lib/app/routing.gr.dart
