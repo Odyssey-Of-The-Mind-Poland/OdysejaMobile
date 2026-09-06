@@ -18,6 +18,7 @@ Failure dioErrorHandler(DioException e, StackTrace s) {
     case DioExceptionType.connectionTimeout:
     case DioExceptionType.sendTimeout:
     case DioExceptionType.receiveTimeout:
+    case DioExceptionType.transformTimeout:
       return const TimeoutFailure();
     case DioExceptionType.cancel:
     case DioExceptionType.badCertificate:
