@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
+import 'package:odyssey_mobile/presentation/main_view/settings_sheet.dart';
 import 'package:odyssey_mobile/presentation/home_screen/image_tile.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/home_screen/next_performance.dart';
@@ -15,7 +17,15 @@ class HomeScreen extends StatelessWidget {
     return CityDataBuilder(onData: (data, _) {
       final size = MediaQuery.of(context).size;
       return Scaffold(
-        appBar: TopBar(title: AppStrings.homeScreenTitle),
+        appBar: TopBar(
+          title: AppStrings.homeScreenTitle,
+          actions: [
+            TopBarAction(
+              iconData: OotmIcons.settings,
+              onPressed: () => showSettingsSheet(context),
+            ),
+          ],
+        ),
         body: CustomScrollView(
           cacheExtent: 200,
           slivers: [

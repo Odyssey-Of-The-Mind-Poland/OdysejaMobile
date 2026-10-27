@@ -30,6 +30,9 @@ abstract class AppStrings {
   static const String favFilterClear = 'Wyczyść filtry';
   static const String favFilterTooltip = 'Filtruj ulubione';
 
+  static const String settingsTitle = 'Ustawienia';
+  static const String settingsTooltip = 'Ustawienia';
+
   static const String themeModeTitle = 'Wygląd aplikacji';
   static const String themeModeLight = 'Jasny';
   static const String themeModeDark = 'Ciemny';

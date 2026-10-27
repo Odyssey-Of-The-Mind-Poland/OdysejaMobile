@@ -23,6 +23,19 @@ final themeLight = ThemeData(
       bottom: BorderSide(width: 2, color: _colors.universal.grey.color300 ?? _borderColorFallback),
     ),
   ),
+  tabBarTheme: TabBarThemeData(
+    labelPadding: const EdgeInsets.symmetric(vertical: 8.0),
+    labelStyle: _typography.bodyLargeBold,
+    unselectedLabelStyle: _typography.bodyLargeBold,
+    labelColor: _fontColorDefault,
+    unselectedLabelColor: _colors.universal.grey.color400,
+    indicator: UnderlineTabIndicator(
+      insets: const EdgeInsets.symmetric(horizontal: 48.0),
+      borderSide: BorderSide(width: 4, color: _common.primaryColor!),
+    ),
+    dividerColor: Colors.transparent,
+  ),
+  progressIndicatorTheme: ProgressIndicatorThemeData(color: _common.primaryColor),
   extensions: [
     _colors,
     _typography,
