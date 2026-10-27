@@ -47,6 +47,13 @@ abstract class HiveDataAdapter {
     return citiesDb;
   }
 
+  /// Exposed for tests.
+  static List<InfoGroupHiveModel> convertInfoGroupsForTest(
+    List<InfoCategoryModelApi> categories,
+    List<InfoModelApi> infos,
+  ) =>
+      _convertInfoCategories(categories, infos);
+
   static List<InfoGroupHiveModel> _convertInfoCategories(
     List<InfoCategoryModelApi> infoCategoryModels,
     List<InfoModelApi> infoModels,
@@ -65,7 +72,7 @@ abstract class HiveDataAdapter {
   }
 
   static List<InfoHiveModel> _convertInfo(Iterable<InfoModelApi> apiModels) => apiModels
-      .map((e) => InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber))
+      .map((e) => InfoHiveModel(e.category, e.infoName, e.infoText, e.sortNumber, e.icon, e.color))
       .toList();
 
   static List<StageHiveModel> convertStages(List<StageModelApi> apiModels) =>

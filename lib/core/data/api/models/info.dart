@@ -10,7 +10,9 @@ class InfoModelApi {
     required this.infoText,
     required this.city,
     required this.category,
-    required this.sortNumber
+    required this.sortNumber,
+    this.icon,
+    this.color,
   });
 
   final int id;
@@ -19,6 +21,11 @@ class InfoModelApi {
   final int city;
   final int category;
   final int sortNumber;
+
+  /// Icon key and accent colour key chosen in the admin panel. Null on servers that predate
+  /// info styling (or when the editors left them empty).
+  final String? icon;
+  final String? color;
 
   factory InfoModelApi.fromJson(Map<String, dynamic> json) => _$InfoModelApiFromJson(json);
 }

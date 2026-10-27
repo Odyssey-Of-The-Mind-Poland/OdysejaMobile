@@ -2,6 +2,7 @@ import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/data_version.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
 import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
+import 'package:odyssey_mobile/core/data/api/models/info_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/problem.dart';
@@ -29,6 +30,10 @@ abstract class ApiService {
 
   @GET('/info')
   Future<List<InfoModelApi>> getInfo({@Query('cityId') required int cityId});
+
+  /// Infos and categories with icon and accent colour resolved by the server.
+  @GET('/api/v3/info')
+  Future<InfoV2Response> getInfoV3({@Query('cityId') required int cityId});
 
   @GET('/sponsor')
   Future<HttpResponse> getSponsor({@Query('cityId') required int cityId});

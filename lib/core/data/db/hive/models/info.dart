@@ -13,5 +13,18 @@ class InfoHiveModel extends Info {
   @override
   final int sortNumber;
 
-  InfoHiveModel(this.number, this.infoName, this.infoText, this.sortNumber);
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
+
+  InfoHiveModel(
+    this.number,
+    this.infoName,
+    this.infoText,
+    this.sortNumber, [
+    this.icon,
+    this.color,
+  ]);
 }

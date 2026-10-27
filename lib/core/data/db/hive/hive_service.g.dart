@@ -8,7 +8,7 @@ part of 'hive_service.dart';
 
 class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   CityDataHiveModel read(BinaryReader reader) {
@@ -57,7 +57,7 @@ class CityDataHiveModelAdapter extends TypeAdapter<CityDataHiveModel> {
 
 class CityHiveModelAdapter extends TypeAdapter<CityHiveModel> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   CityHiveModel read(BinaryReader reader) {
@@ -65,10 +65,7 @@ class CityHiveModelAdapter extends TypeAdapter<CityHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CityHiveModel(
-      fields[0] as String,
-      (fields[1] as num).toInt(),
-    );
+    return CityHiveModel(fields[0] as String, (fields[1] as num).toInt());
   }
 
   @override
@@ -94,7 +91,7 @@ class CityHiveModelAdapter extends TypeAdapter<CityHiveModel> {
 
 class InfoGroupHiveModelAdapter extends TypeAdapter<InfoGroupHiveModel> {
   @override
-  final int typeId = 2;
+  final typeId = 2;
 
   @override
   InfoGroupHiveModel read(BinaryReader reader) {
@@ -134,7 +131,7 @@ class InfoGroupHiveModelAdapter extends TypeAdapter<InfoGroupHiveModel> {
 
 class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
   @override
-  final int typeId = 3;
+  final typeId = 3;
 
   @override
   InfoHiveModel read(BinaryReader reader) {
@@ -147,13 +144,15 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
       fields[1] as String,
       fields[2] as String,
       (fields[3] as num).toInt(),
+      fields[4] as String?,
+      fields[5] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InfoHiveModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.number)
       ..writeByte(1)
@@ -161,7 +160,11 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
       ..writeByte(2)
       ..write(obj.infoText)
       ..writeByte(3)
-      ..write(obj.sortNumber);
+      ..write(obj.sortNumber)
+      ..writeByte(4)
+      ..write(obj.icon)
+      ..writeByte(5)
+      ..write(obj.color);
   }
 
   @override
@@ -178,7 +181,7 @@ class InfoHiveModelAdapter extends TypeAdapter<InfoHiveModel> {
 class PerformanceGroupHiveModelAdapter
     extends TypeAdapter<PerformanceGroupHiveModel> {
   @override
-  final int typeId = 4;
+  final typeId = 4;
 
   @override
   PerformanceGroupHiveModel read(BinaryReader reader) {
@@ -236,7 +239,7 @@ class PerformanceGroupHiveModelAdapter
 
 class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
   @override
-  final int typeId = 5;
+  final typeId = 5;
 
   @override
   PerformanceHiveModel read(BinaryReader reader) {
@@ -306,7 +309,7 @@ class PerformanceHiveModelAdapter extends TypeAdapter<PerformanceHiveModel> {
 
 class ProblemHiveModelAdapter extends TypeAdapter<ProblemHiveModel> {
   @override
-  final int typeId = 6;
+  final typeId = 6;
 
   @override
   ProblemHiveModel read(BinaryReader reader) {
@@ -314,10 +317,7 @@ class ProblemHiveModelAdapter extends TypeAdapter<ProblemHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ProblemHiveModel(
-      fields[0] as String,
-      (fields[1] as num).toInt(),
-    );
+    return ProblemHiveModel(fields[0] as String, (fields[1] as num).toInt());
   }
 
   @override
@@ -343,7 +343,7 @@ class ProblemHiveModelAdapter extends TypeAdapter<ProblemHiveModel> {
 
 class SponsorHiveModelAdapter extends TypeAdapter<SponsorHiveModel> {
   @override
-  final int typeId = 7;
+  final typeId = 7;
 
   @override
   SponsorHiveModel read(BinaryReader reader) {
@@ -383,7 +383,7 @@ class SponsorHiveModelAdapter extends TypeAdapter<SponsorHiveModel> {
 
 class StageHiveModelAdapter extends TypeAdapter<StageHiveModel> {
   @override
-  final int typeId = 8;
+  final typeId = 8;
 
   @override
   StageHiveModel read(BinaryReader reader) {
@@ -391,10 +391,7 @@ class StageHiveModelAdapter extends TypeAdapter<StageHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return StageHiveModel(
-      fields[0] as String,
-      (fields[1] as num).toInt(),
-    );
+    return StageHiveModel(fields[0] as String, (fields[1] as num).toInt());
   }
 
   @override
