@@ -14,9 +14,8 @@ class ThemeModeCubit extends Cubit<ThemeMode> {
 
   static const storageKey = 'theme_mode';
 
-  /// Until the whole app is migrated to the new design tokens, the app stays light
-  /// unless the user explicitly picks another mode.
-  static const defaultMode = ThemeMode.light;
+  /// Follow the device setting until the user picks a mode explicitly.
+  static const defaultMode = ThemeMode.system;
 
   static ThemeMode _read(SharedPreferences prefs) {
     final stored = prefs.getString(storageKey);
