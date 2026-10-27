@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
@@ -15,6 +16,23 @@ void main() {
     expect(find.text('3'), findsOneWidget);
     expect(find.text('Problem 3'), findsOneWidget);
     expect(tester.getSize(find.byType(ScheduleTile)), ScheduleTile.size);
+  });
+
+  testWidgets('badge hugs its label and a long title wraps to two lines', (tester) async {
+    const title = 'Nauka na wesoło z bardzo długą nazwą kategorii';
+    await tester.pumpWidget(themed(
+      const ScheduleTile(
+        number: 'II',
+        title: title,
+        glyph: PatternGlyph.font(OotmIcons.map),
+        color: AccentColor.blue,
+      ),
+    ));
+
+    final badge = tester.getSize(find.ancestor(of: find.text('II'), matching: find.byType(Container)).first);
+    expect(badge.width, lessThan(60));
+    expect(tester.getSize(find.text(title)).height, greaterThan(30));
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('locked tile ignores taps', (tester) async {

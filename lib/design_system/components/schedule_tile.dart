@@ -56,7 +56,6 @@ class ScheduleTile extends StatelessWidget {
                     glyph: glyph,
                     color: surface.pattern,
                     fillColor: surface.patternFill,
-                    spacing: 56,
                   ),
                 ),
                 Padding(
@@ -65,21 +64,25 @@ class ScheduleTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 24,
-                        alignment: Alignment.center,
+                        constraints: const BoxConstraints(minWidth: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
                         decoration: BoxDecoration(
                           color: surface.badgeBackground,
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Text(
-                          number,
-                          style: textTheme?.copyWith(color: surface.badgeForeground),
+                        child: Center(
+                          widthFactor: 1,
+                          heightFactor: 1,
+                          child: Text(
+                            number,
+                            style: textTheme?.copyWith(color: surface.badgeForeground),
+                          ),
                         ),
                       ),
                       const Spacer(),
                       Text(
                         title,
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: textTheme?.copyWith(color: surface.foreground),
                       ),
