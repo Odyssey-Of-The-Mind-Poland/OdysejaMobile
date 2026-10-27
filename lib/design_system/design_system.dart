@@ -11,3 +11,5 @@ export 'components/performance_tile.dart';
 export 'components/timeline_item.dart';
 export 'components/search_bar_button.dart';
 export 'components/city_button.dart';
+export 'components/info_tooltip.dart';
+export 'components/performance_time_block.dart';
