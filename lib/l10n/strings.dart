@@ -17,6 +17,9 @@ abstract class AppStrings {
   static const String thirdDivision = 'Szkoły \nśrednie';
   static const String forthDivision = 'Uczelnie wyższe';
 
+  static const String cityPickerTitle = 'Wybór eliminacji';
+  static const String cityPickerEmpty = 'Brak dostępnych eliminacji';
+
   static const String homeScreenTitle = 'Witaj!';
   static const String infoScreenTitle = 'Informacje';
   static const String scheduleScreenTitle = 'Harmonogram';
