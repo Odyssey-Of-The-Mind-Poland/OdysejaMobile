@@ -6,8 +6,9 @@ import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
 import 'package:odyssey_mobile/design_system/components/icon_button.dart';
 
 /// Collapsing header tinted with an accent and decorated with the icon pattern.
-/// Expanded it shows [title] with [subtitle] under it (and an optional [bottom], e.g. day tabs);
-/// collapsed it shrinks to a single "title • subtitle" line next to the back button.
+/// Expanded it shows [title] with [subtitle] under it; collapsed it shrinks to a single
+/// "title • subtitle" line next to the back button. The optional [bottom] row (e.g. day tabs) stays
+/// visible in both states, as in the design (heights 120/184 without it, 172/236 with it, status bar included).
 class AccentSliverTopBar extends StatelessWidget {
   const AccentSliverTopBar({
     required this.title,
@@ -27,20 +28,23 @@ class AccentSliverTopBar extends StatelessWidget {
   final VoidCallback? onBack;
 
   static const collapsedHeight = 76.0;
-  static const _expandedBase = 148.0;
-  static const bottomHeight = 56.0;
+  static const _expandedBase = 140.0;
+
+  /// Height of the [bottom] row plus the gap above it.
+  static const bottomHeight = 52.0;
 
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
-    final expanded = _expandedBase + (bottom == null ? 0 : bottomHeight);
+    final extra = bottom == null ? 0.0 : bottomHeight;
+    final expanded = _expandedBase + extra;
 
     return SliverPersistentHeader(
       pinned: true,
       delegate: _Delegate(
         bar: this,
         topInset: topInset,
-        minHeight: topInset + collapsedHeight,
+        minHeight: topInset + collapsedHeight + extra,
         maxHeight: topInset + expanded,
       ),
     );
@@ -81,7 +85,9 @@ class _Delegate extends SliverPersistentHeaderDelegate {
       ),
       child: Stack(
         children: [
-          Positioned.fill(child: AccentPattern(icon: bar.icon, color: surface.pattern)),
+          Positioned.fill(
+            child: AccentPattern(icon: bar.icon, color: surface.pattern),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(16, topInset + 16, 16, 16),
             child: Stack(
@@ -113,10 +119,12 @@ class _Delegate extends SliverPersistentHeaderDelegate {
                     ),
                   ),
                 ),
+                if (bar.bottom != null)
+                  Positioned(left: 0, right: 0, bottom: 0, child: bar.bottom!),
                 Positioned(
                   left: 0,
                   right: 0,
-                  bottom: 0,
+                  bottom: bar.bottom == null ? 0 : AccentSliverTopBar.bottomHeight,
                   child: Opacity(
                     opacity: 1 - t,
                     child: Column(
@@ -129,10 +137,6 @@ class _Delegate extends SliverPersistentHeaderDelegate {
                             bar.subtitle!,
                             style: theme.t.bodyMediumRegular?.copyWith(color: surface.foreground),
                           ),
-                        if (bar.bottom != null) ...[
-                          const SizedBox(height: 12),
-                          bar.bottom!,
-                        ],
                       ],
                     ),
                   ),
