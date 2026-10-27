@@ -39,7 +39,7 @@ types:
         index: 2
   InfoHiveModel:
     typeId: 3
-    nextIndex: 4
+    nextIndex: 6
     fields:
       number:
         index: 0
@@ -49,6 +49,10 @@ types:
         index: 2
       sortNumber:
         index: 3
+      icon:
+        index: 4
+      color:
+        index: 5
   PerformanceGroupHiveModel:
     typeId: 4
     nextIndex: 9

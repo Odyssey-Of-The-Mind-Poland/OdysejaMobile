@@ -2,11 +2,13 @@
 
 part of 'api_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl, this.errorLogger});
@@ -43,7 +45,7 @@ class _ApiService implements ApiService {
           )
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -72,13 +74,12 @@ class _ApiService implements ApiService {
     try {
       _value = _result.data!
           .map(
-            (dynamic i) => PerformanceGroupV2ModelApi.fromJson(
-              i as Map<String, dynamic>,
-            ),
+            (dynamic i) =>
+                PerformanceGroupV2ModelApi.fromJson(i as Map<String, dynamic>),
           )
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -104,12 +105,10 @@ class _ApiService implements ApiService {
     late List<StageModelApi> _value;
     try {
       _value = _result.data!
-          .map(
-            (dynamic i) => StageModelApi.fromJson(i as Map<String, dynamic>),
-          )
+          .map((dynamic i) => StageModelApi.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -140,7 +139,7 @@ class _ApiService implements ApiService {
           )
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -166,12 +165,37 @@ class _ApiService implements ApiService {
     late List<InfoModelApi> _value;
     try {
       _value = _result.data!
-          .map(
-            (dynamic i) => InfoModelApi.fromJson(i as Map<String, dynamic>),
-          )
+          .map((dynamic i) => InfoModelApi.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<InfoV2Response> getInfoV3({required int cityId}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'cityId': cityId};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<InfoV2Response>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/api/v3/info',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late InfoV2Response _value;
+    try {
+      _value = InfoV2Response.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -225,7 +249,7 @@ class _ApiService implements ApiService {
           )
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -251,12 +275,10 @@ class _ApiService implements ApiService {
     late List<CityModelApi> _value;
     try {
       _value = _result.data!
-          .map(
-            (dynamic i) => CityModelApi.fromJson(i as Map<String, dynamic>),
-          )
+          .map((dynamic i) => CityModelApi.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -283,7 +305,7 @@ class _ApiService implements ApiService {
     try {
       _value = DataVersion.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -310,7 +332,7 @@ class _ApiService implements ApiService {
     try {
       _value = _result.data!;
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -344,3 +366,5 @@ class _ApiService implements ApiService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

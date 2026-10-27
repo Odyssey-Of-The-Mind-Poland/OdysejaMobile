@@ -4,8 +4,7 @@ import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/api_error_handler.dart';
 import 'package:odyssey_mobile/core/data/api/api_service.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
-import 'package:odyssey_mobile/core/data/api/models/info.dart';
-import 'package:odyssey_mobile/core/data/api/models/info_category.dart';
+import 'package:odyssey_mobile/core/data/api/info_fetch.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
 import 'package:odyssey_mobile/core/data/api/models/problem.dart';
 import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
@@ -166,19 +165,19 @@ class UpdateDataRepository {
 
       for (final city in cities) {
         final futures = await Future.wait([
-          _apiService.getInfo(cityId: city.id),
-          _apiService.getInfoCategories(),
+          _apiService.getInfoPayload(cityId: city.id),
           _apiService.getScheduleV2(cityId: city.id),
           _apiService.getStages(cityId: city.id),
           _apiService.getSponsor(cityId: city.id),
         ], eagerError: true);
 
-        final infos = futures[0] as List<InfoModelApi>;
-        final infoCategories = futures[1] as List<InfoCategoryModelApi>;
-        final performanceGroups = futures[2] as List<PerformanceGroupV2ModelApi>;
-        final stages = futures[3] as List<StageModelApi>;
+        final info = futures[0] as InfoPayload;
+        final infos = info.infos;
+        final infoCategories = info.categories;
+        final performanceGroups = futures[1] as List<PerformanceGroupV2ModelApi>;
+        final stages = futures[2] as List<StageModelApi>;
         // TODO: Refactor json parsing
-        final sponsors = SponsorModelApi.fromHttpResponse(futures[4] as HttpResponse);
+        final sponsors = SponsorModelApi.fromHttpResponse(futures[3] as HttpResponse);
 
         await _dbService.createCityData(
           cityModels: city,
