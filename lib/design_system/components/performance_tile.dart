@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
-import 'package:odyssey_mobile/design_system/accent.dart';
+import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
+import 'package:odyssey_mobile/design_system/favourite_surface.dart';
 
 enum PerformanceTileState {
   normal,
@@ -32,17 +33,18 @@ class PerformanceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final common = theme.extension<OotmCommonTheme>()!;
+    final fav = theme.favourite;
     final favourite = state == PerformanceTileState.favourite;
     final highlighted = state == PerformanceTileState.highlighted;
-    final orange = theme.accents[AccentColor.orange];
 
-    final background = favourite ? orange.background : common.surfaceColor!;
+    final background = favourite ? fav.background : common.surfaceColor!;
     final border = switch (state) {
       PerformanceTileState.normal => common.borderColor!,
-      PerformanceTileState.favourite => orange.border,
+      PerformanceTileState.favourite => fav.border,
       PerformanceTileState.highlighted => common.primaryColor!,
     };
-    final textColor = favourite || highlighted ? common.primaryColor : null;
+    final timeColor = favourite ? fav.time : (highlighted ? common.primaryColor : null);
+    final textColor = favourite ? fav.text : null;
 
     return Semantics(
       button: onTap != null,
@@ -57,33 +59,42 @@ class PerformanceTile extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 64),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Row(
-                spacing: 12,
-                children: [
-                  SizedBox(
-                    width: 74,
-                    child: Text(
-                      time,
-                      textAlign: TextAlign.center,
-                      style: theme.t.h2?.copyWith(color: textColor),
-                    ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              if (favourite)
+                Positioned.fill(
+                  child: AccentPattern(icon: OotmIcons.favouritesFilled, color: fav.pattern),
+                ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 64),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  child: Row(
+                    spacing: 12,
+                    children: [
+                      SizedBox(
+                        width: 74,
+                        child: Text(
+                          time,
+                          textAlign: TextAlign.center,
+                          style: theme.t.h2?.copyWith(color: timeColor),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.t.bodyMediumRegular?.copyWith(color: textColor),
+                        ),
+                      ),
+                      Icon(OotmIcons.chevronRight, size: 22, color: common.textLighterColor),
+                    ],
                   ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.t.bodyMediumRegular?.copyWith(color: textColor),
-                    ),
-                  ),
-                  Icon(OotmIcons.chevronRight, size: 22, color: common.textLighterColor),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

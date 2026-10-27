@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
+import 'package:odyssey_mobile/design_system/favourite_surface.dart';
 
 final themeDark = ThemeData(
   brightness: Brightness.dark,
@@ -32,10 +33,19 @@ final themeDark = ThemeData(
     _common,
     _topBar,
     _accents,
+    _favourite,
   ],
 );
 
 const _borderColorFallback = Color(0xFF3C3E40);
+
+final _favourite = FavouriteSurfaceTheme(
+  background: _colors.primary.color100!,
+  border: _colors.primary.color200!,
+  time: _colors.primary.color700!,
+  text: _colors.universal.grey.color700!,
+  pattern: _colors.primary.color200!,
+);
 
 final _accents = AccentSurfaceTheme.dark(_colors.accent);
 

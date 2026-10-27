@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
-import 'package:odyssey_mobile/design_system/accent.dart';
+import 'package:odyssey_mobile/design_system/favourite_surface.dart';
 import 'package:odyssey_mobile/design_system/components/performance_tile.dart';
 
 import 'test_host.dart';
@@ -22,7 +22,7 @@ void main() {
     expect(taps, 1);
   });
 
-  testWidgets('favourite tile gets the orange tint, normal tile the surface colour', (tester) async {
+  testWidgets('favourite tile gets the peach card, normal tile the surface colour', (tester) async {
     final common = themeLight.extension<OotmCommonTheme>()!;
 
     await tester.pumpWidget(themed(const PerformanceTile(time: '08:00', title: 'A')));
@@ -31,7 +31,7 @@ void main() {
     await tester.pumpWidget(themed(
       const PerformanceTile(time: '08:00', title: 'A', state: PerformanceTileState.favourite),
     ));
-    expect(material(tester).color, themeLight.accents[AccentColor.orange].background);
+    expect(material(tester).color, themeLight.favourite.background);
   });
 
   testWidgets('highlighted tile has a primary border', (tester) async {
@@ -62,5 +62,16 @@ void main() {
     ));
 
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('favourite tile is bright orange with dark text in dark mode', (tester) async {
+    await tester.pumpWidget(themed(
+      const PerformanceTile(time: '08:15', title: 'Zespół', state: PerformanceTileState.favourite),
+      brightness: Brightness.dark,
+    ));
+
+    expect(material(tester).color, themeDark.favourite.background);
+    expect(tester.widget<Text>(find.text('Zespół')).style?.color, themeDark.favourite.text);
+    expect(tester.widget<Text>(find.text('08:15')).style?.color, themeDark.favourite.time);
   });
 }
