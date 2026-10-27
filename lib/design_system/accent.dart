@@ -30,6 +30,11 @@ class AccentSurface {
     required this.pattern,
     required this.badgeBackground,
     required this.badgeForeground,
+    required this.tabBackground,
+    required this.tabBorder,
+    required this.tabSelectedBackground,
+    required this.tabSelectedBorder,
+    required this.tabSelectedForeground,
   });
 
   final Color background;
@@ -41,53 +46,76 @@ class AccentSurface {
   final Color badgeBackground;
   final Color badgeForeground;
 
+  /// Pill tabs (see AccentTabButton); alpha is part of the colour, as in the design.
+  final Color tabBackground;
+  final Color tabBorder;
+  final Color tabSelectedBackground;
+  final Color tabSelectedBorder;
+  final Color tabSelectedForeground;
+
   AccentSurface lerp(AccentSurface other, double t) => AccentSurface(
-        background: Color.lerp(background, other.background, t)!,
-        border: Color.lerp(border, other.border, t)!,
-        foreground: Color.lerp(foreground, other.foreground, t)!,
-        pattern: Color.lerp(pattern, other.pattern, t)!,
-        badgeBackground: Color.lerp(badgeBackground, other.badgeBackground, t)!,
-        badgeForeground: Color.lerp(badgeForeground, other.badgeForeground, t)!,
-      );
+    background: Color.lerp(background, other.background, t)!,
+    border: Color.lerp(border, other.border, t)!,
+    foreground: Color.lerp(foreground, other.foreground, t)!,
+    pattern: Color.lerp(pattern, other.pattern, t)!,
+    badgeBackground: Color.lerp(badgeBackground, other.badgeBackground, t)!,
+    badgeForeground: Color.lerp(badgeForeground, other.badgeForeground, t)!,
+    tabBackground: Color.lerp(tabBackground, other.tabBackground, t)!,
+    tabBorder: Color.lerp(tabBorder, other.tabBorder, t)!,
+    tabSelectedBackground: Color.lerp(tabSelectedBackground, other.tabSelectedBackground, t)!,
+    tabSelectedBorder: Color.lerp(tabSelectedBorder, other.tabSelectedBorder, t)!,
+    tabSelectedForeground: Color.lerp(tabSelectedForeground, other.tabSelectedForeground, t)!,
+  );
 }
 
 /// Accent surfaces for the current theme.
 ///
 /// Light mode paints a pale tint (100) with a strong foreground (700);
 /// dark mode inverts the relation: a deep background (700) with a pale foreground (100).
+/// The pattern glyphs use the 400 shade in both modes (the design's duotone outline colour).
 /// Read it with `Theme.of(context).accents[AccentColor.blue]`.
 class AccentSurfaceTheme extends ThemeExtension<AccentSurfaceTheme> {
   const AccentSurfaceTheme(this._surfaces);
 
   factory AccentSurfaceTheme.light(AccentColors accent) => AccentSurfaceTheme({
-        for (final color in AccentColor.values)
-          color: () {
-            final set = accent.of(color);
-            return AccentSurface(
-              background: set.color100!,
-              border: set.color500!,
-              foreground: set.color700!,
-              pattern: set.color400!,
-              badgeBackground: set.color700!,
-              badgeForeground: const Color(0xFFFFFFFF),
-            );
-          }(),
-      });
+    for (final color in AccentColor.values)
+      color: () {
+        final set = accent.of(color);
+        return AccentSurface(
+          background: set.color100!,
+          border: set.color500!,
+          foreground: set.color700!,
+          pattern: set.color400!,
+          badgeBackground: set.color700!,
+          badgeForeground: const Color(0xFFFFFFFF),
+          tabBackground: set.color500!.withValues(alpha: 0.64),
+          tabBorder: set.color500!,
+          tabSelectedBackground: set.color700!.withValues(alpha: 0.8),
+          tabSelectedBorder: set.color700!,
+          tabSelectedForeground: const Color(0xFFFFFFFF),
+        );
+      }(),
+  });
 
   factory AccentSurfaceTheme.dark(AccentColors accent) => AccentSurfaceTheme({
-        for (final color in AccentColor.values)
-          color: () {
-            final set = accent.of(color);
-            return AccentSurface(
-              background: set.color700!,
-              border: set.color400!,
-              foreground: set.color100!,
-              pattern: set.color500!,
-              badgeBackground: set.color100!,
-              badgeForeground: set.color700!,
-            );
-          }(),
-      });
+    for (final color in AccentColor.values)
+      color: () {
+        final set = accent.of(color);
+        return AccentSurface(
+          background: set.color700!,
+          border: set.color400!,
+          foreground: set.color100!,
+          pattern: set.color400!,
+          badgeBackground: set.color100!,
+          badgeForeground: set.color700!,
+          tabBackground: set.color400!.withValues(alpha: 0.64),
+          tabBorder: set.color300!,
+          tabSelectedBackground: set.color300!.withValues(alpha: 0.8),
+          tabSelectedBorder: set.color100!,
+          tabSelectedForeground: set.color100!,
+        );
+      }(),
+  });
 
   final Map<AccentColor, AccentSurface> _surfaces;
 
@@ -107,12 +135,12 @@ class AccentSurfaceTheme extends ThemeExtension<AccentSurfaceTheme> {
 
 extension AccentColorsLookup on AccentColors {
   ColorSet of(AccentColor color) => switch (color) {
-        AccentColor.blue => blue,
-        AccentColor.orange => orange,
-        AccentColor.purple => purple,
-        AccentColor.green => green,
-        AccentColor.red => red,
-      };
+    AccentColor.blue => blue,
+    AccentColor.orange => orange,
+    AccentColor.purple => purple,
+    AccentColor.green => green,
+    AccentColor.red => red,
+  };
 }
 
 extension AccentThemeLookup on ThemeData {
