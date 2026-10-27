@@ -4,6 +4,7 @@ import 'package:odyssey_mobile/app/routing/router.dart';
 import 'package:odyssey_mobile/features/update_data/bloc/update_bloc.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/app/themes/theme_dark.dart';
+import 'package:odyssey_mobile/app/themes/theme_mode_cubit.dart';
 import 'package:odyssey_mobile/app/themes/theme_light.dart';
 import 'package:odyssey_mobile/app/themes/themes.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
@@ -19,13 +20,17 @@ class OdysseyMobile extends StatelessWidget {
         BlocProvider(
           create: (context) => UpdateBloc(sl())..add(const BootCheckEvent()),
         ),
+        BlocProvider(create: (context) => ThemeModeCubit(sl())),
       ],
-      child: MaterialApp.router(
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        title: AppStrings.title,
-        themeMode: ThemeMode.light,
-        theme: lightTheme,
+      child: BlocBuilder<ThemeModeCubit, ThemeMode>(
+        builder: (context, themeMode) => MaterialApp.router(
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          title: AppStrings.title,
+          themeMode: themeMode,
+          theme: lightTheme,
+          darkTheme: themeDark,
+        ),
       ),
     );
   }
