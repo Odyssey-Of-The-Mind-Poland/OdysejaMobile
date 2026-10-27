@@ -16,7 +16,8 @@ import 'package:odyssey_mobile/widgets/ootm_navigation_bar.dart';
 import '../presentation/favourites_screen/bloc/favourites_bloc.dart';
 import '../presentation/favourites_screen/favourites_view_cubit.dart';
 import '../presentation/main_view/bloc/city_bloc.dart';
-// import 'city_select_button.dart';
+import '../design_system/components/city_button.dart';
+import '../presentation/main_view/city_picker_sheet.dart';
 
 @RoutePage()
 class MainView extends StatefulWidget {
@@ -126,8 +127,7 @@ class _MainViewState extends State<MainView> {
           homeIndex: 0,
           // TODO: Add height compensation to all the screens before enabling!
           extendBody: false,
-          // FIXME: Add a mechanism to hide the button if there is only one city.
-          // floatingActionButton: CitySelectButton(),
+          floatingActionButton: const _CityPickerButton(),
           bottomNavigationBuilder: (_, tabsRouter) {
             return OotmNavigationBar(
               selectedIndex: tabsRouter.activeIndex,
@@ -164,6 +164,28 @@ class _MainViewState extends State<MainView> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+/// The floating city button; shown only when there is something to choose from.
+class _CityPickerButton extends StatelessWidget {
+  const _CityPickerButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CityBloc, CityState>(
+      builder: (context, cities) => BlocBuilder<CityDataBloc, CityDataState>(
+        builder: (context, data) {
+          if (cities is! CitySuccess || cities.cities.length < 2 || data is! CityDataSuccess) {
+            return const SizedBox.shrink();
+          }
+          return CityButton(
+            label: data.cityData.cityName,
+            onPressed: () => showCityPickerSheet(context),
+          );
+        },
       ),
     );
   }
