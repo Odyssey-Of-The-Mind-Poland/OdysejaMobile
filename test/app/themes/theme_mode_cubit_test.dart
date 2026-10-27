@@ -32,10 +32,22 @@ void main() {
       final prefs = await SharedPreferences.getInstance();
       final cubit = ThemeModeCubit(prefs);
 
+      await cubit.setMode(ThemeMode.dark);
+
+      expect(cubit.state, ThemeMode.dark);
+      expect(prefs.getString(ThemeModeCubit.storageKey), 'dark');
+    });
+
+    test('going back to the system mode is persisted too', () async {
+      SharedPreferences.setMockInitialValues({ThemeModeCubit.storageKey: 'dark'});
+      final prefs = await SharedPreferences.getInstance();
+      final cubit = ThemeModeCubit(prefs);
+
       await cubit.setMode(ThemeMode.system);
 
       expect(cubit.state, ThemeMode.system);
       expect(prefs.getString(ThemeModeCubit.storageKey), 'system');
+      expect(ThemeModeCubit(prefs).state, ThemeMode.system);
     });
   });
 
