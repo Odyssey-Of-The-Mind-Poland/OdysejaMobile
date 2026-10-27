@@ -5,6 +5,7 @@ import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 
 /// Tile of a schedule group (e.g. a problem): number badge, title and a sparse icon pattern.
 /// A [locked] tile is covered with a dimmed overlay and ignores taps.
@@ -12,7 +13,7 @@ class ScheduleTile extends StatelessWidget {
   const ScheduleTile({
     required this.number,
     required this.title,
-    required this.icon,
+    required this.glyph,
     required this.color,
     this.locked = false,
     this.onTap,
@@ -21,7 +22,7 @@ class ScheduleTile extends StatelessWidget {
 
   final String number;
   final String title;
-  final IconData icon;
+  final PatternGlyph glyph;
   final AccentColor color;
   final bool locked;
   final VoidCallback? onTap;
@@ -51,7 +52,12 @@ class ScheduleTile extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: AccentPattern(icon: icon, color: surface.pattern, spacing: 56),
+                  child: AccentPattern(
+                    glyph: glyph,
+                    color: surface.pattern,
+                    fillColor: surface.patternFill,
+                    spacing: 56,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),

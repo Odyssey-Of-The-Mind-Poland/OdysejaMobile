@@ -3,6 +3,7 @@ import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
 import 'package:odyssey_mobile/design_system/favourite_surface.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 
 enum PerformanceTileState {
   normal,
@@ -64,7 +65,10 @@ class PerformanceTile extends StatelessWidget {
             children: [
               if (favourite)
                 Positioned.fill(
-                  child: AccentPattern(icon: OotmIcons.favouritesFilled, color: fav.pattern),
+                  child: AccentPattern(
+                    glyph: const PatternGlyph.font(OotmIcons.favouritesFilled),
+                    color: fav.pattern,
+                  ),
                 ),
               ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 64),

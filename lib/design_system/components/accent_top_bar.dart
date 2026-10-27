@@ -4,6 +4,7 @@ import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
 import 'package:odyssey_mobile/design_system/components/icon_button.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 
 /// Collapsing header tinted with an accent and decorated with the icon pattern.
 /// Expanded it shows [title] with [subtitle] under it; collapsed it shrinks to a single
@@ -12,7 +13,7 @@ import 'package:odyssey_mobile/design_system/components/icon_button.dart';
 class AccentSliverTopBar extends StatelessWidget {
   const AccentSliverTopBar({
     required this.title,
-    required this.icon,
+    required this.glyph,
     required this.color,
     this.subtitle,
     this.bottom,
@@ -22,7 +23,7 @@ class AccentSliverTopBar extends StatelessWidget {
 
   final String title;
   final String? subtitle;
-  final IconData icon;
+  final PatternGlyph glyph;
   final AccentColor color;
   final Widget? bottom;
   final VoidCallback? onBack;
@@ -86,7 +87,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
       child: Stack(
         children: [
           Positioned.fill(
-            child: AccentPattern(icon: bar.icon, color: surface.pattern),
+            child: AccentPattern(glyph: bar.glyph, color: surface.pattern, fillColor: surface.patternFill),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(16, topInset + 16, 16, 16),
@@ -154,7 +155,7 @@ class _Delegate extends SliverPersistentHeaderDelegate {
       old.bar.title != bar.title ||
       old.bar.subtitle != bar.subtitle ||
       old.bar.color != bar.color ||
-      old.bar.icon != bar.icon ||
+      old.bar.glyph != bar.glyph ||
       old.bar.bottom != bar.bottom ||
       old.topInset != topInset ||
       old.maxHeight != maxHeight;

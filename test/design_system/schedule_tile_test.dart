@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/schedule_tile.dart';
 
@@ -8,7 +9,7 @@ import 'test_host.dart';
 void main() {
   testWidgets('shows number and title and has the size from the design', (tester) async {
     await tester.pumpWidget(themed(
-      const ScheduleTile(number: '3', title: 'Problem 3', icon: OotmIcons.map, color: AccentColor.orange),
+      const ScheduleTile(number: '3', title: 'Problem 3', glyph: PatternGlyph.font(OotmIcons.map), color: AccentColor.orange),
     ));
 
     expect(find.text('3'), findsOneWidget);
@@ -22,7 +23,7 @@ void main() {
       ScheduleTile(
         number: '1',
         title: 'Problem 1',
-        icon: OotmIcons.map,
+        glyph: PatternGlyph.font(OotmIcons.map),
         color: AccentColor.blue,
         locked: true,
         onTap: () => taps++,
@@ -40,7 +41,7 @@ void main() {
       ScheduleTile(
         number: '1',
         title: 'Problem 1',
-        icon: OotmIcons.map,
+        glyph: PatternGlyph.font(OotmIcons.map),
         color: AccentColor.blue,
         onTap: () => taps++,
       ),

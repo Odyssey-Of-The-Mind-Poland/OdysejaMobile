@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/accent_top_bar.dart';
 
@@ -17,7 +18,7 @@ Widget _screen({
         AccentSliverTopBar(
           title: 'Scena 3',
           subtitle: 'Sala Piaskowa',
-          icon: OotmIcons.map,
+          glyph: PatternGlyph.font(OotmIcons.map),
           color: AccentColor.purple,
           bottom: bottom,
           onBack: onBack,
