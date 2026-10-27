@@ -58,8 +58,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     )
                   : const SizedBox(width: double.infinity),
             ),
-            const Heading(AppStrings.scheduleScreenStageHeading, leftPadding: 16),
-            PerformanceCategoryList(parameters: cityData.stages.toList()),
+            // Not every city has stages (e.g. regionals without a stage list).
+            if (cityData.stages.isNotEmpty) ...[
+              const Heading(AppStrings.scheduleScreenStageHeading, leftPadding: 16),
+              PerformanceCategoryList(parameters: cityData.stages.toList()),
+            ],
             const Heading(AppStrings.scheduleScreenProblemHeading, leftPadding: 16),
             // TODO Check [data] for unavailable problems
             PerformanceCategoryList(parameters: problems),
