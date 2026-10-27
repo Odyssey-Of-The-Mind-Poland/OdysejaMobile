@@ -22,17 +22,16 @@ class AccentTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final surface = theme.accents[color];
-    final background = selected ? surface.badgeBackground : surface.background;
-    final foreground = selected ? surface.badgeForeground : surface.foreground;
+    final background = selected ? surface.tabSelectedBackground : surface.tabBackground;
+    final border = selected ? surface.tabSelectedBorder : surface.tabBorder;
+    final foreground = selected ? surface.tabSelectedForeground : surface.foreground;
 
     return Semantics(
       button: true,
       selected: selected,
       child: Material(
         color: background,
-        shape: StadiumBorder(
-          side: BorderSide(color: selected ? surface.badgeBackground : surface.border, width: 2),
-        ),
+        shape: StadiumBorder(side: BorderSide(color: border, width: 2)),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onPressed,

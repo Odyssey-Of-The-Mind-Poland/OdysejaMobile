@@ -10,16 +10,16 @@ void main() {
   Material material(WidgetTester tester) => tester.widget<Material>(
       find.descendant(of: find.byType(AccentTabButton), matching: find.byType(Material)).first);
 
-  testWidgets('selected tab is filled with the strong shade, unselected keeps the tint', (tester) async {
+  testWidgets('selected tab is filled with the strong shade, unselected uses the translucent tint', (tester) async {
     final surface = themeLight.accents[AccentColor.green];
 
     await tester.pumpWidget(themed(AccentTabButton(
         label: 'Sobota', color: AccentColor.green, selected: true, onPressed: () {})));
-    expect(material(tester).color, surface.badgeBackground);
+    expect(material(tester).color, surface.tabSelectedBackground);
 
     await tester.pumpWidget(themed(AccentTabButton(
         label: 'Sobota', color: AccentColor.green, selected: false, onPressed: () {})));
-    expect(material(tester).color, surface.background);
+    expect(material(tester).color, surface.tabBackground);
   });
 
   testWidgets('invokes the callback and is at least 123x40', (tester) async {
@@ -40,6 +40,6 @@ void main() {
       brightness: Brightness.dark,
     ));
 
-    expect(material(tester).color, themeDark.accents[AccentColor.green].badgeBackground);
+    expect(material(tester).color, themeDark.accents[AccentColor.green].tabSelectedBackground);
   });
 }
