@@ -20,6 +20,11 @@ abstract class AppStrings {
   static const String cityPickerTitle = 'Wybór eliminacji';
   static const String cityPickerEmpty = 'Brak dostępnych eliminacji';
 
+  static const String themeModeTitle = 'Wygląd aplikacji';
+  static const String themeModeLight = 'Jasny';
+  static const String themeModeDark = 'Ciemny';
+  static const String themeModeSystem = 'Systemowy (taki jak urządzenie)';
+
   static const String homeScreenTitle = 'Witaj!';
   static const String infoScreenTitle = 'Informacje';
   static const String scheduleScreenTitle = 'Harmonogram';
