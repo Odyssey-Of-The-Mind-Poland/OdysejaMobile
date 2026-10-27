@@ -20,6 +20,16 @@ abstract class AppStrings {
   static const String cityPickerTitle = 'Wybór eliminacji';
   static const String cityPickerEmpty = 'Brak dostępnych eliminacji';
 
+  static const String favFilterTitle = 'Filtruj ulubione';
+  static const String favFilterDisplayAs = 'Wyświetlaj jako';
+  static const String favFilterList = 'Lista';
+  static const String favFilterTimeline = 'Harmonogram';
+  static const String favFilterStage = 'Scena';
+  static const String favFilterProblem = 'Problem długoterminowy';
+  static const String favFilterAge = 'Grupa wiekowa';
+  static const String favFilterClear = 'Wyczyść filtry';
+  static const String favFilterTooltip = 'Filtruj ulubione';
+
   static const String themeModeTitle = 'Wygląd aplikacji';
   static const String themeModeLight = 'Jasny';
   static const String themeModeDark = 'Ciemny';

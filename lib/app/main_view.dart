@@ -14,6 +14,7 @@ import 'package:odyssey_mobile/app/routing/router.dart';
 import 'package:odyssey_mobile/presentation/schedule_screen/bloc/schedule_search_bloc.dart';
 import 'package:odyssey_mobile/widgets/ootm_navigation_bar.dart';
 import '../presentation/favourites_screen/bloc/favourites_bloc.dart';
+import '../presentation/favourites_screen/favourites_view_cubit.dart';
 import '../presentation/main_view/bloc/city_bloc.dart';
 // import 'city_select_button.dart';
 
@@ -86,6 +87,7 @@ class _MainViewState extends State<MainView> {
         BlocProvider(
           create: (context) => UpdateFavouritesBloc(sl()),
         ),
+        BlocProvider(create: (context) => FavouritesViewCubit()),
         BlocProvider(
           create: (context) => FavouritesBloc(
             context.read<CityDataBloc>(),

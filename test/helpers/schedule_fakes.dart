@@ -46,7 +46,17 @@ class FakePerformance extends Performance {
 }
 
 class FakePerformanceGroup extends PerformanceGroup {
-  FakePerformanceGroup(this.performances, {this.day = 'sobota', this.groupId = 0});
+  FakePerformanceGroup(
+    this.performances, {
+    this.day = 'sobota',
+    this.groupId = 0,
+    this.stage = 3,
+    this.problem = 1,
+    this.age = 1,
+    this.part = 0,
+    this.league = 'A',
+    this.guest = false,
+  });
 
   @override
   final List<Performance> performances;
@@ -54,19 +64,18 @@ class FakePerformanceGroup extends PerformanceGroup {
   final String day;
   @override
   final int groupId;
-
   @override
-  int get problem => 1;
+  final int stage;
   @override
-  int get age => 1;
+  final int problem;
   @override
-  int get stage => 3;
+  final int age;
   @override
-  int get part => 0;
+  final int part;
   @override
-  String get league => 'A';
+  final String league;
   @override
-  bool get guest => false;
+  final bool guest;
 
   @override
   PerformanceGroup copyWith({
@@ -79,5 +88,15 @@ class FakePerformanceGroup extends PerformanceGroup {
     int? problem,
     int? stage,
   }) =>
-      FakePerformanceGroup(performances ?? this.performances, day: day ?? this.day, groupId: groupId);
+      FakePerformanceGroup(
+        performances ?? this.performances,
+        day: day ?? this.day,
+        groupId: groupId,
+        stage: stage ?? this.stage,
+        problem: problem ?? this.problem,
+        age: age ?? this.age,
+        part: part ?? this.part,
+        league: league ?? this.league,
+        guest: guest ?? this.guest,
+      );
 }

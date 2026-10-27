@@ -6,7 +6,10 @@ import 'package:odyssey_mobile/core/data/db/hive/models/city_data.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/info.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/info_group.dart';
 import 'package:odyssey_mobile/core/data/load_data_repository.dart';
+import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
+import 'package:odyssey_mobile/core/domain/info_category.dart';
+import 'package:odyssey_mobile/core/domain/performance_group.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
@@ -64,3 +67,22 @@ Widget withCity(
         home: child,
       ),
     );
+
+/// A [CityData] with arbitrary performance groups, for screens that read them through the blocs.
+class FakeCityData implements CityData {
+  FakeCityData({this.performanceGroups = const [], this.stages = const []});
+
+  @override
+  final List<PerformanceGroup> performanceGroups;
+  @override
+  final List<ScheduleCategoryEntity> stages;
+
+  @override
+  String get cityName => 'Warszawa';
+  @override
+  int get cityId => 1;
+  @override
+  List<InfoCategory> get infoGroups => const [];
+  @override
+  List<List<SponsorModelApi>> get sponsors => const [];
+}
