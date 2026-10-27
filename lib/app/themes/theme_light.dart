@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
+import 'package:odyssey_mobile/design_system/accent.dart';
 
 final themeLight = ThemeData(
   brightness: Brightness.light,
@@ -30,10 +31,13 @@ final themeLight = ThemeData(
     _bottomSheet,
     _common,
     _topBar,
+    _accents,
   ],
 );
 
 const _borderColorFallback = Color(0xFF3C3E40);
+
+final _accents = AccentSurfaceTheme.light(_colors.accent);
 
 final _topBar = TopBarTheme(
   actionForeground: _colors.universal.grey.color400,
