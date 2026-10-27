@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/features/schedule/performance_bottom_sheet.dart';
 import 'package:odyssey_mobile/presentation/components/fav_widget.dart';
-import 'package:odyssey_mobile/presentation/components/shadows.dart';
+import 'package:odyssey_mobile/design_system/components/performance_tile.dart';
 import 'package:odyssey_mobile/presentation/components/spontaneous_widget.dart';
 import 'package:odyssey_mobile/widgets/ootm_bottom_sheet.dart';
 import 'package:odyssey_mobile/widgets/snackbar.dart';
@@ -34,11 +33,11 @@ class _PerformanceCardState extends State<PerformanceCard> {
   Widget build(BuildContext context) {
     return SwipeableTile.swipeToTriggerCard(
       key: Key(widget.performance.performanceId.toString()),
-      color: AppColors.pureWhite,
+      color: Colors.transparent,
       horizontalPadding: 0,
-      shadow: defaultShadow,
+      shadow: const BoxShadow(color: Colors.transparent),
       verticalPadding: 0,
-      borderRadius: AppValues.defaultBrRadius,
+      borderRadius: 16,
       direction: SwipeDirection.horizontal,
       swipeThreshold: AppValues.swipeTreshold,
       backgroundBuilder: (context, direction, progress) {
@@ -57,70 +56,33 @@ class _PerformanceCardState extends State<PerformanceCard> {
               .add(Update(widget.performance..isFavourite = !isFavourite));
         }
       },
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 56),
-        child: Material(
-          color: AppColors.pureWhite,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-            onTap: () => showOotmBottomSheet(
+      child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
+        listenWhen: (_, c) =>
+            c is UpdateFavouritesSuccess &&
+            c.performance.performanceId == widget.performance.performanceId,
+        listener: (context, state) {
+          if (state is UpdateFavouritesError) {
+            showSnackBar(
               context: context,
-              useRootNavigator: true,
-              child: PerformanceBottomSheet(
-                performance: widget.performance,
-                bloc: context.read<UpdateFavouritesBloc>(),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: BlocListener<UpdateFavouritesBloc, UpdateFavouritesState>(
-                listenWhen: (_, c) =>
-                    c is UpdateFavouritesSuccess &&
-                    c.performance.performanceId == widget.performance.performanceId,
-                listener: (context, state) {
-                  if (state is UpdateFavouritesError) {
-                    showSnackBar(
-                      context: context,
-                      text: state.failure.errorMessage,
-                      type: SnackBarType.error,
-                    );
-                  } else if (state is UpdateFavouritesSuccess) {
-                    setState(() {
-                      isFavourite = state.performance.isFavourite;
-                    });
-                  }
-                },
-                child: AnimatedSwitcher(
-                  duration: AppValues.defaultAnimationDuration,
-                  child: Row(
-                    key: Key(isFavourite.toString()),
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            widget.performance.performance,
-                            textAlign: TextAlign.center,
-                            style: isFavourite
-                                ? AppTextStyles.h2.copyWith(color: AppColors.primaryOrange)
-                                : AppTextStyles.h2,
-                          )),
-                      Expanded(
-                          child: Text(
-                        widget.performance.team,
-                        style: AppTextStyles.bodyText1,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      )),
-                      SizedBox(
-                          width: 32,
-                          child: Icon(
-                            OotmIcons.chevronRight,
-                            color: isFavourite ? AppColors.primaryOrange : null,
-                          ))
-                    ],
-                  ),
-                ),
-              ),
+              text: state.failure.errorMessage,
+              type: SnackBarType.error,
+            );
+          } else if (state is UpdateFavouritesSuccess) {
+            setState(() {
+              isFavourite = state.performance.isFavourite;
+            });
+          }
+        },
+        child: PerformanceTile(
+          time: widget.performance.performance,
+          title: widget.performance.team,
+          state: isFavourite ? PerformanceTileState.favourite : PerformanceTileState.normal,
+          onTap: () => showOotmBottomSheet(
+            context: context,
+            useRootNavigator: true,
+            child: PerformanceBottomSheet(
+              performance: widget.performance,
+              bloc: context.read<UpdateFavouritesBloc>(),
             ),
           ),
         ),

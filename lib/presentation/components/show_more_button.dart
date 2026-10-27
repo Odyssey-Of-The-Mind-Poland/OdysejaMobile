@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/l10n/strings.dart';
-import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
+import 'package:odyssey_mobile/l10n/strings.dart';
 
+/// Outlined pill that expands / collapses a performance group ("Pokaż wszystkie" / "Zwiń").
 class ShowMoreButton extends StatefulWidget {
   const ShowMoreButton({required this.expanded, required this.initialExpanded, super.key});
   final ValueChanged<bool> expanded;
@@ -14,6 +15,7 @@ class ShowMoreButton extends StatefulWidget {
 
 class _ShowMoreButtonState extends State<ShowMoreButton> {
   late bool _expanded;
+
   @override
   void initState() {
     super.initState();
@@ -22,39 +24,44 @@ class _ShowMoreButtonState extends State<ShowMoreButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          color: AppColors.lightestOrange,
-          borderRadius: BorderRadius.circular(AppValues.ultraBrRadius)),
-      child: InkWell(
-        splashColor: AppColors.lightOrange,
-        borderRadius: BorderRadius.circular(AppValues.ultraBrRadius),
-        onTap: () => setState(() {
-          _expanded = !_expanded;
-          widget.expanded(_expanded);
-        }),
-        child: Ink(
-            height: 32,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            // TODO check issues with displaced decoration on list animation
-            // decoration: BoxDecoration(
-            //   color: AppColors.lightestOrange,
-            //   borderRadius: BorderRadius.circular(AppValues.ultraBrRadius),
-            // ),
+    final theme = Theme.of(context);
+    final accent = theme.extension<OotmCommonTheme>()!.primaryColor!;
+    final buttons = theme.extension<OotmMainButtonTheme>()!;
+
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Material(
+        color: Colors.transparent,
+        shape: StadiumBorder(side: BorderSide(color: accent, width: 2)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          highlightColor: buttons.tertiaryHighlight,
+          onTap: () => setState(() {
+            _expanded = !_expanded;
+            widget.expanded(_expanded);
+          }),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: _expanded
-                    ? const [
-                        Text(AppStrings.performanceGroupButtonExpanded,
-                            maxLines: 1, style: AppTextStyles.h4orange),
-                        Icon(OotmIcons.chevronUp, color: AppColors.primaryOrange)
-                      ]
-                    : const [
-                        Text(AppStrings.performanceGroupButtonExpand,
-                            maxLines: 1, style: AppTextStyles.h4orange),
-                        Icon(OotmIcons.chevronDown, color: AppColors.primaryOrange)
-                      ])),
+              mainAxisSize: MainAxisSize.min,
+              spacing: 4,
+              children: [
+                Text(
+                  _expanded
+                      ? AppStrings.performanceGroupButtonExpanded
+                      : AppStrings.performanceGroupButtonExpand,
+                  maxLines: 1,
+                  style: theme.t.bodyMediumBold?.copyWith(color: accent),
+                ),
+                Icon(
+                  _expanded ? OotmIcons.chevronUp : OotmIcons.chevronDown,
+                  size: 22,
+                  color: accent,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
