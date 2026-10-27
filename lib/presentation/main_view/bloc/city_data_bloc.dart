@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/presentation/main_view/selected_city_store.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
@@ -19,7 +20,11 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
   final LoadDataRepository _repository;
 
   Future<void> _fetchHandler(FetchCityData event, Emitter<CityDataState> emit) async {
-    final result = await _repository.getCityData(event.selectedCity);
+    var result = await _repository.getCityData(event.selectedCity);
+    // A remembered city may be gone after an update; fall back to the finals.
+    if (result.isLeft() && event.selectedCity != SelectedCityStore.defaultCityId) {
+      result = await _repository.getCityData(SelectedCityStore.defaultCityId);
+    }
     final result2 = await _repository.getProblems();
 
     result.fold(

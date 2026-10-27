@@ -158,7 +158,7 @@ class UpdateDataRepository {
       ], eagerError: true);
 
       final problems = commonData[0] as List<ProblemModelApi>;
-      final cities = [commonData[1][0] as CityModelApi];
+      final cities = (commonData[1] as List).cast<CityModelApi>();
 
       await _dbService.createProblems(problems);
       await _dbService.createCities(cities);

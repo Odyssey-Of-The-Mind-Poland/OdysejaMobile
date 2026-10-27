@@ -70,17 +70,17 @@ Widget withCity(
 
 /// A [CityData] with arbitrary performance groups, for screens that read them through the blocs.
 class FakeCityData implements CityData {
-  FakeCityData({this.performanceGroups = const [], this.stages = const []});
+  FakeCityData({this.performanceGroups = const [], this.stages = const [], this.cityId = 1});
 
   @override
   final List<PerformanceGroup> performanceGroups;
   @override
   final List<ScheduleCategoryEntity> stages;
+  @override
+  final int cityId;
 
   @override
   String get cityName => 'Warszawa';
-  @override
-  int get cityId => 1;
   @override
   List<InfoCategory> get infoGroups => const [];
   @override
