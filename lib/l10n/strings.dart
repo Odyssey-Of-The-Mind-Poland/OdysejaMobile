@@ -88,6 +88,7 @@ abstract class AppStrings {
   static const String emptyFavouritesCaption = 'Wybrane przedstawienie,\naby go nie przegapić';
 
   static const String searchFieldHint = 'Wyszukaj drużynę';
+  static const String scheduleSearchHint = 'Wyszukaj drużynę, problem, scenę i inne...';
   static const String emptyResultsFailure = 'Brak wyników';
 
   // App updates
