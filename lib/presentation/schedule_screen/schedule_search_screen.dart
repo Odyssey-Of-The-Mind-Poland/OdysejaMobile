@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
-import 'package:odyssey_mobile/app/themes/themes.dart';
+import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/presentation/components/search_field.dart';
 import 'package:odyssey_mobile/presentation/components/search_result_list_tile.dart';
 import 'package:odyssey_mobile/app/routing/router.dart';
@@ -49,7 +49,7 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
         builder: (context, state) {
           if (state is SearchResult) {
             return ListView.builder(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 itemCount: state.performances.length,
                 itemBuilder: (context, i) => SearchResultListTile(
                       onTap: () {
@@ -62,8 +62,13 @@ class _ScheduleSearchScreenState extends State<ScheduleSearchScreen> {
                       searchPhrase: state.searchPhrase,
                     ));
           } else if (state is SearchEmpty) {
-            return const Center(
-                child: Text(AppStrings.emptyResultsFailure, style: AppTextStyles.h1grey));
+            final theme = Theme.of(context);
+            return Center(
+              child: Text(
+                AppStrings.emptyResultsFailure,
+                style: theme.t.h3?.copyWith(color: theme.extension<OotmCommonTheme>()?.textLighterColor),
+              ),
+            );
           }
           return const SizedBox();
         },

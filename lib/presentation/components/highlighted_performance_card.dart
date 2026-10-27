@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:odyssey_mobile/app/themes/themes.dart';
-
+import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/core/domain/performance.dart';
 import 'package:odyssey_mobile/presentation/components/performance_card.dart';
 
+/// A [PerformanceCard] whose outline pulses to point the user at it (search result).
 class HighlightedPerformanceCard extends StatefulWidget {
   const HighlightedPerformanceCard({
     super.key,
@@ -30,22 +30,18 @@ class _HighlightedPerformanceCardState extends State<HighlightedPerformanceCard>
     super.dispose();
   }
 
-  // decoration: decorationTween.animate(_controller),
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).extension<OotmCommonTheme>()!.primaryColor!;
+    BoxDecoration outline(double width) => BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color, width: width),
+        );
+
     return DecoratedBoxTransition(
       position: DecorationPosition.foreground,
-      decoration: decorationTween.animate(_controller),
+      decoration: DecorationTween(begin: outline(2), end: outline(4)).animate(_controller),
       child: PerformanceCard(performance: widget.performance, secretWidth: widget.secretWidth),
     );
   }
-
-  final DecorationTween decorationTween = DecorationTween(
-    begin: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-        border: Border.all(color: AppColors.primaryOrange, width: 1)),
-    end: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppValues.defaultBrRadius),
-        border: Border.all(color: AppColors.primaryOrange, width: 3)),
-  );
 }
