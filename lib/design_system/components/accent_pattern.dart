@@ -54,6 +54,10 @@ class AccentPatternPainter extends CustomPainter {
 
   static const rotation = 16 * math.pi / 180;
 
+  /// Glyphs are drawn smaller than their cell so the pattern stays airy and does not compete
+  /// with the content on top of it.
+  static const glyphScale = 0.72;
+
   @override
   void paint(Canvas canvas, Size size) {
     if (size.isEmpty) return;
@@ -63,7 +67,7 @@ class AccentPatternPainter extends CustomPainter {
       text: TextSpan(
         text: String.fromCharCode(icon.codePoint),
         style: TextStyle(
-          fontSize: cellSize,
+          fontSize: cellSize * glyphScale,
           fontFamily: icon.fontFamily,
           package: icon.fontPackage,
           color: color,
