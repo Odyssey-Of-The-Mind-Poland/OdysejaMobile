@@ -41,6 +41,7 @@ class FilterItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Center(
                 widthFactor: 1,
+                heightFactor: 1,
                 child: Text(label, style: theme.t.bodyMediumBold?.copyWith(color: foreground)),
               ),
             ),
