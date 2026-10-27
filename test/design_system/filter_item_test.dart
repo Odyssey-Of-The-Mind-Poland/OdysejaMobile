@@ -25,4 +25,10 @@ void main() {
     await tester.tap(find.text('4'));
     expect(taps, 1);
   });
+
+  testWidgets('is 40px tall and does not stretch to the available height', (tester) async {
+    await tester.pumpWidget(themed(FilterItem(label: '3', active: false, onPressed: () {})));
+
+    expect(tester.getSize(find.byType(FilterItem)).height, 40);
+  });
 }
