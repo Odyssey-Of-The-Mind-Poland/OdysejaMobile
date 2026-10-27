@@ -13,3 +13,4 @@ export 'components/search_bar_button.dart';
 export 'components/city_button.dart';
 export 'components/info_tooltip.dart';
 export 'components/performance_time_block.dart';
+export 'components/accent_top_bar.dart';
