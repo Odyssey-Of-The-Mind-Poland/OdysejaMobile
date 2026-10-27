@@ -56,6 +56,24 @@ void main() {
         }
       }
     });
+
+    test('pattern glyphs use the 400 shade in both themes (duotone outline of the design)', () {
+      expect(themeLight.accents[AccentColor.purple].pattern, const Color(0xFFDCD5FD));
+      expect(themeDark.accents[AccentColor.blue].pattern, const Color(0xFF275E8B));
+    });
+
+    test('tabs follow the design: translucent tint, strong selected fill', () {
+      final light = themeLight.accents[AccentColor.blue];
+      expect(light.tabBackground, const Color(0xFFC4E1FD).withValues(alpha: 0.64));
+      expect(light.tabSelectedBackground, const Color(0xFF228AF2).withValues(alpha: 0.8));
+      expect(light.tabSelectedBorder, const Color(0xFF228AF2));
+
+      final dark = themeDark.accents[AccentColor.blue];
+      expect(dark.tabBackground, const Color(0xFF275E8B).withValues(alpha: 0.64));
+      expect(dark.tabBorder, const Color(0xFF3877AE));
+      expect(dark.tabSelectedBackground, const Color(0xFF3877AE).withValues(alpha: 0.8));
+      expect(dark.tabSelectedBorder, const Color(0xFFE8F2FF));
+    });
   });
 }
 
