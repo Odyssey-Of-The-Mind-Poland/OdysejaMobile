@@ -111,6 +111,9 @@ class _MainViewState extends State<MainView> {
           BlocListener<UpdateBloc, UpdateState>(
             listener: (context, state) {
               if (state is UpdateFinished) {
+                // The cities are stored by the update, so on the first launch the list read
+                // at startup is empty.
+                context.read<CityBloc>().add(FetchCities());
                 context.read<CityDataBloc>().add(const FetchCityData(0));
               }
             },
@@ -169,24 +172,20 @@ class _MainViewState extends State<MainView> {
   }
 }
 
-/// The floating city button; shown only when there is something to choose from.
+/// The floating city button with the name of the loaded city, as in the design.
 class _CityPickerButton extends StatelessWidget {
   const _CityPickerButton();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CityBloc, CityState>(
-      builder: (context, cities) => BlocBuilder<CityDataBloc, CityDataState>(
-        builder: (context, data) {
-          if (cities is! CitySuccess || cities.cities.length < 2 || data is! CityDataSuccess) {
-            return const SizedBox.shrink();
-          }
-          return CityButton(
-            label: data.cityData.cityName,
-            onPressed: () => showCityPickerSheet(context),
-          );
-        },
-      ),
+    return BlocBuilder<CityDataBloc, CityDataState>(
+      builder: (context, data) {
+        if (data is! CityDataSuccess) return const SizedBox.shrink();
+        return CityButton(
+          label: data.cityData.cityName,
+          onPressed: () => showCityPickerSheet(context),
+        );
+      },
     );
   }
 }
