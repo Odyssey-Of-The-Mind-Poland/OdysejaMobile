@@ -7,3 +7,4 @@ export 'components/toggle.dart';
 export 'components/menu_item.dart';
 export 'components/icon_button.dart';
 export 'components/accent_tab_button.dart';
+export 'components/performance_tile.dart';
