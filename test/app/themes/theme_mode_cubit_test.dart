@@ -6,11 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('ThemeModeCubit', () {
-    test('defaults to light when nothing is stored', () async {
+    test('defaults to the system mode when nothing is stored', () async {
       SharedPreferences.setMockInitialValues({});
       final cubit = ThemeModeCubit(await SharedPreferences.getInstance());
 
-      expect(cubit.state, ThemeMode.light);
+      expect(cubit.state, ThemeMode.system);
     });
 
     test('restores the stored mode', () async {
