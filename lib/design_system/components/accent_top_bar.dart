@@ -87,7 +87,11 @@ class _Delegate extends SliverPersistentHeaderDelegate {
       child: Stack(
         children: [
           Positioned.fill(
-            child: AccentPattern(glyph: bar.glyph, color: surface.pattern, fillColor: surface.patternFill),
+            child: AccentPattern(
+              glyph: bar.glyph,
+              color: surface.pattern,
+              fillColor: surface.patternFill,
+            ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(16, topInset + 16, 16, 16),
@@ -107,15 +111,18 @@ class _Delegate extends SliverPersistentHeaderDelegate {
                   right: 0,
                   top: 0,
                   height: OotmIconButton.dimension,
-                  child: Opacity(
-                    opacity: t,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        collapsedLabel,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.t.h3?.copyWith(color: surface.foreground),
+                  child: ExcludeSemantics(
+                    excluding: t < 0.5,
+                    child: Opacity(
+                      opacity: t,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          collapsedLabel,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.t.h3?.copyWith(color: surface.foreground),
+                        ),
                       ),
                     ),
                   ),
@@ -126,19 +133,22 @@ class _Delegate extends SliverPersistentHeaderDelegate {
                   left: 0,
                   right: 0,
                   bottom: bar.bottom == null ? 0 : AccentSliverTopBar.bottomHeight,
-                  child: Opacity(
-                    opacity: 1 - t,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(bar.title, style: theme.t.h3?.copyWith(color: surface.foreground)),
-                        if (bar.subtitle != null)
-                          Text(
-                            bar.subtitle!,
-                            style: theme.t.bodyMediumRegular?.copyWith(color: surface.foreground),
-                          ),
-                      ],
+                  child: ExcludeSemantics(
+                    excluding: t >= 0.5,
+                    child: Opacity(
+                      opacity: 1 - t,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(bar.title, style: theme.t.h3?.copyWith(color: surface.foreground)),
+                          if (bar.subtitle != null)
+                            Text(
+                              bar.subtitle!,
+                              style: theme.t.bodyMediumRegular?.copyWith(color: surface.foreground),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
