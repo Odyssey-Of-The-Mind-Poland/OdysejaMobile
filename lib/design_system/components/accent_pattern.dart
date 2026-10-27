@@ -67,9 +67,9 @@ class AccentPatternPainter extends CustomPainter {
 
   static const rotation = 16 * math.pi / 180;
 
-  /// Glyphs are drawn smaller than their cell so the pattern stays airy and does not compete
-  /// with the content on top of it (the design's glyphs are ~21px in a 28px cell).
-  static const glyphScale = 0.75;
+  /// The design's glyphs are ~25px boxes (a 21x17.5 map icon) in a 28px cell, so neighbours
+  /// almost touch; a smaller glyph makes the pattern look sparse.
+  static const glyphScale = 0.9;
 
   @override
   void paint(Canvas canvas, Size size) {
