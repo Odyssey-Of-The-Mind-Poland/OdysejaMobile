@@ -18,6 +18,7 @@ import '../presentation/favourites_screen/favourites_view_cubit.dart';
 import '../presentation/main_view/bloc/city_bloc.dart';
 import '../design_system/components/city_button.dart';
 import '../presentation/main_view/city_picker_sheet.dart';
+import '../presentation/main_view/selected_city_store.dart';
 
 @RoutePage()
 class MainView extends StatefulWidget {
@@ -30,6 +31,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   late final AppLifecycleListener _listener;
+  late final _cityStore = SelectedCityStore(sl());
 
   @override
   void initState() {
@@ -79,7 +81,7 @@ class _MainViewState extends State<MainView> {
           lazy: false,
         ),
         BlocProvider(
-          create: (context) => CityDataBloc(sl())..add(const FetchCityData(0)),
+          create: (context) => CityDataBloc(sl())..add(FetchCityData(_cityStore.cityId)),
           lazy: false,
         ),
         BlocProvider(
@@ -114,7 +116,7 @@ class _MainViewState extends State<MainView> {
                 // The cities are stored by the update, so on the first launch the list read
                 // at startup is empty.
                 context.read<CityBloc>().add(FetchCities());
-                context.read<CityDataBloc>().add(const FetchCityData(0));
+                context.read<CityDataBloc>().add(FetchCityData(_cityStore.cityId));
               }
             },
           ),
@@ -130,7 +132,7 @@ class _MainViewState extends State<MainView> {
           homeIndex: 0,
           // TODO: Add height compensation to all the screens before enabling!
           extendBody: false,
-          floatingActionButton: const _CityPickerButton(),
+          floatingActionButton: _CityPickerButton(store: _cityStore),
           bottomNavigationBuilder: (_, tabsRouter) {
             return OotmNavigationBar(
               selectedIndex: tabsRouter.activeIndex,
@@ -174,7 +176,9 @@ class _MainViewState extends State<MainView> {
 
 /// The floating city button with the name of the loaded city, as in the design.
 class _CityPickerButton extends StatelessWidget {
-  const _CityPickerButton();
+  const _CityPickerButton({required this.store});
+
+  final SelectedCityStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +187,7 @@ class _CityPickerButton extends StatelessWidget {
         if (data is! CityDataSuccess) return const SizedBox.shrink();
         return CityButton(
           label: data.cityData.cityName,
-          onPressed: () => showCityPickerSheet(context),
+          onPressed: () => showCityPickerSheet(context, store: store),
         );
       },
     );

@@ -7,11 +7,12 @@ import 'package:odyssey_mobile/design_system/components/menu_item.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_bloc.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
+import 'package:odyssey_mobile/presentation/main_view/selected_city_store.dart';
 import 'package:odyssey_mobile/widgets/ootm_bottom_sheet.dart';
 
 /// Opens the city selection sheet using the existing [CityBloc] (list of cities) and
 /// [CityDataBloc] (currently loaded city), and loads data of the chosen city.
-Future<void> showCityPickerSheet(BuildContext context) {
+Future<void> showCityPickerSheet(BuildContext context, {required SelectedCityStore store}) {
   final cityBloc = context.read<CityBloc>();
   final cityDataBloc = context.read<CityDataBloc>();
 
@@ -24,7 +25,10 @@ Future<void> showCityPickerSheet(BuildContext context) {
     child: CityPickerSheet(
       cities: cityState is CitySuccess ? cityState.cities : const [],
       selectedCityId: dataState is CityDataSuccess ? dataState.cityData.cityId : null,
-      onSelected: (id) => cityDataBloc.add(FetchCityData(id)),
+      onSelected: (id) {
+        store.save(id);
+        cityDataBloc.add(FetchCityData(id));
+      },
     ),
   );
 }
