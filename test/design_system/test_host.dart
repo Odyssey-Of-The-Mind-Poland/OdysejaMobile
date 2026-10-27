@@ -8,7 +8,7 @@ Widget themed(Widget child, {Brightness brightness = Brightness.light, double wi
     darkTheme: themeDark,
     themeMode: brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
     home: Scaffold(
-      body: Center(child: SizedBox(width: width, child: child)),
+      body: Center(child: SizedBox(width: width, child: Align(alignment: Alignment.topLeft, child: child))),
     ),
   );
 }
