@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/accent_pattern.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 
 /// Tile of an info category: tinted surface, icon pattern in the background
 /// and the title aligned to the bottom.
 class InfoTile extends StatelessWidget {
   const InfoTile({
     required this.title,
-    required this.icon,
+    required this.glyph,
     required this.color,
     this.onTap,
     this.height = 80,
@@ -16,7 +17,7 @@ class InfoTile extends StatelessWidget {
   });
 
   final String title;
-  final IconData icon;
+  final PatternGlyph glyph;
   final AccentColor color;
   final VoidCallback? onTap;
   final double height;
@@ -47,7 +48,7 @@ class InfoTile extends StatelessWidget {
             height: height,
             child: Stack(
               children: [
-                Positioned.fill(child: AccentPattern(icon: icon, color: surface.pattern)),
+                Positioned.fill(child: AccentPattern(glyph: glyph, color: surface.pattern, fillColor: surface.patternFill)),
                 Padding(
                   padding: const EdgeInsets.all(16 - _borderWidth),
                   child: Align(

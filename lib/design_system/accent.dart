@@ -28,6 +28,7 @@ class AccentSurface {
     required this.border,
     required this.foreground,
     required this.pattern,
+    required this.patternFill,
     required this.badgeBackground,
     required this.badgeForeground,
     required this.tabBackground,
@@ -43,6 +44,9 @@ class AccentSurface {
 
   /// Colour of the decorative icon pattern drawn behind the content.
   final Color pattern;
+
+  /// Duotone body of the pattern glyphs, painted under the [pattern] outline.
+  final Color patternFill;
   final Color badgeBackground;
   final Color badgeForeground;
 
@@ -58,6 +62,7 @@ class AccentSurface {
     border: Color.lerp(border, other.border, t)!,
     foreground: Color.lerp(foreground, other.foreground, t)!,
     pattern: Color.lerp(pattern, other.pattern, t)!,
+    patternFill: Color.lerp(patternFill, other.patternFill, t)!,
     badgeBackground: Color.lerp(badgeBackground, other.badgeBackground, t)!,
     badgeForeground: Color.lerp(badgeForeground, other.badgeForeground, t)!,
     tabBackground: Color.lerp(tabBackground, other.tabBackground, t)!,
@@ -86,6 +91,7 @@ class AccentSurfaceTheme extends ThemeExtension<AccentSurfaceTheme> {
           border: set.color500!,
           foreground: set.color700!,
           pattern: set.color400!,
+          patternFill: set.color300!,
           badgeBackground: set.color700!,
           badgeForeground: const Color(0xFFFFFFFF),
           tabBackground: set.color500!.withValues(alpha: 0.64),
@@ -106,6 +112,7 @@ class AccentSurfaceTheme extends ThemeExtension<AccentSurfaceTheme> {
           border: set.color400!,
           foreground: set.color100!,
           pattern: set.color400!,
+          patternFill: set.color500!,
           badgeBackground: set.color100!,
           badgeForeground: set.color700!,
           tabBackground: set.color400!.withValues(alpha: 0.64),

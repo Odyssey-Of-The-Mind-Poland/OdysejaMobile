@@ -1,25 +1,30 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:odyssey_mobile/design_system/icons/pattern_glyph.dart';
 
-/// Decorative background of tiles: a brick-like grid of one icon, rotated by 16 degrees
+/// Decorative background of tiles: a brick-like grid of one glyph, rotated by 16 degrees
 /// and centered on the tile, as in the "Master Pattern" of the design.
 ///
-/// The icon is a font glyph, so any [IconData] (including ones coming from
-/// server-side category definitions) can be drawn and tinted without assets.
+/// The glyph may come from the server (see [PatternGlyph.category]), so any category icon can be
+/// drawn and tinted without assets. [color] is the outline and [fillColor] the duotone body.
 class AccentPattern extends StatelessWidget {
   const AccentPattern({
-    required this.icon,
+    required this.glyph,
     required this.color,
+    this.fillColor,
     this.cellSize = 28,
     this.spacing = 28,
     super.key,
   });
 
-  final IconData icon;
+  final PatternGlyph glyph;
   final Color color;
 
-  /// Size of a single glyph.
+  /// Body of the glyph; defaults to a translucent [color].
+  final Color? fillColor;
+
+  /// Size of a single cell.
   final double cellSize;
 
   /// Distance between neighbouring glyphs in a row. Rows are [spacing] apart and every
@@ -31,7 +36,13 @@ class AccentPattern extends StatelessWidget {
     return IgnorePointer(
       child: ExcludeSemantics(
         child: CustomPaint(
-          painter: AccentPatternPainter(icon: icon, color: color, cellSize: cellSize, spacing: spacing),
+          painter: AccentPatternPainter(
+            glyph: glyph,
+            color: color,
+            fillColor: fillColor ?? color.withValues(alpha: 0.4),
+            cellSize: cellSize,
+            spacing: spacing,
+          ),
           size: Size.infinite,
         ),
       ),
@@ -41,40 +52,28 @@ class AccentPattern extends StatelessWidget {
 
 class AccentPatternPainter extends CustomPainter {
   AccentPatternPainter({
-    required this.icon,
+    required this.glyph,
     required this.color,
+    required this.fillColor,
     required this.cellSize,
     required this.spacing,
   });
 
-  final IconData icon;
+  final PatternGlyph glyph;
   final Color color;
+  final Color fillColor;
   final double cellSize;
   final double spacing;
 
   static const rotation = 16 * math.pi / 180;
 
   /// Glyphs are drawn smaller than their cell so the pattern stays airy and does not compete
-  /// with the content on top of it.
-  static const glyphScale = 0.72;
+  /// with the content on top of it (the design's glyphs are ~21px in a 28px cell).
+  static const glyphScale = 0.75;
 
   @override
   void paint(Canvas canvas, Size size) {
     if (size.isEmpty) return;
-
-    final glyph = TextPainter(
-      textDirection: TextDirection.ltr,
-      text: TextSpan(
-        text: String.fromCharCode(icon.codePoint),
-        style: TextStyle(
-          fontSize: cellSize * glyphScale,
-          fontFamily: icon.fontFamily,
-          package: icon.fontPackage,
-          color: color,
-          height: 1,
-        ),
-      ),
-    )..layout();
 
     canvas.clipRect(Offset.zero & size);
     canvas.translate(size.width / 2, size.height / 2);
@@ -84,20 +83,21 @@ class AccentPatternPainter extends CustomPainter {
     // grid is covered up to the half of its diagonal in every direction.
     final reach = size.longestSide / 2 + cellSize;
     final rows = (reach / spacing).ceil();
+    final columns = (reach / spacing).ceil();
     for (var row = -rows; row <= rows; row++) {
       final shift = row.isEven ? spacing / 2 : 0.0;
-      final columns = (reach / spacing).ceil();
       for (var column = -columns; column <= columns; column++) {
         final center = Offset(column * spacing + shift, row * spacing);
-        glyph.paint(canvas, center - Offset(glyph.width / 2, glyph.height / 2));
+        glyph.paint(canvas, center, cellSize * glyphScale, stroke: color, fill: fillColor);
       }
     }
   }
 
   @override
   bool shouldRepaint(AccentPatternPainter old) =>
-      old.icon != icon ||
+      old.glyph != glyph ||
       old.color != color ||
+      old.fillColor != fillColor ||
       old.cellSize != cellSize ||
       old.spacing != spacing;
 }
