@@ -18,6 +18,7 @@ class AccentSliverTopBar extends StatelessWidget {
     this.subtitle,
     this.bottom,
     this.onBack,
+    this.showBack = true,
     super.key,
   });
 
@@ -27,6 +28,9 @@ class AccentSliverTopBar extends StatelessWidget {
   final AccentColor color;
   final Widget? bottom;
   final VoidCallback? onBack;
+
+  /// Hide the back button for a screen that is the root of its tab.
+  final bool showBack;
 
   static const collapsedHeight = 76.0;
   static const _expandedBase = 140.0;
@@ -97,17 +101,18 @@ class _Delegate extends SliverPersistentHeaderDelegate {
             padding: EdgeInsets.fromLTRB(16, topInset + 16, 16, 16),
             child: Stack(
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: OotmIconButton(
-                    icon: OotmIcons.arrowLeft,
-                    color: bar.color,
-                    semanticLabel: MaterialLocalizations.of(context).backButtonTooltip,
-                    onPressed: bar.onBack ?? () => Navigator.of(context).maybePop(),
+                if (bar.showBack)
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: OotmIconButton(
+                      icon: OotmIcons.arrowLeft,
+                      color: bar.color,
+                      semanticLabel: MaterialLocalizations.of(context).backButtonTooltip,
+                      onPressed: bar.onBack ?? () => Navigator.of(context).maybePop(),
+                    ),
                   ),
-                ),
                 Positioned(
-                  left: 56,
+                  left: bar.showBack ? 56 : 0,
                   right: 0,
                   top: 0,
                   height: OotmIconButton.dimension,

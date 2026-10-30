@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/info_group.dart';
+import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/design_system/accent.dart';
 import 'package:odyssey_mobile/design_system/components/accent_top_bar.dart';
 import 'package:odyssey_mobile/design_system/components/info_tile.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_grid.dart';
+import 'package:odyssey_mobile/presentation/info_screen/info_screen.dart';
 
 import '../helpers/city_data_host.dart';
 import '../design_system/test_host.dart';
@@ -98,6 +100,40 @@ void main() {
 
       expect(find.text('Sierota'), findsWidgets);
       expect(tester.takeException(), isNull);
+    });
+  });
+
+  group('InfoScreen', () {
+    testWidgets('shows the content of the only info right away', (tester) async {
+      final info = infoItem(1, 'Regionalny Poznań', text: '<p>Wszystko o regionie</p>');
+      final bloc = await loadedCityDataBloc(
+        cityDataWith(infoGroups: [InfoGroupHiveModel(1, 'Dla wszystkich', [info])]),
+      );
+
+      await tester.pumpWidget(withCity(bloc, const InfoScreen()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(InfoGrid), findsNothing);
+      expect(find.byType(InfoFilterBar), findsNothing);
+      expect(find.textContaining('Wszystko o regionie', findRichText: true), findsOneWidget);
+      expect(find.text('Regionalny Poznań'), findsWidgets);
+      // It is the tab itself, so there is nothing to go back to and no category to show.
+      expect(find.text('Dla wszystkich'), findsNothing);
+      expect(find.byIcon(OotmIcons.arrowLeft), findsNothing);
+    });
+
+    testWidgets('keeps the category filter and tiles for a city with many infos', (tester) async {
+      final bloc = await loadedCityDataBloc(
+        cityDataWith(infoGroups: [
+          InfoGroupHiveModel(1, 'Dla wszystkich', [infoItem(1, 'Dojazd'), infoItem(1, 'Noclegi')]),
+        ]),
+      );
+
+      await tester.pumpWidget(withCity(bloc, const InfoScreen()));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(InfoGrid), findsOneWidget);
+      expect(find.byType(InfoFilterBar), findsOneWidget);
     });
   });
 }
