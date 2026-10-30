@@ -13,15 +13,19 @@ import 'package:odyssey_mobile/widgets/snackbar.dart';
 
 @RoutePage()
 class InfoDetailScreen extends StatelessWidget {
-  const InfoDetailScreen({required this.info, super.key});
+  const InfoDetailScreen({required this.info, this.embedded = false, super.key});
 
   final Info info;
+
+  /// The info is the only one of its city and is shown as the Info tab itself: no back button and
+  /// no category name.
+  final bool embedded;
 
   @override
   Widget build(BuildContext context) {
     final style = TileStyles.forInfo(info, position: info.number);
     final theme = Theme.of(context);
-    final categoryName = _categoryName(context);
+    final categoryName = embedded ? null : _categoryName(context);
 
     return Scaffold(
       body: CustomScrollView(
@@ -31,6 +35,7 @@ class InfoDetailScreen extends StatelessWidget {
             subtitle: categoryName,
             glyph: style.glyph,
             color: style.color,
+            showBack: !embedded,
           ),
           SliverPadding(
             padding: const EdgeInsets.all(16),

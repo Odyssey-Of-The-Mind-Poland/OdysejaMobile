@@ -4,6 +4,7 @@ import 'package:odyssey_mobile/core/domain/info.dart';
 import 'package:odyssey_mobile/core/domain/info_category.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/error_body.dart';
+import 'package:odyssey_mobile/presentation/info_screen/info_detail_screen.dart';
 import 'package:odyssey_mobile/presentation/info_screen/info_grid.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/widgets/main_button.dart';
@@ -20,6 +21,12 @@ class InfoScreen extends StatelessWidget {
         // TODO: sort during data save.
         data.infoGroups.sort(_sort);
         data.infoGroups.forEach(_sortInfo);
+
+        // A city with a single info (regionals) has nothing to choose from: show its content right away.
+        final infos = data.infoGroups.expand((group) => group.info).toList();
+        if (infos.length == 1) {
+          return InfoDetailScreen(info: infos.single, embedded: true);
+        }
 
         int? selectedIndex;
         return StatefulBuilder(builder: (context, setState) {
