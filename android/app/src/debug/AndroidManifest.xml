@@ -4,4 +4,6 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Lets debug builds talk to a local backend over plain http (--dart-define=API_BASE_URL). -->
+    <application android:usesCleartextTraffic="true"/>
 </manifest>

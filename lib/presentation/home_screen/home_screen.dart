@@ -30,18 +30,20 @@ class HomeScreen extends StatelessWidget {
           cacheExtent: 200,
           slivers: [
             SliverToBoxAdapter(child: NextPerformance()),
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16, bottom: 8),
-                    height: size.width,
-                    child: ImageTile(data.sponsors[0][0].id),
-                  ),
-                ],
+            // A city may have no sponsors at all (e.g. a regional one).
+            if (data.sponsors.isNotEmpty && data.sponsors.first.isNotEmpty)
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16, bottom: 8),
+                      height: size.width,
+                      child: ImageTile(data.sponsors.first.first.id),
+                    ),
+                  ],
+                ),
               ),
-            ),
             // TODO: Refactor
             ...data.sponsors.skip(1).map((row) {
               return SliverPadding(
