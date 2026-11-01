@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:odyssey_mobile/app/themes/theme.dart';
 import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/data/services/url_service.dart';
 import 'package:odyssey_mobile/core/domain/info.dart';
 import 'package:odyssey_mobile/design_system/components/accent_top_bar.dart';
 import 'package:odyssey_mobile/presentation/helpers/tile_style.dart';
+import 'package:odyssey_mobile/presentation/info_screen/info_content.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/widgets/snackbar.dart';
 
@@ -24,7 +23,6 @@ class InfoDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = TileStyles.forInfo(info, position: info.number);
-    final theme = Theme.of(context);
     final categoryName = embedded ? null : _categoryName(context);
 
     return Scaffold(
@@ -40,12 +38,9 @@ class InfoDetailScreen extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.all(16),
             sliver: SliverToBoxAdapter(
-              child: DefaultTextStyle.merge(
-                style: theme.t.bodyMediumRegular,
-                child: HtmlWidget(
-                  info.infoText,
-                  onTapUrl: (url) => _launchURL(url, context),
-                ),
+              child: InfoContent(
+                html: info.infoText,
+                onTapUrl: (url) => _launchURL(url, context),
               ),
             ),
           ),
