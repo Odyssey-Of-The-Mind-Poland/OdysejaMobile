@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:odyssey_mobile/core/data/db/hive/models/problem.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/stage.dart';
 import 'package:odyssey_mobile/core/domain/divisions.dart';
 import 'package:odyssey_mobile/core/data/db/hive/models/info.dart';
@@ -51,7 +52,7 @@ void main() {
 
     test('stages, problems and age groups use different patterns', () {
       final stage = TileStyles.forScheduleCategory(StageHiveModel('Sala C', 1)).glyph;
-      final division = TileStyles.forScheduleCategory(divisions.first).glyph;
+      final division = TileStyles.forScheduleCategory(defaultDivisions.first).glyph;
 
       expect(stage, isNot(division));
     });
@@ -61,6 +62,44 @@ void main() {
       final second = TileStyles.forScheduleCategory(StageHiveModel('B', 2)).color;
 
       expect(first, isNot(second));
+    });
+  });
+
+  group('TileStyles.forScheduleCategory', () {
+    test('uses the style chosen in the admin panel for stages, problems and age groups', () {
+      for (final entity in [
+        StageHiveModel('Aula', 1, 'building-02', 'green'),
+        ProblemHiveModel('Problem 2', 2, 'building-02', 'green'),
+        const FirstDivision(icon: 'building-02', color: 'green'),
+      ]) {
+        final style = TileStyles.forScheduleCategory(entity);
+
+        expect(style.color, AccentColor.green, reason: '${entity.runtimeType}');
+        expect(style.glyph, PatternGlyph.category('building-02'), reason: '${entity.runtimeType}');
+      }
+    });
+
+    test('without a style the kind keeps its own pattern and the colour follows the number', () {
+      final stage = TileStyles.forScheduleCategory(StageHiveModel('Aula', 3));
+      final problem = TileStyles.forScheduleCategory(ProblemHiveModel('Problem 3', 3));
+      final division = TileStyles.forScheduleCategory(const ThirdDivision());
+
+      expect(stage.color, AccentColor.values[3]);
+      expect(problem.color, AccentColor.values[3]);
+      expect(division.color, AccentColor.values[3]);
+      expect(stage.glyph, PatternGlyph.category('marker-pin-01'));
+      expect(problem.glyph, PatternGlyph.category('puzzle-piece-01'));
+      expect(division.glyph, PatternGlyph.category('users-01'));
+    });
+
+    test('a style with only an icon or only a colour keeps the default for the other half', () {
+      final onlyIcon = TileStyles.forScheduleCategory(StageHiveModel('Aula', 4, 'star-01'));
+      final onlyColor = TileStyles.forScheduleCategory(StageHiveModel('Aula', 4, null, 'red'));
+
+      expect(onlyIcon.glyph, PatternGlyph.category('star-01'));
+      expect(onlyIcon.color, AccentColor.values[4]);
+      expect(onlyColor.glyph, PatternGlyph.category('marker-pin-01'));
+      expect(onlyColor.color, AccentColor.red);
     });
   });
 }

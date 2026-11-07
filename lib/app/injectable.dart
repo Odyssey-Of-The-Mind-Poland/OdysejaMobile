@@ -60,7 +60,7 @@ extension Initialize on GetIt {
     );
 
     sl.registerSingletonWithDependencies<LoadDataRepository>(
-      () => LoadDataRepository(dbService: sl()),
+      () => LoadDataRepository(dbService: sl(), sharedPreferences: sl()),
       dependsOn: [SharedPreferences, HiveDbService],
     );
     await sl.allReady(ignorePendingAsyncCreation: false, timeout: Duration(seconds: 5));

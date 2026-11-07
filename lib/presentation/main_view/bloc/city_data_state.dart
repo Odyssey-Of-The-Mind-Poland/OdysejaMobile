@@ -17,6 +17,7 @@ class CityDataError extends CityDataState {
 class CityDataSuccess extends CityDataState {
   final CityData cityData;
   final List<ScheduleCategoryEntity> problems;
+  final List<DivisionEntity> divisions;
 
-  const CityDataSuccess(this.cityData, this.problems);
+  const CityDataSuccess(this.cityData, this.problems, [this.divisions = defaultDivisions]);
 }

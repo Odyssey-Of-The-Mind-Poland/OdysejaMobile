@@ -10,6 +10,7 @@ import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
 import 'package:odyssey_mobile/core/domain/info_category.dart';
 import 'package:odyssey_mobile/core/domain/performance_group.dart';
+import 'package:odyssey_mobile/core/domain/divisions.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
@@ -22,6 +23,9 @@ class _FakeRepository implements LoadDataRepository {
 
   @override
   Future<Either<Failure, CityData>> getCityData(int cityId) async => right(data);
+
+  @override
+  List<DivisionEntity> getDivisions() => defaultDivisions;
 
   @override
   Future<Either<Failure, List<ScheduleCategoryEntity>>> getProblems() async => right(problems);

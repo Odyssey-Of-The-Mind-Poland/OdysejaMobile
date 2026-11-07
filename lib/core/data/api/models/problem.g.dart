@@ -10,4 +10,6 @@ ProblemModelApi _$ProblemModelApiFromJson(Map<String, dynamic> json) =>
     ProblemModelApi(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      icon: json['icon'] as String?,
+      color: json['color'] as String?,
     );

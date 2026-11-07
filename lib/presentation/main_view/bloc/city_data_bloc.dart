@@ -6,6 +6,7 @@ import 'package:odyssey_mobile/presentation/main_view/selected_city_store.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
+import 'package:odyssey_mobile/core/domain/divisions.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 
 part 'city_data_event.dart';
@@ -34,7 +35,7 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
         r.performanceGroups.sortPerformances();
         result2.fold(
           (l) => emit(CityDataError(l)),
-          (r2) => emit(CityDataSuccess(r, r2)),
+          (r2) => emit(CityDataSuccess(r, r2, _repository.getDivisions())),
         );
       },
     );
@@ -46,6 +47,7 @@ class CityDataBloc extends Bloc<CityDataEvent, CityDataState> {
       emit(CityDataSuccess(
         successState.cityData,
         successState.problems,
+        successState.divisions,
       ));
     }
   }

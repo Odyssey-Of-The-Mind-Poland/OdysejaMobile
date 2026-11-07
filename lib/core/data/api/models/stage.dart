@@ -9,12 +9,16 @@ class StageModelApi {
     required this.number,
     required this.city,
     required this.name,
+    this.icon,
+    this.color,
   });
 
   final int id;
   final int number;
   final int city;
   final String name;
+  final String? icon;
+  final String? color;
 
   factory StageModelApi.fromJson(Map<String, dynamic> json) => _$StageModelApiFromJson(json);
 }

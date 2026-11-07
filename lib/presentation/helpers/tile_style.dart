@@ -21,14 +21,17 @@ abstract class TileStyles {
         glyph: PatternGlyph.category(info.icon),
       );
 
-  /// Stages, problems and age groups each have their own pattern; the colour follows the number,
-  /// so a given stage or problem always looks the same.
+  /// Style chosen by the editors; stages, problems and age groups that have none keep their own
+  /// pattern and a colour that follows the number, so a given stage or problem always looks the same.
   static TileStyle forScheduleCategory(ScheduleCategoryEntity entity) => TileStyle(
-        color: AccentColor.values[entity.number.abs() % AccentColor.values.length],
-        glyph: PatternGlyph.category(switch (entity) {
-          StageEntity() => 'marker-pin-01',
-          ProblemEntity() => 'puzzle-piece-01',
-          DivisionEntity() => 'users-01',
-        }),
+        color: entity.color == null
+            ? AccentColor.values[entity.number.abs() % AccentColor.values.length]
+            : AccentColor.fromKey(entity.color),
+        glyph: PatternGlyph.category(entity.icon ??
+            switch (entity) {
+              StageEntity() => 'marker-pin-01',
+              ProblemEntity() => 'puzzle-piece-01',
+              DivisionEntity() => 'users-01',
+            }),
       );
 }

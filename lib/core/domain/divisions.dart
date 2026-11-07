@@ -4,7 +4,7 @@ import 'package:odyssey_mobile/l10n/strings.dart';
 // Overcomplicated solution for a simple problem, in case one day we'll become
 // crazy and 'll internationalize the app.
 // TODO: Check if it's really necessary.
-const List<DivisionEntity> divisions = [
+const List<DivisionEntity> defaultDivisions = [
   JuniorDivision(),
   FirstDivision(),
   SecondDivision(),
@@ -12,8 +12,23 @@ const List<DivisionEntity> divisions = [
   ForthDivision(),
 ];
 
+/// The divisions with the style (icon, colour) editors gave them, keyed by the age group number.
+List<DivisionEntity> divisionsWithStyles(Map<int, ({String? icon, String? color})> styles) => [
+      JuniorDivision(icon: styles[0]?.icon, color: styles[0]?.color),
+      FirstDivision(icon: styles[1]?.icon, color: styles[1]?.color),
+      SecondDivision(icon: styles[2]?.icon, color: styles[2]?.color),
+      ThirdDivision(icon: styles[3]?.icon, color: styles[3]?.color),
+      ForthDivision(icon: styles[4]?.icon, color: styles[4]?.color),
+    ];
+
 class JuniorDivision implements DivisionEntity {
-  const JuniorDivision();
+  const JuniorDivision({this.icon, this.color});
+
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
 
   @override
   final int number = 0;
@@ -29,7 +44,13 @@ class JuniorDivision implements DivisionEntity {
 }
 
 class FirstDivision implements DivisionEntity {
-  const FirstDivision();
+  const FirstDivision({this.icon, this.color});
+
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
 
   @override
   final int number = 1;
@@ -45,7 +66,13 @@ class FirstDivision implements DivisionEntity {
 }
 
 class SecondDivision implements DivisionEntity {
-  const SecondDivision();
+  const SecondDivision({this.icon, this.color});
+
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
 
   @override
   final int number = 2;
@@ -61,7 +88,13 @@ class SecondDivision implements DivisionEntity {
 }
 
 class ThirdDivision implements DivisionEntity {
-  const ThirdDivision();
+  const ThirdDivision({this.icon, this.color});
+
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
 
   @override
   final int number = 3;
@@ -77,7 +110,13 @@ class ThirdDivision implements DivisionEntity {
 }
 
 class ForthDivision implements DivisionEntity {
-  const ForthDivision();
+  const ForthDivision({this.icon, this.color});
+
+  @override
+  final String? icon;
+
+  @override
+  final String? color;
 
   @override
   final int number = 4;

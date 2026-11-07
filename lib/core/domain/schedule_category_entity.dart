@@ -13,6 +13,12 @@ sealed class ScheduleCategoryEntity {
 
   /// Used for page titles on [ScheduleDetailScreen].
   String get title;
+
+  /// Kebab-case name of the icon chosen by the editors; null falls back to the default of the kind.
+  String? get icon;
+
+  /// Accent colour key chosen by the editors (`blue`, `orange`...); null falls back to a colour by [number].
+  String? get color;
 }
 
 abstract class StageEntity implements ScheduleCategoryEntity {

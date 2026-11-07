@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odyssey_mobile/app/routing/router.dart';
 import 'package:odyssey_mobile/config/ootm_icons.dart';
 import 'package:odyssey_mobile/core/domain/divisions.dart';
+import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/design_system/components/search_bar_button.dart';
 import 'package:odyssey_mobile/l10n/strings.dart';
 import 'package:odyssey_mobile/presentation/components/city_data_builder.dart';
 import 'package:odyssey_mobile/presentation/components/heading.dart';
 import 'package:odyssey_mobile/presentation/components/performance_category_list.dart';
+import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
 import 'package:odyssey_mobile/widgets/top_bar.dart';
 
 @RoutePage()
@@ -25,6 +28,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Future<void> _openSearch() async {
     await context.router.push(const ScheduleSearchRoute());
     if (mounted) setState(() => _searchVisible = false);
+  }
+
+  /// The age groups as styled by the editors; read inside [CityDataBuilder], which rebuilds on every new state.
+  List<DivisionEntity> _divisions(BuildContext context) {
+    final state = context.read<CityDataBloc>().state;
+    return state is CityDataSuccess ? state.divisions : defaultDivisions;
   }
 
   @override
@@ -68,7 +77,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             PerformanceCategoryList(parameters: problems),
             const Heading(AppStrings.scheduleScreenDivisionHeading, leftPadding: 16),
             // TODO Check [data] for unavailable divisions
-            const PerformanceCategoryList(parameters: divisions),
+            PerformanceCategoryList(parameters: _divisions(context)),
           ],
         ),
       ),

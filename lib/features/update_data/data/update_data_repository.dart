@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:odyssey_mobile/app/injectable.dart';
 import 'package:odyssey_mobile/core/data/api/api_error_handler.dart';
 import 'package:odyssey_mobile/core/data/api/api_service.dart';
+import 'package:odyssey_mobile/core/data/api/models/age.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/info_fetch.dart';
 import 'package:odyssey_mobile/core/data/api/models/performance_group_v2.dart';
@@ -11,6 +12,7 @@ import 'package:odyssey_mobile/core/data/api/models/sponsor.dart';
 import 'package:odyssey_mobile/core/data/api/models/stage.dart';
 import 'package:odyssey_mobile/core/data/db/hive/hive_service.dart';
 import 'package:odyssey_mobile/core/data/failures.dart';
+import 'package:odyssey_mobile/core/data/services/division_style_store.dart';
 import 'package:odyssey_mobile/core/data/services/logger_service.dart';
 import 'package:odyssey_mobile/core/data/services/package_info_service.dart';
 import 'package:odyssey_mobile/core/data/services/store_service.dart';
@@ -143,6 +145,17 @@ class UpdateDataRepository {
     }
   }
 
+  /// Age group styles; a backend without them (older, or not yet deployed) just means no styles.
+  Future<List<AgeModelApi>> _fetchAges() async {
+    try {
+      return await _apiService.getAges();
+    } on DioException catch (e) {
+      final status = e.response?.statusCode;
+      if (status == 404 || status == 405) return const [];
+      rethrow;
+    }
+  }
+
   AsyncVoidResult updateData({required int newVersion, bool keepFavsOnUpdate = true}) async {
     try {
       List<int> previousFavIds = [];
@@ -162,6 +175,7 @@ class UpdateDataRepository {
 
       await _dbService.createProblems(problems);
       await _dbService.createCities(cities);
+      await DivisionStyleStore(_sharedPreferences).save(await _fetchAges());
 
       for (final city in cities) {
         final futures = await Future.wait([

@@ -5,6 +5,10 @@ class StageHiveModel extends StageEntity {
   final String name;
   @override
   final int number;
+  @override
+  final String? icon;
+  @override
+  final String? color;
 
-  StageHiveModel(this.name, this.number);
+  StageHiveModel(this.name, this.number, [this.icon, this.color]);
 }

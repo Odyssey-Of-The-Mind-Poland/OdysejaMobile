@@ -107,12 +107,16 @@ types:
         index: 12
   ProblemHiveModel:
     typeId: 6
-    nextIndex: 2
+    nextIndex: 4
     fields:
       name:
         index: 0
       number:
         index: 1
+      icon:
+        index: 2
+      color:
+        index: 3
   SponsorHiveModel:
     typeId: 7
     nextIndex: 3
@@ -125,9 +129,13 @@ types:
         index: 2
   StageHiveModel:
     typeId: 8
-    nextIndex: 2
+    nextIndex: 4
     fields:
       name:
         index: 0
       number:
         index: 1
+      icon:
+        index: 2
+      color:
+        index: 3

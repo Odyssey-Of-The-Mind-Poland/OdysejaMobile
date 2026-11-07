@@ -317,17 +317,26 @@ class ProblemHiveModelAdapter extends TypeAdapter<ProblemHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ProblemHiveModel(fields[0] as String, (fields[1] as num).toInt());
+    return ProblemHiveModel(
+      fields[0] as String,
+      (fields[1] as num).toInt(),
+      fields[2] as String?,
+      fields[3] as String?,
+    );
   }
 
   @override
   void write(BinaryWriter writer, ProblemHiveModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.number);
+      ..write(obj.number)
+      ..writeByte(2)
+      ..write(obj.icon)
+      ..writeByte(3)
+      ..write(obj.color);
   }
 
   @override
@@ -391,17 +400,26 @@ class StageHiveModelAdapter extends TypeAdapter<StageHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return StageHiveModel(fields[0] as String, (fields[1] as num).toInt());
+    return StageHiveModel(
+      fields[0] as String,
+      (fields[1] as num).toInt(),
+      fields[2] as String?,
+      fields[3] as String?,
+    );
   }
 
   @override
   void write(BinaryWriter writer, StageHiveModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.number);
+      ..write(obj.number)
+      ..writeByte(2)
+      ..write(obj.icon)
+      ..writeByte(3)
+      ..write(obj.color);
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:odyssey_mobile/core/data/api/models/age.dart';
 import 'package:odyssey_mobile/core/data/api/models/city.dart';
 import 'package:odyssey_mobile/core/data/api/models/data_version.dart';
 import 'package:odyssey_mobile/core/data/api/models/info.dart';
@@ -27,6 +28,9 @@ abstract class ApiService {
 
   @GET('/problem')
   Future<List<ProblemModelApi>> getProblems();
+
+  @GET('/age')
+  Future<List<AgeModelApi>> getAges();
 
   @GET('/info')
   Future<List<InfoModelApi>> getInfo({@Query('cityId') required int cityId});

@@ -111,7 +111,7 @@ class HiveDbService {
   }
 
   Future<void> createProblems(List<ProblemModelApi> problems) async {
-    final data = problems.map((e) => ProblemHiveModel(e.name, e.id)).toList()
+    final data = problems.map((e) => ProblemHiveModel(e.name, e.id, e.icon, e.color)).toList()
       ..sort((a, b) => a.number.compareTo(b.number));
     await _pandoraBox.addAll(data);
   }

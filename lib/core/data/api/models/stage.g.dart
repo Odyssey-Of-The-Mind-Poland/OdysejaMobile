@@ -12,4 +12,6 @@ StageModelApi _$StageModelApiFromJson(Map<String, dynamic> json) =>
       number: (json['number'] as num).toInt(),
       city: (json['city'] as num).toInt(),
       name: json['name'] as String,
+      icon: json['icon'] as String?,
+      color: json['color'] as String?,
     );

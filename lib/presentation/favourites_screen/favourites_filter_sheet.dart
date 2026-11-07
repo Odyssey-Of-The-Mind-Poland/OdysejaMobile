@@ -17,22 +17,29 @@ Future<void> showFavouritesFilterSheet(BuildContext context) {
   final state = context.read<CityDataBloc>().state;
   final stages = state is CityDataSuccess ? state.cityData.stages : const <ScheduleCategoryEntity>[];
   final problems = state is CityDataSuccess ? state.problems : const <ScheduleCategoryEntity>[];
+  final divisions = state is CityDataSuccess ? state.divisions : defaultDivisions;
 
   return showOotmBottomSheet<void>(
     context: context,
     routeName: 'FavouritesFilterSheet',
     child: BlocProvider.value(
       value: cubit,
-      child: FavouritesFilterSheet(stages: stages, problems: problems),
+      child: FavouritesFilterSheet(stages: stages, problems: problems, divisions: divisions),
     ),
   );
 }
 
 class FavouritesFilterSheet extends StatelessWidget {
-  const FavouritesFilterSheet({required this.stages, required this.problems, super.key});
+  const FavouritesFilterSheet({
+    required this.stages,
+    required this.problems,
+    this.divisions = defaultDivisions,
+    super.key,
+  });
 
   final List<ScheduleCategoryEntity> stages;
   final List<ScheduleCategoryEntity> problems;
+  final List<DivisionEntity> divisions;
 
   @override
   Widget build(BuildContext context) {

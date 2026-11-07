@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:odyssey_mobile/core/data/load_data_repository.dart';
 import 'package:odyssey_mobile/core/data/failures.dart';
 import 'package:odyssey_mobile/core/domain/city_data.dart';
+import 'package:odyssey_mobile/core/domain/divisions.dart';
 import 'package:odyssey_mobile/core/domain/schedule_category_entity.dart';
 import 'package:odyssey_mobile/core/failure.dart';
 import 'package:odyssey_mobile/presentation/main_view/bloc/city_data_bloc.dart';
@@ -22,6 +23,9 @@ class _Repo implements LoadDataRepository {
     requested.add(cityId);
     return available.contains(cityId) ? right(FakeCityData(cityId: cityId)) : left(const DataBaseFailure());
   }
+
+  @override
+  List<DivisionEntity> getDivisions() => defaultDivisions;
 
   @override
   Future<Either<Failure, List<ScheduleCategoryEntity>>> getProblems() async => right(<ScheduleCategoryEntity>[]);
