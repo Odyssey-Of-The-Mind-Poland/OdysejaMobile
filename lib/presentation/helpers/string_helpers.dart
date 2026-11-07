@@ -87,7 +87,7 @@ class StringHelper {
     for (int i = 1; i < input.length - 1; i++) {
       if (input[i - 1] == ' ' && input[i + 1] == ' ') {
         indexes.add(i);
-      } else if (input[i - 1] == ' ' && input[i + 2] == ' ') {
+      } else if (input[i - 1] == ' ' && i + 2 < input.length && input[i + 2] == ' ') {
         indexes.add(i + 1);
       }
     }
